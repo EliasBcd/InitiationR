@@ -87,13 +87,90 @@
     correspondant dans data est une NA.
     À l'inverse, quand vous voyez FALSE, l'élément correspond est un des nombre
     issu du tirage aléatoire.
+    
+- Class: cmd_question
+  Output: Dans la leçon sur les opérateurs logiques, nous avons vu l'opérateur
+    égalité `==`.
+    Il test l'égalité entre deux objets. 
+    On peut penser que data == NA aboutira au même résultat que is.na().
+    Essayez pour voir !
+  CorrectAnswer: data == NA
+  AnswerTests: omnitest(correctExpr='data == NA')
+  Hint: Essayez data == NA et regardez ce qu'il se passe.
+  
+- Class: text
+  Output: Le résultat est un vecteur contenant uniquement des NA.
+    L'explication pour cela est assez simple. 
+    NA n'est pas une valeur en soi, mais un symbole qui indique l'absence de 
+    valeur.
+    L'opération logique paraît donc incomplète à R. 
+    On lui demande de comparer une valeur inexistance avec un vecteur de valeurs.
+    Il ne peut que retourner l'absence de valeur.
+
+- Class: text
+  Output: Les NA peuvent être déroutante au début. 
+    Ne vous inquiétez pas si tout n'est pas très clair. 
+    Le point important à retenir que quand vous êtes face à des valeurs
+    manquantes (NA), soyez prudent, cela peut vous donner des résultats 
+    inattendus.
+    
+- Class: text
+  Output: Fin de la parenthèse.
+    Nous avons un vecteur, my_na, qui prend comme valeur TRUE pour chaque NA dans
+    les données et FALSE pour toutes les valeurs numériques.
+    Nous pouvons calculer le nombre de NA dans notre vecteur de données data.
+    
+- Class: text
+  Output: Il y a une astuce qui va nous faire gagner du temps.
+    R traîte les FALSE comme des 0 et les TRUE comme des 1.
+    Il nous suffit donc de calculer la somme totale du vecteur my_na pour 
+    connaître le nombre de valeurs NA.
+    
+- Class: cmd_question
+  Output: Essayons.
+    Utilisez la commande sum() sur le vecteur my_na pour compter le nombre total
+    de TRUE dans my_na, et donc le nombre total de NA dans data.
+    Seul le résultat nous intéresse.
+  CorrectAnswer: sum(my_na)
+  AnswerTests: omnitest(correctExpr='sum(my_na)')
+  Hint: Utilisez sum(my_na) pour calculer le nombre de NA dans data.
+  
+- Class: cmd_question
+  Output: Pratique, n'est-ce pas ?
+    Enfin, pour vous convaincre que tout fonctionne bien, regardons les données.
+    Affichez data dans la console.
+  CorrectAnswer: data
+  AnswerTests: omnitest(correctExpr='data')
+  Hint: Affichez data dans la console.
+
+- Class: cmd_question
+  Output: Il existe un second type de valeurs manquates, NaN (de l'anglais 
+    'not a number'.
+    Pour créer un NaN, essayez de diviser 0 par 0.
+  CorrectAnswer: 0/0
+  AnswerTests: omnitest(correctExpr='0/0')
+  Hint: Try 0/0.  
+
+- Class: cmd_question
+  Output: Une deuxième façon de créer des NaN.
+    R a un symbole pour l'infini mathématiques, Inf.
+    Que se passe-t-il si on soustrait Inf de Inf ?
+  CorrectAnswer: Inf - Inf
+  AnswerTests: omnitest(correctExpr='Inf - Inf')
+  Hint: Tapez Inf - Inf. Quel est le résultat à votre avis ?
+  
+- Class: text
+  Output: Les NaN sont, vous l'aurez compris, un peu différent des NA.
+    Ils ne nous indiquent pas l'absence de valeur général, mais le fait que 
+    le résultat de l'opération demandée n'est pas un nombre (une division par 0)
+    et ne peut donc être calculé au sens classique du terme.
 
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
     enseignant (cela ne fonctionnera que pour les étudiants de l'université 
     Paris 8) ?
     Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
-    fichier 'Simples.csv' qui a été créé plus tard.
+    fichier 'Manquantes.csv' qui a été créé plus tard.
   AnswerChoices: Oui;Non
   CorrectAnswer: "Oui"
   AnswerTests: submit_log()
