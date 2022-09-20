@@ -158,7 +158,7 @@
     enseignant (cela ne fonctionnera que pour les étudiants de l'université 
     Paris 8) ?
     Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
-    fichier 'Manipulations.txt' qui a été créé plus tard.
+    fichier 'Manipulations_simples.txt' qui a été créé plus tard.
   AnswerChoices: Oui;Non
   CorrectAnswer: "Oui"
   AnswerTests: submit_log()
