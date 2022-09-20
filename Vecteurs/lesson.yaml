@@ -169,6 +169,16 @@
   Output: Il y a de nombreuses autres manières de construire des vecteurs, 
     en particulier des vecteurs de numériques.
     Nous les verrons en temps voulu.
+
+- Class: cmd_question
+  Output: Un vecteur ne contient pas forcément que des nombres.
+    Il peut aussi contenir des booléens ou des chaînes de caractères.
+    Essayez de créer un vecteurs chiens contenant les race suivantes, Doberman,
+    Chihuahua et Husky (dans cet ordre).
+    Rappelez-vous comment on peut entrer des chaînes de caractères.
+  CorrectAnswer: chiens <-c("Doberman","Chihuahua","Husky")
+  AnswerTests: omnitest(correctExpr = "chiens <-c('Doberman', 'Chihuahua', 'Husky')")
+  Hint: N'oubliez pas les guillements " ou ' autour des chaînes de caractères.
   
 - Class: text
   Output: Avant de finir la leçon, je vais vous apprendre quelques techniques
@@ -210,3 +220,13 @@
     l'auto-complétion, tapez simplement ma_racine et appuyez sur entrée pour 
     continuer.
   
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Simples.csv' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
