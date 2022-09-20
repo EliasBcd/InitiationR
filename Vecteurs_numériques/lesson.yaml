@@ -1,0 +1,166 @@
+- Class: meta
+  Course: InitationR
+  Lesson: Vecteurs numériques
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+  
+- Class: text
+  Output: Nous allons maintenant étudier la création de vecteurs numériques.
+  
+- Class: cmd_question
+  Output: La manière la plus simple de créer un vecteur numérique dans R est 
+    d'utiliser la commande `:`.
+    Tapez 1:20 pour voir comment elle fonctionne.
+  CorrectAnswer: '1:20'
+  AnswerTests: omnitest(correctExpr='1:20')
+  Hint: Tapez 1:20 sans espace. 
+    Utilisez bien des deux points et non un point-virgule.
+
+- Class: cmd_question
+  Output: Nous avons crée un vecteur contenant (et incluant)tous les entiers 
+    entre 1 et 20.
+    La commande fonctionne aussi avec des nombres réels.
+    Essayez par exemple pi:10.
+  CorrectAnswer: pi:10
+  AnswerTests: omnitest(correctExpr='pi:10')
+  Hint: Essayez pi:10 et observer le résultat.
+  
+- Class: text
+  Output: Le résultat est un vecteur de nombre réels commençant à pi (3.142...) 
+    et croissant par incrément de 1.
+    La limite haute 10 n'est jamais atteinte, puisque le prochain nombre dans la
+    séquence serait strictement supérieur à 10.
+    
+- Class: cmd_question
+  Output: Que se passe-t-il si nous tapons 15:1 ?
+    Essayez pour voir.
+  CorrectAnswer: '15:1'
+  AnswerTests: omnitest(correctExpr='15:1')
+  Hint: Tapez 15:1 et appuyez sur entrée.
+
+- Class: text
+  Output: L'incrément était de -1 !
+    Il est peu probable que ce comportement vous soit très utile, mais gardez
+    en tête que cela peut arriver.
+    
+- Class: text
+  Output: "Pour accéder à l'aide sur une commande, vous pouvez utiliser un point 
+   d'interrogation suivi du nom de la commande. 
+   Il y a une exception néanmoins, le cas d'un opérateur tel que :.
+   Il est nécessaire de mettre l'opérateur entre guillemets, comme ceci :
+   ?':'."
+   
+- Class: cmd_question
+  Output: "Essayez d'obtenir la documentation pour : maintenant."
+  CorrectAnswer: ?`:`
+  AnswerTests: any_of_exprs('?`:`', "?':'", '?":"')
+  Hint: "Tapez ?':'."
+  
+- Class: text
+  Output: Il est parfois utile d'avoir plus de contrôle que sur la création de
+    vecteurs numériques que ce qui nous est donné par `:`. 
+    La commande seq() sert exactement à cela.
+    
+- Class: cmd_question
+  Output: Dans sa forme la plus simple, seq() remplit exactement le même rôle 
+    que `:`.
+    Essayez seq(1, 20).
+  CorrectAnswer: seq(1, 20)
+  AnswerTests: omnitest(correctExpr='seq(1, 20)')
+  Hint: Tapez seq(1, 20) et appuyez sur entrée.
+    
+- Class: cmd_question
+  Output: Nous avons le même résultat qu'avec 1:20, peu intéressant...
+    Imaginons maintenant que vous souhaitez créer un vecteur de nombre allant de
+    0 à 10 par incrément de 0.5.
+    seq(0, 10, by=0.5) fait exactement cela.
+    Essayez !
+  CorrectAnswer: seq(0, 10, by=0.5)
+  AnswerTests: omnitest(correctExpr='seq(0, 10, by=0.5)')
+  Hint: Vous utilisez toujours la commande seq() mais avec un argument 
+    supplémentaire qui indique l'incrément.
+    Essayez seq(0, 10, by=0.5).    
+
+- Class: cmd_question
+  Output: Si ce n'est pas l'incrément qui compte, mais que vous voulez un vecteur
+   avec une longueur donnée, disons 30 nombre entre 5 et 10.
+   seq(5, 10, length=30) sert exactement à cela.
+    Essayez et stockez le résultat dans un nouvel objet appelé ma_seq.
+  CorrectAnswer: ma_seq <- seq(5, 10, length=30)
+  AnswerTests: omnitest(correctExpr='ma_seq <- seq(5, 10, length=30)')
+  Hint: Vous utilisez exactement la même commande que tout à l'heure, mais avec
+    des arguments différent.
+    Sauvegardez bien le résultat dans un nouvel objet ma_seq, comme ceci
+    my_seq <- seq(5, 10, length=30).
+    
+- Class: cmd_question
+  Output: La commande length() permet de connaître la longueur d'un objet dans
+    R.
+    Essayez-la sur le vecteur ma_seq pour vérifier qu'il contient bien 30
+    éléments.
+  CorrectAnswer: length(ma_seq)
+  AnswerTests: omnitest(correctExpr='length(ma_seq)')
+  Hint: Utilisez length(ma_seq) pour afficher la longueur du vecteur ma_seq.
+
+- Class: text
+  Output: Imaginons que nous ne connaissions pas la longueur de ma_seq, mais que
+    nous voulons générer un vecteur de même longueur que le vecteur ma_seq et 
+    contenant les N premiers entiers.
+    Autrement nous voulons générer un vecteur (1, 2, 3, ... N) ou N est la 
+    longueur de ma_seq.
+    
+- Class: cmd_question
+  Output: "Il y a plusieurs manière de faire pour aboutir à ce résultat.
+    La première est de combiner l'opérateur `:` et la commande length(), comme
+    ceci : 1:length(my_seq). Essayez."
+  CorrectAnswer: 1:length(my_seq)
+  AnswerTests: omnitest(correctExpr='1:length(my_seq)')
+  Hint: Essayez 1:length(my_seq).
+  
+
+- Class: cmd_question
+  Output: "Il est aussi possible d'utiliser une autre option de la commande seq(),
+    along.with, comme ceci : seq(along.with = ma_seq).
+    L'argument along.with dit à R que vous voulez un vecteur de même longeur que
+    ma_seq. Essayez."
+  CorrectAnswer: seq(along.with = ma_seq)
+  AnswerTests: omnitest(correctExpr='seq(along.with = ma_seq)')
+  Hint: Tapez seq(along.with = ma_seq).  
+
+- Class: cmd_question
+  Output: Mieux encore, comme pour beaucoup de tâches courantes, R dispose d'une
+    commande spécifique, la commande seq_along().
+    Tapez seq_along(ma_seq) pour la voir en action.
+  CorrectAnswer: seq_along(ma_seq)
+  AnswerTests: omnitest(correctExpr='seq_along(ma_seq)')
+  Hint: La commande seq_along() est une variation de la fonctions seq(). 
+    Essayez seq_along(ma_seq) pour obtenir le résultat.
+    
+- Class: text
+  Output: Il y a souvent plusieurs manières de résoudre le même problème dans R.
+    Les approches simples qui requièrent le moins de ligne de code sont 
+    généralement les meilleures.
+    Il est aussi important que votre code soit lisible pour que d'autres puissent
+    le lire.
+    
+- Class: tet
+  Output: Si R dispose d'une commande spécifique pour la tâche que vous souhaitez
+    accomplir, c'est généralement votre meilleure option.
+    Vous allez apprendre à créeer vos propres commandes quand vous ne trouverez 
+    dans R ce qu'il vous faut.
+    Nous allons explorer l'écriture de votre propre commande (fonctions) dans 
+    une prochaine leçon.
+    
+
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Vecteurs_numeriques.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
