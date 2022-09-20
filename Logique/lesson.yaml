@@ -24,41 +24,41 @@
   CorrectAnswer: TRUE == TRUE
   AnswerTests: omnitest(correctExpr='TRUE == TRUE')
   Hint: Utilisez l'opérateur d'égalité et tapez TRUE == TRUE.
-  
+
 - Class: text
-  Output: Tout comme les expressions arithmétiques, les expressions logiques 
+  Output: Tout comme les expressions arithmétiques, les expressions logiques
     peuvent être regroupées à l'aide de parenthèses et indiquer ainsi les priorités
-    de calcul. 
-    Par exemple, le résultat de l'expression (TRUE == TRUE) == TRUE sera bien 
+    de calcul.
+    Par exemple, le résultat de l'expression (TRUE == TRUE) == TRUE sera bien
     TRUE.
-    
+
 - Class: cmd_question
   Output: Testons cette propriété, essayez d'évaluer (FALSE == TRUE) == FALSE .
   CorrectAnswer: (FALSE == TRUE) == FALSE
   AnswerTests: omnitest(correctExpr='(FALSE == TRUE) == FALSE')
   Hint: Tapez (FALSE == TRUE) == FALSE
-  
+
 - Class: cmd_question
   Output: L'opérateur d'égalité peut aussi servir à comparer des nombres.
     Utilisez-le pour savoir si 6 et 7 sont égaux.
   CorrectAnswer: 6 == 7
   AnswerTests:  any_of_exprs('6 == 7', '7 == 6')
   Hint: Utilisez l'opérateur d'égalité et tapez 6 == 7.
-  
+
 - Class: text
   Output: Le résultat de l'expression précédente est FALSE, parce 6 est plus
-    petit que 7. 
+    petit que 7.
     Heureusement pour nous, nous pouvons aussi tester les inégalités pour savoir
     si un nombre est plus petit ou plus grand qu'un autre.
-    
+
 - Class: cmd_question
-  Output: L'opérateur plus petit que `<` teste si le nombre à gauche de 
-    l'opérateur est plus petit que le nombre à droite. 
+  Output: L'opérateur plus petit que `<` teste si le nombre à gauche de
+    l'opérateur est plus petit que le nombre à droite.
     Tapez une expression pour tester si 6 et plus petit que 7.
   CorrectAnswer: 6 < 7
   AnswerTests: omnitest(correctExpr='6 < 7')
   Hint: Utilisez l'opérateur 'plus petit que' et tapez 6 < 7.
-  
+
 - Class: cmd_question
   Output: Il existe aussi un opérateur plus petit ou égal à `<=` qui teste si
     l'expression à gauche est plus petite ou égale à l'expression à droite.
@@ -66,32 +66,32 @@
   CorrectAnswer: 10 <= 10
   AnswerTests: omnitest(correctExpr='10 <= 10')
   Hint: Utilisez l'opérateur `<=` et tapez 10 <= 10.
-  
+
 - Class: text
-  Output: On peut aussi utiliser les opérateurs plus grand que `>` et plus 
+  Output: On peut aussi utiliser les opérateurs plus grand que `>` et plus
     grand ou égal à `>=`.
-    
+
 
 - Class: mult_question
-  Output: Voyons si vous avez compris. 
+  Output: Voyons si vous avez compris.
     Laquelle des expressions suivantes à pour résultat FALSE ?
   CorrectAnswer: 9 >= 10
-  AnswerChoices: 9 >= 10; 7 == 7; 6 < 8; 0 > -36 
+  AnswerChoices: 9 >= 10; 7 == 7; 6 < 8; 0 > -36
   AnswerTests: omnitest(correctVal='9 >= 10')
   Hint: Vous pouvez, si vous en avez besoin, essayez chaque expression dans R
     pour trouver le bon résultat.
-    
+
 - Class: mult_question
-  Output: Et maintenant, laquelle des expressions suivantes à pour résultat 
+  Output: Et maintenant, laquelle des expressions suivantes à pour résultat
     TRUE ?
   CorrectAnswer: 9 >= 10
-  AnswerChoices: 9 >= 10; 7 == 9; 57 < 8; -6 > -7 
+  AnswerChoices: 9 >= 10; 7 == 9; 57 < 8; -6 > -7
   AnswerTests: omnitest(correctVal='-6 > -7')
   Hint: Vous pouvez, si vous en avez besoin, essayez chaque expression dans R
     pour trouver le bon résultat.
-    
+
 - Class: cmd_question
-  Output: Intéressons maintenant à l'opérateur 'différent de' (= non-égal) 
+  Output: Intéressons maintenant à l'opérateur 'différent de' (= non-égal)
     représenté par `!=`.
     Différent de teste si deux valeurs sont différentes, de telle sorte que le résultat
     de TRUE != FALSE est TRUE.
@@ -101,16 +101,16 @@
   CorrectAnswer: 5 != 7
   AnswerTests:  any_of_exprs('5 != 7', '7 != 5')
   Hint: Utilisez l'opérateur différent de est tapez 5 != 7.
-  
+
 - Class: cmd_question
   Output: "Il peut être utile de 'négativer' une expression avec l'opérateur NON.
-    Un point d'exclamation `!` inversera les évaluations de TRUE et FALSE, de 
+    Un point d'exclamation `!` inversera les évaluations de TRUE et FALSE, de
     telle sorte que la valeur de !TRUE (lire : non TRUE) est FALSE et que la
     valeur de !FALSE (lire : non FALSE) est TRUE.
     Essayez d'utiliser l'opéraeur NON pour trouver l'inverse de 5 est égal à 7."
   CorrectAnswer: '!5 == 7'
   AnswerTests: any_of_exprs('!5 == 7', '!(5 == 7)', '!7 == 5', '!(7 == 5)')
-  Hint: Cette question est peut-être un peu difficile, pensez à la négation de 
+  Hint: Cette question est peut-être un peu difficile, pensez à la négation de
     l'expression 5 == 7 (vous avez seulement besoin d'un point d'exclamation
     devant).
 
@@ -128,7 +128,7 @@
   AnswerTests: omnitest(correctVal='!(0 >= -1)')
   Hint: Vous pouvez, si vous en avez besoin, essayez chaque expression dans R
     pour trouver le bon résultat.
-    
+
 - Class: mult_question
   Output: "Quel est à votre avis le résultat de l'expression suivante :
     (TRUE != FALSE) == !(6 == 7)"
@@ -136,7 +136,7 @@
   AnswerChoices: TRUE; FALSE; Y a-t-il une vérité objective dans la programmation ?; %>%
   AnswerTests: omnitest(correctVal='TRUE')
   Hint: Essayez d'évaluer les expressions indépendamment pour trouver le résultat.
-  
+
 - Class: text
   Output: Il est parfois nécessaire d'examiner les relations entre plusieurs
     expressions logiques.
@@ -145,73 +145,73 @@
 - Class: cmd_question
   Output: Regardons comment l'opérateur ET fonctionne.
     Il y a deux opérateurs ET dans R, `&` et `&&`.
-    Les deux opérateurs sont similaires. 
-    Si les expressions à droite et à gauche de l'opérateur ET ont tFAoutes les
+    Les deux opérateurs sont similaires.
+    Si les expressions à droite et à gauche de l'opérateur ET ont toutes les
     deux pour résultat TRUE, alors l'expression entière a pour résultat TRUE,
     sinon le résultat est FALSE.
-    Par exemple, la valeur de TRUE & TRUE est TRUE. 
+    Par exemple, la valeur de TRUE & TRUE est TRUE.
     Essayez avec FALSE & FALSE.
   CorrectAnswer: FALSE & FALSE
   AnswerTests: omnitest(correctExpr='FALSE & FALSE')
   Hint: Tapez simplement FALSE & FALSE
-  
+
 - Class: cmd_question
   Output: Vous pouvez utilisez l'opérateur `&` pour évaluer ET suivant un vecteur.
-    La version `&&` a besoin d'avoir une seule valeur logique à gauche et à 
+    La version `&&` a besoin d'avoir une seule valeur logique à gauche et à
     droite pour fonctionner.
     Essayons les deux.
     Commencez par TRUE & c(TRUE, FALSE, FALSE).
   CorrectAnswer: "TRUE & c(TRUE, FALSE, FALSE)"
   AnswerTests: omnitest(correctExpr='TRUE & c(TRUE, FALSE, FALSE)')
   Hint: Utilisons `&` avec un vecteur, tapez TRUE & c(TRUE, FALSE, FALSE)
-  
+
 - Class: text
-  Output: L'expression de gauche est recyclée (rappelez-vous la leçon sur les 
+  Output: L'expression de gauche est recyclée (rappelez-vous la leçon sur les
     vecteurs) afin d'avoir la même longueur que le vecteur de droite.
     C'est comme si on avait écrit  c(TRUE, TRUE, TRUE) & c(TRUE, FALSE, FALSE).
-    Une expression comme cela  fonctionnera différemment avec l'opérateur `&&`, R 
-    bloquant le recyclage du vecteur de gauche (et renvoit une alerte depuis la 
+    Une expression comme cela  fonctionnera différemment avec l'opérateur `&&`, R
+    bloquant le recyclage du vecteur de gauche (et renvoit une alerte depuis la
     version 4.2.0).
-    
+
 - Class: cmd_question
-  Output: Utilisons la même opération en remplaçant `&` par `&&`. 
+  Output: Utilisons la même opération en remplaçant `&` par `&&`.
   CorrectAnswer: "TRUE && c(TRUE, FALSE, FALSE)"
   AnswerTests: omnitest(correctExpr='TRUE && c(TRUE, FALSE, FALSE)')
   Hint: Tapez TRUE && c(TRUE, FALSE, FALSE).
-  
+
 - Class: text
   Output: R nous renvoit un Warning et le résultat !
     Un message commençant par Warning est une façon de communiquer pour R.
-    R vous communique que l'opération que vous êtes en train de faire est 
+    R vous communique que l'opération que vous êtes en train de faire est
     possible (il vous donne un résultat), mais qu'elle lui semble suspecte.
     En fait, ici R utilise uniquement le premier élément du vecteur de droite.
-    Ce comportement est amené à disparaître dans les futures versions de R, je 
+    Ce comportement est amené à disparaître dans les futures versions de R, je
     ne vous encourage donc pas à l'utiliser.
     Le principal intérêt de l'opérateur `&&` est de vous garantir que le résultat
     a une longueur de 1.
     Cela nous servira dans la suite du cours.
-    
+
 - Class: text
   Output: L'opérateur OU fonctionne d'une manière similaire.
     `|` recycle les vecteurs si besoin, alors que `||` renvoit un résultat de
     longueur 1.
-    
+
 - Class: text
   Output: OU renvoit TRUE si l'expression de droite ou l'expression de gauche
     est TRUE.
     Il renvoit FALSE sinon.
-    
+
 - Class: cmd_question
-  Output: "Testons la version vectorielle de OU. Tapez la commande 
+  Output: "Testons la version vectorielle de OU. Tapez la commande
   TRUE | c(TRUE, FALSE, FALSE)."
   CorrectAnswer: "TRUE | c(TRUE, FALSE, FALSE)"
   AnswerTests: omnitest(correctExpr='TRUE | c(TRUE, FALSE, FALSE)')
   Hint: "Tapez la commande TRUE | c(TRUE, FALSE, FALSE)."
-  
+
 - Class: text
   Output: Les opérateurs logiques peuvent être chainés, tout comme les
-    opérations arithmétiques. 
-    Les expressions `6 != 10 && FALSE && 1 >= 2` ou `TRUE || 5 < 9.3 
+    opérations arithmétiques.
+    Les expressions `6 != 10 && FALSE && 1 >= 2` ou `TRUE || 5 < 9.3
     || FALSE` sont tout à fait normales.
 
 - Class: cmd_question
@@ -221,9 +221,9 @@
     Essayez cet exemple un peu ambigu 5 > 8 || 6 != 8 && 4 > 3.9.
   CorrectAnswer: "5 > 8 || 6 != 8 && 4 > 3.9"
   AnswerTests: omnitest(correctExpr='5 > 8 || 6 != 8 && 4 > 3.9')
-  Hint: Regardez l'ordre des opérations OU et ET en tapant 
+  Hint: Regardez l'ordre des opérations OU et ET en tapant
     5 > 8 || 6 != 8 && 4 > 3.9
-  
+
 - Class: text
   Output: Regardons l'ordre des opérations dans cet exemple.
     ET est prioritaire sur OU.
@@ -235,11 +235,11 @@
     À droite, on a TRUE, à gauche, 5 n'est pas plus grand que 8, donc le résultat
     est FALSE.
     FALSE || TRUE a pour résultat TRUE, ce qui nous donne bien le résultat final.
- 
+
 - Class: mult_question
   Output: Quelle expression a pour résultat TRUE ?
   CorrectAnswer: "TRUE && FALSE || 9 >= 4 && 3 < 6"
-  AnswerChoices: "TRUE && FALSE || 9 >= 4 && 3 < 6; TRUE && 62 < 62 && 44 >= 44; 
+  AnswerChoices: "TRUE && FALSE || 9 >= 4 && 3 < 6; TRUE && 62 < 62 && 44 >= 44;
     99.99 > 100 || 45 < 7.3 || 4 != 4.0; FALSE || TRUE && FALSE"
   AnswerTests: omnitest(correctVal='TRUE && FALSE || 9 >= 4 && 3 < 6')
   Hint: Si vous ne trouvez pas la réponse, essayez chaque expression pour en lire
@@ -248,18 +248,18 @@
 - Class: mult_question
   Output: Quelle expression a pour résultat FALSE ?
   CorrectAnswer: "FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5"
-  AnswerChoices: "FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5; 
+  AnswerChoices: "FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5;
     FALSE || TRUE && 6 != 4 || 9 > 4; !(8 > 4) ||  5 == 5.0 && 7.8 >= 7.79;
     6 >= -9 && !(6 > 7) && !(!TRUE)"
   AnswerTests: omnitest(correctVal='FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5')
   Hint: Si vous ne trouvez pas la réponse, essayez chaque expression pour en lire
     le résultat.
     
-- Class: text
-  Output: Vous êtes maintenant familiarisés avec les opérateurs primaires
-    dans R.
-    Voyons maintenant quelques commandes utiles supplémentaires.
-
+# - Class: text
+#   Output: Vous êtes maintenant familiarisés avec les opérateurs primaires
+#     dans R.
+#     Voyons maintenant quelques commandes utiles supplémentaires.
+# 
 # - Class : cmd_question
 #   Output: La commande isTRUE() a un argument.
 #     Si le résultat de cet argument est TRUE, le résultat de la commande est TRUE.
@@ -344,7 +344,7 @@
     enseignant (cela ne fonctionnera que pour les étudiants de l'université 
     Paris 8) ?
     Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
-    fichier 'Simples.csv' qui a été créé plus tard.
+    fichier 'Logique.txt' qui a été créé plus tard.
   AnswerChoices: Oui;Non
   CorrectAnswer: "Oui"
   AnswerTests: submit_log()
