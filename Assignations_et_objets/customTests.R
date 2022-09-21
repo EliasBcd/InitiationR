@@ -32,7 +32,7 @@ getVal <- function(){
 submit_log <- function(){
   # Changer de lien et de nom pour chaque leçon
   pre_fill_link <- "https://moodle.univ-paris8.fr/mod/assign/view.php?id=271762&action=editsubmission"
-  saved <- paste0(gsub(" ","_" ,getOption("swirlify_lesson_name")), ".txt")
+  saved <- "Assignations_et_objets.txt"
   temp <- tempfile()
   
   
