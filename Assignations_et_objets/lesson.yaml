@@ -15,34 +15,28 @@
 
 - Class: cmd_question
   Output: Commençons simplement.
-    Nous cherchons à assigner à l'objet x la valeur 5 + 7.
+    Nous cherchons à assigner à l'objet x la valeur 2.
     L'opérateur d'assignation dans R est la flèche vers la gauche <-.
     Elle symbolise ce qu'elle fait, on assigne à ce qui est à gauche ce qui est 
     à droite.
-    Pour assigner 5 + 7 à x, il suffit de taper x <- 5 + 7.
-  CorrectAnswer: x <- 5 + 7
-  AnswerTests: any_of_exprs('x <- 5 + 7', 'x <- 7 + 5')
-  Hint: Tapez x <- 5 + 7 (ou 7 + 5). Il est important d'avoir un espace à gauche
+    Pour assigner 2 à x, il suffit de taper x <- 2.
+  CorrectAnswer: x <- 2
+  AnswerTests: omnitest(correctExpr='x <- 2')
+  Hint: Tapez x <- 2. Il est important d'avoir un espace à gauche
     et à droite de l'opérateur d'assignation, mais NE mettez PAS d'espace entre
     le `<` et le `-` qui forment la flèche.
 
-- Class: text
+- Class: cmd_question
   Output: Remarquez que R n'a rien affiché, contrairement à la leçon précédente,
     ou R affichait systématiquement le résultat du calcul. 
-    Quand on utilise l'opérateur d'assignation, R suppose que l'on souhaite
-    utiliser le résultat par la suite, pas qu'il nous intéresse immédiatement.
-    Pour lui, la partie importante de l'instruction n'est pas 5 + 7, mais 
-    l'assignation du résultat à l'objet x.
-
-- Class: cmd_question
-  Output: Pour visualiser le contenu d'un objet, il suffit de le taper, suivi 
+    Pour visualiser le contenu d'un objet, il suffit de le taper, suivi 
     d'entrée.
     Nous avons déjà fait cela, sans le savoir, quand on a cherché la valeur de pi.
     Essayez maintenant.
   CorrectAnswer: x
   AnswerTests: omnitest(correctExpr='x')
   Hint: Taper simplement x dans la console, suivi d'entrée.
-
+  
 - Class: text
   Output: En résumé, qu'à fait R ?
     R a sauvegardé le résultat de l'opération dans l'objet x.
@@ -58,49 +52,90 @@
     Je vous encourage à l'utiliser dès maintenant.
 
 - Class: cmd_question
-  Output: On peut faire des opérations sur les objets exactement comme on le 
-    ferait sur des valeurs, et assigner le résultat.
-    Stockez le résultat de x - 3 dans un nouvel objet, nommé y.
-  CorrectAnswer: y <- x - 3
-  AnswerTests: omnitest(correctExpr='y <- x - 3')
-  Hint: Tapez y <- x - 3 et appuyez sur entrée. 
-    Utiliser x - 3 ou x-3 est une histoire de préférence, mais c'est 
+  Output: On peut utiliser les objets dans d'autres opérations.
+    R utilisera alors la valeur de l'objet pour faire l'opération demandée.
+    Essayez d'additionner 4 à x.
+  CorrectAnswer: x+4
+  AnswerTests: any_of_exprs('x + 4', '4+x')
+  Hint: Tapez x + 4 et appuyez sur entrée. 
+    Utiliser x+4 ou x + 4 est une histoire de préférence, mais c'est 
     une bonne habitude de laisser un espace de chaque côté de l'opérateur 
     d'assignation.
 
-- Class: cmd_question
-  Output: Quelle est la valeur de y ? Tapez y pour le savoir !
-  CorrectAnswer: 'y'
-  AnswerTests: omnitest(correctExpr='y')
-  Hint: Tapez y et appuyez sur Entrée.
-  
+
 
 - Class: cmd_question
-  Output: On peut faire des opérations sur les objets comme on les ferait sur
-    des valeurs.
-    Essayez d'additionner x et y.
-  CorrectAnswer: 'x + y'
-  AnswerTests: omnitest(correctExpr='x + y')
-  Hint: Tapez x + y
+  Output: On peut créer autant d'objet qu'on le souhaite. 
+    Créons un objet y qui prend la valeur 5
+  CorrectAnswer: y <- 5
+  AnswerTests: omnitest(correctExpr='y <- 5')
+  Hint: Tapez y <- 5. Il est important d'avoir un espace à gauche
+    et à droite de l'opérateur d'assignation, mais NE mettez PAS d'espace entre
+    le `<` et le `-` qui forment la flèche.    
+
+
+- Class: cmd_question
+  Output: On peut faire des opérations sur les objets exactement comme on le 
+    ferait sur des valeurs, et assigner le résultat.
+    Essayez d'additionner x et y et de stocker le résultat dans l'objet resultat.
+  CorrectAnswer: resultat <- x + y
+  AnswerTests: any_of_exprs('resultat <- x + y', 'resultat <- y + x')
+  Hint: Tapez resultat <- x + y et appuyez sur entrée. 
+
+- Class: cmd_question
+  Output: Quelle est la valeur de resultat ? Tapez resultat pour le savoir !
+  CorrectAnswer: 'resultat'
+  AnswerTests: omnitest(correctExpr='resultat')
+  Hint: Tapez resultat et appuyez sur Entrée.
 
 - Class: text
   Output: R a fait l'addition sur les objets comme il l'aurait fait sur les
     valeurs.
+
+- Class: text
+  Output: Remarquez que le résultat de l'opération ne s'affiche pas dans la 
+    première commande.
+    Quand on utilise l'opérateur d'assignation, R suppose que l'on souhaite
+    utiliser le résultat par la suite, pas qu'il nous intéresse immédiatement.
+    Pour lui, la partie importante de l'instruction n'est pas x + y, mais 
+    l'assignation du résultat à l'objet resultat.  
+
   
 - Class: cmd_question
   Output: Si on assigne plusieurs  valeurs l'une après l'autre à un unique objet,
     seule la dernière assignation est prise en compte.
-    Si maintenant vous tapez x <- 5.
-  CorrectAnswer: x <- 5
-  AnswerTests: omnitest(correctExpr='x <- 5')
-  Hint: Tapez x <- 5
+    Si maintenant vous tapez x <- 8.
+  CorrectAnswer: x <- 8
+  AnswerTests: omnitest(correctExpr='x <- 8')
+  Hint: Tapez x <- 8
   
 - Class: mult_question
   Output: Quelle est la valeur de x ?
-  AnswerChoices: 5; 12
-  CorrectAnswer: 5
-  AnswerTests: omnitest(correctVal='5')
+  AnswerChoices: 8; 2
+  CorrectAnswer: 8
+  AnswerTests: omnitest(correctVal='8')
   Hint: Si ce n'est l'un, c'est l'autre !
+  
+- Class: text
+  Output: R écrase la valeur assigné à l'objet x et ne conserve que la dernière
+    valeur assignée.
+
+- Class: cmd_question
+  Output: Assigner un objet à un autre copie simplement la valeur donnée au 
+    premier objet dans le second.
+    Essayez d'assigner y à x.
+  CorrectAnswer: x <- y
+  AnswerTests: omnitest(correctExpr='x <- y')
+  Hint: Tapez x <- y.
+  
+- Class: cmd_question
+  Output: Regardez maintenant la valeur de x.
+  CorrectAnswer: x
+  AnswerTests: omnitest(correctExpr='x')
+  Hint: Tapez x.
+
+- Class: text
+  Output: x a pris la valeur de y !
 
 - Class: text
   Output: Plusieurs remarques sur les noms d'objets.
