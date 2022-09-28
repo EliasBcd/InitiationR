@@ -43,55 +43,33 @@
     On veut simplement voir le résultat.
   
 - Class: cmd_question
-  Output: 'Les vecteurs numériques peuvent aussi servir dans des opérations.
-    Tapez ceci pour observer le résultat : tailles * 2 + 100.'
-  CorrectAnswer: tailles * 2 + 100
-  AnswerTests: omnitest(correctExpr='tailles * 2 + 100')
-  Hint: Tapez tailles * 2 + 100, sans assigner le résultat à un objet.
-
-- Class: text
-  Output: R a d'abord multiplié les 3 éléments de tailles par 2.
-    Il a ensuite ajouté 100 à chacun pour obtenir le résultat que vous voyez 
-    ci-dessus.
-    
-- Class: cmd_question
-  Output: On accède à un élément d'un vecteur en donnant sa position entre 
-    crochets [].
-    Si vous souhaitez accéder au deuxième élément du vecteur tailles, il faut taper 
-    tailles[2]
-  CorrectAnswer: tailles[2]
-  AnswerTests: omnitest(correctExpr = 'tailles[2]' )
-  Hint: Tapez tailles[2]
+  Output: Les vecteurs numériques peuvent aussi servir dans des opérations.
+    On peut par exemple convertir les tailles en mètres et assigner le résultat
+    à l'objet tailles_m.
+  CorrectAnswer: tailles_m <- tailles / 100
+  AnswerTests: omnitest(correctExpr='tailles_m <- tailles / 100')
+  Hint: Tapez tailles_m <- tailles / 100.
   
-- Class: cmd_question
-  Output: On cherche à obtenir les tailles en mètres, puis à calculer leur 
-    racine carrée.
-    Prenez la racine carrée de tailles / 100 et assignez-le à un nouvel objet,
-    ma_racine.
-  CorrectAnswer: ma_racine <- sqrt(tailles / 100)
-  AnswerTests: omnitest(correctExpr='ma_racine <- sqrt(tailles / 100)')
-  Hint: Assignez le résultat de sqrt(tailles / 100) à l'objet appelé ma_racine.
+
   
 - Class: mult_question
-  Output: Avant de voir l'objet ma_racine, que pensez-vous qu'il contient ?
+  Output: Avant de voir l'objet tailles_m, que pensez-vous qu'il contient ?
   CorrectAnswer: un vecteur de longueur 3
   AnswerChoices: un vecteur de longueur 3 ; un nombre (= un vecteur de longueur 1) ;
     un vecteur de longueur 0 (= un vecteur vide)
   AnswerTests: omnitest(correctVal='un vecteur de longueur 3')
-  Hint: 'Pensez à comment R a procéder aux opérations sur les précédents vecteurs :
-   éléments par éléments.'
-   
+  Hint: R procèce aux opérations sur les vecteurs éléments par éléments.
+
 - Class: cmd_question
-  Output: Imprimez le contenu du vecteur ma_racine.
-  CorrectAnswer: ma_racine
-  AnswerTests: omnitest(correctExpr='ma_racine')
-  Hint: Tapez simplement ma_racine puis appuyez sur Entrée.
-  
+  Output: Affichez maintenant le résultat.
+  CorrectAnswer: tailles_m
+  AnswerTests: omnitest(correctExpr='tailles_m')
+  Hint: Il faut taper le nom d'un objet pour afficher sa valeur.
+ 
 - Class: text
-  Output: Comment vous l'avez probablement deviné, R a d'abord divisé tailles par 
-    100, puis à pris la racine carré de chacun.
-    On obtient ainsi
-    un vecteur de même longueur que le vecteur d'origine tailles.
+  Output: Comment vous l'avez probablement deviné, R a d'abord divisé `tailles` par 
+    100, puis a stocje le résultat dans `tailles_m`.
+    On obtient ainsi un vecteur de même longueur que le vecteur d'origine `tailles`.
    
 - Class: cmd_question
   Output: On cherche maintenant à calculer les IMC correspondant aux tailles.
@@ -106,70 +84,27 @@
     Créez une nouvelle variable imc qui prend les valeurs des poids divisés 
     par taille au carré.
     N'oubliez pas que la taille doit être en mètre !
-  CorrectAnswer: imc <-  poids / (tailles/100)^2
-  AnswerTests: omnitest(correctExpr='imc <-  poids / (tailles/100)^2')
-  Hint: Tapez imc <-  poids / (tailles/100)^2
+  CorrectAnswer: imc <- poids / (tailles_m)^2
+  AnswerTests: any_of_exprs('imc <-  poids / (tailles/100)^2', 'imc <- poids / tailles_m^2')
+  Hint: Tapez imc <-  poids / tailles_m^2
 
 - Class: mult_question
   Output: Quelle affirmation est vraie ?
-  CorrectAnswer: Le premier élément d'imc est égal au premier élément de poids
-    divisé par le carré du premier élément de tailles / 100, etc.
-  AnswerChoices: Le premier élément d'imc est égal au premier élément de poids
-    divisé par le carré du premier élément de tailles / 100, etc.; imc est un
-    nombre unique; imc n'est pas défini
-  AnswerTests: omnitest(correctVal="Le premier élément d'imc est égal au premier
-    élément de poids divisé par le carré du premier élément de tailles / 100, 
-    etc.")
+  CorrectAnswer: Le premier élément d'`imc` est égal au premier élément de `poids`
+    divisé par le carré du premier élément de `tailles_m`, etc.
+  AnswerChoices: Le premier élément d'`imc` est égal au premier élément de `poids`
+    divisé par le carré du premier élément de `tailles_m`, etc.; `imc` est un
+    nombre unique; `imc` n'est pas défini
+  AnswerTests: omnitest(correctVal="Le premier élément d'`imc` est égal au premier élément de `poids`
+    divisé par le carré du premier élément de `tailles_m`, etc.")
   Hint: Comment R fait des opérations sur les vecteurs ?
 
 - Class: cmd_question
-  Output: Regardons le contenu d'imc.
+  Output: Regardons le contenu d'`imc`.
   CorrectAnswer: imc
   AnswerTests: omnitest(correctExpr='imc')
-  Hint: Tapez imc puis appuyez sur entrée pour voir le résultat.
+  Hint: Tapez `imc` puis appuyez sur entrée pour voir le résultat.
   
-- Class: text
-  Output: Quand R a deux vecteurs de même longeur, R effectue les opérations 
-    spécifiée élément par élément. 
-    Dans le cas ou un des vecteurs est plus court que les autres, R 'recycle' le
-    vecteur le plus court jusqu'à ce qu'il atteigne la longueur du vecteur le
-    plus long.
-    
-- Class: text
-  Output: Quand on a calculé tailles * 2 + 100 plus tôt, tailles est un vecteur
-    de longueur 3, et techniquement 2 et 100 sont chacun des vecteurs de 
-    longueur 1.
-    Pour effectuer le calcul, R 'recycle' 2 pour en faire un vecteur de 2 et
-    100 pour en faire un vecteur de 100.
-    En clair, l'opération réellement effectuée est tailles * c(2, 2, 2) + 
-    c(100, 100, 100).
-
-- Class: cmd_question
-  Output: Voici un exemple de 'recyclage', plus parlant.
-    Essayez d'ajouter c(1, 2, 3, 4) et c(0, 10).
-  CorrectAnswer: c(1, 2, 3, 4) + c(0, 10)
-  AnswerTests: omnitest(correctExpr='c(1, 2, 3, 4) + c(0, 10)')
-  Hint: Tapez c(1, 2, 3, 4) + c(0, 10) dans la console.
-    N'essayez pas de sauvegarder le résultat dans un objet.
-    
-- Class: text
-  Output: Si la longueur du vecteur le plus long n'est pas un multiple de la 
-    longueur du vecteur le plus court, R continuera à recycler les valeur, mais 
-    vous préviendra que quelque chose de potentiellement étrange se déroule.
-
-- Class: cmd_question
-  Output: Essayez c(1, 2, 3, 4) + c(0, 10, 100) par exemple.
-  CorrectAnswer: c(1, 2, 3, 4) + c(0, 10, 100)
-  AnswerTests: omnitest(correctExpr='c(1, 2, 3, 4) + c(0, 10, 100)')
-  Hint: Tapez c(1, 2, 3, 4) + c(0, 10, 100) pour voir comment R additionne deux
-   vecteurs si la longeur du plus long n'est pas un multiple de la longueur du 
-   plus court. Pas d'assignation ici.
-   
-- Class: text
-  Output: Il y a de nombreuses autres manières de construire des vecteurs, 
-    en particulier des vecteurs de numériques.
-    Nous les verrons en temps voulu.
-
 - Class: cmd_question
   Output: Un vecteur ne contient pas forcément que des nombres.
     Il peut aussi contenir des booléens ou des chaînes de caractères.
@@ -181,10 +116,108 @@
   Hint: N'oubliez pas les guillements " ou ' autour des chaînes de caractères.
   
 - Class: text
+  Output: Rappelez-vous néanmoins que les valeurs contenues dans un vecteur sont
+    forcément du même type. 
+    Si vous entrez par exemple des nombres et des chaînes de caractères dans un 
+    vecteur, R convertira les nombres en chaînes de caractère. 
+
+- Class: text
+  Output: Quand R a deux vecteurs de même longeur, R effectue les opérations 
+    spécifiée élément par élément. 
+    Dans le cas ou un des vecteurs est plus court que les autres, R 'recycle' le
+    vecteur le plus court jusqu'à ce qu'il atteigne la longueur du vecteur le
+    plus long.
+
+
+- Class: text
+  Output: Quand on a calculé `tailles / 100` plus tôt, tailles est un vecteur
+    de longueur 3, et techniquement  100 est un vecteur de longueur 1.
+    Pour effectuer le calcul, R 'recycle' 100 pour en faire un vecteur de 100.
+    En clair, l'opération réellement effectuée est `tailles / c(100, 100, 100)`.
+
+- Class: cmd_question
+  Output: Voici un exemple de 'recyclage', plus parlant.
+    Essayez d'ajouter `c(1, 2, 3, 4)` et `c(0, 10)`.
+  CorrectAnswer: c(1, 2, 3, 4) + c(0, 10)
+  AnswerTests: any_of_exprs('c(1, 2, 3, 4) + c(0, 10)', 'c(0, 10) + c(1, 2, 3, 4)')
+  Hint: Tapez c(1, 2, 3, 4) + c(0, 10) dans la console.
+    N'essayez pas de sauvegarder le résultat dans un objet.
+    
+- Class: text
+  Output: Si la longueur du vecteur le plus long n'est pas un multiple de la 
+    longueur du vecteur le plus court, R continuera à recycler les valeur, mais 
+    vous préviendra que quelque chose de potentiellement étrange se déroule.
+
+- Class: cmd_question
+  Output: Essayez c(1, 2, 3, 4) + c(0, 10, 100) par exemple.
+  CorrectAnswer: c(1, 2, 3, 4) + c(0, 10, 100)
+  AnswerTests: any_of_exprs('c(1, 2, 3, 4) + c(0, 10, 100)', 'c(0, 10, 100) + c(1, 2, 3, 4)')
+  Hint: Tapez c(1, 2, 3, 4) + c(0, 10, 100) pour voir comment R additionne deux
+   vecteurs si la longeur du plus long n'est pas un multiple de la longueur du 
+   plus court. Pas d'assignation ici.
+   
+- Class: text
+  Output: Remarquez le Warning envoye par R.
+    Il vout signale que quelque chose de quelque peu inattendu est arrivé (mais
+    il fait le calcul).
+    Il y a de nombreuses autres manières de construire des vecteurs, 
+    en particulier des vecteurs de numériques.
+    Nous les verrons en temps voulu.
+  
+- Class: cmd_question
+  Output: Pour extraire un sous-vecteur de R, il faut utiliser des crochets `[]`.
+    Si vous souhaitez accéder au deuxième élément du vecteur tailles, il faut taper 
+    `tailles[2]`.
+  CorrectAnswer: tailles[2]
+  AnswerTests: omnitest(correctExpr = 'tailles[2]' )
+  Hint: Tapez `tailles[2]`.
+  
+- Class: cmd_question
+  Output: Il est aussi possible d'exclure un sous-ensemble du vecteur en mettant
+    un moins devant le ou les indices que nous souhaitons exclure.
+    Par exemple, pour exclure le deuxième élément de `tailles`, il faut taper
+    `tailles[-2]`.
+    Essayez.
+  CorrectAnswer: tailles[-2]
+  AnswerTests: omnitest(correctExpr = 'tailles[-2]' )
+  Hint: Tapez `tailles[-2]`.
+    
+- Class: cmd_question
+  Output: Il est aussi possible d'obtenir un sous-ensemble du vecteur en utilisant
+    un vecteur d'indices plutôt qu'une valeur unique.
+    Par exemple, pour obtenir le premier et le troisième élément de poids, il faut taper
+    `poids[c(1, 3)]`.
+    Essayez.
+  CorrectAnswer: poids[c(1, 3)]
+  AnswerTests: omnitest(correctExpr = 'poids[c(1, 3)]' )
+  Hint: Tapez `poids[c(1, 3)]`.
+  
+- Class: text
+  Output: Le fonctionnement est le même pour l'exclusion de sous-ensembles d'un
+    vecteur.
+
+- Class: cmd_question
+  Output: Une dernière façon d'indexer des sous-ensembles est d'utiliser un 
+    vecteur de valeurs logiques.
+    Essayez `tailles[c(TRUE, TRUE, FALSE)]`.
+  CorrectAnswer: tailles[c(TRUE, TRUE, FALSE)]
+  AnswerTests: omnitest(correctExpr = 'tailles[c(TRUE, TRUE, FALSE)]' )
+  Hint: Tapez `tailles[c(TRUE, TRUE, FALSE)]`.  
+  
+- Class: cmd_question
+  Output: Cela peut paraître inutile au premier abord, mais est en fait très utile
+    pour extraire d'un vecteur des valeurs respectant une condition logique.
+    Si on souhaite obtenir les seulement les poids inférieurs à 70kg par exemple,
+    on tapera la commande `poids[poids < 70]`.
+  CorrectAnswer: poids[poids < 70]
+  AnswerTests: omnitest(correctExpr = 'poids[poids < 70]' )
+  Hint: Tapez `poids[poids < 70]`.    
+  
+- Class: text
   Output: Avant de finir la leçon, je vais vous apprendre quelques techniques
     pour gagner un peu de temps.
-    Tout à l'heure, vous avez calculé tailles * 2 + 100. 
-    Imaginons que vous vous soyez trompé et que vous avez ajouté 1000 plutôt que
+    Tout à l'heure, vous avez calculé tailles / 100. 
+    Imaginons que vous vous soyez trompé et que vous avez divisé par 1000 plutôt que
     100.
     Vous pouvez retaper toute l'expression, ou bien...
 
@@ -192,32 +225,32 @@
   Output: Dans beaucoup d'environnement de programmation, la flèche vers le haut 
     vous permet de visualiser les commandes précédentes.
     Appuyez sur la flèche haut de votre clavier jusqu'à atteindre la commande 
-    tailles * 2 + 100.
+    tailles_m <- tailles / 100.
     Changez 100 en 1000 et appuyez sur entrée.
     Si la flèche vers le haut ne marche pas chez vous, tapez juste l'expression
     en entier.
-  CorrectAnswer: tailles * 2 + 1000
-  AnswerTests: omnitest(correctExpr='tailles * 2 + 1000')
+  CorrectAnswer: tailles_m <- tailles / 1000
+  AnswerTests: omnitest(correctExpr='tailles_m <- tailles / 1000')
   Hint: Si votre environnement ne vous permet pas d'utiliser la flèche vers le haut,
     tapez simplement l'expression corrigée pour passer à la suite.
 
 - Class: text
   Output: Enfin, imaginons que vous voulez afficher le contenu d'un objet
     que vous avez créé auparavant, mais que vous ne vous souvenez plus du nom 
-    exact, ma_racine ou maRacine.
+    exact, taillesm ou taillesM ou tailles_m.
     Vous pouvez essayer les deux et chercher celle qui marche, ou...
     
-- Class: text
+- Class: cmd_question
   Output: Vous pouvez taper les deux lettres du nom de l'objet et appuyer sur
     la touche Tab (potentiellement plusieurs fois).
     La plupart des environnements de programmation vous afficheront une liste 
-    des objets que vous avez créé qui commence par 'ma'.
+    des objets que vous avez créé qui commence par 'tail'.
     Cela s'appelle l'auto-complétion et c'est très pratique.
     Essayez.
-  CorrectAnswer: ma_racine
-  AnswerTests: omnitest(correctExpr='ma_racine')
+  CorrectAnswer: tailles_m
+  AnswerTests: omnitest(correctExpr='tailles_m')
   Hint: Si votre environnement de programmation ne vous permet pas d'utiliser 
-    l'auto-complétion, tapez simplement ma_racine et appuyez sur entrée pour 
+    l'auto-complétion, tapez simplement tailles_m et appuyez sur entrée pour 
     continuer.
   
 - Class: mult_question
