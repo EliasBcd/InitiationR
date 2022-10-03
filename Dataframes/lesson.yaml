@@ -64,3 +64,111 @@
   CorrectAnswer: data
   AnswerTests: omnitest(correctExpr =  'data')
   Hint: Tapez simplement `data` puis Entrée.
+  
+- Class: text
+  Output: R a stocké tout data dans un seul tableau. 
+    Il a automatiquement donné comme nom de colonnes le noms des objets utilisés pour construire le dataframe.
+    Vous remarquerez aussi que les noms ne sont pas précédés d'un nom de colonne.
+    C'est parce que c'est l'unique colonne de noms de lignes.
+    
+- Class: cmd_question
+  Output: Si on veut accéder à une colonne de ce tableau, il y a plusieurs méthodes.
+    La première consiste à utiliser le nom du dataframe, suivi du signe $ suivi du nom de la colonne.
+    Essayez de voir les tailles.
+  CorrectAnswer: data$tailles
+  AnswerTests: omnitest(correctExpr =  'data$tailles')
+  Hint: Tapez simplement `data$tailles` puis Entrée.  
+  
+- Class: cmd_question
+  Output: La deuxième permet de consulter n'importe quelle colonne à l'aide d'un indice, un peu comme on consulterait un élément d'un vecteur.
+    Si on souhaite voir la colonne numéro 2 du dataframe, on tapera `data[2]`
+    Essayez pour voir !
+  CorrectAnswer: data[2]
+  AnswerTests: omnitest(correctExpr =  'data[2]')
+  Hint: Tapez simplement `data[2]` puis Entrée.  
+  
+- Class: cmd_question
+  Output: Enfin, une dernière méthode utile est d'utiliser le nom des colonnes entre des crochets, plutôt que d'utiliser le signe $.
+    La méthode d'accès est similaire à la précédente, sauf qu'au lieu d'utiliser l'indice de la colonne, il faut utiliser son nom.
+    Essayez pour voir si vous avez compris.
+  CorrectAnswer: data["poids"]
+  AnswerTests: any_of_exprs('data["poids"]', 'data["tailles"]')
+  Hint: Tapez simplement `data["tailles"]` puis Entrée.    
+  
+- Class: text
+  Output: Vous verrez qu'à l'usage, il est souvent plus facile d'utiliser le nom de la colonne pour la consulter.
+    La raison est simple, vous ne saurez pas toujours dans quel ordre R ordonné les colonnes
+    et vous allez parfois ajouter ou supprimer des colonnes à vos dataframes.
+    Il est beaucoup plus simple de se rappeler du nom d'une colonne plutôt que de son numéro, surtout si celui-ci peut changer.
+    La méthode avec le $ ne permet de consulter qu'une seule colonne à la fois.
+    La troisième méthode permet au contraire de consulter plusieurs colonnes simultanément, en mettant tous les noms des colonnes dans un vecteur.
+    
+- Class: cmd_question
+  Output: Tout comme les colonnes, il y a plusieurs méthodes pour consulter une ou plusieurs lignes.
+    La plus simple est d'utiliser un numéro de ligne.
+    La syntaxe est un peu différente des colonnes.
+    En effet, en pratique R considère les dataframes comme des matrices (objets que nous n'avons pas étudiés),
+    c'est à dire que chaque cellule du tableau est indexé par un numéro de ligne et un numéro de colonne.
+    La ligne est donné par le premier indice, alors que la colonne est donné par le deuxième indice.
+    Si on veut consulter la deuxième ligne par exemple, on doit entre `data[2, ]`
+    Essayez pour voir !
+  CorrectAnswer: data[2, ]
+  AnswerTests: omnitest(correctExpr =  'data[2, ]')
+  Hint: Tapez simplement `data[2, ]` puis Entrée.      
+  
+- Class: cmd_question
+  Output: La virgule suivi de rien indique à R que nous souhaitons consulter toutes les colonnes associées à la deuxième ligne.
+    Si maintenant nous souhaitons seulement consulter la première colonne de la deuxième ligne, essayez de deviner comment faire.
+  CorrectAnswer: data[2, 1]
+  AnswerTests: omnitest(correctExpr =  'data[2, 1]')
+  Hint: Essayez de taper `data[2, 1]` puis Entrée.          
+    
+- Class: cmd_question
+  Output: Nous avons donné des noms au lignes précédemment.
+    Il serait dommage de ne pas les utiliser.
+    Si maintenant on veut retrouver les caractéristiques de Bassirou, on peut utiliser le nom de la ligne, comme nous avons utiliser le nom de la colonne.
+    Essayez pour voir si vous avez compris.
+  CorrectAnswer: data["Bassirou", ]
+  AnswerTests: omnitest(correctExpr =  'data["Bassirou", ]')
+  Hint: Rappelez-vous de bien mettre des guillemets autour des noms et que vous voulez consulter toutes les colonnes !
+  
+- Class: cmd_question
+  Output: Il est bien sûr possible d'ajouter des colonnes à un dataframe après sa création.
+    Si par exemple nous voulons ajouter la colonne `imc` à ce dataframe et refaire le calcul fait auparavant,
+    il faut utiliser la syntaxe `data$imc <- data$poids / (data$tailles / 100)^2`.
+    Les règles de calculs sur les lignes ou les colonnes de dataframe sont identiques à celle des vecteurs.
+    On peut aussi appeler les colonnes avec des guillemets et des crochets, mais ce n'est pas très utile ici.
+  CorrectAnswer: data$imc <- data$poids / (data$tailles / 100)^2
+  AnswerTests: omnitest(correctExpr =  'data$imc <- data$poids / (data$tailles / 100)^2')
+  Hint: Tapez simplement `data$imc <- data$poids / (data$tailles / 100)^2` et appuyez sur Entrée.
+  
+- Class: cmd_question
+  Output: Observez maitenant `data`.
+  CorrectAnswer: data
+  AnswerTests: omnitest(correctExpr =  'data')
+  Hint: Rappelez-vous comment afficher un objet.
+  
+- Class: text
+  Output: Remarquez que R a créé une nouvelle colonne, `imc`, qui est le résultat du calcul que nous lui avons demandé.
+
+- Class: cmd_question
+  Output: Il pourrait être intéressant de faire quelques statistiques sur les données que nous avons.
+    Utilisez la fonction `summary()` de R sur `data` pour obtenir un résumé des caractéristiques de notre échantillon.
+  CorrectAnswer: summary(data)
+  AnswerTests: omnitest(correctExpr =  'summary(data)')
+  Hint: Tapez simplement `summary(data)`.
+  
+- Class: text
+  Output: Ce sera tout sur cette leçon.
+    Vous savez maintenant l'essentiel des principaux types que vous allez rencontrer dans R.
+  
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Dataframes.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
