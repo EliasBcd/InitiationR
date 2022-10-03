@@ -12,4 +12,55 @@
     Il est parfois utile de les regrouper en une seule base de données.
     C'est à cela que nous servirons les `data.frame`.
     
-# - Class: cmd_question
+- Class: cmd_question
+  Output: Nous avons vu que nous pouvons créer un vecteur à l'aide de la 
+    commande `c()`.
+    Reprenez le vecteur contenant les tailles de la leçon précédente.
+    Pour mémoire, nous souhaitons créer le vecteur contenant les tailles 156, 164, 197, 147 et 173 (dans cet ordre).
+    Stockez le résultat dans l'objet tailles.
+  CorrectAnswer: tailles <- c(156, 164, 197, 147, 173)
+  AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197, 147, 173)')
+  Hint: Tapez `tailles <- c(156, 164, 197, 147, 173)` et appuyez sur entrée.
+
+- Class: cmd_question
+  Output: Recréons maintenant le vecteur `poids` de la leçon sur les vecteurs.
+    Pour mémoire, nous souhaitons créer le vecteur contenant les poids 45, 59, 110, 44 et 88 (dans cet ordre).
+    Stockez le résultat dans l'objet poids.
+  CorrectAnswer: poids <- c(45, 59, 110, 44, 88)
+  AnswerTests: omnitest(correctExpr =  'poids <- c(45, 59, 110, 44, 88)')
+  Hint: Tapez `poids <- c(45, 59, 110, 44, 88)`  et appuyez sur entrée.
+  
+- Class: text
+  Output: Nous avons maintenant nos deux vecteurs de données, mais ils ne sont pas vraiment liés entre eux.
+    Nous savons que la première taille correspond au premier poids, la seconde au second, etc.
+    Nous pouvons même créer un vecteur de noms associés.
+    
+- Class: cmd_question
+  Output: Attribuons des noms à ces poids et tailles maintenant.
+    Disons que ce sont les caractéristiques de Jeanne, Mohammed, Bassirou, Leila et Zoé.
+    On peut créer un vecteurs `noms` contenant ces noms (sans oublier les accents).
+    Faites-le maintenant.
+  CorrectAnswer: noms <- c("Jeanne", "Mohammed", "Bassirou", "Leila", "Zoé")
+  AnswerTests: omnitest(correctExpr =  'noms <- c("Jeanne", "Mohammed", "Bassirou", "Leila", "Zoé")')
+  Hint: N'oubliez pas les guillemets autour des chaînes de caractères !
+  
+- Class: text
+  Output: Nous n'avons toujours pas liés nos données.
+    Il n'est pas simple de trouver le poids et la taille de Bassirou par exemple.
+    Pour simplifier cela, R possède un type, le data.frame, qui regroupe les données sous forme de tableaux.
+    
+- Class: cmd_question
+  Output: Il est possible de donner des noms aux lignes, ou pas.
+    Ici, il est pratique pour nous d'attribuer le nom des personnes aux lignes, mais cela ne sera pas toujours le cas.
+    La commande pour regrouper les données dans un tableau est data.frame.
+    Pour ce que nous souhaitons faire, il faut taper `data.frame(tailles, poids, row.names=noms)`.
+    Nous souhaitons de plus stocker le `data.frame` dans l'objet data.
+  CorrectAnswer: data <- data.frame(tailles, poids, row.names=noms)
+  AnswerTests: omnitest(correctExpr =  'data <- data.frame(tailles, poids, row.names=noms)')
+  Hint: N'oubliez pas d'attribuer le data.frame à l'objet data. 
+
+- Class: cmd_question
+  Output: Tapons maintenant `data` pour observer comment R a stocké nos données.
+  CorrectAnswer: data
+  AnswerTests: omnitest(correctExpr =  'data')
+  Hint: Tapez simplement `data` puis Entrée.
