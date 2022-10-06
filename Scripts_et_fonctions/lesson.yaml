@@ -33,6 +33,96 @@
     swirl va automatiquement ouvrir une fenêtre avec un script pour cet exercice.
     Essayez de modifier le script qui va s'afficher.
     Une fois cela fait, vous devez tapez submit() dans l'invite de commande pour soumettre votre réponse.
-  AnswerTests: test_imcdemo_le()
-  Hint: Lisez bien les instructions dans le script.
+  AnswerTests: test_imc()
+  Hint: Lisez bien les instructions dans le script et complétez-le à l'aide des valeurs indiquées.
   Script: imc.R
+  
+- Class: text
+  Output: "Vous devez avoir remarqué dans le script les lignes qui commençaient par un signe dièse #.
+    Ces lignes indiquent un commentaire dans R et ne sont pas prises en compte dans l'évaluation du script.
+    Les commentaires sont une partie très importante d'un script (et des fonctions que nous allons voir).
+    Ils permettent de documenter les actions du script (ou de la fonction) afin de dire ce qu'il fait.
+    On peut ainsi retrouver son code des jours ou des mois plus tard et se rappeler de ce qu'on a voulu faire."
+    
+- Class: text
+  Output: Passons maintenant aux fonctions.
+    Les fonctions sont une composante essentielle de R.
+    C'est un petit morceau de code qui peut être traité comme n'importe quel objet R.
+    Vous avez déjà rencontré des fonctions dans ce cours.
+    Les fonctions se repèrenet généralement par le nom de la fonction suivi de parenthèses.
+    
+
+- Class: cmd_question
+  Output: Essayons déjà une fonction simple, incluse dans le text.
+    La fonction Sys.Date() renvoit une chaîne de caractères avec la date du jour.
+    Tapez Sys.Date() pour voir ce qu'il se produit.
+  CorrectAnswer: Sys.Date()
+  AnswerTests: omnitest(correctExpr='Sys.Date()')
+  Hint: Affichez la date du jour à l'aide de Sys.Date().
+  
+- Class: text
+  Output: La plupart des fonctions dans R renvoit une valeur.
+    Des fonctions telles que Sys.Date() envoit comme résultat une valeur qui dépend de votre ordinateur.
+    D'autres fonctions, au contraire, manipulent des données afin de calculer un résultat.
+
+- Class: cmd_question
+  Output: La fonction mean() prend comme valeur d'entrée (ou argument) un vecteur et calcule la moyenne des éléments de ce vecteur.
+    On dit souvent qu'on passe un argument à une fonction pour dire qu'on l'utilise comme valeur d'entrée.
+    Les arguments sont écrits entre les parenthèses.
+    Essayez de passer le vecteur c(2, 4, 5) comme argument à la fonction mean().
+  CorrectAnswer: mean(c(2, 4, 5))
+  AnswerTests: omnitest(correctExpr='mean(c(2, 4, 5))')
+  Hint: Calculez la moyenne de 2, 4 et 5 en tapant mean(c(2, 4, 5)).
+  
+- Class: text
+  Output: Les fonctions prennent généralement comme arguments des valeurs sur lesquelles elles opèrent des calculs.
+    La fonction mean(), par exemple, prend comme argument un vecteur, comme dans le cas précédent.
+    La fonction mean() somme ensuite tous les nombres du vecteurs et divise cette somme par la longueur du vecteur.
+    
+- Class: text
+  Output: Dans la question suivante, je vais vous demander de modifier un script, comme au tout début de cette leçon.
+    Quand vous aurez fini de modifier le script, n'oubliez pas de sauvegarder votre script puis de taper submit() pour faire évaluer votre répone.
+    Il y aura des commentaires dans le script, lisez-les attentivement !
+    
+- Class: script
+  Output: "La dernière expression évaluée dans une fonction est la valeur retournée par la fonction, le résultat de la fonction.
+    Nous voulons que cette fonction prenne un argument, x, et de nous renvoyer comme résultat cet argument non modifié.
+    Effacez le # dans le script pour  faire en sorte que l'argument soit renvoyé tel que.
+    N'oubliez pas de sauvegardez et tapez sur submit()."
+  AnswerTests: test_func1()
+  Hint: "N'oubliez pas d'enlever le signe # de commentaire et de ne laisser que x sur la ligne."
+  Script: boring_function.R
+
+- Class: cmd_question
+  Output: "Maintenant que vous avez créer votre première fonction, essayons-la !
+    Tapez boring_function('Hello World!').
+    Si votre fonction fonctionne correctement, vous devriez voir apparaître comme résultat 'Hello World!'" 
+  CorrectAnswer: "boring_function('Hello World!')"
+  AnswerTests: omnitest(correctExpr="boring_function('Hello World!')")
+  Hint: "Essayez la fonction boring_function en tapant: boring_function('Hello World!')"
+  
+- Class: text
+  Output: Félicitations ! Vous avez écrit votre première fonction.
+    Les fonctions sont un élément clé de R, avec les objets.
+    Pour comprendre le fonctionnement de R, deux choses sont importante.
+    Premièrement, tout ce qui existe est un objet.
+    Deuxièmement, tout ce qui se produit est une fonction.
+    (Citation de John Chambers, un des créateur de R).
+  
+- Class: cmd_question
+  Output: Si vous voulez connaître le code de calcul d'une fonction, tapez son nom sans parenthèses ni arguments.
+    Essayez pour la fonction boring_function.
+  CorrectAnswer: boring_function
+  AnswerTests: omnitest(correctExpr='boring_function')
+  Hint: Afin d'afficher le code source de la fonction tapez boring_function.
+  
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Scripts_et_fonctions.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
