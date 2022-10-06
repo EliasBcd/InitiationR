@@ -10,25 +10,25 @@
   Output: Nous avons vu comment créer des vecteurs contenant différentes valeurs,
     et différent types de valeurs.
     Il est parfois utile de les regrouper en une seule base de données.
-    C'est à cela que nous servirons les `data.frame`.
+    C'est à cela que nous servirons les dataframes.
     
 - Class: cmd_question
   Output: Nous avons vu que nous pouvons créer un vecteur à l'aide de la 
-    commande `c()`.
+    commande c().
     Reprenez le vecteur contenant les tailles de la leçon précédente.
     Pour mémoire, nous souhaitons créer le vecteur contenant les tailles 156, 164, 197, 147 et 173 (dans cet ordre).
     Stockez le résultat dans l'objet tailles.
   CorrectAnswer: tailles <- c(156, 164, 197, 147, 173)
   AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197, 147, 173)')
-  Hint: Tapez `tailles <- c(156, 164, 197, 147, 173)` et appuyez sur entrée.
+  Hint: Tapez tailles <- c(156, 164, 197, 147, 173) et appuyez sur entrée.
 
 - Class: cmd_question
-  Output: Recréons maintenant le vecteur `poids` de la leçon sur les vecteurs.
+  Output: Recréons maintenant le vecteur poids de la leçon sur les vecteurs.
     Pour mémoire, nous souhaitons créer le vecteur contenant les poids 45, 59, 110, 44 et 88 (dans cet ordre).
     Stockez le résultat dans l'objet poids.
   CorrectAnswer: poids <- c(45, 59, 110, 44, 88)
   AnswerTests: omnitest(correctExpr =  'poids <- c(45, 59, 110, 44, 88)')
-  Hint: Tapez `poids <- c(45, 59, 110, 44, 88)`  et appuyez sur entrée.
+  Hint: Tapez poids <- c(45, 59, 110, 44, 88)  et appuyez sur entrée.
   
 - Class: text
   Output: Nous avons maintenant nos deux vecteurs de données, mais ils ne sont pas vraiment liés entre eux.
@@ -38,7 +38,7 @@
 - Class: cmd_question
   Output: Attribuons des noms à ces poids et tailles maintenant.
     Disons que ce sont les caractéristiques de Jeanne, Mohammed, Bassirou, Leila et Zoé.
-    On peut créer un vecteurs `noms` contenant ces noms (sans oublier les accents).
+    On peut créer un vecteur noms contenant ces noms (sans oublier les accents).
     Faites-le maintenant.
   CorrectAnswer: noms <- c("Jeanne", "Mohammed", "Bassirou", "Leila", "Zoé")
   AnswerTests: omnitest(correctExpr =  'noms <- c("Jeanne", "Mohammed", "Bassirou", "Leila", "Zoé")')
@@ -53,17 +53,17 @@
   Output: Il est possible de donner des noms aux lignes, ou pas.
     Ici, il est pratique pour nous d'attribuer le nom des personnes aux lignes, mais cela ne sera pas toujours le cas.
     La commande pour regrouper les données dans un tableau est data.frame.
-    Pour ce que nous souhaitons faire, il faut taper `data.frame(tailles, poids, row.names=noms)`.
-    Nous souhaitons de plus stocker le `data.frame` dans l'objet data.
+    Pour ce que nous souhaitons faire, il faut taper data.frame(tailles, poids, row.names=noms).
+    Nous souhaitons de plus stocker le dataframe dans l'objet data.
   CorrectAnswer: data <- data.frame(tailles, poids, row.names=noms)
   AnswerTests: omnitest(correctExpr =  'data <- data.frame(tailles, poids, row.names=noms)')
-  Hint: N'oubliez pas d'attribuer le data.frame à l'objet data. 
+  Hint: N'oubliez pas d'attribuer le dataframe à l'objet data. 
 
 - Class: cmd_question
-  Output: Tapons maintenant `data` pour observer comment R a stocké nos données.
+  Output: Tapons maintenant data pour observer comment R a stocké nos données.
   CorrectAnswer: data
   AnswerTests: omnitest(correctExpr =  'data')
-  Hint: Tapez simplement `data` puis Entrée.
+  Hint: Tapez simplement data puis Entrée.
   
 - Class: text
   Output: R a stocké tout data dans un seul tableau. 
@@ -77,15 +77,15 @@
     Essayez de voir les tailles.
   CorrectAnswer: data$tailles
   AnswerTests: omnitest(correctExpr =  'data$tailles')
-  Hint: Tapez simplement `data$tailles` puis Entrée.  
+  Hint: Tapez simplement data$tailles puis Entrée.  
   
 - Class: cmd_question
   Output: La deuxième permet de consulter n'importe quelle colonne à l'aide d'un indice, un peu comme on consulterait un élément d'un vecteur.
-    Si on souhaite voir la colonne numéro 2 du dataframe, on tapera `data[2]`
+    Si on souhaite voir la colonne numéro 2 du dataframe, on tapera data[2].
     Essayez pour voir !
   CorrectAnswer: data[2]
   AnswerTests: omnitest(correctExpr =  'data[2]')
-  Hint: Tapez simplement `data[2]` puis Entrée.  
+  Hint: Tapez simplement data[2] puis Entrée.  
   
 - Class: cmd_question
   Output: Enfin, une dernière méthode utile est d'utiliser le nom des colonnes entre des crochets, plutôt que d'utiliser le signe $.
@@ -93,7 +93,7 @@
     Essayez pour voir si vous avez compris.
   CorrectAnswer: data["poids"]
   AnswerTests: any_of_exprs('data["poids"]', 'data["tailles"]')
-  Hint: Tapez simplement `data["tailles"]` puis Entrée.    
+  Hint: Tapez simplement data["tailles"] puis Entrée.    
   
 - Class: text
   Output: Vous verrez qu'à l'usage, il est souvent plus facile d'utiliser le nom de la colonne pour la consulter.
@@ -110,18 +110,18 @@
     En effet, en pratique R considère les dataframes comme des matrices (objets que nous n'avons pas étudiés),
     c'est à dire que chaque cellule du tableau est indexé par un numéro de ligne et un numéro de colonne.
     La ligne est donné par le premier indice, alors que la colonne est donné par le deuxième indice.
-    Si on veut consulter la deuxième ligne par exemple, on doit entre `data[2, ]`
+    Si on veut consulter la deuxième ligne par exemple, on doit entre data[2, ].
     Essayez pour voir !
   CorrectAnswer: data[2, ]
   AnswerTests: omnitest(correctExpr =  'data[2, ]')
-  Hint: Tapez simplement `data[2, ]` puis Entrée.      
+  Hint: Tapez simplement data[2, ] puis Entrée.      
   
 - Class: cmd_question
   Output: La virgule suivi de rien indique à R que nous souhaitons consulter toutes les colonnes associées à la deuxième ligne.
     Si maintenant nous souhaitons seulement consulter la première colonne de la deuxième ligne, essayez de deviner comment faire.
   CorrectAnswer: data[2, 1]
   AnswerTests: omnitest(correctExpr =  'data[2, 1]')
-  Hint: Essayez de taper `data[2, 1]` puis Entrée.          
+  Hint: Essayez de taper data[2, 1] puis Entrée.          
     
 - Class: cmd_question
   Output: Nous avons donné des noms au lignes précédemment.
@@ -134,29 +134,29 @@
   
 - Class: cmd_question
   Output: Il est bien sûr possible d'ajouter des colonnes à un dataframe après sa création.
-    Si par exemple nous voulons ajouter la colonne `imc` à ce dataframe et refaire le calcul fait auparavant,
-    il faut utiliser la syntaxe `data$imc <- data$poids / (data$tailles / 100)^2`.
+    Si par exemple nous voulons ajouter la colonne imc à ce dataframe et refaire le calcul fait auparavant,
+    il faut utiliser la syntaxe data$imc <- data$poids / (data$tailles / 100)^2.
     Les règles de calculs sur les lignes ou les colonnes de dataframe sont identiques à celle des vecteurs.
     On peut aussi appeler les colonnes avec des guillemets et des crochets, mais ce n'est pas très utile ici.
   CorrectAnswer: data$imc <- data$poids / (data$tailles / 100)^2
   AnswerTests: omnitest(correctExpr =  'data$imc <- data$poids / (data$tailles / 100)^2')
-  Hint: Tapez simplement `data$imc <- data$poids / (data$tailles / 100)^2` et appuyez sur Entrée.
+  Hint: Tapez simplement data$imc <- data$poids / (data$tailles / 100)^2 et appuyez sur Entrée.
   
 - Class: cmd_question
-  Output: Observez maitenant `data`.
+  Output: Observez maitenant data.
   CorrectAnswer: data
   AnswerTests: omnitest(correctExpr =  'data')
   Hint: Rappelez-vous comment afficher un objet.
   
 - Class: text
-  Output: Remarquez que R a créé une nouvelle colonne, `imc`, qui est le résultat du calcul que nous lui avons demandé.
+  Output: Remarquez que R a créé une nouvelle colonne, imc, qui est le résultat du calcul que nous lui avons demandé.
 
 - Class: cmd_question
   Output: Il pourrait être intéressant de faire quelques statistiques sur les données que nous avons.
-    Utilisez la fonction `summary()` de R sur `data` pour obtenir un résumé des caractéristiques de notre échantillon.
+    Utilisez la fonction summary() de R surdata pour obtenir un résumé des caractéristiques de notre échantillon.
   CorrectAnswer: summary(data)
   AnswerTests: omnitest(correctExpr =  'summary(data)')
-  Hint: Tapez simplement `summary(data)`.
+  Hint: Tapez simplement summary(data).
   
 - Class: text
   Output: Ce sera tout sur cette leçon.
