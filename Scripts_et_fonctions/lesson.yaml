@@ -116,6 +116,109 @@
   AnswerTests: omnitest(correctExpr='boring_function')
   Hint: Afin d'afficher le code source de la fonction tapez boring_function.
   
+- Class: text
+  Output: Faisons une fonction un peu plus utile.
+    Reproduisons le résultat de la fonction mean() dans une fonction appelée my_mean().
+    Rappelez vous que la moyenne est la somme de tous les nombres dans le vecteur divisé par sa longuer.
+    
+
+
+- Class: script
+  Output: Sauvegardez bien votre script avant de taper submit().
+  AnswerTests: test_func2()
+  Hint: Utilisew la fonction sum() pour trouver la somme de tous les vecteurs d'une fonction
+    et la fonction length pour trouver la taille du vecteur.
+  Script: my_mean.R
+  
+- Class: cmd_question
+  Output: Testez maintenant votre fonction my_mean() en trouvant la moyenne de du vecteur c(4, 5, 10).
+  CorrectAnswer: my_mean(c(4, 5, 10))
+  AnswerTests: omnitest(correctExpr='my_mean(c(4, 5, 10))')
+  Hint: Tapez my_mean(c(4, 5, 10)) pour tester votre nouvelle fonction.
+  
+- Class: text
+  Output: Essayons maintenant d'écrire une fonction avec des arguments par défaut.
+    Il est parfois utile de fixer une valeur par défaut pour des arguments d'une fonction.
+    Par exemple si votre fonction va utiliser la même valeur très souvent.
+    
+- Class: script
+  Output: Sauvegardez bien votre script avant de taper submit().
+  AnswerTests: test_func3()
+  Hint: N'oubliez pas de mettre les valeurs par défaut.
+  Script: remainder.R
+  
+- Class: cmd_question
+  Output: Testons un petit peu le comportement de la fonction remainder.
+    Tapez remainder(5) et observez le résultat.
+  CorrectAnswer: remainder(5)
+  AnswerTests: omnitest(correctExpr='remainder(5)')
+  Hint: Testons le comportement de la fonction remainder en tapant remainder(5).
+  
+- Class: text
+  Output: Observons ce qu'il s'est passé.
+    Vous avez passé un argument à la fonction.
+    R a décidé que cette argument était 'num', puisque 'num' est le premier argument de la fonction.
+    La valeur par défaut pour 'divisor' est 2, R a donc utilisé cette valeur dans le calcul.
+    
+- Class: cmd_question
+  Output: Observons maintenant le comportemen de remainder avec 2 arguments.
+    Tapez remainder(11, 5) et observons le résultat.
+  CorrectAnswer: remainder(11, 5)
+  AnswerTests: omnitest(correctExpr='remainder(11, 5)')
+  Hint: Tapez remainder(11, 5) et observer le résultat.
+  
+- Class: text
+  Output: R a utilisé le premier argument pour 'num' et le deuxième pour 'divisor'.
+    C'est bien le comportement attendu.
+
+- Class: cmd_question
+  Output: Il est aussi possible de spécifier explicitement les arguments avec leur nom.
+    Quand vous procédez ainsi, l'ordre des arguments devient sans importance.
+    Essayez en tapant remainder(divisor = 11, num = 5).
+  CorrectAnswer: remainder(divisor = 11, num = 5)
+  AnswerTests: omnitest(correctExpr='remainder(divisor = 11, num = 5)')
+  Hint: L'ordre des arguments ne compte plus quand on les spécifie ! 
+    Testez ce comportement en tapant remainder(divisor = 11, num = 5)
+    
+- Class: text
+  Output: Il y a une grande différence entre remainder(11, 5) et remainder(divisor = 11, num = 5).
+  
+- Class: cmd_question
+  Output: R peut aussi partiellement appairer valeurs et arguments.
+    Tapez remainder(4, div = 2) et observer le résultat.
+  CorrectAnswer: remainder(4, div = 2)
+  AnswerTests: omnitest(correctExpr='remainder(4, div = 2)')
+  Hint: Tapez remainder(4, div = 2).
+  
+- Class: text
+  Output: Vous voulez en général faire en sorte que votre code soit lisible et compréhensible.
+    Mélanger l'ordre des arguments en utilisant leur nom ou appairer seulement une partie
+    des arguments n'est pas une bonne pratique.
+    Faites-le avec parcimonie.
+    
+- Class: cmd_question
+  Output: En parlant d'arguments, vous vous demandez peut-être comment on peut
+    découvrir tous les arguments d'une fonction.
+    Fort heureusement, R a une fonction pour ça, args().
+    Utilisez args() pour connaître les arguments de remainder.
+  CorrectAnswer: args(remainder)
+  AnswerTests: omnitest(correctExpr='args(remainder)')
+  Hint: Trouvez les arguments de remainder en tapant args(remainder).
+  
+- Class: cmd_question
+  Output: Vous ne vous en êtes peut-être pas rendu compte, mais vous venez de 
+    faire quelque chose d'intéressant.
+    Vous avez utilisé comme argument d'une fonction une autre fonction !
+    Et oui, il est possible d'utiliser comme argument d'une fonction une autre fonction.
+    Ecrivons un petit script pour explorer cette possibilité.
+    
+- Class: script
+  Output: Sauvegardez bien votre script avant de taper submit().
+  AnswerTests: test_func4()
+  Hint: Faites bien attention à ne pas mettre de parenthèses à la fonction que vous 
+    utilisez comme argument.
+  Script: evaluate.R
+  
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
     enseignant (cela ne fonctionnera que pour les étudiants de l'université 
