@@ -1,0 +1,38 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Scripts et fonctions
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+  
+- Class: text
+  Output: Jusqu’ici on a utilisé R de manière “interactive”, en saisissant des commandes directement dans la console.
+    Ce n’est pas très pratique pour sauvegarder son travail.
+    Lorsque R ou RStudio redémarre, tout ce qui a été effectué dans la console est perdu.
+
+- Class: text
+  Output: On va plutôt regrouper les commandes dans des scripts (de simples fichiers texte), qui vont garder une trace de toutes les opérations effectuées. 
+    En rouvrant les scripts et en réexécutant les commandes qu’ils contiennent on pourra “reproduire” le chargement des données, leur traitement, les analyses et leurs résultats.
+    Pour créer un script, il suffit de sélectionner le menu Fichier (File), puis Nouveau fichier (New File) et script R (R script).
+    Une quatrième zone apparaît alors en haut à gauche de l’interface de RStudio. 
+    On peut enregistrer notre script à tout moment dans un fichier avec l’extension .R, en cliquant sur l’icône de disquette ou en choisissant Fichier (File) puis Sauvegarder (Save) ou en utilisant le raccourci Ctrl + S (Cmd + S sous Mac).
+    
+- Class: text 
+  Output: Un script est un fichier texte brut, qui s’édite de la manière habituelle. 
+    À la différence de la console, quand on appuie sur Entrée, cela n’exécute pas la commande en cours mais insère un saut de ligne.
+    Pour exécuter une commande dans un script, il faut positionner le curseur sur la ligne de la commande en question, et de cliquer sur le bouton Run dans la barre d’outils juste au-dessus de la zone d’édition du script.
+    On peut aussi utiliser le raccourci clavier Ctrl + Entrée (Cmd + Entrée sous Mac).
+    On peut aussi sélectionner plusieurs lignes avec la souris ou le clavier et cliquer sur Run (ou utiliser le raccourci clavier), et l’ensemble des lignes est exécuté d’un coup.
+    
+- Class: script
+  Output: Vous allez maintenant créer votre premier script.
+    Il contiendra une assignation du vecteur c(156, 164, 197, 147, 173) à l'objet tailles.
+    Puis une assignation du vecteur c(45, 59, 110, 44, 88) au vecteur poids.
+    Puis un calcul de l'imc des à l'aide des vecteurs précédent et l'assignation du résultat à l'objet imc.
+    swirl va automatiquement ouvrir une fenêtre avec un script pour cet exercice.
+    Essayez de modifier le script qui va s'afficher.
+    Une fois cela fait, vous devez tapez submit() dans l'invite de commande pour soumettre votre réponse.
+  AnswerTests: test_imcdemo_le()
+  Hint: Lisez bien les instructions dans le script.
+  Script: imc.R
