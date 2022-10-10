@@ -1,27 +1,28 @@
-# Let's explore how to "unpack" arguments from an ellipses when you use the
-# ellipses as an argument in a function. Below I have an example function that
-# is supposed to add two explicitly named arguments called alpha and beta.
+# Expliquons un petit peu comment récupérer les arguments dans les ... quand ils
+# sont utilisés comme arguments d'une fonction. La fonction suivante est un exemple
+# où la fonction est censée additionner deux arguments nommés explicitement, 
+# alpha et beta.
 # 
-# add_alpha_and_beta <- function(...){
-#   # First we must capture the ellipsis inside of a list
-#   # and then assign the list to a variable. Let's name this
-#   # variable `args`.
+# ajouter_alpha_et_beta <- function(...){
+#   # Il faut d'abord capturer les ... dans une liste et ensuite assigner la
+#   # liste à un objet. Nommons cette liste args.
 #
 #   args <- list(...)
 #
-#   # We're now going to assume that there are two named arguments within args
-#   # with the names `alpha` and `beta.` We can extract named arguments from
-#   # the args list by using the name of the argument and double brackets. The
-#   # `args` variable is just a regular list after all!
+#   # Nous allons maintenant faire l'hypothèse que cette liste contient deux 
+#   # arguments explicitement nommés, 'alpha' et 'beta'. Nous pouvons etraire
+#   # les arguments de cette liste en utilisant les noms des arguments entre 
+#   # double crochets. L'argument args est une simple liste après tout.
 #   
 #   alpha <- args[["alpha"]]
 #   beta  <- args[["beta"]]
 #
-#   # Then we return the sum of alpha and beta.
+#   # On peut ensuite addionner alpha et beta.
 #
 #   alpha + beta 
 # }
 #
+# Avez-vous déjà manifest
 # Have you ever played Mad Libs before? The function below will construct a
 # sentence from parts of speech that you provide as arguments. We'll write most
 # of the function, but you'll need to unpack the appropriate arguments from the

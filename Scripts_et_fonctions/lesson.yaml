@@ -205,7 +205,7 @@
   AnswerTests: omnitest(correctExpr='args(remainder)')
   Hint: Trouvez les arguments de remainder en tapant args(remainder).
   
-- Class: cmd_question
+- Class: text
   Output: Vous ne vous en êtes peut-être pas rendu compte, mais vous venez de 
     faire quelque chose d'intéressant.
     Vous avez utilisé comme argument d'une fonction une autre fonction !
@@ -219,6 +219,128 @@
     utilisez comme argument.
   Script: evaluate.R
   
+- Class: cmd_question
+  Output: Utilisons maintenant votre fonction evaluate() pour trouver l'écart type
+    du vecteur c(1.4, 3.6, 7.9, 8.8).
+  CorrectAnswer: evaluate(sd, c(1.4, 3.6, 7.9, 8.8))
+  AnswerTests: omnitest(correctExpr='evaluate(sd, c(1.4, 3.6, 7.9, 8.8))')
+  Hint: La fonction écart-type dans R est la fonction sd().
+    N'oubliez pas que pour passer une fonction en argument il ne faut pas mettre
+    de parenthèses à cette fonction.
+
+- Class: text
+  Output: "L'idée d'utiliser une fonction comme argument dans une autre fonction
+    est un concept clé de programmation.
+    Encore plus fort : il est possible de passer des fonctions en arguments dans
+    une autre fonction sans avoir défini la fonction auparavant.
+    Les fonctions de ce type sont appelées fonction anonyme (ou lambda function)."
+    
+- Class: text
+  Output: Nous allons utiliser la fonction evaluat pour étudier le fonctionnement
+    des fonctions anonymes.
+    Comme premier argument à evaluate, nous allons écrire une petite fonction, 
+    qui tient sur une ligne.
+    Comme second argument à la fonction evaluate nous allons utiliser comme argument
+    un tout petit ensemble de données.
+    
+- Class: cmd_question
+  Output: "Tapez la commande suivante, nous allons voir par la suite comment 
+    elle fonctionne : evaluate(function(x){x+1}, 6)"
+  CorrectAnswer: evaluate(function(x){x+1}, 6)
+  AnswerTests: test_eval1()
+  Hint: Tapez simplement la commande evaluate(function(x){x+1}, 6)
+  
+- Class: text
+  Output: Le premier argument d'evaluate est une fonction anonyme très simple qui
+    prend comme argument 'x' et retourne 'x+1'. 
+    Nous avons dit à evaluate de passer comme argument 6 à cette fonction, le résultat
+    est donc 7.
+    
+- Class: cmd_question
+  Output: Essayew d'utiliser evaluate() avec une fonction anonyme afin qu'elle
+    retourne le premier élément d'un vecteur.
+    Votre fonction anonyme devrait prendre un seul argument, qui devrait être
+    la variable x.
+    Le vecteur que vous devez utiliser pour tester cette fonction doit être 
+    le vecteur c(8, 4, 0).
+  CorrectAnswer: evaluate(function(x){x[1]}, c(8, 4, 0))
+  AnswerTests: test_eval2()
+  Hint: Rappelez vous comment on fait appel à un élément particulier dans un 
+    vecteur à l'aide de son index. 
+    Votre fonction anonyme ne doit avec qu'un seul argument et le nom de cette
+    argument doit être x.
+
+- Class: cmd_question
+  Output: Utilisez maintenant la fonction evaluate() et une fonction anonyme
+    afin de retourner le dernier élément d'un vecteur.
+    Votre fonction anonyme ne doit avoir qu'un seul argument qui sera x.
+    Le vecteur que vous devez utiliser pour tester cette fonction doit être 
+    le vecteur c(8, 4, 0).
+  CorrectAnswer: evaluate(function(x){x[length(x)]}, c(8, 4, 0))
+  AnswerTests: test_eval3()
+  Hint: Rappelez vous comment on fait appel à un élément particulier dans un 
+    vecteur à l'aide de son index. 
+    Votre fonction anonyme ne doit avec qu'un seul argument et le nom de cette
+    argument doit être x.
+    La fonction length() peut être utile dans votre fonctio anonyme.
+
+- Class: cmd_question
+  Output: Jusqu'à la fin de cette leçon nous allons utiliser la fonction paste()
+    fréquemment.
+    Tapez ?paste pour lire la documentation de cette fonction et comprendre
+    son fonctionnement.
+  CorrectAnswer: ?paste
+  AnswerTests: omnitest(correctExpr='?paste')
+  Hint: Tapez ?paste.
+  
+  
+- Class: cmd_question
+  Output: Afin de comprendre comment paste() fonctionne, essayez de taper
+    paste("La", "programmation", "c'est", "facile !").
+  CorrectAnswer: paste("La", "programmation", "c'est", "facile !")
+  AnswerTests: omnitest(correctExpr='paste("La", "programmation", "c'est", "facile !")')
+  Hint: Tapez paste("La", "programmation", "c'est", "facile !").
+  
+- Class: text
+  Output: Ecrivons maintenant notre propre version de paste().
+  
+    
+- Class: script
+  Output: Sauvegardez bien votre script avant de taper submit().
+  AnswerTests: test_func5()
+  Hint: N'oubliez pas que des arguments peuvent être donnés après ...
+  Script: telegram.R
+  
+- Class: cmd_question
+  Output: Essayons maintenant votre nouvelle fonction telegram().
+    Utilisez votre fonction telegram() avec n'importe quels arguments.
+  CorrectAnswer: telegram()
+  AnswerTests: expr_uses_func('telegram')
+  Hint: Utilisez votre fonction telegram() avec n'importe quels arguments.
+
+- Class: script
+  Output: Sauvegardez bien votre script avant de taper submit().
+  AnswerTests: test_func6()
+  Hint: Votre fonction doit contenir trois parties.
+    Une capture des ... dans une liste.
+    Le découpage des arguments des ... et l'assignation à une variable.
+    Le passage des variables dans la fonction paste().
+  Script: mad_libs.R
+  
+- Class: cmd_question
+  Output: Utilisons maintenant votre fonction mad_libs.
+    Pensez bien à nommer les arguments place, adjective et noun pour que votre 
+    fonction accomplisse son travail.
+  CorrectAnswer: mad_libs(adjective = "", place = "", noun = "")
+  AnswerTests: expr_uses_func('mad_libs')
+  Hint: Utilisez la fonction mad_libs et nommer bien vos arguments place, adjective
+    et nom.
+    
+- Class: text
+  Output: Nous avons fini cette leçon.
+    Vous avez maintenant un des concepts les plus important de R et du monde de
+    la programmation, les fonctions.
+ 
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
     enseignant (cela ne fonctionnera que pour les étudiants de l'université 

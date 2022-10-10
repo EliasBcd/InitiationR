@@ -1,34 +1,35 @@
-# The ellipses can be used to pass on arguments to other functions that are
-# used within the function you're writing. Usually a function that has the
-# ellipses as an argument has the ellipses as the last argument. The usage of
-# such a function would look like:
+# Les ... peuvent être utilisé pour passer un argument d'une première fonction
+# dans une deuxième fonction. En général, les ... sont les derniers arguments 
+# d'une fonction. Une fonction avec un tel argument ressemble en général à ceci :
 #
 # ellipses_func(arg1, arg2 = TRUE, ...)
 #
-# In the above example arg1 has no default value, so a value must be provided
-# for arg1. arg2 has a default value, and other arguments can come after arg2
-# depending on how they're defined in the ellipses_func() documentation.
-# Interestingly the usage for the paste function is as follows:
+# Dans la fonction précédente, arg1 n'a pas de valeur par défaut, il faut donc 
+# systématiquement donner une valeur à arg1. arg2 a une valeur par défaut et 
+# d'autres arguments peuvent être donné après arg2, en fonction de comment est
+# définie la fonction ellipses_func(). Si on regarde comment la fonction paste()
+# est définie, on observe ceci :
 #
 # paste (..., sep = " ", collapse = NULL)
 #
-# Notice that the ellipses is the first argument, and all other arguments after
-# the ellipses have default values. This is a strict rule in R programming: all
-# arguments after an ellipses must have default values. Take a look at the
-# simon_says function below:
+# Les ... sont le premier argument ! Et tous les arguments après les ... ont une
+# valeur par défaut. C'est une règle stricte de programmation dans R. Tous les 
+# arguments après  les ... doivent avoir une valeur par défaut. Regardons par 
+# exemple la fonction jacadi suivante :
 #
-# simon_says <- function(...){
-#   paste("Simon says:", ...)
+# jacadi <- function(...){
+#   paste("Jacques a dit :", ...)
 # }
 #
-# The simon_says function works just like the paste function, except the
-# begining of every string is prepended by the string "Simon says:"
+# La fonction jacadi est semblable à la fonction paste. La seule différence est 
+# qu'elle ajoute au début de chaque chaîne de caractère "Jacques a dit :"
 #
-# Telegrams used to be peppered with the words START and STOP in order to
-# demarcate the beginning and end of sentences. Write a function below called 
-# telegram that formats sentences for telegrams.
-# For example the expression `telegram("Good", "morning")` should evaluate to:
-# "START Good morning STOP"
+# Les télégrammes étaient auparavant entourés des mots START et STOP au début
+# et à la fin de chaque phrase. Ecrivez une fonction appelée telegram qui donne
+# le format télégramme aux phrases.
+# Par exemple, le résultat de la commande `telegram("Bonne", "journée")` devrait
+# être :
+# "START Bonne journée STOP"
 
 telegram <- function(...){
   
