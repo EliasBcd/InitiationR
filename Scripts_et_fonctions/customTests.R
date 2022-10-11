@@ -82,23 +82,25 @@ test_func5 <- function() {
 
 test_func6 <- function() {
   try({
-    func <- get('mad_libs', globalenv())
-    t1 <- identical(func(place = "Baltimore", adjective = "smelly", noun = "Roger Peng statue"), "News from Baltimore today where smelly students took to the streets in protest of the new Roger Peng statue being installed on campus.")
-    t2 <- identical(func(place = "Washington", adjective = "angry", noun = "Shake Shack"), "News from Washington today where angry students took to the streets in protest of the new Shake Shack being installed on campus.")
+    func <- get('manif', globalenv())
+    t1 <- identical(func(place = "Baltimore", adjective = "puant.e.s", noun = "statue de Roger Peng"), "Nouvelles de Baltimore aujourd'hui, des étudiant.e.s puant.e.s ont fait grève contre les nouveaux statue de Roger Peng installés dans l'université.")
+    t2 <- identical(func(place = "Washington", adjective = "en colère", noun = "kebabs"), "Nouvelles de Washington aujourd'hui, des étudiant.e.s en colère ont fait grève contre les nouveaux kebabs installés dans l'université.")
     ok <- all(t1, t2)
   }, silent = TRUE)
   exists('ok') && isTRUE(ok)
 }
 
-test_func7 <- function() {
-  try({
-    func <- get('%p%', globalenv())
-    t1 <- identical(func("Good", "job!"), "Good job!")
-    t2 <- identical(func("one", func("two", "three")), "one two three")
-    ok <- all(t1, t2)
-  }, silent = TRUE)
-  exists('ok') && isTRUE(ok)
-}
+
+
+# test_func7 <- function() {
+#   try({
+#     func <- get('%p%', globalenv())
+#     t1 <- identical(func("Good", "job!"), "Good job!")
+#     t2 <- identical(func("one", func("two", "three")), "one two three")
+#     ok <- all(t1, t2)
+#   }, silent = TRUE)
+#   exists('ok') && isTRUE(ok)
+# }
 
 test_eval1 <- function(){
   try({
@@ -160,7 +162,7 @@ getVal <- function(){
 submit_log <- function(){
   # Changer de lien et de nom pour chaque leçon
   pre_fill_link <- "https://moodle.univ-paris8.fr/mod/assign/view.php?id=271762&action=editsubmission"
-  saved <- paste0(gsub(" ","_" ,getOption("swirlify_lesson_name")), ".txt")
+  saved <- "Scripts_et_fonctions.txt"
   temp <- tempfile()
   
   

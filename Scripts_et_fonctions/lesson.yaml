@@ -7,49 +7,74 @@
   Version: 2.4.5
   
 - Class: text
-  Output: Jusqu’ici on a utilisé R de manière “interactive”, en saisissant des commandes directement dans la console.
+  Output: Jusqu’ici on a utilisé R de manière “interactive”, en saisissant des 
+    commandes directement dans la console.
     Ce n’est pas très pratique pour sauvegarder son travail.
-    Lorsque R ou RStudio redémarre, tout ce qui a été effectué dans la console est perdu.
+    Lorsque R ou RStudio redémarre, tout ce qui a été effectué dans la console 
+    est perdu.
 
 - Class: text
-  Output: On va plutôt regrouper les commandes dans des scripts (de simples fichiers texte), qui vont garder une trace de toutes les opérations effectuées. 
-    En rouvrant les scripts et en réexécutant les commandes qu’ils contiennent on pourra “reproduire” le chargement des données, leur traitement, les analyses et leurs résultats.
-    Pour créer un script, il suffit de sélectionner le menu Fichier (File), puis Nouveau fichier (New File) et script R (R script).
+  Output: On va plutôt regrouper les commandes dans des scripts (de simples 
+    fichiers texte), qui vont garder une trace de toutes les opérations effectuées. 
+    En rouvrant les scripts et en réexécutant les commandes qu’ils contiennent 
+    on pourra “reproduire” le chargement des données, leur traitement, les 
+    analyses et leurs résultats.
+    Pour créer un script, il suffit de sélectionner le menu Fichier (File), puis
+    Nouveau fichier (New File) et script R (R script).
     Une quatrième zone apparaît alors en haut à gauche de l’interface de RStudio. 
-    On peut enregistrer notre script à tout moment dans un fichier avec l’extension .R, en cliquant sur l’icône de disquette ou en choisissant Fichier (File) puis Sauvegarder (Save) ou en utilisant le raccourci Ctrl + S (Cmd + S sous Mac).
+    On peut enregistrer notre script à tout moment dans un fichier avec 
+    l’extension .R, en cliquant sur l’icône de disquette ou en choisissant 
+    Fichier (File) puis Sauvegarder (Save) ou en utilisant le raccourci Ctrl + S
+    (Cmd + S sous Mac).
     
 - Class: text 
-  Output: Un script est un fichier texte brut, qui s’édite de la manière habituelle. 
-    À la différence de la console, quand on appuie sur Entrée, cela n’exécute pas la commande en cours mais insère un saut de ligne.
-    Pour exécuter une commande dans un script, il faut positionner le curseur sur la ligne de la commande en question, et de cliquer sur le bouton Run dans la barre d’outils juste au-dessus de la zone d’édition du script.
+  Output: Un script est un fichier texte brut qui s’édite de la manière habituelle. 
+    À la différence de la console, quand on appuie sur Entrée, cela n’exécute pas 
+    la commande en cours mais insère un saut de ligne.
+    Pour exécuter une commande dans un script, il faut positionner le curseur sur 
+    la ligne de la commande en question, et de cliquer sur le bouton Run dans la
+    barre d’outils juste au-dessus de la zone d’édition du script.
     On peut aussi utiliser le raccourci clavier Ctrl + Entrée (Cmd + Entrée sous Mac).
-    On peut aussi sélectionner plusieurs lignes avec la souris ou le clavier et cliquer sur Run (ou utiliser le raccourci clavier), et l’ensemble des lignes est exécuté d’un coup.
+    On peut aussi sélectionner plusieurs lignes avec la souris ou le clavier et
+    cliquer sur Run (ou utiliser le raccourci clavier), et l’ensemble des lignes
+    est exécuté d’un coup.
     
 - Class: script
   Output: Vous allez maintenant créer votre premier script.
-    Il contiendra une assignation du vecteur c(156, 164, 197, 147, 173) à l'objet tailles.
+    Il contiendra une assignation du vecteur c(156, 164, 197, 147, 173) à l'objet
+    tailles.
     Puis une assignation du vecteur c(45, 59, 110, 44, 88) au vecteur poids.
-    Puis un calcul de l'imc des à l'aide des vecteurs précédent et l'assignation du résultat à l'objet imc.
+    Puis un calcul de l'imc des à l'aide des vecteurs précédent et l'assignation 
+    du résultat à l'objet imc.
     swirl va automatiquement ouvrir une fenêtre avec un script pour cet exercice.
     Essayez de modifier le script qui va s'afficher.
-    Une fois cela fait, vous devez tapez submit() dans l'invite de commande pour soumettre votre réponse.
+    Une fois cela fait, vous devez tapez submit() dans l'invite de commande pour
+    soumettre votre réponse.
   AnswerTests: test_imc()
-  Hint: Lisez bien les instructions dans le script et complétez-le à l'aide des valeurs indiquées.
+  Hint: Lisez bien les instructions dans le script et complétez-le à l'aide des
+    valeurs indiquées.
   Script: imc.R
   
 - Class: text
-  Output: "Vous devez avoir remarqué dans le script les lignes qui commençaient par un signe dièse #.
-    Ces lignes indiquent un commentaire dans R et ne sont pas prises en compte dans l'évaluation du script.
-    Les commentaires sont une partie très importante d'un script (et des fonctions que nous allons voir).
-    Ils permettent de documenter les actions du script (ou de la fonction) afin de dire ce qu'il fait.
-    On peut ainsi retrouver son code des jours ou des mois plus tard et se rappeler de ce qu'on a voulu faire."
+  Output: "Vous devez avoir remarqué dans le script les lignes qui commençaient
+    par un signe dièse #.
+    Ces lignes indiquent un commentaire dans R et ne sont pas prises en compte
+    dans l'évaluation du script.
+    Les commentaires sont une partie très importante d'un script (et des 
+    fonctions que nous allons voir).
+    Ils permettent de documenter les actions du script (ou de la fonction) 
+    afin de dire ce qu'il fait.
+    On peut ainsi retrouver son code des jours ou des mois plus tard et se 
+    rappeler de ce qu'on a voulu faire."
     
 - Class: text
   Output: Passons maintenant aux fonctions.
     Les fonctions sont une composante essentielle de R.
-    C'est un petit morceau de code qui peut être traité comme n'importe quel objet R.
+    C'est un petit morceau de code qui peut être traité comme n'importe quel 
+    objet R.
     Vous avez déjà rencontré des fonctions dans ce cours.
-    Les fonctions se repèrenet généralement par le nom de la fonction suivi de parenthèses.
+    Les fonctions se repèrent généralement par le nom de la fonction suivi de 
+    parenthèses.
     
 
 - Class: cmd_question
@@ -61,13 +86,17 @@
   Hint: Affichez la date du jour à l'aide de Sys.Date().
   
 - Class: text
-  Output: La plupart des fonctions dans R renvoit une valeur.
-    Des fonctions telles que Sys.Date() envoit comme résultat une valeur qui dépend de votre ordinateur.
-    D'autres fonctions, au contraire, manipulent des données afin de calculer un résultat.
+  Output: La plupart des fonctions dans R renvoient une valeur.
+    Des fonctions telles que Sys.Date() envoit comme résultat une valeur qui
+    dépend de votre ordinateur.
+    D'autres fonctions, au contraire, manipulent des données afin de calculer 
+    un résultat.
 
 - Class: cmd_question
-  Output: La fonction mean() prend comme valeur d'entrée (ou argument) un vecteur et calcule la moyenne des éléments de ce vecteur.
-    On dit souvent qu'on passe un argument à une fonction pour dire qu'on l'utilise comme valeur d'entrée.
+  Output: La fonction mean() prend comme valeur d'entrée (ou argument) un 
+    vecteur et calcule la moyenne des éléments de ce vecteur.
+    On dit souvent qu'on passe un argument à une fonction pour dire qu'on 
+    l'utilise comme valeur d'entrée.
     Les arguments sont écrits entre les parenthèses.
     Essayez de passer le vecteur c(2, 4, 5) comme argument à la fonction mean().
   CorrectAnswer: mean(c(2, 4, 5))
@@ -75,13 +104,18 @@
   Hint: Calculez la moyenne de 2, 4 et 5 en tapant mean(c(2, 4, 5)).
   
 - Class: text
-  Output: Les fonctions prennent généralement comme arguments des valeurs sur lesquelles elles opèrent des calculs.
-    La fonction mean(), par exemple, prend comme argument un vecteur, comme dans le cas précédent.
-    La fonction mean() somme ensuite tous les nombres du vecteurs et divise cette somme par la longueur du vecteur.
+  Output: Les fonctions prennent généralement comme arguments des valeurs sur 
+    lesquelles elles opèrent des calculs.
+    La fonction mean(), par exemple, prend comme argument un vecteur, comme dans
+    le cas précédent.
+    La fonction mean() somme ensuite tous les nombres du vecteurs et divise 
+    cette somme par la longueur du vecteur.
     
 - Class: text
-  Output: Dans la question suivante, je vais vous demander de modifier un script, comme au tout début de cette leçon.
-    Quand vous aurez fini de modifier le script, n'oubliez pas de sauvegarder votre script puis de taper submit() pour faire évaluer votre répone.
+  Output: Dans la question suivante, je vais vous demander de modifier un script, 
+    comme au tout début de cette leçon.
+    Quand vous aurez fini de modifier le script, n'oubliez pas de sauvegarder
+    votre script puis de taper submit() pour faire évaluer votre réponse.
     Il y aura des commentaires dans le script, lisez-les attentivement !
     
 - Class: script
@@ -103,14 +137,15 @@
   
 - Class: text
   Output: Félicitations ! Vous avez écrit votre première fonction.
-    Les fonctions sont un élément clé de R, avec les objets.
-    Pour comprendre le fonctionnement de R, deux choses sont importante.
+    Les fonctions sont un élément clé de R avec les objets.
+    Pour comprendre le fonctionnement de R, deux choses sont importantes.
     Premièrement, tout ce qui existe est un objet.
     Deuxièmement, tout ce qui se produit est une fonction.
     (Citation de John Chambers, un des créateur de R).
   
 - Class: cmd_question
-  Output: Si vous voulez connaître le code de calcul d'une fonction, tapez son nom sans parenthèses ni arguments.
+  Output: Si vous voulez connaître le code de calcul d'une fonction, tapez son 
+    nom sans parenthèses ni arguments.
     Essayez pour la fonction boring_function.
   CorrectAnswer: boring_function
   AnswerTests: omnitest(correctExpr='boring_function')
@@ -118,8 +153,10 @@
   
 - Class: text
   Output: Faisons une fonction un peu plus utile.
-    Reproduisons le résultat de la fonction mean() dans une fonction appelée my_mean().
-    Rappelez vous que la moyenne est la somme de tous les nombres dans le vecteur divisé par sa longuer.
+    Reproduisons le résultat de la fonction mean() dans une fonction appelée 
+    my_mean().
+    Rappelez-vous que la moyenne est la somme de tous les nombres dans le 
+    vecteur divisé par sa longuer.
     
 
 
@@ -161,7 +198,7 @@
     La valeur par défaut pour 'divisor' est 2, R a donc utilisé cette valeur dans le calcul.
     
 - Class: cmd_question
-  Output: Observons maintenant le comportemen de remainder avec 2 arguments.
+  Output: Observons maintenant le comportement de remainder avec 2 arguments.
     Tapez remainder(11, 5) et observons le résultat.
   CorrectAnswer: remainder(11, 5)
   AnswerTests: omnitest(correctExpr='remainder(11, 5)')
@@ -233,7 +270,7 @@
     est un concept clé de programmation.
     Encore plus fort : il est possible de passer des fonctions en arguments dans
     une autre fonction sans avoir défini la fonction auparavant.
-    Les fonctions de ce type sont appelées fonction anonyme (ou lambda function)."
+    Les fonctions de ce type sont appelées fonctions anonymes (ou lambda fonctions)."
     
 - Class: text
   Output: Nous allons utiliser la fonction evaluat pour étudier le fonctionnement
@@ -257,7 +294,7 @@
     est donc 7.
     
 - Class: cmd_question
-  Output: Essayew d'utiliser evaluate() avec une fonction anonyme afin qu'elle
+  Output: Essayez d'utiliser evaluate() avec une fonction anonyme afin qu'elle
     retourne le premier élément d'un vecteur.
     Votre fonction anonyme devrait prendre un seul argument, qui devrait être
     la variable x.
@@ -298,7 +335,7 @@
   Output: Afin de comprendre comment paste() fonctionne, essayez de taper
     paste("La", "programmation", "c'est", "facile !").
   CorrectAnswer: paste("La", "programmation", "c'est", "facile !")
-  AnswerTests: omnitest(correctExpr='paste("La", "programmation", "c'est", "facile !")')
+  AnswerTests: omnitest(correctExpr='paste("La", "programmation", "c\'est", "facile !")')
   Hint: Tapez paste("La", "programmation", "c'est", "facile !").
   
 - Class: text
@@ -325,15 +362,15 @@
     Une capture des ... dans une liste.
     Le découpage des arguments des ... et l'assignation à une variable.
     Le passage des variables dans la fonction paste().
-  Script: mad_libs.R
+  Script: manif.R
   
 - Class: cmd_question
-  Output: Utilisons maintenant votre fonction mad_libs.
+  Output: Utilisons maintenant votre fonction manif.
     Pensez bien à nommer les arguments place, adjective et noun pour que votre 
     fonction accomplisse son travail.
-  CorrectAnswer: mad_libs(adjective = "", place = "", noun = "")
-  AnswerTests: expr_uses_func('mad_libs')
-  Hint: Utilisez la fonction mad_libs et nommer bien vos arguments place, adjective
+  CorrectAnswer: manif(adjective = "", place = "", noun = "")
+  AnswerTests: expr_uses_func('manif')
+  Hint: Utilisez la fonction manif et nommer bien vos arguments place, adjective
     et nom.
     
 - Class: text

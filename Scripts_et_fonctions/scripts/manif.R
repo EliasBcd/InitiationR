@@ -22,17 +22,16 @@
 #   alpha + beta 
 # }
 #
-# Avez-vous déjà manifest
-# Have you ever played Mad Libs before? The function below will construct a
-# sentence from parts of speech that you provide as arguments. We'll write most
-# of the function, but you'll need to unpack the appropriate arguments from the
-# ellipses.
+# Avez-vous déjà manifesté ou bien fait la grève à Paris 8 ? La fonction suivante
+# va construire une phrase à partir des arguments que vous allez donner. 
+# Nous allons écrire une grande partie de la fonction, mais vous devez récupérer
+# les bons arguments des ...
 
-mad_libs <- function(...){
-  # Do your argument unpacking here!
+manif <- function(...){
+  # Récupérer vos arguments ici.
   
-  # Don't modify any code below this comment.
-  # Notice the variables you'll need to create in order for the code below to
-  # be functional!
-  paste("News from", place, "today where", adjective, "students took to the streets in protest of the new", noun, "being installed on campus.")
+  # Ne modifiez pas le code suivante ces commentaires.
+  # Regardez bien les arguments que vous devez récupérer dans la liste pour 
+  # construire la phrase.
+  paste("Nouvelles de", place, "aujourd'hui, des étudiant.e.s", adjective, "ont fait grève contre les nouveaux", noun, "installés dans l'université.")
 }

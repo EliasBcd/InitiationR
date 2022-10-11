@@ -6,7 +6,7 @@
 # d'origine autrement dit). J'ai écrit cette fonction.
 #
 # increment <- function(nombre, par = 1){
-#     nombre + bpar
+#     nombre + par
 # }
 #
 # Si vous regardez entre les parenthèses, vous remarquerez que j'ai donné une 
