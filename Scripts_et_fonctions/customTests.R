@@ -160,10 +160,8 @@ getVal <- function(){
 }
 
 # Make sure the base64enc package is available.
-load_package <- function(pkgname="base64enc"){
-  if(!require(pkgname)){
-    install.packages(pkgname)
-  }
+install_packages <- function(packages=c("base64enc")){
+  install.packages(setdiff(packages, rownames(installed.packages())))  
 }
 
 
@@ -172,7 +170,7 @@ submit_log <- function(){
   pre_fill_link <- "https://moodle.univ-paris8.fr/mod/assign/view.php?id=271762&action=editsubmission"
   saved <- "Scripts_et_fonctions.txt"
   temp <- tempfile()
-  load_package()
+  install_packages()
   
   
   p <- function(x, p, f, l = length(x)){if(l < p){x <- c(x, rep(f, p - l))};x}
