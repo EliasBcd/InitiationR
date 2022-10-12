@@ -159,11 +159,20 @@ getVal <- function(){
   getState()$val
 }
 
+# Make sure the base64enc package is available.
+load_package <- function(pkgname="base64enc"){
+  if(!require(pkgname)){
+    install.packages(pkgname)
+  }
+}
+
+
 submit_log <- function(){
   # Changer de lien et de nom pour chaque leçon
   pre_fill_link <- "https://moodle.univ-paris8.fr/mod/assign/view.php?id=271762&action=editsubmission"
   saved <- "Scripts_et_fonctions.txt"
   temp <- tempfile()
+  load_package()
   
   
   p <- function(x, p, f, l = length(x)){if(l < p){x <- c(x, rep(f, p - l))};x}
@@ -180,7 +189,7 @@ submit_log <- function(){
                         datetime = p(log_$datetime, nrow_, NA),
                         stringsAsFactors = FALSE)
   write.csv(log_tbl, file = temp, row.names = FALSE)
-  encoded_log <- base64encode(temp)
+  encoded_log <- base64enc::base64encode(temp)
   write.csv(encoded_log, file=saved, row.names = FALSE)
   if(getVal() == "Oui"){
     browseURL(pre_fill_link)
