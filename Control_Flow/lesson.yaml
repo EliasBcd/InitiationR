@@ -1,0 +1,102 @@
+- Class: meta
+  Course: InitiatioNR
+  Lesson: Control Flow
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+  
+- Class: text
+  Output: Nous allons aborder dans cette leçon deux outils importants en 
+    programmation. Premièrement, l'évaluation conditionnelle (`if` et `else`).
+    Deuxièmement, les boucles (`for`, `while` et `repeat`).
+    La syntaxe exacte diffère généralement entre les langages, mais les idées
+    et le fonctionnement est similaire quoiqu'il arrive.
+
+- Class: cmd_question
+  Output: Commençons par une version simple, pour comprendre le fonctionnement de if.
+    Nous allons utiliser une condition toujours vraie (TRUE) pour le voir.
+    Essayez de taper if(TRUE) 1 else 2.
+  CorrectAnswer: if(TRUE) 1 else 2
+  AnswerTests: omnitest(correctExpr='if(TRUE) 1 else 2', correctVal=1)
+  Hint: "Tapez : if(TRUE) 1 else 2"
+
+- Class: cmd_question
+  Output: La partie entre parenthèses correspond à la condition que R évalue.
+    Ici, pour simplifier la compréhension, nous avons directement utilisé une valeur
+    logique comme condition.
+    En général, c'est une expression logique que R test (3 < 4 par exemple).
+    Comme la condition est vraie, R nous renvoit 1.
+    Si la condition est FALSE, R nous renverrat la valeur donnée après le else.
+    Essayez maintenant la même expression en remplaçant TRUE par FALSE.
+  CorrectAnswer: if(FALSE) 1 else 2
+  AnswerTests: omnitest(correctExpr='if(FALSE) 1 else 2', correctVal=2)
+  Hint: "Tapez : if(FALSE) 1 else 2" 
+
+
+- Class: cmd_question
+  Output: Une capacité importante de `if` est la possibilité d'assigner le résultat.
+    On peut par exemple assigner le résultat de l'expression à l'objet `x`.
+    Essayez.
+  CorrectAnswer: x <- if(FALSE) 1 else 2
+  AnswerTests: omnitest(correctExpr='x <- if(FALSE) 1 else 2')
+  Hint: "On cherche à effectuer une assignation. Tapez : x <- if(FALSE) 1 else 2" 
+
+- Class: mult_question
+  Output: Que vaut x à votre avis ?
+  AnswerChoices: NA;2;1
+  CorrectAnswer: 2
+  AnswerTests: omnitest(correctVal='2')
+  Hint: Pensez au résultat que R vous a envoyé à la question précédente.
+
+- Class: mult_question
+  Output: Remarquez que la condition doit avoir une unique valeur TRUE ou FALSE.
+    Parmi les expressions suivante, laquelle correspond à cette contrainte (et donc laquelle ne renverra pas d'erreur) ?
+  AnswerChoices: if(3>4) 3 else 4 ;if ("x") 1; if (logical()) 1; if (NA) 1; if (c(TRUE, FALSE)) 1
+  CorrectAnswer: if(3>4) 3 else 4
+  AnswerTests: omnitest(correctVal='if(3>4) 3 else 4')
+  Hint: La condition doit renvoyer TRUE ou FALSE.
+
+- Class: script
+  Output: On veut parfois utiliser plusieurs conditions enchaînées.
+    Par exemple, si on veut créer une fonction mention en fonction des notes des étudiants.
+    Pour ce cas, plutôt que d'utiliser des conditions `if` emboîtée, il est possible d'utiliser else if.
+    Une fois que vous avez modifié le script qui apparaît à l'écran, pensez à bien l'enregistrer et tapez submit()
+    dans la console.
+  AnswerTests: test_mention()
+  Hint: Mettez bien une majuscule à la première lettre de chaque mention.
+    Faites bien attention aux notes exclues et inclues.
+  Script: mention.R
+
+
+- Class: cmd_question
+  Output: Testons maintenant cette nouvelle fonction.
+    Essayez d'obtenir la mention correspondant à une moyenne de 13.5.
+  CorrectAnswer: mention(13.5)
+  AnswerTests: omnitest(correctExpr='mention(13.5)')
+  Hint: Pensez à bien utiliser la fonction définie précédemment et rappelez-vous comment on utilise des arguments dans R.
+
+- Class: cmd_question
+  Output: "Les boucles servent elles à itérer sur des inputs et à faire une action pour chaque input.
+    La syntaxe classique est 'for (item in vecteur) action'.
+    Par exemple, on peut écrire la boucle suivante : for(i in 1:3) print(i)
+    Essayez"
+  CorrectAnswer: for (i in 1:3) print(i)
+  AnswerTests: omnitest(correctExpr='for (i in 1:3) print(i)')
+  Hint: "Tapez : for (i in 1:3) print(i) dans la console."
+
+- Class: text
+  Output: Analysons un petit peu ce que nous avons écrit et les résultats obtenus.
+    Notre item ici s'appelle i. 
+    Le vecteur est donné par 1:3, c'est donc les trois éléments 1, 2 et 3.
+    print() est une fonction très utile de R qui affiche dans la console ce qui est à l'intérieur.
+    On a donc obtenu comme sortie 1 puis 2, puis 3, ce qui correspond à l'affichage de l'incrémentation de i par la boucle for.
+
+- Class: script
+  Output: Plusieurs commande permettent de contrôler un peu plus finement le comportement d'une boucle for, les mots-clés next et break.
+    next dit à R de sortir de l'itération actuelle.
+    break dit à R de sortir de la boucle for.
+  AnswerTests: identical(source("Control_Flow/scripts/boucle.R"), source("Control_Flow/scripts/boucle-correct.R"))
+  Hint: next dit à R de sortir de l'itération actuelle.
+    break dit à R de sortir de la boucle for.
+  Script: boucle.R
