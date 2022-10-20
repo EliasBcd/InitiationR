@@ -14,19 +14,19 @@
 # break dit à R d'arrêter l'itération dès que i atteint la valeur 5, mais après 
 # avoir affiché la valeur 5.
 # 
-# Essayez de faire une boucle ou R n'affiche que les valeurs paires inférieures à 8.
-# Voici un début de code pour vous aider.
-#
-# Conseil #1 :L'opérateur qui donne le reste dans la division euclidienne d'un nombre est %%.
+# On suppose que tout les éléments d'un vecteur numérique sont ordonnés du plus petit au plus grand.
+# On veut sélectionner seulement les éléments inférieurs à 20 en utilisant break.
 
-for (i in 1:20) {
-  if (# code)
-    #code
 
-  print(i)
-
-  if (#code)
-    #code
+ 
+break_function <- function(x){
+  res <- c()
+  for (i in x){
+    if (i>20)
+      break
+    res <- c(res, i) # Ce code sert à ajouter un élément à un vecteur déjà existant.
+  }
+  res
 }
 
 

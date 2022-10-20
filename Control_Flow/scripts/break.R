@@ -14,15 +14,18 @@
 # break dit à R d'arrêter l'itération dès que i atteint la valeur 5, mais après 
 # avoir affiché la valeur 5.
 # 
-# Essayez de faire une boucle ou R n'affiche que les valeurs paires inférieures à 8.
-# Voici un début de code pour vous aider.
+# On suppose que tout les éléments d'un vecteur numérique sont ordonnés du plus petit au plus grand.
+# On veut sélectionner seulement les éléments inférieurs à 20 en utilisant break.
 
-for (i in 1:20) {
-  if (i %% 2 == 1) 
-    next
-  
-  print(i)
-  
-  if (i >= 8)
-    break
+ 
+break_function <- function(x){
+  res <- c()
+  for (#Code){
+    if (#code
+      #code
+    res <- c(res, i) # Ce code sert à ajouter un élément à un vecteur déjà existant.
+  }
+  res
 }
+
+

@@ -17,9 +17,9 @@
 #   }
 # }
 # 
-# Analysons un peut ce code. 
-# L'évaluation conditionnelle commence par if. 
-# Les condition else if capturent progressivement les autres temps. 
+# Analysons ce code. 
+# L'évaluation conditionnelle commence par 'if'. 
+# Les condition 'else if' capturent progressivement les autres temps. 
 # Si x n'est pas plus petit que 9.69, alors on teste si x est plus petit que 10, etc.
 # La dernière condition est else (qui n'est pas obligatoire). 
 # Elle capture tous les temps qui n'ont pas été capturés auparavant.

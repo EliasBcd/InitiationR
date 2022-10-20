@@ -11,10 +11,12 @@
     programmation. Premièrement, l'évaluation conditionnelle (`if` et `else`).
     Deuxièmement, les boucles (`for`, `while` et `repeat`).
     La syntaxe exacte diffère généralement entre les langages, mais les idées
-    et le fonctionnement est similaire quoiqu'il arrive.
+    et le fonctionnement sont similaires.
 
 - Class: cmd_question
-  Output: Commençons par une version simple, pour comprendre le fonctionnement de if.
+  Output: Commençons par une version simple pour comprendre le fonctionnement de if.
+    La syntaxe générale est 'if(condition) action_si_TRUE else action_si_FALSE'.
+    Notez que la partie 'else action_si_FALSE' est facultative.
     Nous allons utiliser une condition toujours vraie (TRUE) pour le voir.
     Essayez de taper if(TRUE) 1 else 2.
   CorrectAnswer: if(TRUE) 1 else 2
@@ -26,8 +28,8 @@
     Ici, pour simplifier la compréhension, nous avons directement utilisé une valeur
     logique comme condition.
     En général, c'est une expression logique que R test (3 < 4 par exemple).
-    Comme la condition est vraie, R nous renvoit 1.
-    Si la condition est FALSE, R nous renverrat la valeur donnée après le else.
+    Comme la condition est vraie, R nous renvoie 1.
+    Si la condition est FALSE, R nous renverra la valeur donnée après le else.
     Essayez maintenant la même expression en remplaçant TRUE par FALSE.
   CorrectAnswer: if(FALSE) 1 else 2
   AnswerTests: omnitest(correctExpr='if(FALSE) 1 else 2', correctVal=2)
@@ -36,7 +38,7 @@
 
 - Class: cmd_question
   Output: Une capacité importante de `if` est la possibilité d'assigner le résultat.
-    On peut par exemple assigner le résultat de l'expression à l'objet `x`.
+    On peut par exemple assigner le résultat de l'expression précédente à l'objet `x`.
     Essayez.
   CorrectAnswer: x <- if(FALSE) 1 else 2
   AnswerTests: omnitest(correctExpr='x <- if(FALSE) 1 else 2')
@@ -95,8 +97,29 @@
 - Class: script
   Output: Plusieurs commande permettent de contrôler un peu plus finement le comportement d'une boucle for, les mots-clés next et break.
     next dit à R de sortir de l'itération actuelle.
-    break dit à R de sortir de la boucle for.
-  AnswerTests: identical(source("Control_Flow/scripts/boucle.R"), source("Control_Flow/scripts/boucle-correct.R"))
+  AnswerTests: test_pair()
   Hint: next dit à R de sortir de l'itération actuelle.
-    break dit à R de sortir de la boucle for.
-  Script: boucle.R
+  Script: pair.R
+  
+- Class: script
+  Output: Plusieurs commande permettent de contrôler un peu plus finement le comportement d'une boucle for, les mots-clés next et break.
+    break dit à R de sortir de l'itération actuelle.
+  AnswerTests: test_break()
+  Hint: break dit à R de sortir de l'itération actuelle.
+  Script: break.R
+
+- Class: text
+  Output: Nous avons fini cette leçon.
+    Vous avez maintenant un des concepts les plus important de R et du monde de
+    la programmation, les boucles et les conditions.
+
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Control_Flow.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.

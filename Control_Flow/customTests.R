@@ -25,6 +25,31 @@ test_mention <- function() {
   exists('ok') && isTRUE(ok)
 }
 
+test_pair <- function() {
+  try({
+    func <- get('pair', globalenv())
+    source("Control_Flow/scripts/pair-correct.R")
+    func_correct <- get('pair', globalenv())
+    t1 <- identical(func(1:20), func_correct(1:20))
+    t2 <- identical(func(0:10), func_correct(0:10))
+    t3 <- identical(func(seq(1, 20, by=2)), NULL)
+    ok <- all(t1, t2, t3)
+  }, silent = TRUE)
+  exists('ok') && isTRUE(ok)
+}
+
+test_break <- function() {
+  try({
+    func <- get('break_function', globalenv())
+    source("Control_Flow/scripts/break-correct.R")
+    func_correct <- get('break_function', globalenv())
+    t1 <- identical(func(1:20), func_correct(1:20))
+    t2 <- identical(func(0:30), func_correct(0:30))
+    t3 <- identical(func(21:52), func_correct(21:52))
+    ok <- all(t1, t2, t3)
+  }, silent = TRUE)
+  exists('ok') && isTRUE(ok)
+}
 
 #### Notification to teacher.
 # Get the swirl state
@@ -54,7 +79,7 @@ install_packages <- function(packages=c("base64enc")){
 submit_log <- function(){
   # Changer de lien et de nom pour chaque leçon
   pre_fill_link <- "https://moodle.univ-paris8.fr/mod/assign/view.php?id=271762&action=editsubmission"
-  saved <- "Scripts_et_fonctions.txt"
+  saved <- "Control_Flow.txt"
   temp <- tempfile()
   install_packages()
   
