@@ -108,6 +108,17 @@
   Hint: break dit à R de sortir de l'itération actuelle.
   Script: break.R
 
+- Class: script
+  Output: Imaginons maintenant que nous avons une fonction, action() qui donne
+    l'évolution du prix d'une action au fil du temps.
+    Le prix d'origine de l'action est de 50€. 
+    Nous souhaitons la vendre dès que son prix dépasse 60€ pour empaucher les gains
+    ou descend sous les 40€ pour limiter les pertes. 
+    Ecrivez une fonction qui le permet
+  AnswerTests: test_while()
+  Hint: break dit à R de sortir de l'itération actuelle.
+  Script: while.R  
+  
 - Class: text
   Output: Nous avons fini cette leçon.
     Vous avez maintenant un des concepts les plus important de R et du monde de
