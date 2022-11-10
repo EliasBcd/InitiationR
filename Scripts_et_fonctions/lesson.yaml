@@ -7,9 +7,9 @@
   Version: 2.4.5
   
 - Class: text
-  Output: Jusqu’ici on a utilisé R de manière “interactive”, en saisissant des 
+  Output: Jusqu’ici on a utilisé R de manière "interactive", en saisissant des 
     commandes directement dans la console.
-    Ce n’est pas très pratique pour sauvegarder son travail.
+    Ce n'est pas très pratique pour sauvegarder son travail.
     Lorsque R ou RStudio redémarre, tout ce qui a été effectué dans la console 
     est perdu.
 
