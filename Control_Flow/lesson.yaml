@@ -27,7 +27,7 @@
   Output: La partie entre parenthèses correspond à la condition que R évalue.
     Ici, pour simplifier la compréhension, nous avons directement utilisé une valeur
     logique comme condition.
-    En général, c'est une expression logique que R test (3 < 4 par exemple).
+    En général, c'est une expression logique que R teste (3 < 4 par exemple).
     Comme la condition est vraie, R nous renvoie 1.
     Si la condition est FALSE, R nous renverra la valeur donnée après le else.
     Essayez maintenant la même expression en remplaçant TRUE par FALSE.
@@ -53,7 +53,8 @@
 
 - Class: mult_question
   Output: Remarquez que la condition doit avoir une unique valeur TRUE ou FALSE.
-    Parmi les expressions suivante, laquelle correspond à cette contrainte (et donc laquelle ne renverra pas d'erreur) ?
+    Parmi les expressions suivante, laquelle correspond à cette contrainte 
+    (et donc laquelle ne renverra pas d'erreur) ?
   AnswerChoices: if(3>4) 3 else 4 ;if ("x") 1; if (logical()) 1; if (NA) 1; if (c(TRUE, FALSE)) 1
   CorrectAnswer: if(3>4) 3 else 4
   AnswerTests: omnitest(correctVal='if(3>4) 3 else 4')
@@ -62,7 +63,7 @@
 - Class: script
   Output: On veut parfois utiliser plusieurs conditions enchaînées.
     Par exemple, si on veut créer une fonction mention en fonction des notes des étudiants.
-    Pour ce cas, plutôt que d'utiliser des conditions `if` emboîtée, il est possible d'utiliser else if.
+    Pour ce cas, plutôt que d'utiliser des conditions `if` emboîtée, il est possible d'utiliser `else if`.
     Une fois que vous avez modifié le script qui apparaît à l'écran, pensez à bien l'enregistrer et tapez submit()
     dans la console.
   AnswerTests: test_mention()

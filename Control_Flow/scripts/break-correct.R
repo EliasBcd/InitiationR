@@ -15,7 +15,7 @@
 # avoir affiché la valeur 5.
 # 
 # On suppose que tout les éléments d'un vecteur numérique sont ordonnés du plus petit au plus grand.
-# On veut sélectionner seulement les éléments inférieurs à 20 en utilisant break.
+# On veut sélectionner seulement les éléments inférieurs ou égaux à 20 en utilisant break.
 
 
  

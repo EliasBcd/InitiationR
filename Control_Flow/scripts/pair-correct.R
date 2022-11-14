@@ -14,9 +14,10 @@
 # break dit à R d'arrêter l'itération dès que i atteint la valeur 5, mais après 
 # avoir affiché la valeur 5.
 # 
-# Essayez de faire une boucle ou R n'affiche que les valeurs paires.
+# Essayez de faire une boucle où R ne conserve que les valeurs paires d'un 
+# vecteur x.
 #
-# Conseil #1 :L'opérateur qui donne le reste dans la division euclidienne d'un nombre est %%.
+# Conseil #1 : L'opérateur qui donne le reste dans la division euclidienne d'un nombre est %%.
 
 pair <- function(x){
   res <- c()

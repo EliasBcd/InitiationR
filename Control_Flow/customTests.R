@@ -12,14 +12,27 @@
       # expression which the user entered, so care must be taken.
 
 test_mention <- function() {
-  source("Control_Flow/scripts/mention-correct.R")
+  mention_correcte <- function(x) {
+    if (x >= 16) {
+      "Très bien"
+    }
+    else if (x >= 14){
+      "Bien"
+    }
+    else if (x>=12){
+      "Assez bien"
+    }
+    else {
+      ""
+    }
+  }
   try({
     func <- get('mention', globalenv())
-    t1 <- (func(15) == mention_correct(15))
-    t2 <- (func(10) == mention_correct(10))
-    t3 <- (func(16) == mention_correct(16))
-    t4 <- (func(14) == mention_correct(14))
-    t5 <- (func(12) == mention_correct(12))
+    t1 <- (func(15) == mention_correcte(15))
+    t2 <- (func(10) == mention_correcte(10))
+    t3 <- (func(16) == mention_correcte(16))
+    t4 <- (func(14) == mention_correcte(14))
+    t5 <- (func(12) == mention_correcte(12))
     ok <- all(t1, t2, t3, t4, t5)
   }, silent = TRUE)
   exists('ok') && isTRUE(ok)
@@ -28,10 +41,13 @@ test_mention <- function() {
 test_pair <- function() {
   try({
     func <- get('pair', globalenv())
-    source("Control_Flow/scripts/pair-correct.R")
-    func_correct <- get('pair', globalenv())
-    t1 <- identical(func(1:20), func_correct(1:20))
-    t2 <- identical(func(0:10), func_correct(0:10))
+    func_correcte <- function(x) {x[x %% 2 == 0]}
+    x1 <- 1:20
+    x2 <- x1
+    t1 <- identical(func(x1), func_correcte(x2))
+    x1 <- 0:10
+    x2 <- x1
+    t2 <- identical(func(x1), func_correcte(x2))
     t3 <- identical(func(seq(1, 20, by=2)), NULL)
     ok <- all(t1, t2, t3)
   }, silent = TRUE)
@@ -41,11 +57,10 @@ test_pair <- function() {
 test_break <- function() {
   try({
     func <- get('break_function', globalenv())
-    source("Control_Flow/scripts/break-correct.R")
-    func_correct <- get('break_function', globalenv())
-    t1 <- identical(func(1:20), func_correct(1:20))
-    t2 <- identical(func(0:30), func_correct(0:30))
-    t3 <- identical(func(21:52), func_correct(21:52))
+    func_correcte <- function(x) { x[x<=20] }
+    t1 <- identical(func(1:20), func_correcte(1:20))
+    t2 <- identical(func(0:30), func_correcte(0:30))
+    t3 <- identical(func(21:52), func_correcte(21:52))
     ok <- all(t1, t2, t3)
   }, silent = TRUE)
   exists('ok') && isTRUE(ok)
@@ -70,19 +85,12 @@ getVal <- function(){
   getState()$val
 }
 
-# Make sure the base64enc package is available.
-install_packages <- function(packages=c("base64enc")){
-  install.packages(setdiff(packages, rownames(installed.packages())))  
-}
-
 
 submit_log <- function(){
   # Changer de lien et de nom pour chaque leçon
   pre_fill_link <- "https://moodle.univ-paris8.fr/mod/assign/view.php?id=271762&action=editsubmission"
   saved <- "Control_Flow.txt"
   temp <- tempfile()
-  install_packages()
-  
   
   p <- function(x, p, f, l = length(x)){if(l < p){x <- c(x, rep(f, p - l))};x}
   

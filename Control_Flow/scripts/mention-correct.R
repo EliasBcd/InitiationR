@@ -1,4 +1,4 @@
-mention_correct <- function(x) {
+mention <- function(x) {
   if (x >= 16) {
     "Très bien"
   }
@@ -8,7 +8,7 @@ mention_correct <- function(x) {
   else if (x>=12){
     "Assez bien"
   }
-   else {
+  else {
   ""
   }
 }
