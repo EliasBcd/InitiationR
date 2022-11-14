@@ -12,11 +12,10 @@
       # expression which the user entered, so care must be taken.
 
 test_imc <- function(){
-  source("Scripts_et_fonctions/scripts/imc-correct.R")
   try({
-    t1 <- (tailles == tailles_corr)
-    t2 <- (poids == poids_corr)
-    t3 <- (imc == imc_corr)
+    t1 <- (tailles == c(156, 164, 197, 147, 173))
+    t2 <- (poids == c(45, 59, 110, 44, 88))
+    t3 <- (imc == c(45, 59, 110, 44, 88)/c(1.56, 1.64, 1.97, 1.47, 1.73)^2)
     ok <- all(t1, t2, t3)   
   }, 
   silent=TRUE)
