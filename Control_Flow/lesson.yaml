@@ -100,24 +100,41 @@
     comportement d'une boucle for, les mots-clés `next` et `break`.
     `next` dit à R de sortir de l'itération actuelle.
   AnswerTests: test_pair()
-  Hint: `next` dit à R de sortir de l'itération actuelle.
+  Hint: "`next` dit à R de sortir de l'itération actuelle."
   Script: pair.R
   
 - Class: script
-  Output: `break` dit à R de sortir de l'itération actuelle.
+  Output: "`break` dit à R de sortir de l'itération actuelle."
   AnswerTests: test_break()
-  Hint: break dit à R de sortir de l'itération actuelle.
+  Hint: "`break` dit à R de sortir de l'itération actuelle."
   Script: break.R
+  
+- Class: text
+  Output: Nous avons vu une première façon de faire des boucles à l'aide de la commande for.
+    Les boucles for sont celles que vous allez utiliser le plus souvent.
+    Elle a néanmoins un défaut qui peut être génant, elle nécessite de connaître le
+    vecteur sur lequel l'itération a lieu.
+    Quand on ne connaît pas à l'avance le nombre d'itération, deux mots clés peuvent nous aider, while et repeat.
+    
+- Class: text
+  Output: "La syntaxe de while est la suivante `while(condition) action`.
+    `while` crée une boucle infinie, qui ne s'arrête que quand la condition devient FALSE.
+    Il faut donc être prudent avec ce type de boucle et vérifier que la condition devient
+    FALSE à un moment donné."
+    
 
 - Class: script
-  Output: Imaginons maintenant que nous avons une fonction, action() qui donne
+  Output: Imaginons maintenant que nous avons une fonction, variation() qui donne
     l'évolution du prix d'une action au fil du temps.
     Le prix d'origine de l'action est de 50€. 
-    Nous souhaitons la vendre dès que son prix dépasse 60€ pour empaucher les gains
+    Nous souhaitons la vendre dès que son prix dépasse 60€ pour empocher les gains
     ou descend sous les 40€ pour limiter les pertes. 
-    Ecrivez une fonction qui le permet
-  AnswerTests: test_while()
-  Hint: break dit à R de sortir de l'itération actuelle.
+    Ecrivez une fonction qui le permet.
+    Elle devra nous renvoyer le jour où l'action a été vendue.
+  AnswerTests: test_nombrejours()
+  Hint: Faites attention aux conditions infinies.
+    Rappelez-vous qu'il est possible de tester deux conditions simultanément à 
+    l'aide de &&.
   Script: while.R  
   
 - Class: text

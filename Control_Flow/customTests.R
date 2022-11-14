@@ -66,6 +66,39 @@ test_break <- function() {
   exists('ok') && isTRUE(ok)
 }
 
+test_nombrejours <- function(){
+  variation <- function() {
+    vari <- iter(function() sample(c(-2, 2), 1))
+    return(nextElem(vari))
+  }
+  
+  try({
+    func <- get('nombre_jours', globalenv())
+    func_correcte <- function(variation){
+      jour <- 1
+      prix <- 50
+      
+      while ((prix <= 60) && (prix >=40)){
+        jour <- jour + 1
+        prix <- prix + variation()
+      }
+      jour
+    }
+    set.seed(43)
+    r1 <- func(variation)
+    set.seed(43)
+    r2 <- func_correcte(variation)
+    t1 <- identical(r1, r2)
+    set.seed(4053)
+    r1 <- func(variation)
+    set.seed(4053)
+    r2 <- func_correcte(variation)
+    t2 <- identical(r1, r2)
+    ok <- all(t1, t2)
+  }, silent = TRUE)
+  exists('ok') && isTRUE(ok)
+}
+
 #### Notification to teacher.
 # Get the swirl state
 getState <- function(){
