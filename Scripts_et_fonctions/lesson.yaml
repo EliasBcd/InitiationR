@@ -273,7 +273,7 @@
     Les fonctions de ce type sont appelées fonctions anonymes (ou lambda fonctions)."
     
 - Class: text
-  Output: Nous allons utiliser la fonction evaluat pour étudier le fonctionnement
+  Output: Nous allons utiliser la fonction evaluate pour étudier le fonctionnement
     des fonctions anonymes.
     Comme premier argument à evaluate, nous allons écrire une petite fonction, 
     qui tient sur une ligne.
@@ -348,30 +348,30 @@
   Hint: N'oubliez pas que des arguments peuvent être donnés après ...
   Script: telegram.R
   
-- Class: cmd_question
-  Output: Essayons maintenant votre nouvelle fonction telegram().
-    Utilisez votre fonction telegram() avec n'importe quels arguments.
-  CorrectAnswer: telegram()
-  AnswerTests: expr_uses_func('telegram')
-  Hint: Utilisez votre fonction telegram() avec n'importe quels arguments.
-
-- Class: script
-  Output: Sauvegardez bien votre script avant de taper submit().
-  AnswerTests: test_func6()
-  Hint: Votre fonction doit contenir trois parties.
-    Une capture des ... dans une liste.
-    Le découpage des arguments des ... et l'assignation à une variable.
-    Le passage des variables dans la fonction paste().
-  Script: manif.R
-  
-- Class: cmd_question
-  Output: Utilisons maintenant votre fonction manif.
-    Pensez bien à nommer les arguments place, adjective et noun pour que votre 
-    fonction accomplisse son travail.
-  CorrectAnswer: manif(adjective = "", place = "", noun = "")
-  AnswerTests: expr_uses_func('manif')
-  Hint: Utilisez la fonction manif et nommer bien vos arguments place, adjective
-    et nom.
+# - Class: cmd_question
+#   Output: Essayons maintenant votre nouvelle fonction telegram().
+#     Utilisez votre fonction telegram() avec n'importe quels arguments.
+#   CorrectAnswer: telegram()
+#   AnswerTests: expr_uses_func('telegram')
+#   Hint: Utilisez votre fonction telegram() avec n'importe quels arguments.
+# 
+# - Class: script
+#   Output: Sauvegardez bien votre script avant de taper submit().
+#   AnswerTests: test_func6()
+#   Hint: Votre fonction doit contenir trois parties.
+#     Une capture des ... dans une liste.
+#     Le découpage des arguments des ... et l'assignation à une variable.
+#     Le passage des variables dans la fonction paste().
+#   Script: manif.R
+#   
+# - Class: cmd_question
+#   Output: Utilisons maintenant votre fonction manif.
+#     Pensez bien à nommer les arguments place, adjective et noun pour que votre 
+#     fonction accomplisse son travail.
+#   CorrectAnswer: manif(adjective = "", place = "", noun = "")
+#   AnswerTests: expr_uses_func('manif')
+#   Hint: Utilisez la fonction manif et nommer bien vos arguments place, adjective
+#     et nom.
     
 - Class: text
   Output: Nous avons fini cette leçon.

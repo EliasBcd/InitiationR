@@ -15,7 +15,7 @@
 # nom_de_la_fonction(value1, value2)
 #
 # Nous allons maintenant créer une fonction dont le nom est boring_function.
-# Cette fonction a comme argument 'x' et renvoi comme résultat la valeur de
+# Cette fonction a comme argument 'x' et renvoie comme résultat la valeur de
 # x sans le modifier. Effacer le caractère dièse (#) devant x pour faire
 # fonctionner cette fonction. N'oubliez pas de sauvegarder votre script une fois
 # votre changement fait et de tapez submit() dans la console après avoir fait vos

@@ -28,7 +28,7 @@
 # les bons arguments des ...
 
 manif <- function(...){
-  # Récupérer vos arguments ici.
+  # Récupérez vos arguments ici.
   
   # Ne modifiez pas le code suivante ces commentaires.
   # Regardez bien les arguments que vous devez récupérer dans la liste pour 
