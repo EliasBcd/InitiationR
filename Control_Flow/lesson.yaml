@@ -1,5 +1,5 @@
 - Class: meta
-  Course: InitiatioNR
+  Course: InitiationR
   Lesson: Control Flow
   Author: Elias Bouacida
   Type: Standard
@@ -96,15 +96,15 @@
     On a donc obtenu comme sortie 1 puis 2, puis 3, ce qui correspond à l'affichage de l'incrémentation de i par la boucle for.
 
 - Class: script
-  Output: Plusieurs commande permettent de contrôler un peu plus finement le comportement d'une boucle for, les mots-clés next et break.
-    next dit à R de sortir de l'itération actuelle.
+  Output: Plusieurs commandes permettent de contrôler un peu plus finement le 
+    comportement d'une boucle for, les mots-clés `next` et `break`.
+    `next` dit à R de sortir de l'itération actuelle.
   AnswerTests: test_pair()
-  Hint: next dit à R de sortir de l'itération actuelle.
+  Hint: `next` dit à R de sortir de l'itération actuelle.
   Script: pair.R
   
 - Class: script
-  Output: Plusieurs commande permettent de contrôler un peu plus finement le comportement d'une boucle for, les mots-clés next et break.
-    break dit à R de sortir de l'itération actuelle.
+  Output: `break` dit à R de sortir de l'itération actuelle.
   AnswerTests: test_break()
   Hint: break dit à R de sortir de l'itération actuelle.
   Script: break.R

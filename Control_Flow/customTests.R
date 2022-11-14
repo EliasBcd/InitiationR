@@ -60,7 +60,7 @@ test_break <- function() {
     func_correcte <- function(x) { x[x<=20] }
     t1 <- identical(func(1:20), func_correcte(1:20))
     t2 <- identical(func(0:30), func_correcte(0:30))
-    t3 <- identical(func(21:52), func_correcte(21:52))
+    t3 <- identical(func(21:52), NULL)
     ok <- all(t1, t2, t3)
   }, silent = TRUE)
   exists('ok') && isTRUE(ok)

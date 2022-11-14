@@ -35,9 +35,9 @@
 mention <- function(x) {
   if (# Code à remplir) {
     "Très bien"
-  
+  }
     ## Ajouter ici votre code
-  } else {
+  else {
     ""
   }
 }
