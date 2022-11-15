@@ -96,7 +96,3 @@
   CorrectAnswer: ggplot(mtcars, aes(hp, mpg)) + geom_point()
   AnswerTests: omnitest(correctExpr='ggplot(mtcars, aes(hp, mpg)) + geom_point()')
   Hint: Tapez ggplot(mtcars, aes(hp, mpg)) + geom_point() pour afficher le graphique.  
-
-  
-
-    
