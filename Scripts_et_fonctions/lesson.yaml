@@ -340,38 +340,75 @@
   
 - Class: text
   Output: Ecrivons maintenant notre propre version de paste().
-  
-    
+
 - Class: script
   Output: Sauvegardez bien votre script avant de taper submit().
   AnswerTests: test_func5()
   Hint: N'oubliez pas que des arguments peuvent être donnés après ...
   Script: telegram.R
+
+- Class: cmd_question
+  Output: Essayons maintenant votre nouvelle fonction telegram().
+    Utilisez votre fonction telegram() avec n'importe quels arguments.
+  CorrectAnswer: telegram()
+  AnswerTests: expr_uses_func('telegram')
+  Hint: Utilisez votre fonction telegram() avec n'importe quels arguments.
   
-# - Class: cmd_question
-#   Output: Essayons maintenant votre nouvelle fonction telegram().
-#     Utilisez votre fonction telegram() avec n'importe quels arguments.
-#   CorrectAnswer: telegram()
-#   AnswerTests: expr_uses_func('telegram')
-#   Hint: Utilisez votre fonction telegram() avec n'importe quels arguments.
-# 
-# - Class: script
-#   Output: Sauvegardez bien votre script avant de taper submit().
-#   AnswerTests: test_func6()
-#   Hint: Votre fonction doit contenir trois parties.
-#     Une capture des ... dans une liste.
-#     Le découpage des arguments des ... et l'assignation à une variable.
-#     Le passage des variables dans la fonction paste().
-#   Script: manif.R
-#   
-# - Class: cmd_question
-#   Output: Utilisons maintenant votre fonction manif.
-#     Pensez bien à nommer les arguments place, adjective et noun pour que votre 
-#     fonction accomplisse son travail.
-#   CorrectAnswer: manif(adjective = "", place = "", noun = "")
-#   AnswerTests: expr_uses_func('manif')
-#   Hint: Utilisez la fonction manif et nommer bien vos arguments place, adjective
-#     et nom.
+- Class: cmd_question
+  Output: Avant de continuer, nous devons faire un petit détour par les listes.
+    Nous avons déjà vu les listes dans la leçon sur les types (mot clé `list`). 
+    Une capacité que nous n'avons pas exploré ni exploité des listes jusqu'à présent
+    et le fait qu'on puisse nommer les éléments des listes.
+    Par exemple, on peut créer une liste contenant un vecteur poids et un vecteur tailles.
+    tailles doit être un vecteur contenant les tailles 154, 175 et 165 (dant cet ordre).
+    poids doit être un vecteur contenant les poids 55, 80 et 65 (dant cet ordre).
+    On veut mettre ces deux vecteurs dans une liste.
+    On tapera alors list(tailles = c(154, 175, 165), poids = c(55, 80, 65)).
+    On souhaite assigner cette list à ma_liste.
+  CorrectAnswer: ma_liste <- list(tailles = c(154, 175, 165), poids = c(55, 80, 65))
+  AnswerTests: omnitest(correctExpr='ma_liste <- list(tailles = c(154, 175, 165), poids = c(55, 80, 65))')
+  Hint: "Tapez : ma_liste <- list(tailles = c(154, 175, 165), poids = c(55, 80, 65))"
+  
+- Class: cmd_question
+  Output: Observons maintenant ma_liste.
+  CorrectAnswer: ma_liste
+  AnswerTests: omnitest(correctExpr='ma_liste')
+  Hint: "Tapez : ma_liste"
+
+- Class: cmd_question
+  Output: On peut accéder à un élément nommé d'une liste à l'aide de la syntaxe list$nom
+    ou bien à l'aide de list[["nom"]], tout comme on a pu le faire pour des colonnes
+    d'un data.frame.
+    Essayez d'accéder à la colonne tailles de ma_list.
+  CorrectAnswer: ma_liste$tailles
+  AnswerTests: any_of_exprs('ma_liste$tailles', 'ma_liste[["tailles"]]')
+  Hint: Faites bien attention à la syntaxe et demandez-vous comment s'appelle
+    votre liste et quel est le nom de l'élément que vous souhaitez voir.
+    
+
+  
+- Class: text
+  Output: Fin de la parenthèse sur les listes. 
+    Nous allons avoir besoin des listes pour le prochain exercices que nous utilisons.
+    En effet, l'argument ... est considéré comme une liste par R.
+
+- Class: script
+  Output: Sauvegardez bien votre script avant de taper submit().
+  AnswerTests: test_func6()
+  Hint: Votre fonction doit contenir trois parties.
+    Une capture des ... dans une liste.
+    Le découpage des arguments des ... et l'assignation à une variable.
+    Le passage des variables dans la fonction paste().
+  Script: manif.R
+
+- Class: cmd_question
+  Output: Utilisons maintenant votre fonction manif.
+    Pensez bien à nommer les arguments place, adjective et noun pour que votre
+    fonction accomplisse son travail.
+  CorrectAnswer: manif(adjective = "", place = "", noun = "")
+  AnswerTests: expr_uses_func('manif')
+  Hint: Utilisez la fonction manif et nommer bien vos arguments place, adjective
+    et nom.
     
 - Class: text
   Output: Nous avons fini cette leçon.
