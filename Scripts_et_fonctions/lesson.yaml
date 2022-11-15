@@ -156,7 +156,7 @@
     Reproduisons le résultat de la fonction mean() dans une fonction appelée 
     my_mean().
     Rappelez-vous que la moyenne est la somme de tous les nombres dans le 
-    vecteur divisé par sa longuer.
+    vecteur divisé par sa longueur.
     
 
 
