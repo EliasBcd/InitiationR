@@ -80,9 +80,13 @@
     Le premier argument donné à ggplot est la base de donnée à utiliser.
     Nous avons ensuite spécifié un argument aes (=aestethic) avec deux noms de
     variables du dataframe, hp et mpg.
+    hp (horsepower) représente la puissance du véhicule, alors que
+    mpg (miles per gallon) représente la distance qui peut être parcourue avec un gallon de carburant.
     hp sert de variable pour l'axe x, mpg pour l'axe y.
+    Nous n'avons pas explicitement spécifié le noms des arguments, mais nous aurions bien sûr pu le faire
+    et écrire aes(x=hp, y=mpg), ce qui aurait donné le même résultat.
     La raison pour laquelle il ne se passe rien est simple.
-    Nous n'avons pas donné à ggplot la manière dont doivent être représenté nos données.
+    Nous n'avons pas donné à ggplot la manière dont doivent être représentées nos données.
     Nous lui avons ce qui doit être représenté, mais nous ne lui avons pas dit
     comment.
     
@@ -96,3 +100,27 @@
   CorrectAnswer: ggplot(mtcars, aes(hp, mpg)) + geom_point()
   AnswerTests: omnitest(correctExpr='ggplot(mtcars, aes(hp, mpg)) + geom_point()')
   Hint: Tapez ggplot(mtcars, aes(hp, mpg)) + geom_point() pour afficher le graphique.  
+  
+- Class: text
+  Output: Remarquez que R a automatiquement donné des noms aux axes.
+    Il a utilisé comme nom le nom des colonnes. 
+    Il a aussi automatiquement créé des échelles avec des beaux nombres ronds sur les axes.
+
+- Class: cmd_question
+  Output: Nous allons voir comment changer différents aspects du graphique.
+    Si par exemple nous voulons changer la légende de l'axe des abscisse par puissance, il faut
+    ajouter xlab('puissance') à nos commandes précédentes.
+    Essayez pour voir.
+  CorrectAnswer: ggplot(mtcars, aes(hp, mpg)) + geom_point() + xlab('puissance')
+  AnswerTests: omnitest(correctExpr="ggplot(mtcars, aes(hp, mpg)) + geom_point() + xlab('puissance')")
+  Hint: Tapez ggplot(mtcars, aes(hp, mpg)) + geom_point(), ajouter ensuite
+    xlab('puissance') pour afficher le graphique à l'aide de +.
+    
+- Class: cmd_question
+  Output: On peut de manière similaire ajouter un nom à l'axe des ordonnées.
+    Essayez d'ajouter 'autonomie' comme légende à l'axe des ordonnées.
+    Conservez la légende de l'axe des abscisses.
+  CorrectAnswer: ggplot(mtcars, aes(hp, mpg)) + geom_point() + xlab('puissance') + ylab('autonomie')
+  AnswerTests: omnitest(correctExpr="ggplot(mtcars, aes(hp, mpg)) + geom_point() + xlab('puissance') + ylab('autonomie')")
+  Hint: La commande pour ajouter une légende à l'axe des ordonnées est ylab().
+    N'oubliez pas toutes les commandes précédentes.
