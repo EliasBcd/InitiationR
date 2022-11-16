@@ -124,3 +124,14 @@
   AnswerTests: omnitest(correctExpr="ggplot(mtcars, aes(hp, mpg)) + geom_point() + xlab('puissance') + ylab('autonomie')")
   Hint: La commande pour ajouter une légende à l'axe des ordonnées est ylab().
     N'oubliez pas toutes les commandes précédentes.
+
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Representations_graphiques.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
