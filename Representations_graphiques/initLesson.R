@@ -4,3 +4,10 @@
       # throughout the lesson.
 
 swirl_options(swirl_logging = TRUE)
+
+data(rp2018)
+
+rp <- filter(
+  rp2018,
+  departement %in% c("Oise", "Rhône", "Hauts-de-Seine", "Lozère", "Bouches-du-Rhône")
+)

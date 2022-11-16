@@ -7,7 +7,9 @@
   Version: 2.4.5
 
 - Class: text
-  Output: Une des plus grandes forces de R par rapport à d'autres langages de programmation est la facilité avec laquelle il est possible de créer des graphiques de bonnes qualité.
+  Output: Une des plus grandes forces de R par rapport à d'autres langages de 
+    programmation est la facilité avec laquelle il est possible de créer des 
+    graphiques de bonne qualité.
     Nous allons voir dans cette leçon les bases des représentations graphiques
     dans R.
     Nous allons pour ce faire utiliser la librairie ggplot2. 
@@ -15,35 +17,37 @@
     moins pratique et moins puissante que ggplot2.
 
 - Class: cmd_question
-  Output: Chargez la base de données déjà existante mtcars dans R à l'aide de la commande
-    data(mtcars).
-  CorrectAnswer: data(mtcars)
-  AnswerTests: omnitest(correctExpr='data(mtcars)')
-  Hint: Tapez data(mtcars) pour charger les données dans R.
+  Output: Chargez la base de données déjà existante rp2018 dans R à l'aide de la commande
+    data(rp2018).
+  CorrectAnswer: data(rp2018)
+  AnswerTests: omnitest(correctExpr='data(rp2018)')
+  Hint: Tapez data(rp2018) pour charger les données dans R.
   
 - Class: text
-  Output: Pour voir déjà simplement comment tracer des graphiques, nous allons utiliser 
-    des dataframes simples.
+  Output: ggplot a une limitation sur les types de données qu'il prend en entrée.
+    Elles doivent être sous forme de tableaux. 
+    Les seuls tableaux que vous avez vu jusqu'à présent sont des dataframes.
     Le but de cette leçon est de vous introduire différents types de représentations
     graphiques et leurs arguments.
     Les données de sorties n'auront peut-être pas l'air très intéressante, mais 
     tout serait plus intéressant avec des données plus larges.
     
 - Class: cmd_question
-  Output: Affichez l'aide pour le mtcars, à l'aide de help ou ?.
-  CorrectAnswer: ?mtcars
-  AnswerTests: any_of_exprs('?mtcars', 'help(mtcars)')
-  Hint: Tapez ?mtcars ou help(mtcars) pour voir des détails sur le dataframe mtcars.
+  Output: Affichez l'aide pour le rp2018, à l'aide de help ou ?.
+  CorrectAnswer: ?rp2018
+  AnswerTests: any_of_exprs('?rp2018', 'help(rp2018)')
+  Hint: Tapez ?rp2018 ou help(rp2018) pour voir des détails sur le dataframe rp2018.
   
 - Class: text
-  Output: Vous pouvez voir que le dataframe à 11 variables.
-    Nous allons seulement nous intéresser à trois d'entre elles, mpg, cyl et hp.
+  Output: Vous pouvez voir que le dataframe à 62 variables et 5417 lignes.
+    Nous allons seulement nous intéresser à un sous-ensemble de ces variables, 
+    regroupé dans la base de donnée rp qui est déjà pré-entrée pour vous.
     
 - Class: cmd_question
-  Output: Utiliser head() sur mtcars pour voir les premières lignes des données.
-  CorrectAnswer: head(mtcars)
-  AnswerTests: omnitest(correctExpr='head(mtcars)')
-  Hint: Tapez head(mtcars) pour voir les premières lignes des données.
+  Output: Utiliser head() sur rp pour voir les premières lignes des données.
+  CorrectAnswer: head(rp)
+  AnswerTests: omnitest(correctExpr='head(rp)')
+  Hint: Tapez head(rp) pour voir les premières lignes des données.
   
 - Class: text
   Output: C'est toujours une bonne idée d'avoir une petite idée des données avant
@@ -51,12 +55,12 @@
     Quelques commandes R sont utiles pour cela, notamment dim(), names(), head(),
     tail() et summary().
 
-- Class: text
+- Class: cmd_question
   Output: Utilisez une des commandes précédentes (mais pas head()) pour voir ce 
     qu'elle donne.
-  CorrectAnswer: summary(mtcars)
-  AnswerTests: any_of_exprs('summary(mtcars)', 'dim(mtcars)', 'names(mtcars)', 'tail(mtcars)')
-  Hint: Tapez summary(mtcars) pour voir un résumé de chacune des variables.
+  CorrectAnswer: summary(rp)
+  AnswerTests: any_of_exprs('summary(rp)', 'dim(rp)', 'names(rp)', 'tail(rp)')
+  Hint: Tapez summary(rp) pour voir un résumé de chacune des variables.
   
 
 - Class: cmd_question
@@ -68,62 +72,79 @@
   Hint: Tapez ?ggplot pour afficher l'aide sur ggplot.
   
 - Class: cmd_question
-  Output: "Pour utiliser ggplot sur mtcars, tapez les commandes suivantes :
-    ggplot(mtcars, aes(hp, mpg))."
-  CorrectAnswer: ggplot(mtcars, aes(hp, mpg))
-  AnswerTests: omnitest(correctExpr='ggplot(mtcars, aes(hp, mpg))')
-  Hint: Tapez ggplot(mtcars, aes(hp, mpg)).
+  Output: "Pour utiliser ggplot sur rp, tapez les commandes suivantes :
+    ggplot(rp)."
+  CorrectAnswer: ggplot(rp)
+  AnswerTests: omnitest(correctExpr='ggplot(rp)')
+  Hint: Tapez ggplot(rp).
   
 - Class: text
   Output: Rien ne se passe !
-    Analysons d'abord un petit peu ce que nous avons tapé.
-    Le premier argument donné à ggplot est la base de donnée à utiliser.
-    Nous avons ensuite spécifié un argument aes (=aestethic) avec deux noms de
-    variables du dataframe, hp et mpg.
-    hp (horsepower) représente la puissance du véhicule, alors que
-    mpg (miles per gallon) représente la distance qui peut être parcourue avec un gallon de carburant.
-    hp sert de variable pour l'axe x, mpg pour l'axe y.
-    Nous n'avons pas explicitement spécifié le noms des arguments, mais nous aurions bien sûr pu le faire
-    et écrire aes(x=hp, y=mpg), ce qui aurait donné le même résultat.
-    La raison pour laquelle il ne se passe rien est simple.
-    Nous n'avons pas donné à ggplot la manière dont doivent être représentées nos données.
-    Nous lui avons ce qui doit être représenté, mais nous ne lui avons pas dit
-    comment.
+    Il manque en effet à R deux éléments.
+    Comment nous souhaitons représenter les données.
+    On utilise une géométrie pour cela (geom_xxx).
+    Et quelle(s) variable(s) issue des données nous souhaitons représenter.
+    Ces variables sont données par l'argument aes() dans geom_()
     
 - Class: cmd_question
   Output: Le mot-clé essentiel pour spécifier comment est geom_ (geométrie).
-    Si on veut par exemple représenter les données sous formes de points, 
-    on doit utiliser geom_point().
+    Si on veut par exemple représenter les données sous formes d'histogramme, 
+    on doit utiliser geom_histogram().
     La syntaxe de ggplot() est telle que nous devons ajouter au graphique l'esthétique.
-    Il faut taper ggplot(mtcars, aes(hp, mpg)) + geom_point() pour afficher le graphique.
+    Il faut taper ggplot(rp) + geom_histogram(aes(cadres)) pour afficher le graphique.
     Essayez.
-  CorrectAnswer: ggplot(mtcars, aes(hp, mpg)) + geom_point()
-  AnswerTests: omnitest(correctExpr='ggplot(mtcars, aes(hp, mpg)) + geom_point()')
-  Hint: Tapez ggplot(mtcars, aes(hp, mpg)) + geom_point() pour afficher le graphique.  
+  CorrectAnswer: ggplot(rp) + geom_histogram(aes(cadres))
+  AnswerTests: omnitest(correctExpr='ggplot(rp) + geom_histogram(aes(cadres))')
+  Hint: Tapez ggplot(rp) + geom_histogram(aes(cadres)) pour afficher le graphique.  
   
 - Class: text
   Output: Remarquez que R a automatiquement donné des noms aux axes.
-    Il a utilisé comme nom le nom des colonnes. 
+    Il utilise comme nom le nom des colonnes du tableau quand il y en a une. 
+    Il trouve ensuite le terme le plus adapté.
     Il a aussi automatiquement créé des échelles avec des beaux nombres ronds sur les axes.
+    
+- Class: cmd_question
+  Output: Essayez maintenant de représenter le même graphique non pas avec la variable
+    cadre mais avec la variable ouvr. 
+  CorrectAnswer: ggplot(rp) + geom_histogram(aes(ouvr))
+  AnswerTests: omnitest(correctExpr='ggplot(rp) + geom_histogram(aes(ouvr))')
+  Hint: Remplacez dans la question précédente cadres par ouvr.
+
+- Class: cmd_question
+  Output: "Représentons maintenant un nuage de point.
+    La géométrie ne sera plus un histogram, mais un point : geom_histogram devient geom_point.
+    Des points dans un graphique sont caractérisés par leur abscisse et leur ordonnée. 
+    Il faut donc donner deux variables à aes() pour pouvoir représenter un nuage de point.
+    Disons qu'en variable x on veut utiliser la proportion de diplomés du supérieur (dipl_sup)
+    et qu'en variable y on veut utiliser la proportion de cadres.
+    Essayez de modifier les commandes précédentes pour obtenir ce graphique."
+  CorrectAnswer: ggplot(rp) + geom_point(aes(dipl_sup, cadres))
+  AnswerTests: omnitest(correctExpr='ggplot(rp) + geom_point(aes(dipl_sup, cadres))')
+  Hint: Il faut maintenant ajouter geom_point(aes(dipl_sup, cadres)) à ggplot().
 
 - Class: cmd_question
   Output: Nous allons voir comment changer différents aspects du graphique.
-    Si par exemple nous voulons changer la légende de l'axe des abscisse par puissance, il faut
-    ajouter xlab('puissance') à nos commandes précédentes.
+    Si par exemple nous voulons changer la légende de l'axe des abscisse par diplomés du supérieur, il faut
+    ajouter xlab('diplomés du supérieur') à nos commandes précédentes.
     Essayez pour voir.
-  CorrectAnswer: ggplot(mtcars, aes(hp, mpg)) + geom_point() + xlab('puissance')
-  AnswerTests: omnitest(correctExpr="ggplot(mtcars, aes(hp, mpg)) + geom_point() + xlab('puissance')")
-  Hint: Tapez ggplot(mtcars, aes(hp, mpg)) + geom_point(), ajouter ensuite
-    xlab('puissance') pour afficher le graphique à l'aide de +.
+  CorrectAnswer: ggplot(rp) + geom_point(aes(dipl_sup, cadres)) + xlab('diplomés du supérieur')
+  AnswerTests: omnitest(correctExpr="ggplot(rp) + geom_point(aes(dipl_sup, cadres)) + xlab('diplomés du supérieur')")
+  Hint: Tapez ggplot(rp) + geom_point(aes(dipl_sup, cadres)) + xlab('diplomés du supérieur') pour afficher le graphique.
+    
+- Class: text
+  Output: On peut faire quelque chose de similaire à l'axe des ordonnées à l'aide de ylab.
     
 - Class: cmd_question
-  Output: On peut de manière similaire ajouter un nom à l'axe des ordonnées.
-    Essayez d'ajouter 'autonomie' comme légende à l'axe des ordonnées.
-    Conservez la légende de l'axe des abscisses.
-  CorrectAnswer: ggplot(mtcars, aes(hp, mpg)) + geom_point() + xlab('puissance') + ylab('autonomie')
-  AnswerTests: omnitest(correctExpr="ggplot(mtcars, aes(hp, mpg)) + geom_point() + xlab('puissance') + ylab('autonomie')")
-  Hint: La commande pour ajouter une légende à l'axe des ordonnées est ylab().
-    N'oubliez pas toutes les commandes précédentes.
+  Output: On peut modifier certains attributs graphiques d'une geom en utilisant des 
+    arguments supplémentaires.
+    On peut utiliser color pour modifier la couleur, size pour modifier la taille
+    et alpha pour modifier la transparence.
+    Essayez de taper ggplot(rp) +  geom_point(aes(x = dipl_sup, y = cadres), color = "red", size = 2, alpha = 0.3)
+    et observez le résultat.
+  CorrectAnswer: ggplot(rp) +  geom_point(aes(x = dipl_sup, y = cadres), color = "red", size = 2, alpha = 0.3)
+  AnswerTests: omnitest(correctExpr="ggplot(rp) +  geom_point(aes(x = dipl_sup, y = cadres), color = 'red', size = 2, alpha = 0.3)")
+  Hint: Tapez ggplot(rp) +  geom_point(aes(x = dipl_sup, y = cadres), color = "red", size = 2, alpha = 0.3) pour afficher le graphique.
+    
 
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
