@@ -39,7 +39,7 @@
   Hint: Tapez ?rp2018 ou help(rp2018) pour voir des détails sur le dataframe rp2018.
   
 - Class: text
-  Output: Vous pouvez voir que le dataframe à 62 variables et 5417 lignes.
+  Output: Vous pouvez voir que le dataframe a 62 variables et 5417 lignes.
     Nous allons seulement nous intéresser à un sous-ensemble de ces variables, 
     regroupé dans la base de donnée rp qui est déjà pré-entrée pour vous.
     
@@ -171,7 +171,7 @@
   Output: Qu'observe-t-on ?
     R a coloré les points suivant les départements et a automatiquement créé
     la légende correspondante.
-    On peut ainsi observé que les Hauts-de-Seine ont une proportion de diplômés
+    On peut ainsi observer que les Hauts-de-Seine ont une proportion de diplômés
     du supérieur et de cadres plus importante que les autres départements, alors
     que le Rhône semble réparti de manière assez homogène sur toute la distribution
     et que la Lozère en a assez peu.
