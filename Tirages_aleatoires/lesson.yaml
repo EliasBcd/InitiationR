@@ -1,34 +1,35 @@
 - Class: meta
   Course: Initiation à R
   Lesson: Tirages aléatoires
-  Author: your name goes here
+  Author: Elias Bouacida
   Type: Standard
-  Organization: your organization's name goes here
+  Organization: Université Paris 8
   Version: 2.4.5
 
 - Class: text
-  Output: Un avantage d'utiliser R, un langage de programmation statistique
+  Output: Un avantage d'utiliser R, un langage de programmation statistique,
     est la grande quantité d'outils à votre disposition
     pour effectuer des simulations et générer des nombres aléatoires.
   
 
 - Class: text
   Output: Je ne vous expliquerai pas les différentes distributions de probabilités,
-    mais vous les avez normalement déjà vu. 
-    Ici, mous allons simplement les utiliser pour l'échantillonage et la génération
+    mais vous en avez déjà vu certaines.
+    Ici, mous simplement les utiliserons pour l'échantillonage et la génération
     de nombres aléatoires. 
     
   
 - Class: cmd_question
-  Output: La première fonction que nous allons utiliser pour générer des nombres
+  Output: La première fonction que nous utiliserons pour générer des nombres
     aléatoires est sample().
     Regardez l'aide sur cette fonction grâce à ?sample.
   CorrectAnswer: ?sample
-  AnswerTests: omnitest(correctExpr='?sample')
+  AnswerTests: any_of_exprs('?sample', 'help(sample)')
   Hint: Regardez l'aide sur la fonction sample() grâce à ?sample.
 
 - Class: cmd_question
-  Output: "Essayons de simuler 4 lancements d'un dé à 6 faces : sample(1:6, 4, replace = TRUE)."
+  Output: "Pour simuler 4 lancements d'un dé à 6 faces, on utilise la commande :
+    sample(1:6, 4, replace = TRUE)."
   CorrectAnswer: sample(1:6, 4, replace = TRUE)
   AnswerTests: match_call('sample(1:6, 4, replace = TRUE)')
   Hint: Tapez sample(1:6, 4, replace = TRUE) dans la console pour simuler 4
@@ -40,11 +41,11 @@
   CorrectAnswer: sample(1:6, 4, replace = TRUE)
   AnswerTests: match_call('sample(1:6, 4, replace = TRUE)')
   Hint: Tapez sample(1:6, 4, replace = TRUE) dans la console pour simuler 4
-    lancements d'un dé encore une fois.
+    lancements d'un dé une seconde fois.
 
 - Class: text
   Output: sample(1:6, 4, replace = TRUE) dit à R de tirer aléatoirement 4 fois 
-    un nombre entre 1 et 6, AVEC remise.
+    un nombre entre 1 et 6, AVEC remise (c'est l'argument "replace").
     Le tirage avec remise signifie que le nombre est "remis" à chaque fois, donc
     il a encore la même chance d'être sélectionné la fois suivante.
     C'est bien ce que nous souhaitons obtenir ici, puisque chaque lancé de dé 
@@ -60,6 +61,9 @@
 - Class: text
   Output: La commande précédente précise qu'il n'y a pas de remise chaque nombre
     de la séquence ne peut donc apparaître qu'une seule fois.
+    La valeur par défaut de l'argument "replace" est FALSE, ce qui explique pourquoi
+    nous avons du le préciser quand nous avons souhaité une remise, mais que nous 
+    n'avons pas eu besoin de le faire quand nous le souhaitons pas de remise.
 
 - Class: cmd_question
   Output: LETTERS est un objet prédéfini dans R qui contient les 26 lettres de 
@@ -77,10 +81,11 @@
   Hint: Tapez sample(LETTERS) pour permuter les lettres de l'alphabet.
 
 - Class: text
-  Output: La permutation est exactement comme tirer aléatoirement les 26 LETTERS
+  Output: Permuter, c'est exactement comme tirer aléatoirement les 26 LETTERS
     sans remise. 
     Quand l'argument 'size' n'est pas spécifié dans sample(), R utilise un échantillon
-    de la taille du vecteur utilisé pour échantillonner.
+    de la taille du vecteur utilisé pour échantillonner, ce qui crée de fait une
+    permutation.
 
 - Class: text
   Output: Supposons maintenant que nous souhaitons simuler le tirage aléatoire de 
@@ -89,11 +94,12 @@
     0.7 d'obtenir face.
 
 - Class: cmd_question
-  Output: Supposons que 0 représnte pile et 1 représente face.
+  Output: Supposons que 0 représente pile et 1 représente face.
     Utilisez sample() pour tirer aléatoirement un échantillon de taille 100 du 
     vecteur c(0, 1), avec remise.
-    Pour préciser que la pièce est biaisée, on doit ajouter un argument prob = c(0.3, 0.7)
-    à la fonction. Celui-ci donne les probabilités de chaque valeur.
+    Pour préciser que la pièce est biaisée, nous ajoutons l'argument prob = c(0.3, 0.7)
+    à la fonction.
+    Celui-ci donne les probabilités de chaque valeur.
     Assignez le résultat à un nouvel objet appelé flips.
   CorrectAnswer: flips <- sample(c(0,1), 100, replace = TRUE, prob = c(0.3, 0.7))
   AnswerTests: match_call('flips <- sample(c(0,1), 100, replace = TRUE, prob = c(0.3, 0.7))')
@@ -103,23 +109,25 @@
   Output: Regardez le contenu de flips.
   CorrectAnswer: flips
   AnswerTests: omnitest(correctExpr='flips')
-  Hint: Tapez flips pour voir le contenu.
+  Hint: Tapez flips pour voir son contenu.
 
 - Class: cmd_question
   Output: Nous avons mis une probabilité de 0.7 sur face. 
-   On s'attend donc à trouver à peu près 70 tirages qui valent 1.
+   Nous nous attendons donc à trouver à peu près 70 tirages qui valent 1.
    Comptez le nombre total de 1 en utilisant la fonction sum().
   CorrectAnswer: sum(flips)
   AnswerTests: omnitest(correctExpr='sum(flips)')
-  Hint: sum(flips) ajoute toutes les valeurs dans le vecteur flips, donc comptez le nombre de 1.
+  Hint: sum(flips) ajoute toutes les valeurs dans le vecteur flips, donc compte
+    le nombre de 1.
   
 - Class: cmd_question
   Output: Un tirage à pile ou face à un résultat binaire (0 ou 1) et nous faisons
     100 tirages indépendants. 
-    On peut donc utiliser la fonction rbinom() pour simuler des tirages d'une variable aléatoire binomiale.
+    On peut donc utiliser la fonction rbinom() pour simuler des tirages d'une 
+    variable aléatoire binomiale.
     Regardez la documentation de rbinom() en utilisant ?rbinom.
   CorrectAnswer: ?rbinom
-  AnswerTests: omnitest(correctExpr='?rbinom')
+  AnswerTests: any_of_exprs('?rbinom', 'help(rbinom)')
   Hint: Tapez ?rbinom pour lire l'aide sur la fonction binom().
 
 - Class: text
@@ -127,15 +135,16 @@
     une fonction d**** (d pour 'densité'),
     une fonction p**** (p pour 'probabilité')
     et une fonction q**** (q pour 'quantile').
-    Nous allons principalement utilisé les fonctions r**** ici.
+    Pour les simulations de tirages aléatoires, nous utilisons les fonctions r****.
+    Vous pouvez explorer l'usage des autres fonctions avec l'aide.
 
 - Class: cmd_question
   Output: Une variable aléatoire binomiale représente le nombre de succès (face) 
     pour un nombre donné d'essai indépendant (tirage à pile ou face).
-    On peut donc générer une variable aléatoire unique qui représente le tirage
+    On peut générer une variable aléatoire unique qui représente le tirage
     à pile ou face de notre pièce biaisée en utilisant rbinom(1, size = 100, prob = 0.7). 
-    Nous n'avons besoin ici que de spécifié la probabilité de succès (face), 
-    pas la probabilité d'échec (pile).
+    Nous n'avons besoin ici que de spécifier la probabilité de succès (face), 
+    pas la probabilité d'échec (pile), qui est automatiquement 1 - probabilité succès.
     Essayez.
   CorrectAnswer: rbinom(1, size = 100, prob = 0.7)
   AnswerTests: match_call('rbinom(1, size = 100, prob = 0.7)')
@@ -154,14 +163,14 @@
 - Class: cmd_question
   Output: Observez le contenu de flips2.
   CorrectAnswer: flips2
-  AnswerTests: omnitest('flips2')
+  AnswerTests: omnitest(correctExpr='flips2')
   Hint: Tapez flips2 pour observer son contenu.
 
 - Class: cmd_question
   Output: Utilisez maintenant sum() pour compter le nombre de 1 (face) dans flips2.
     Elle devrait être proche de 70.
   CorrectAnswer: sum(flips2)
-  AnswerTests: omnitest('sum(flips2)')
+  AnswerTests: omnitest(correctExpr='sum(flips2)')
   Hint: Utilisez sum(flips2) pour compter le nombre de 1.
 
 - Class: cmd_question
@@ -169,17 +178,18 @@
     beaucoup d'autres distributions.
     Cherchez la documentation pour rnorm.
   CorrectAnswer: ?rnorm
-  AnswerTests: omnitest('?rnorm')
+  AnswerTests: any_of_exprs('?rnorm', 'help(rnorm)')
   Hint: Tapez ?rnorm pour lire son aide.
 
 - Class: cmd_question
-  Output: La distribution normale classique à une moyenne de 0 et un écart-type de 1.
+  Output: La distribution normale classique (la Gaussienne) a une moyenne de 0 
+    et un écart-type de 1.
     Comme vous pouvez le lire dans la partie 'Usage' de la documentation, les 
     valeurs par défaut des arguments 'mean' (moyenne) et 'sd' (écart-type) sont 0 et 1.
     rnorm(10) générera donc 10 nombres aléatoires à l'aide de la distribution
-    nornale classique.
+    Gaussienne.
   CorrectAnswer: rnorm(10)
-  AnswerTests: omnitest('rnorm(10)')
+  AnswerTests: omnitest(correctExpr='rnorm(10)')
   Hint: Utilisez rnorm(10) pour générer 10 nombres aléatoires issus d'une distribution Gaussienne.
 
 - Class: cmd_question
@@ -193,7 +203,7 @@
   Output: Enfin, nous voulons générer 100 groupes de nombres aléatoires.
     Chaque groupe contiendra 5 valeurs générées par une loi uniforme entre -1 et 1.
     Commençons par un premier groupe de 5 nombre.
-    Je vous expliquerait par la suite comment répéter facilement l'opération 100 fois.
+    Je vous expliquerai par la suite comment répéter facilement l'opération 100 fois.
 
 - Class: cmd_question
   Output: Générer 5 valeurs aléatoires issues d'une distribution uniforme sur -1, 1.
@@ -216,18 +226,18 @@
   Hint: Affichez le contenu de mon_unif sur la console.
 
 - Class: cmd_question
-  Output: replicate() a créer une matrice, chaque colonne contient 5 nombre aléatoire
+  Output: replicate() a créé une matrice, chaque colonne contient 5 nombres aléatoires
     issus de la distribution spécifiée.
     Nous pouvons trouvez maintenant trouver la moyenne dans chaque colonne à l'aide de colMeans().
     Stockez le résultat dans l'objet cm.
   CorrectAnswer: cm <- colMeans(mon_unif)
-  AnswerTests: omnitest('cm <- colMeans(mon_unif)')
+  AnswerTests: omnitest(correctExpr='cm <- colMeans(mon_unif)')
   Hint: Utilisez cm <- colMeans(mon_unif) pour créer le vecteur contenant les moyennes par colonnes et stocker le résultat.
 
 - Class: cmd_question
   Output: Regardons l'histogramme du résultat à l'aide de ggplot(data.frame(cm = cm)) + geom_histogram(aes(cm))
   CorrectAnswer: ggplot(data.frame(cm = cm)) + geom_histogram(aes(cm))
-  AnswerTests: omnitest('ggplot(data.frame(cm = cm)) + geom_histogram(aes(cm))')
+  AnswerTests: omnitest(correctExpr='ggplot(data.frame(cm = cm)) + geom_histogram(aes(cm))')
   Hint: ggplot(data.frame(cm = cm)) + geom_histogram(aes(cm)) affichera l'histogramme demandé.
 
 - Class: text
@@ -239,8 +249,8 @@
     y compris exponentielle (rexp()), chi-deux (rchisq()), gamma (rgamma()), ...
 
 - Class: text
-  Output: Vous avez maintenant les bases des tirages aléatoires, mais le champs est bien
-    évidemment bien plus étendu.
+  Output: Vous avez maintenant les bases des tirages aléatoires, même si nous 
+    n'avons fait que toucher le début du sujet.
 
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
