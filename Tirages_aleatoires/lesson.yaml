@@ -15,7 +15,7 @@
 - Class: text
   Output: Je ne vous expliquerai pas les différentes distributions de probabilités,
     mais vous en avez déjà vu certaines.
-    Ici, mous simplement les utiliserons pour l'échantillonage et la génération
+    Ici, nous les utiliserons pour l'échantillonage et la génération
     de nombres aléatoires. 
     
   
@@ -59,7 +59,8 @@
   Hint: Tapez sample(1:20, 10) pour tirer aléatoirement 10 nombres entre 1 et 20, sans remise.
 
 - Class: text
-  Output: La commande précédente précise qu'il n'y a pas de remise chaque nombre
+  Output: La commande précédente précise qu'il n'y a pas de remise. 
+    Chaque nombre
     de la séquence ne peut donc apparaître qu'une seule fois.
     La valeur par défaut de l'argument "replace" est FALSE, ce qui explique pourquoi
     nous avons du le préciser quand nous avons souhaité une remise, mais que nous 
@@ -84,13 +85,13 @@
   Output: Permuter, c'est exactement comme tirer aléatoirement les 26 LETTERS
     sans remise. 
     Quand l'argument 'size' n'est pas spécifié dans sample(), R utilise un échantillon
-    de la taille du vecteur utilisé pour échantillonner, ce qui crée de fait une
+    de la taille du vecteur à partir duquel nous échantillonnons, ce qui crée de fait une
     permutation.
 
 - Class: text
   Output: Supposons maintenant que nous souhaitons simuler le tirage aléatoire de 
     100 pile ou face d'une pièce biaisée. 
-    Cette pièce à une probabilité de 0.3 d'obtenir pile et une probabilité 
+    Cette pièce a une probabilité de 0.3 d'obtenir pile et une probabilité 
     0.7 d'obtenir face.
 
 - Class: cmd_question
@@ -188,6 +189,7 @@
     valeurs par défaut des arguments 'mean' (moyenne) et 'sd' (écart-type) sont 0 et 1.
     rnorm(10) générera donc 10 nombres aléatoires à l'aide de la distribution
     Gaussienne.
+    Essayez.
   CorrectAnswer: rnorm(10)
   AnswerTests: omnitest(correctExpr='rnorm(10)')
   Hint: Utilisez rnorm(10) pour générer 10 nombres aléatoires issus d'une distribution Gaussienne.
@@ -257,7 +259,7 @@
     enseignant (cela ne fonctionnera que pour les étudiants de l'université 
     Paris 8) ?
     Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
-    fichier 'Vecteurs_numeriques.txt' qui a été créé plus tard.
+    fichier 'Tirages_aleatoires.txt' qui a été créé plus tard.
   AnswerChoices: Oui;Non
   CorrectAnswer: "Oui"
   AnswerTests: submit_log()
