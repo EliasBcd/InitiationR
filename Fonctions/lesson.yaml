@@ -1,0 +1,284 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Fonctions et Scripts
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+
+- Class: text
+  Output: Nous savons désormais effectuer des opérations arithmétiques de base
+    sur des nombres et des vecteurs, et stocker des valeurs dans des objets
+    pour pouvoir les réutiliser plus tard.
+    Pour aller plus loin, nous devons aborder les fonctions qui sont, avec les
+    objets, un deuxième concept de base de R.
+    On utilise des fonctions pour effectuer des calculs, obtenir des résultats 
+    et accomplir des actions.
+    
+- Class: text
+  Output: Formellement, une fonction a un nom, elle prend en entrée entre 
+    parenthèses un ou plusieurs arguments (ou paramètres), et retourne un 
+    résultat.
+    Prenons tout de suite un exemple.
+    
+- Class: cmd_question
+  Output: Si on veut connaître le nombre d’éléments du vecteur tailles que nous 
+    avons vu à la leçon précédente, on peut utiliser la fonction length, en
+    tapant length(tailles).
+    J'ai agrandi un peu le vecteur tailles pour rendre l'exercice plus intéressant.
+    Essayez pour voir.
+  CorrectAnswer: length(tailles)
+  AnswerTests: omnitest(correctExpr='length(tailles)')
+  Hint: Tapez length(tailles) et appuyez sur Entrée pour voir le résultat. 
+
+- Class: text
+  Output: Ici, length est le nom de la fonction, on l’appelle en lui passant un
+    argument entre parenthèses (en l’occurrence notre vecteur tailles), et elle 
+    nous renvoie un résultat, à savoir le nombre d’éléments du vecteur passé en
+    paramètre.
+  
+- Class: cmd_question
+  Output: Autre exemple, les fonctions min et max retournent respectivement les 
+    valeurs minimales et maximales d’un vecteur de nombres.
+    Essayez d'afficher la valeur minimale contenue vecteur tailles.
+  CorrectAnswer: min(tailles)
+  AnswerTests: omnitest(correctExpr='min(tailles)')
+  Hint: Tapez min(tailles) et appuyez sur Entrée pour voir le résultat.   
+  
+- Class: cmd_question
+  Output: La fonction mean calcule et retourne la moyenne d’un vecteur de nombres.
+    Calculez la valeur moyenne des tailles dans le vecteur tailles.
+  CorrectAnswer: mean(tailles)
+  AnswerTests: omnitest(correctExpr='mean(tailles)')
+  Hint: Tapez mean(tailles) et appuyez sur Entrée pour voir le résultat.   
+  
+- Class: cmd_question
+  Output: La fonction sum calcule et retourne la somme de tous les éléments
+    du vecteur.
+    Calculez la somme des tailles.
+  CorrectAnswer: sum(tailles)
+  AnswerTests: omnitest(correctExpr='sum(tailles)')
+  Hint: Tapez sum(tailles) et appuyez sur Entrée pour voir le résultat.  
+  
+  
+- Class: cmd_question
+  Output: Jusqu’à présent on n’a vu que des fonctions qui calculent et 
+    retournent un unique nombre. 
+    Mais une fonction peut renvoyer d’autres types de résultats.
+    Par exemple, la fonction range (étendue) renvoie un vecteur de deux nombres,
+    le minimum et le maximum.
+    Essayez.
+  CorrectAnswer: range(tailles)
+  AnswerTests: omnitest(correctExpr='range(tailles)')
+  Hint: Tapez range(tailles) et appuyez sur Entrée pour voir le résultat.   
+  
+- Class: text
+  Output: Ou encore, la fonction unique, qui supprime toutes les valeurs en
+    double dans un vecteur, qu’il s’agisse de nombres ou de chaînes de caractères.
+    
+- Class: cmd_question
+  Output: Affichez le vecteur diplome, je l'ai modifié pour l'occasion.
+  CorrectAnswer: diplome
+  AnswerTests: omnitest(correctExpr='diplome')
+  Hint: Tapez diplome et appuyez sur Entrée pour voir le résultat.
+  
+- Class: cmd_question
+  Output: Essayez maintenant unique(diplome) et comparez les deux résultats.
+  CorrectAnswer: unique(diplome)
+  AnswerTests: omnitest(correctExpr='unique(diplome)')
+  Hint: Tapez unique(diplome).
+  
+- Class: text
+  Output: Une fonction peut prendre plusieurs arguments, dans ce cas on les
+    indique entre parenthèses en les séparant par des virgules.
+    On a déjà rencontré un exemple de fonction acceptant plusieurs 
+    arguments, la fonction c, qui combine l’ensemble de ses arguments en un vecteur.
+    c est appelée en lui passant cinq arguments, les cinq tailles séparées par 
+    des virgules, et elle renvoie un vecteur numérique regroupant ces cinq valeurs.
+    
+- Class: cmd_question
+  Output: Supposons maintenant que dans notre vecteur tailles nous avons une 
+    valeur manquante (une personne a refusé de répondre, ou notre mètre mesureur
+    était en panne). 
+    On symbolise celle-ci dans R avec le code interne NA (abbréviation de
+    Not Available, non disponible).
+    Tapez tailles <- c(156, 164, 197, NA, 173).
+  CorrectAnswer: unique(tailles <- c(156, 164, 197, NA, 173))
+  AnswerTests: omnitest(correctExpr='tailles <- c(156, 164, 197, NA, 173)')
+  Hint: Tapez tailles <- c(156, 164, 197, NA, 173).    
+  
+  
+- Class: cmd_question
+  Output: Essayez maintenat de calculer la valeur moyenne des tailles.
+  CorrectAnswer: mean(tailles)
+  AnswerTests: omnitest(correctExpr='mean(tailles)')
+  Hint: Rappelez vous que la fonction qui calcule la moyenne est la fonction
+    mean.
+
+- Class: text
+  Output: La réponse est NA !
+    En effet, R considère par défaut qu’il ne peut pas calculer la moyenne si 
+    une des valeurs n’est pas disponible.
+    Dans ce cas il considère que la moyenne est elle-même “non disponible” et 
+    renvoie donc NA comme résultat.
+    
+- Class: cmd_question
+  Output: On peut cependant indiquer à mean d’effectuer le calcul en ignorant 
+   les valeurs manquantes. 
+   Ceci se fait en ajoutant un argument supplémentaire, nommé na.rm 
+   (abbréviation de NA remove, “enlever les NA”), et de lui attribuer la valeur
+   TRUE (code interne de R signifiant vrai).
+   Il faut pour cela taper mean(tailles, na.rm = TRUE). 
+   Essayez.
+  CorrectAnswer: mean(tailles, na.rm = TRUE)
+  AnswerTests: omnitest(correctExpr='mean(tailles, na.rm = TRUE)')
+  Hint: Tepez mean(tailles, na.rm = TRUE) et observez le résultat.
+
+    
+- Class: text
+  Output: Positionner le paramètre na.rm à TRUE indique à la fonction mean de ne
+    pas tenir compte des valeurs manquantes dans le calcul.
+    Si on ne dit rien à la fonction mean, cet argument a une valeur par défaut,
+    en l’occurrence FALSE (faux), qui fait qu’il ne supprime pas les valeurs 
+    manquantes.
+    Les deux commandes mean(tailles) et mean(tailles, na.rm=FALSE) sont donc  
+    sont donc rigoureusement équivalentes.
+    Essayez pour voir la seconde.
+  CorrectAnswer: mean(tailles, na.rm = FALSE)
+  AnswerTests: omnitest(correctExpr='mean(tailles, na.rm = FALSE)')
+  Hint: Tepez mean(tailles, na.rm = FALSE) et observez le résultat.  
+  
+- Class: cmd_question
+  Output: Il est fréquent de ne pas savoir (ou d’avoir oublié) quels sont les 
+    arguments d’une fonction, ou comment ils se nomment. 
+    On peut à tout moment faire appel à l’aide intégrée à R en passant le nom 
+    de la fonction (entre guillemets) à la fonction help.
+    Une autre possibilité et de taper un point d'interrogation devant la fonction, 
+    sans mettre de parenthèse et sans utiliser de guillemets.
+    Essayez d'obtenir l'aide sur mean.
+  CorrectAnswer: ?mean
+  AnswerTests: any_of_exprs('?mean', 'help("mean")')
+  Hint: Tepez help("mean") pour obtenir l'aide sur la fonction mean. 
+  
+- Class: text
+  Output: Ces deux commandes affichent une page (en anglais) décrivant la
+    fonction, ses paramètres, son résultat, le tout accompagné de diverses notes,
+    références et exemples. 
+    Ces pages d’aide contiennent à peu près tout ce que vous pourrez chercher à
+    savoir, mais elles ne sont pas toujours d’une lecture aisée.
+    Dans RStudio, les pages d’aide en ligne s’ouvriront par défaut dans la zone 
+    en bas à droite, sous l’onglet Help.
+    Un clic sur l’icône en forme de maison vous affichera la page d’accueil de 
+    l’aide.
+    
+- Class: text
+  Output: Jusqu’ici on a utilisé R de manière "interactive", en saisissant des 
+    commandes directement dans la console.
+    Ce n'est pas très pratique pour sauvegarder son travail.
+    Lorsque R ou RStudio redémarre, tout ce qui a été effectué dans la console 
+    est perdu.
+
+- Class: text
+  Output: On va plutôt regrouper les commandes dans des scripts (de simples 
+    fichiers texte), qui vont garder une trace de toutes les opérations effectuées. 
+    En rouvrant les scripts et en réexécutant les commandes qu’ils contiennent 
+    on pourra “reproduire” le chargement des données, leur traitement, les 
+    analyses et leurs résultats.
+    Pour créer un script, il suffit de sélectionner le menu Fichier (File), puis
+    Nouveau fichier (New File) et script R (R script).
+    Une quatrième zone apparaît alors en haut à gauche de l’interface de RStudio. 
+    On peut enregistrer notre script à tout moment dans un fichier avec 
+    l’extension .R, en cliquant sur l’icône de disquette ou en choisissant 
+    Fichier (File) puis Sauvegarder (Save) ou en utilisant le raccourci Ctrl + S
+    (Cmd + S sous Mac).
+    
+- Class: text 
+  Output: Un script est un fichier texte brut qui s’édite de la manière habituelle. 
+    À la différence de la console, quand on appuie sur Entrée, cela n’exécute pas 
+    la commande en cours mais insère un saut de ligne.
+    Pour exécuter une commande dans un script, il faut positionner le curseur sur 
+    la ligne de la commande en question, et de cliquer sur le bouton Run dans la
+    barre d’outils juste au-dessus de la zone d’édition du script.
+    On peut aussi utiliser le raccourci clavier Ctrl + Entrée (Cmd + Entrée sous Mac).
+    On peut aussi sélectionner plusieurs lignes avec la souris ou le clavier et
+    cliquer sur Run (ou utiliser le raccourci clavier), et l’ensemble des lignes
+    est exécuté d’un coup.
+    
+- Class: script
+  Output: Vous allez maintenant observer votre premier script.
+    Il contiendra une assignation du vecteur c(156, 164, 197, 147, 173) à l'objet
+    tailles.
+    Puis une assignation du vecteur c(45, 59, 110, 44, 88) au vecteur poids.
+    L'utilisation de quelques fonctions.
+    Puis un calcul de l'imc des à l'aide des vecteurs précédent et l'assignation 
+    du résultat à l'objet imc.
+    swirl va automatiquement ouvrir une fenêtre avec un script pour cet exercice.
+    Essayez de bien comprendre ce scripts, je ne vous demande pas de le modifier 
+    pour l'instant.
+    Une fois cela fait, vous devez tapez submit() dans l'invite de commande pour
+    soumettre votre réponse.
+  AnswerTests: test_imc()
+  Hint: Lisez bien les instructions dans le script et complétez-le à l'aide des
+    valeurs indiquées.
+  Script: imc.R
+  
+- Class: text
+  Output: "Vous devez avoir remarqué dans le script les lignes qui commençaient
+    par un signe dièse #.
+    Ces lignes indiquent un commentaire dans R et ne sont pas prises en compte
+    dans l'évaluation du script.
+    Les commentaires sont une partie très importante d'un script (et des 
+    fonctions quand vous en créerez).
+    Ils permettent de documenter les actions du script (ou de la fonction) 
+    afin de dire ce qu'il fait.
+    On peut ainsi retrouver son code des jours ou des mois plus tard et se 
+    rappeler de ce qu'on a voulu faire."
+    
+- Class: cmd_question
+  Output: Un des attraits de R est la possibilité d'ajouter des extensions, ou 
+    paquet (packages en anglais) pour augmenter ses fonctionnalités.
+    On peut installer des extensions grâce à Rstudio.
+    Il est aussi possible de le faire dans la console à l'aide de la fonction
+    install.packages(). 
+    Par exemple, le paquet questionr peut être installé avec la commande
+    install.packages("questionr").
+    Essayez pour voir.
+  CorrectAnswer: install.packages("questionr")
+  AnswerTests: omnitest(correctExpr='install.packages("questionr")')
+  Hint: Tepez install.packages("questionr") pour installer le paquet questionr.
+  
+- Class: text
+  Output: Installer une extension via l’une des deux méthodes précédentes va 
+    télécharger l’ensemble des fichiers nécessaires depuis l’une des machines du 
+    CRAN, puis installer tout ça sur le disque dur de votre ordinateur.
+    Vous n’avez besoin de le faire qu’une fois, comme vous le faites pour 
+    installer un programme sur votre ordinateur.
+
+- Class: cmd_question
+  Output: Une fois l’extension installée, il faut la “charger” avant de pouvoir
+    utiliser les fonctions qu’elle propose.
+    Ceci se fait avec la fonction library.
+    Par exemple, pour pouvoir utiliser les fonctions de questionr, vous devrez
+    exécuter la commande library(questionr).
+    Essayez.
+  CorrectAnswer: library(questionr)
+  AnswerTests: omnitest(correctExpr='library(questionr)')
+  Hint: Tepez library(questionr) pour charger le paquet questionr.  
+  
+- Class: text
+  Output: Remarquez que c'est exactement ce que je vous ai demandé de faire
+    pour réaliser ces exercices sur la console R.
+    Je vous ai fait installer le paquet swirl, puis je vous l'ai fait charger.
+    Après, je vous ai demandé d'exécuter des fonctions du paquet afin de démarrer
+    les exercices.
+    
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Fonctions.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
