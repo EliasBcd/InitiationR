@@ -9,26 +9,6 @@
 - Class: text
   Output: Nous verrons dans cette leçon les vecteurs plus en détails.
 
-- Class: cmd_question
-  Output: Nous avons vu que nous pouvons créer un vecteur à l'aide de la 
-    commande c().
-    Reprenez le vecteur contenant les tailles précédentes, tapez 
-    c(156, 164, 197).
-    Essayez et stockez le résultat dans l'objet tailles.
-  CorrectAnswer: tailles <- c(156, 164, 197)
-  AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197)')
-  Hint: Tapez tailles <- c(156, 164, 197) et appuyez sur entrée.
-    Cela assigne le vecteur (156, 164, 197) au nouvel objet tailles. 
-    Les espaces après la virgule ne sont pas nécessaire mais rendent le code plus
-    lisible.
-
-- Class: cmd_question
-  Output: Tapez tailles pour voir son contenu.
-    Remarquez qu'il y n'y a pas de virgules qui séparent les valeurs dans
-    l'affichage.
-  CorrectAnswer: tailles
-  AnswerTests: omnitest(correctExpr='tailles')
-  Hint: Tapez tailles et appuyez sur Entrée pour voir son contenu.
 
 
 - Class: cmd_question
@@ -42,34 +22,7 @@
     Ne créez pas de nouvelle variable.
     On veut simplement voir le résultat.
   
-- Class: cmd_question
-  Output: Les vecteurs numériques peuvent aussi servir dans des opérations.
-    On peut par exemple convertir les tailles en mètres et assigner le résultat
-    à l'objet tailles_m.
-  CorrectAnswer: tailles_m <- tailles / 100
-  AnswerTests: omnitest(correctExpr='tailles_m <- tailles / 100')
-  Hint: Tapez tailles_m <- tailles / 100.
-  
 
-  
-- Class: mult_question
-  Output: Avant de voir l'objet tailles_m, que pensez-vous qu'il contient ?
-  CorrectAnswer: un vecteur de longueur 3
-  AnswerChoices: un vecteur de longueur 3 ; un nombre (= un vecteur de longueur 1) ;
-    un vecteur de longueur 0 (= un vecteur vide)
-  AnswerTests: omnitest(correctVal='un vecteur de longueur 3')
-  Hint: R procèce aux opérations sur les vecteurs éléments par éléments.
-
-- Class: cmd_question
-  Output: Affichez maintenant le résultat.
-  CorrectAnswer: tailles_m
-  AnswerTests: omnitest(correctExpr='tailles_m')
-  Hint: Il faut taper le nom d'un objet pour afficher sa valeur.
- 
-- Class: text
-  Output: Comment vous l'avez probablement deviné, R a d'abord divisé `tailles` par 
-    100, puis a stocje le résultat dans `tailles_m`.
-    On obtient ainsi un vecteur de même longueur que le vecteur d'origine `tailles`.
    
 - Class: cmd_question
   Output: On cherche maintenant à calculer les IMC correspondant aux tailles.
@@ -79,47 +32,11 @@
   AnswerTests: omnitest(correctExpr='poids <- c(55, 65, 78)')
   Hint: Rappelez-vous comment on a créé des vecteurs plus tôt.
   
-- Class: cmd_question
-  Output: Calculons maintenant l'imc de chacun. 
-    Créez une nouvelle variable imc qui prend les valeurs des poids divisés 
-    par taille au carré.
-    N'oubliez pas que la taille doit être en mètre !
-  CorrectAnswer: imc <- poids / (tailles_m)^2
-  AnswerTests: any_of_exprs('imc <-  poids / (tailles/100)^2', 'imc <- poids / tailles_m^2')
-  Hint: Tapez imc <-  poids / tailles_m^2
 
-- Class: mult_question
-  Output: Quelle affirmation est vraie ?
-  CorrectAnswer: Le premier élément d'`imc` est égal au premier élément de `poids`
-    divisé par le carré du premier élément de `tailles_m`, etc.
-  AnswerChoices: Le premier élément d'`imc` est égal au premier élément de `poids`
-    divisé par le carré du premier élément de `tailles_m`, etc.; `imc` est un
-    nombre unique; `imc` n'est pas défini
-  AnswerTests: omnitest(correctVal="Le premier élément d'`imc` est égal au premier élément de `poids`
-    divisé par le carré du premier élément de `tailles_m`, etc.")
-  Hint: Comment R fait des opérations sur les vecteurs ?
 
-- Class: cmd_question
-  Output: Regardons le contenu d'`imc`.
-  CorrectAnswer: imc
-  AnswerTests: omnitest(correctExpr='imc')
-  Hint: Tapez `imc` puis appuyez sur entrée pour voir le résultat.
+
   
-- Class: cmd_question
-  Output: Un vecteur ne contient pas forcément que des nombres.
-    Il peut aussi contenir des booléens ou des chaînes de caractères.
-    Essayez de créer un vecteurs chiens contenant les race suivantes, Doberman,
-    Chihuahua et Husky (dans cet ordre).
-    Rappelez-vous comment on peut entrer des chaînes de caractères.
-  CorrectAnswer: chiens <-c("Doberman","Chihuahua","Husky")
-  AnswerTests: omnitest(correctExpr = "chiens <-c('Doberman', 'Chihuahua', 'Husky')")
-  Hint: N'oubliez pas les guillements " ou ' autour des chaînes de caractères.
-  
-- Class: text
-  Output: Rappelez-vous néanmoins que les valeurs contenues dans un vecteur sont
-    forcément du même type. 
-    Si vous entrez par exemple des nombres et des chaînes de caractères dans un 
-    vecteur, R convertira les nombres en chaînes de caractère. 
+
 
 - Class: text
   Output: Quand R a deux vecteurs de même longeur, R effectue les opérations 

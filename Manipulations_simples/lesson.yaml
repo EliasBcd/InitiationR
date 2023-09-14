@@ -1,6 +1,6 @@
 - Class: meta
   Course: Initiation à R
-  Lesson: Manipulations simples
+  Lesson: Première manipulations de R
   Author: Elias Bouacida
   Type: Standard
   Organization: Université Paris 8
@@ -221,8 +221,224 @@
   CorrectAnswer: chien <- "Chihuahua"
   AnswerTests: omnitest(correctExpr='chien <- "Chihuahua"')
   Hint: "Tapez : chien <- \"Chihuahua\"" 
+
+
+- Class: cmd_question
+  Output: Imaginons qu'on a demandé la taille en centimètres de 3 personnes et
+    qu'on souhaite calculer leur taille moyenne.
+    On pourrait créer autant d'objets que de tailles et calculer la moyenne.
+    Commençons par assigner 156 à taille1.
+  CorrectAnswer: taille1 <- 156
+  AnswerTests: omnitest(correctExpr = 'taille1 <- 156')
+  Hint: Tapez taille1 <- 156
+  
+- Class: cmd_question
+  Output: Puis 164 à taille2.
+  CorrectAnswer: taille2 <- 164
+  AnswerTests: omnitest(correctExpr = 'taille2 <- 164')
+  Hint: Tapez taille2 <- 164
+  
+- Class: cmd_question
+  Output: Puis 197 à taille3.
+  CorrectAnswer: taille3 <- 197
+  AnswerTests: omnitest(correctExp = 'taille3 <- 197')
+  Hint: Tapez taille3 <- 197
+
+- Class: cmd_question
+  Output: Nous pouvons alors calculer la moyenne en divisant la somme de ces 
+    3 tailles par 3. 
+    Essayez.
+  CorrectAnswer: (taille1 + taille2 + taille3) / 3
+  AnswerTests: omnitest(correctExpr = '(taille1 + taille2 + taille3) / 3')
+  Hint: "Tapez (taille1 + taille2 + taille3) / 3"
+  
+- Class: text
+  Output: Ce n'est guère pratique !
+    R a un type dédié qui facilite grandement ces calculs, les vecteurs.
+    C'est une collection de valeurs (des nombres). 
+    Tout objet dans R qui contient une donnée est appelé une structure de donnée.
+    Les vecteurs numériques sont les structures de données les plus simple.
+    En fait, même un nombre seul est considéré comme un vecteur de longueur 1.
+
+- Class: cmd_question
+  Output: La façon la plus simple de créer un vecteur est d'utiliser la commande
+    c(), qui signifie 'concatenate' ou 'combine' (assembler en anglais).
+    Pour créer un vecteur contenant les tailles précédentes, tapez 
+    c(156, 164, 197).
+    Essayez et stockez le résultat dans l'objet tailles.
+  CorrectAnswer: tailles <- c(156, 164, 197)
+  AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197)')
+  Hint: Tapez tailles <- c(156, 164, 197) et appuyez sur entrée.
+    Cela assigne le vecteur (156, 164, 197) au nouvel objet tailles. 
+    Les espaces après la virgule ne sont pas nécessaire mais rendent le code plus
+    lisible.    
     
+- Class: cmd_question
+  Output: Tapez tailles pour voir son contenu.
+    Remarquez qu'il y n'y a pas de virgules qui séparent les valeurs dans
+    l'affichage.
+  CorrectAnswer: tailles
+  AnswerTests: omnitest(correctExpr='tailles')
+  Hint: Tapez tailles et appuyez sur Entrée pour voir son contenu.
+  
+- Class: cmd_question
+  Output: L’avantage d’un vecteur est que lorsqu’on lui applique une opération,
+    celle-ci s’applique à toutes les valeurs qu’il contient.
+    Ainsi, si on veut la taille en mètres plutôt qu’en centimètres, on peut
+    diviser tailles par 100 et assigner le résultat à l'objet tailles_m.
+    Essayez pour voir.
+  CorrectAnswer: tailles_m <- tailles / 100
+  AnswerTests: omnitest(correctExpr='tailles_m <- tailles / 100')
+  Hint: Tapez tailles_m <- tailles / 100.
+  
+
+  
+- Class: mult_question
+  Output: Avant de voir l'objet tailles_m, que pensez-vous qu'il contient ?
+  CorrectAnswer: un vecteur de longueur 3
+  AnswerChoices: un vecteur de longueur 3 ; un nombre (= un vecteur de longueur 1) ;
+    un vecteur de longueur 0 (= un vecteur vide)
+  AnswerTests: omnitest(correctVal='un vecteur de longueur 3')
+  Hint: R procèce aux opérations sur les vecteurs éléments par éléments.
+
+- Class: cmd_question
+  Output: Affichez maintenant le résultat.
+  CorrectAnswer: tailles_m
+  AnswerTests: omnitest(correctExpr='tailles_m')
+  Hint: Il faut taper le nom d'un objet pour afficher sa valeur.
+ 
+- Class: text
+  Output: Comment vous l'avez probablement deviné, R a d'abord divisé `tailles` par 
+    100, puis a stocke le résultat dans `tailles_m`.
+    On obtient ainsi un vecteur de même longueur que le vecteur d'origine `tailles`.
     
+- Class: cmd_question
+  Output: Cela fonctionne pour toutes les opérations de base.
+    Vous pouvez par exemple ajouter 10 à tailles.
+    Essayez de deviner comment faire.
+  CorrectAnswer: tailles + 10
+  AnswerTests: omnitest(correctExpr='tailles + 10')
+  Hint: Quelle opération permet d'additionner des nombres ?
+    
+- Class: cmd_question
+  Output: Vous pouvez aussi essayer de mettre les tailles au carré.
+    Essayez de deviner comment faire.
+  CorrectAnswer: tailles^2
+  AnswerTests: omnitest(correctExpr='tailles^2')
+  Hint: Quelle opération permet de mettre au carré un nombre ?  
+  
+- Class: cmd_question
+  Output: Imaginons maintenant qu’on a aussi demandé aux trois mêmes personnes 
+    leur poids en kilos. On peut créer un deuxième vecteur poids.
+    Tapez poids <- c(45, 59, 110).
+  CorrectAnswer: poids <- c(45, 59, 110)
+  AnswerTests: omnitest(correctExpr='poids <- c(45, 59, 110)')
+  Hint: Tapez poids <- c(45, 59, 110)
+
+- Class: cmd_question
+  Output: On peut alors effectuer des calculs utilisant nos deux vecteurs 
+    `tailles` et `poids`.
+    Calculons maintenant l'imc de chacun. 
+    Créez une nouvelle variable imc qui prend les valeurs des poids en 
+    kilogramme divisés  par la taille au carré.
+    N'oubliez pas que la taille doit être en mètre !
+  CorrectAnswer: imc <- poids / (tailles_m)^2
+  AnswerTests: any_of_exprs('imc <-  poids / (tailles/100)^2', 'imc <- poids / tailles_m^2')
+  Hint: Tapez imc <-  poids / tailles_m^2
+    
+- Class: mult_question
+  Output: Quelle affirmation est vraie ?
+  CorrectAnswer: Le premier élément d'`imc` est égal au premier élément de `poids`
+    divisé par le carré du premier élément de `tailles_m`, etc.
+  AnswerChoices: Le premier élément d'`imc` est égal au premier élément de `poids`
+    divisé par le carré du premier élément de `tailles_m`, etc.; `imc` est un
+    nombre unique; `imc` n'est pas défini
+  AnswerTests: omnitest(correctVal="Le premier élément d'`imc` est égal au premier élément de `poids`
+    divisé par le carré du premier élément de `tailles_m`, etc.")
+  Hint: Comment R fait des opérations sur les vecteurs ?
+
+- Class: cmd_question
+  Output: Regardons le contenu d'`imc`.
+  CorrectAnswer: imc
+  AnswerTests: omnitest(correctExpr='imc')
+  Hint: Tapez `imc` puis appuyez sur entrée pour voir le résultat.    
+  
+- Class: cmd_question
+  Output: Un vecteur peut contenir des nombres, mais il peut aussi contenir du
+    texte. 
+    Imaginons qu’on a demandé aux 5 mêmes personnes leur niveau de diplôme.
+    In peut regrouper l’information dans un vecteur de chaînes de caractères.
+    Une chaîne de caractère contient du texte libre, délimité par des guillemets
+    simples ou doubles.
+    Tapez diplome <- c("CAP", "Bac", "Bac+2").
+  CorrectAnswer: diplome <- c("CAP", "Bac", "Bac+2")
+  AnswerTests: omnitest(correctExpr='diplome <- c("CAP", "Bac", "Bac+2").')
+  Hint: diplome <- c("CAP", "Bac", "Bac+2").
+    
+- Class: cmd_question
+  Output: Regardons le contenu de diplome.
+  CorrectAnswer: diplome
+  AnswerTests: omnitest(correctExpr='diplome')
+  Hint: Tapez `diplome` puis appuyez sur entrée pour voir le résultat.   
+
+
+- Class: text
+  Output: Rappelez-vous néanmoins que les valeurs contenues dans un vecteur sont
+    forcément du même type. 
+    Si vous entrez par exemple des nombres et des chaînes de caractères dans un 
+    vecteur, R convertira les nombres en chaînes de caractère. 
+
+- Class: cmd_question
+  Output: "L’opérateur :, lui, permet de générer rapidement un vecteur 
+    comprenant tous les nombres entre deux valeurs, opération assez courante 
+    sous R.
+    Pour générer tous les nombres compris entre 1 et 10, la syntaxe sous R est
+    d'écrire 1:10. Essayez pour voir."
+  CorrectAnswer: 1:10
+  AnswerTests: omnitest(correctExpr='1:10')
+  Hint: Tapez 1:10 puis appuyez sur entrée pour voir le résultat. 
+
+
+- Class: cmd_question
+  Output: "Enfin, notons qu’on peut accéder à un élément particulier d’un
+    vecteur en faisant suivre le nom du vecteur de crochets contenant le numéro
+    de l’élément désiré.
+    Pour observer le 2 élément de diplome, par exemple, il faut écrire diplome[2].
+    Essayez pour voir."
+  CorrectAnswer: diplome[2]
+  AnswerTests: omnitest(correctExpr='diplome[2]')
+  Hint: Tapez diplome[2] puis appuyez sur entrée pour afficher le deuxième 
+    élément du vecteur diplome.
+
+- Class: text
+  Output: Cette opération, qui utilise l’opérateur [], permet donc la sélection 
+    d’éléments d’un vecteur.
+    
+- Class: mult_question
+  Output: Voyons voir si vous avez compris. 
+    Que faut-il taper dans la console pour afficher le troisième élément du
+    vecteur tailles ?
+  CorrectAnswer: tailles[3]
+  AnswerChoices: tailles[3]; tailles[2]; tailles[fin]
+  AnswerTests: omnitest(correctVal="tailles[3]")
+  Hint: R numérote les éléments à partir de 1. 
+
+- Class: cmd_question
+  Output: Dernière remarque, si on affiche dans la console un vecteur avec
+    beaucoup d’éléments, ceux-ci seront répartis sur plusieurs lignes. 
+    Essayez d'afficher le vecteur 1:50.
+  CorrectAnswer: 1:50
+  AnswerTests: omnitest(correctVal="1:50")
+  Hint: Tapez 1:50 dans la console.  
+
+- Class: text
+  Output: On remarque que R ajoute systématiquement un nombre entre crochets au 
+    début de chaque ligne.
+    Il s’agit en fait de la position du premier élément de la ligne dans le
+    vecteur.
+    Ceci explique le [1] qu’on obtient quand on affiche un simple nombre.
+    C'est en fait le premier élément d'un vecteur.
+
     
 - Class: text
   Output: Nous allons voir maintenant comment calculer les fonctions
