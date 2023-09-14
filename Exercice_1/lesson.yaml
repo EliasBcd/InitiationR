@@ -1,0 +1,97 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Exercices de la première partie.
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+
+- Class: cmd_question
+  Output: Construire le vecteur x suivant contenant les valeurs suivantes 120, 
+    134, 256,  12.
+  CorrectAnswer: c(120, 134, 256, 12)
+  AnswerTests: omnitest(correctExpr='c(120, 134, 256, 12)')
+  Hint: Essayez de retrouver quelle fonction permet la création d'un vecteur.
+
+- Class: cmd_question
+  Output: Utiliser ce vecteur x pour générer le vecteur 220 234 356 112. 
+    Pensez bien à la relation qu'ils peuvent avoir.
+  CorrectAnswer: x+100
+  AnswerTests: any_of_exprs('x+100', '100+x')
+  Hint: Addition !
+  
+  
+- Class: cmd_question
+  Output: Utiliser ce vecteur x pour générer le vecteur 240 268 512  24.
+    Pensez bien à la relation qu'ils peuvent avoir.
+  CorrectAnswer: x*2
+  AnswerTests: any_of_exprs('x*2', '2*x')
+  Hint: Multiplication !
+  
+- Class: text
+  Output: On a demandé à 4 ménages le revenu des deux conjoints, et le nombre 
+    de personnes du ménage.
+    Les revenus du premier conjoint sont stockés dans l'objet conjoint1.
+    Les revenus du second conjoint le sont dans l'objet conjoint2.
+    Le nombre de personnes dans l'objet nb_personnes.
+
+- Class: cmd_question
+  Output: Calculez le revenu total de chaque ménage.
+  CorrectAnswer: conjoint1 + conjoint2
+  AnswerTests: any_of_exprs('conjoint1 + conjoint2', 'conjoint2 + conjoint1')
+  Hint: Addition de vecteurs.
+
+- Class: cmd_question
+  Output: Calculez maintenant le revenu total de chaque ménage.
+  CorrectAnswer: conjoint1 + conjoint2
+  AnswerTests: any_of_exprs('conjoint1 + conjoint2', 'conjoint2 + conjoint1')
+  Hint: Addition de vecteurs.
+  
+- Class: cmd_question
+  Output: Divisez le revenu total par le nombre de personnes pour obtenir
+    le revenu par personne de chaque ménage.
+  CorrectAnswer: (conjoint1 + conjoint2) / nb_personnes
+  AnswerTests: any_of_exprs('(conjoint1 + conjoint2) / nb_personnes', ' (conjoint2 + conjoint1) / nb_personnes')
+  Hint: Il faut maintenant faire plusieurs opérations, et ne pas oublier les parenthèses.
+
+- Class: cmd_question
+  Output: Calculez maintenant le revenu minimum et maximum parmi ceux du premier conjoint (en une seule fonction).
+  CorrectAnswer: range(conjoint1)
+  AnswerTests: omnitest(correctExpr='range(conjoint1)')
+  Hint: Addition de vecteurs.
+
+- Class: cmd_question
+  Output: Sur une autre vague d'enquête, certain conjoints ont refusés de répondre.
+    Les valeurs obtenues sont stockées dans l'objet conjoint_na.
+    Calculez maintenant le revenu minimum et maximum parmi ceux ayant répondu. 
+  CorrectAnswer: range(conjoint_na, na.rm=TRUE)
+  AnswerTests: omnitest(correctExpr='range(conjoint_na, na.rm=TRUE)')
+  Hint: Quand les enquêtés refusent de répondre, on indique NA dans R.
+
+- Class: text
+  Output: Les deux vecteurs precipitations et temperatures représentent les 
+    précipitations (en mm) et la température (en °C) moyennes pour chaque mois
+    de l’année pour la ville de Lyon (moyennes calculées sur la période 1981-2010)
+    
+- Class: cmd_question
+  Output: Calculez la température moyenne sur l’année.
+  CorrectAnswer: mean(temperatures)
+  AnswerTests: any_of_exprs('mean(temperatures)', 'mean(temperatures, na.rm=TRUE)')
+  Hint: Quelle fonction permet de calculer la moyenne ?
+  
+- Class: cmd_question
+  Output: Calculez la quantité totale de précipitations sur l’année.
+  CorrectAnswer: sum(precipitations)
+  AnswerTests: any_of_exprs(' sum(precipitations)', ' sum(precipitations, na.rm=TRUE)')
+  Hint: Quelle fonction permet de calculer la somme ?
+
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Exercices_1.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
