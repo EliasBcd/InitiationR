@@ -61,7 +61,8 @@
 
 - Class: text
   Output: "Je ne peux pas vous montrer d'exemple ici, mais sachez que dans ce cas 
-    vous avez deux possibilités : compléter la commande ou bien appuyer sur Echap"
+    vous avez deux possibilités : compléter la commande ou bien appuyer sur
+    la touche Echap."
 
 - Class: text
   Output: "Nous allons maintenant parler des objets.
@@ -73,7 +74,7 @@
     indiqué à gauche."
     
 - Class: text
-  Output: Nous commençons maintenant la partie 'langage de programmation de R'.
+  Output: Nous commençons ainsi la partie 'langage de programmation de R'.
     Une possilibité très importante dans tout langage de programmation est la 
     possibilité d'assigner une valeur à un objet (=une variable).
     Cela permet de la sauvegarder pour plus tard.
@@ -97,8 +98,7 @@
     ou R affichait systématiquement le résultat du calcul. 
     Pour visualiser le contenu d'un objet, il suffit de le taper, suivi 
     d'entrée.
-    Nous avons déjà fait cela, sans le savoir, quand on a cherché la valeur de pi.
-    Essayez maintenant.
+    Essayez maintenant de visualiser x.
   CorrectAnswer: x
   AnswerTests: omnitest(correctExpr='x')
   Hint: Taper simplement x dans la console, suivi d'entrée.
@@ -114,7 +114,7 @@
     exactement comme x <- 2) mais c'est généralement considéré comme une 
     mauvaise pratique de code, pour une raison qui vous apparaîtra plus tard.
     Enfin, Rstudio offre un raccourci pour taper <-. 
-    C'est généralement  alt gauche + -.
+    C'est généralement  alt gauche + -, mais cela dépend des systèmes d'exploitation.
     Je vous encourage à l'utiliser dès maintenant.
 
 - Class: cmd_question
@@ -249,7 +249,7 @@
     3 tailles par 3. 
     Essayez.
   CorrectAnswer: (taille1 + taille2 + taille3) / 3
-  AnswerTests: omnitest(correctExpr = '(taille1 + taille2 + taille3) / 3')
+  AnswerTests: omnitest(correctVal = '(taille1 + taille2 + taille3) / 3')
   Hint: "Tapez (taille1 + taille2 + taille3) / 3"
   
 - Class: text
@@ -348,17 +348,17 @@
     
 - Class: mult_question
   Output: Quelle affirmation est vraie ?
-  CorrectAnswer: Le premier élément d'`imc` est égal au premier élément de `poids`
-    divisé par le carré du premier élément de `tailles_m`, etc.
-  AnswerChoices: Le premier élément d'`imc` est égal au premier élément de `poids`
-    divisé par le carré du premier élément de `tailles_m`, etc.; `imc` est un
-    nombre unique; `imc` n'est pas défini
-  AnswerTests: omnitest(correctVal="Le premier élément d'`imc` est égal au premier élément de `poids`
-    divisé par le carré du premier élément de `tailles_m`, etc.")
+  CorrectAnswer: Le premier élément d'imc est égal au premier élément de poids
+    divisé par le carré du premier élément de tailles_m, etc.
+  AnswerChoices: Le premier élément d'imc est égal au premier élément de poids
+    divisé par le carré du premier élément de tailles_m, etc.; imc est un
+    nombre unique; imc n'est pas défini
+  AnswerTests: omnitest(correctVal="Le premier élément d'imc est égal au premier élément de poids
+    divisé par le carré du premier élément de tailles_m, etc.")
   Hint: Comment R fait des opérations sur les vecteurs ?
 
 - Class: cmd_question
-  Output: Regardons le contenu d'`imc`.
+  Output: Regardons le contenu d'imc.
   CorrectAnswer: imc
   AnswerTests: omnitest(correctExpr='imc')
   Hint: Tapez `imc` puis appuyez sur entrée pour voir le résultat.    
@@ -366,13 +366,13 @@
 - Class: cmd_question
   Output: Un vecteur peut contenir des nombres, mais il peut aussi contenir du
     texte. 
-    Imaginons qu’on a demandé aux 5 mêmes personnes leur niveau de diplôme.
+    Imaginons qu’on a demandé aux trois mêmes personnes leur niveau de diplôme.
     In peut regrouper l’information dans un vecteur de chaînes de caractères.
     Une chaîne de caractère contient du texte libre, délimité par des guillemets
     simples ou doubles.
     Tapez diplome <- c("CAP", "Bac", "Bac+2").
   CorrectAnswer: diplome <- c("CAP", "Bac", "Bac+2")
-  AnswerTests: omnitest(correctExpr='diplome <- c("CAP", "Bac", "Bac+2").')
+  AnswerTests: omnitest(correctExpr='diplome <- c("CAP", "Bac", "Bac+2")')
   Hint: diplome <- c("CAP", "Bac", "Bac+2").
     
 - Class: cmd_question
@@ -426,10 +426,10 @@
 - Class: cmd_question
   Output: Dernière remarque, si on affiche dans la console un vecteur avec
     beaucoup d’éléments, ceux-ci seront répartis sur plusieurs lignes. 
-    Essayez d'afficher le vecteur 1:50.
-  CorrectAnswer: 1:50
-  AnswerTests: omnitest(correctVal="1:50")
-  Hint: Tapez 1:50 dans la console.  
+    Essayez d'afficher le vecteur 1:100.
+  CorrectAnswer: 1:100
+  AnswerTests: omnitest(correctExpr="1:100")
+  Hint: Tapez 1:100 dans la console.  
 
 - Class: text
   Output: On remarque que R ajoute systématiquement un nombre entre crochets au 
@@ -439,107 +439,6 @@
     Ceci explique le [1] qu’on obtient quand on affiche un simple nombre.
     C'est en fait le premier élément d'un vecteur.
 
-    
-- Class: text
-  Output: Nous allons voir maintenant comment calculer les fonctions
-    mathématiques usuelles logarithme, racine carrée, exponentielle et valeur
-    absolue.
-
-
-
-
-- Class: cmd_question
-  Output: Pour calculer la racine carré, on utilise la commande sqrt(), pour
-    square root, l'équivalent en anglais. Tapez sqrt(4).
-  CorrectAnswer:  sqrt(4)
-  AnswerTests: omnitest(correctExpr='sqrt(4)')
-  Hint: Tapez sqrt(4)
-
-- Class: cmd_question
-  Output: Essayons maintenant avec la fonction exponentielle. Tapez exp(0).
-  CorrectAnswer:  exp(0)
-  AnswerTests: omnitest(correctExpr='exp(0)')
-  Hint: Tapez exp(0)
-
-- Class: cmd_question
-  Output: Essayons maintenant avec la fonction logarithme naturel.
-    R est un logiciel de programmation en anglais, il utilise donc la
-    convention anglaise.
-    Pour obtenir ln(x), il faut taper log(x).
-    Cherchez la valeur de ln(2).
-  CorrectAnswer: log(2)
-  AnswerTests: omnitest(correctExpr='log(2)')
-  Hint: Tapez log(2)
-
-- Class: cmd_question
-  Output: Pour calculer le log français (logarithme décimal, en base 10), il
-    suffit de taper log10.
-    Cherchez à obtenir le logarithme décimal de 100.
-  CorrectAnswer: log10(100)
-  AnswerTests: omnitest(correctExpr='log10(100)')
-  Hint: Tapez log10(100)
-
-- Class: cmd_question
-  Output: Il y a en fait deux méthodes pour calculer le logarithme en base 10.
-    R permet de calculer le logarithme en n'importe quelle base, en utilisant
-    log(x, base).
-    Voyons voir si vous avez compris.
-    Essayez calculer le logarithme en base 8 de 1000
-  CorrectAnswer: log(1000, 8)
-  AnswerTests: omnitest(correctExpr='log(1000, 8)')
-  Hint: Tapez log(1000, 8)
-
-- Class: cmd_question
-  Output: R connaît aussi les fonctions trigonométriques.
-    Essayez de calculer le sinus de 0.
-  CorrectAnswer: sin(0)
-  AnswerTests: omnitest(correctExpr='sin(0)')
-  Hint: Taper sin(0)
-
-- Class: cmd_question
-  Output: Ce qui nous amène naturellement à la constante pi.
-    R connaît certaines constantes.
-    Essayez de taper pi.
-  CorrectAnswer: pi
-  AnswerTests: omnitest(correctExpr='pi')
-  Hint: Taper pi
-
-- Class: cmd_question
-  Output: On peut donc maintenant calculer le cosinus de pi/2.
-  CorrectAnswer: cos(pi/2)
-  AnswerTests: omnitest(correctExpr='cos(pi/2)')
-  Hint: Tapez cos(pi/2)
-
-- Class: cmd_question
-  Output: Notez que la constante e (exponentielle) n'existe pas en tant que
-    telle dans R.
-    Essayer de taper 10e2
-  CorrectAnswer: 10e2
-  AnswerTests: omnitest(correctExpr='10e2')
-  Hint: Tapez 10e2
-
-- Class: mult_question
-  Output: e remplace en fait 10^, mais nécessite d'avoir un nombre devant.
-    1e2 est une expression valide, mais e2 ne l'est pas.
-    Voyons voir si vous avez compris. Que vaut 1e2 ?
-  AnswerChoices: 1000; 100; exp(2); 0.01
-  CorrectAnswer:  100
-  AnswerTests: omnitest(correctVal="100")
-  Hint: Pensez à remplacer e par 10^.
-
-- Class: cmd_question
-  Output: Revenons à nos constantes, pour obtenir la constante e, il suffit
-    d'utiliser la fonction exponentielle. Que vaut e ?
-  CorrectAnswer: exp(1)
-  AnswerTests: omnitest(correctExpr='exp(1)')
-  Hint: Tapez exp(1)
-
-- Class: text
-  Output: Félicitations, vous avez maintenant vu les principales opérations 
-    mathématiques simples possibles avec R. 
-    Vous savez maintenant utiliser R comme une calculatrice collège, mais R 
-    est bien plus puissant que cela. 
-    La prochaine leçon nous permettra d'aller plus loin.
 
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 

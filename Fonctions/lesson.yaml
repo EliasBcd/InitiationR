@@ -67,7 +67,7 @@
     Mais une fonction peut renvoyer d’autres types de résultats.
     Par exemple, la fonction range (étendue) renvoie un vecteur de deux nombres,
     le minimum et le maximum.
-    Essayez.
+    Essayez sur l'objet tailles.
   CorrectAnswer: range(tailles)
   AnswerTests: omnitest(correctExpr='range(tailles)')
   Hint: Tapez range(tailles) et appuyez sur Entrée pour voir le résultat.   
@@ -135,7 +135,7 @@
   Hint: Tepez mean(tailles, na.rm = TRUE) et observez le résultat.
 
     
-- Class: text
+- Class: cmd_question
   Output: Positionner le paramètre na.rm à TRUE indique à la fonction mean de ne
     pas tenir compte des valeurs manquantes dans le calcul.
     Si on ne dit rien à la fonction mean, cet argument a une valeur par défaut,
@@ -170,6 +170,101 @@
     en bas à droite, sous l’onglet Help.
     Un clic sur l’icône en forme de maison vous affichera la page d’accueil de 
     l’aide.
+    
+- Class: text
+  Output: R connaît bien évidemment aussi les fonctions mathématiques usuelles.
+    Nous allons voir maintenant comment calculer les fonctions
+    mathématiques usuelles logarithme, racine carrée, exponentielle et valeur
+    absolue.
+
+
+- Class: cmd_question
+  Output: Pour calculer la racine carré, on utilise la commande sqrt(), pour
+    square root, l'équivalent en anglais. Tapez sqrt(4).
+  CorrectAnswer:  sqrt(4)
+  AnswerTests: omnitest(correctExpr='sqrt(4)')
+  Hint: Tapez sqrt(4)
+
+- Class: cmd_question
+  Output: Essayons maintenant avec la fonction exponentielle. Tapez exp(0).
+  CorrectAnswer:  exp(0)
+  AnswerTests: omnitest(correctExpr='exp(0)')
+  Hint: Tapez exp(0)
+
+- Class: cmd_question
+  Output: Essayons maintenant avec la fonction logarithme naturel.
+    R est un logiciel de programmation en anglais, il utilise donc la
+    convention anglaise.
+    Pour obtenir ln(x), il faut taper log(x).
+    Cherchez la valeur de ln(2).
+  CorrectAnswer: log(2)
+  AnswerTests: omnitest(correctExpr='log(2)')
+  Hint: Tapez log(2)
+
+- Class: cmd_question
+  Output: Pour calculer le log français (logarithme décimal, en base 10), il
+    suffit de taper log10.
+    Cherchez à obtenir le logarithme décimal de 100.
+  CorrectAnswer: log10(100)
+  AnswerTests: omnitest(correctExpr='log10(100)')
+  Hint: Tapez log10(100)
+
+- Class: cmd_question
+  Output: Il y a en fait deux méthodes pour calculer le logarithme en base 10.
+    R permet de calculer le logarithme en n'importe quelle base, en utilisant
+    log(x, base).
+    base est donc ici le deuxième arguement, comme na.rm plus tôt.
+    Voyons voir si vous avez compris.
+    Essayez calculer le logarithme en base 8 de 1000
+  CorrectAnswer: log(1000, 8)
+  AnswerTests: omnitest(correctExpr='log(1000, 8)')
+  Hint: Tapez log(1000, 8)
+
+- Class: cmd_question
+  Output: R connaît aussi les fonctions trigonométriques.
+    Essayez de calculer le sinus de 0.
+  CorrectAnswer: sin(0)
+  AnswerTests: omnitest(correctExpr='sin(0)')
+  Hint: Tapez sin(0)
+
+- Class: cmd_question
+  Output: Ce qui nous amène naturellement à la constante pi.
+    R connaît certaines constantes.
+    Essayez de taper pi.
+  CorrectAnswer: pi
+  AnswerTests: omnitest(correctExpr='pi')
+  Hint: Tapez pi
+
+- Class: cmd_question
+  Output: On peut donc maintenant calculer le cosinus de pi/2.
+  CorrectAnswer: cos(pi/2)
+  AnswerTests: omnitest(correctExpr='cos(pi/2)')
+  Hint: Tapez cos(pi/2)
+
+- Class: cmd_question
+  Output: Notez que la constante e (exponentielle) n'existe pas en tant que
+    telle dans R.
+    Essayer de taper 10e2
+  CorrectAnswer: 10e2
+  AnswerTests: omnitest(correctExpr='10e2')
+  Hint: Tapez 10e2
+
+- Class: mult_question
+  Output: e remplace en fait 10^, mais nécessite d'avoir un nombre devant.
+    1e2 est une expression valide, mais e2 ne l'est pas.
+    Voyons voir si vous avez compris. Que vaut 1e2 ?
+  AnswerChoices: 1000; 100; exp(2); 0.01
+  CorrectAnswer:  100
+  AnswerTests: omnitest(correctVal="100")
+  Hint: Pensez à remplacer e par 10^.
+
+
+- Class: text
+  Output: Félicitations, vous avez maintenant vu les principales opérations 
+    mathématiques simples possibles avec R. 
+    Vous savez maintenant utiliser R comme une calculatrice collège, mais R 
+    est bien plus puissant que cela. 
+    La prochaine leçon nous permettra d'aller plus loin.    
     
 - Class: text
   Output: Jusqu’ici on a utilisé R de manière "interactive", en saisissant des 
@@ -210,7 +305,7 @@
     tailles.
     Puis une assignation du vecteur c(45, 59, 110, 44, 88) au vecteur poids.
     L'utilisation de quelques fonctions.
-    Puis un calcul de l'imc des à l'aide des vecteurs précédent et l'assignation 
+    Puis un calcul de l'imc à l'aide des vecteurs précédent et l'assignation 
     du résultat à l'objet imc.
     swirl va automatiquement ouvrir une fenêtre avec un script pour cet exercice.
     Essayez de bien comprendre ce scripts, je ne vous demande pas de le modifier 
