@@ -6,11 +6,14 @@
   Organization: Université Paris 8
   Version: 2.4.5
 
+- Class: text
+  Output: Exercice 1.
+  
 - Class: cmd_question
   Output: Construire le vecteur x suivant contenant les valeurs suivantes 120, 
     134, 256,  12.
-  CorrectAnswer: c(120, 134, 256, 12)
-  AnswerTests: omnitest(correctExpr='c(120, 134, 256, 12)')
+  CorrectAnswer: x <- c(120, 134, 256, 12)
+  AnswerTests: omnitest(correctExpr='x <- c(120, 134, 256, 12)')
   Hint: Essayez de retrouver quelle fonction permet la création d'un vecteur.
 
 - Class: cmd_question
@@ -27,6 +30,9 @@
   CorrectAnswer: x*2
   AnswerTests: any_of_exprs('x*2', '2*x')
   Hint: Multiplication !
+
+- Class: text
+  Output: Exercice 2.
   
 - Class: text
   Output: On a demandé à 4 ménages le revenu des deux conjoints, et le nombre 
@@ -41,50 +47,123 @@
   AnswerTests: any_of_exprs('conjoint1 + conjoint2', 'conjoint2 + conjoint1')
   Hint: Addition de vecteurs.
 
-- Class: cmd_question
-  Output: Calculez maintenant le revenu total de chaque ménage.
-  CorrectAnswer: conjoint1 + conjoint2
-  AnswerTests: any_of_exprs('conjoint1 + conjoint2', 'conjoint2 + conjoint1')
-  Hint: Addition de vecteurs.
   
 - Class: cmd_question
   Output: Divisez le revenu total par le nombre de personnes pour obtenir
     le revenu par personne de chaque ménage.
   CorrectAnswer: (conjoint1 + conjoint2) / nb_personnes
-  AnswerTests: any_of_exprs('(conjoint1 + conjoint2) / nb_personnes', ' (conjoint2 + conjoint1) / nb_personnes')
-  Hint: Il faut maintenant faire plusieurs opérations, et ne pas oublier les parenthèses.
+  AnswerTests: any_of_exprs('(conjoint1 + conjoint2) / nb_personnes',
+    ' (conjoint2 + conjoint1) / nb_personnes')
+  Hint: Il faut maintenant faire plusieurs opérations, et ne pas oublier les
+    parenthèses.
 
 - Class: cmd_question
-  Output: Calculez maintenant le revenu minimum et maximum parmi ceux du premier conjoint (en une seule fonction).
+  Output: Calculez maintenant le revenu minimum et maximum parmi ceux du premier 
+    conjoint (en une seule fonction).
   CorrectAnswer: range(conjoint1)
   AnswerTests: omnitest(correctExpr='range(conjoint1)')
   Hint: Addition de vecteurs.
 
 - Class: cmd_question
-  Output: Sur une autre vague d'enquête, certain conjoints ont refusés de répondre.
+  Output: Sur une autre vague d'enquête, certain conjoints ont refusés de
+    répondre.
     Les valeurs obtenues sont stockées dans l'objet conjoint_na.
     Calculez maintenant le revenu minimum et maximum parmi ceux ayant répondu. 
   CorrectAnswer: range(conjoint_na, na.rm=TRUE)
   AnswerTests: omnitest(correctExpr='range(conjoint_na, na.rm=TRUE)')
   Hint: Quand les enquêtés refusent de répondre, on indique NA dans R.
-
+  
+- Class: text
+  Output: Exercice 3.
+  
 - Class: text
   Output: Les deux vecteurs precipitations et temperatures représentent les 
     précipitations (en mm) et la température (en °C) moyennes pour chaque mois
-    de l’année pour la ville de Lyon (moyennes calculées sur la période 1981-2010)
+    de l’année pour la ville de Lyon (moyennes calculées sur la période 
+    1981-2010)
     
 - Class: cmd_question
   Output: Calculez la température moyenne sur l’année.
   CorrectAnswer: mean(temperatures)
-  AnswerTests: any_of_exprs('mean(temperatures)', 'mean(temperatures, na.rm=TRUE)')
+  AnswerTests: any_of_exprs('mean(temperatures)', 
+    'mean(temperatures, na.rm=TRUE)')
   Hint: Quelle fonction permet de calculer la moyenne ?
   
 - Class: cmd_question
   Output: Calculez la quantité totale de précipitations sur l’année.
   CorrectAnswer: sum(precipitations)
-  AnswerTests: any_of_exprs(' sum(precipitations)', ' sum(precipitations, na.rm=TRUE)')
+  AnswerTests: any_of_exprs('sum(precipitations)',
+    'sum(precipitations, na.rm=TRUE)')
   Hint: Quelle fonction permet de calculer la somme ?
+  
+- Class: cmd_question
+  Output: Observez le vecteur precipitations.
+  CorrectAnswer: precipitations
+  AnswerTests: omnitest(correctExpr='precipitations')
+  Hint: Comment peut-on regarder ce que contient un objet ?
+   
+- Class: cmd_question
+  Output: Tapez la commande cumsum(precipitations).
+  CorrectAnswer: cumsum(precipitations)
+  AnswerTests: any_of_exprs('cumsum(precipitations)', 
+    'cumsum(precipitations, na.rm=TRUE)')
+  Hint: Tapez la commande cumsum(precipitations)
+  
+- Class: mult_question
+  Output: À quoi correspond et comment peut-on interpréter le résultat de la 
+    fonction cumsum ? 
+    Vous pouvez vous aider de la page d’aide de la fonction si nécessaire.
+    Rappelez-vous que vous pouvez experimenter dans swirl sans soumettre la
+    réponse en entrant la commande play(), et ce, juste qu'à ce vous tapiez la 
+    commande nxt().
+  AnswerChoices: "La somme cumulée des termes du vecteur.;La somme de tous
+    les termes du vecteur.;La somme de chaque terme et du terme précédent.;
+    La différence entre chaque terme du vecteur et le précédent."
+  CorrectAnswer: "La somme cumulée des termes du vecteur."
+  AnswerTests: omnitest(correctVal="La somme cumulée des termes du vecteur.")
+  Hint: Pensez à utiliser l'aide. 
+  
+- Class: cmd_question
+  Output: Tapez la commande diff(temperatures).
+  CorrectAnswer: diff(temperatures)
+  AnswerTests: omnitest(correctExpr = 'diff(temperatures)')
+  Hint: Tapez la commande diff(temperatures)
+  
+- Class: mult_question
+  Output: À quoi correspond et comment peut-on interpréter le résultat de la 
+    fonction diff ? 
+    Vous pouvez vous aider de la page d’aide de la fonction si nécessaire.
+    Rappelez-vous que vous pouvez experimenter dans swirl sans soumettre la réponse
+    en entrant la commande play(), et ce, juste qu'à ce vous tapiez la commande
+    nxt().
+  AnswerChoices: "La somme cumulée des termes du vecteur.;La somme de tous
+    les termes du vecteur.;La somme de chaque terme et du terme précédent.;
+    La différence entre chaque terme du vecteur et le précédent."
+  CorrectAnswer: "La différence entre chaque terme du vecteur et le précédent."
+  AnswerTests: omnitest(correctVal=
+    "La différence entre chaque terme du vecteur et le précédent.")
+  Hint: Pensez à utiliser l'aide. 
 
+- Class: text
+  Output: Exercice 4.
+
+- Class: cmd_question
+  Output: On a relevé les notes en maths, anglais et sport d’une classe de six 
+    élèves et on a stocké ces données dans trois vecteurs maths, anglais et sport.
+    Calculez la moyenne des élèves de la classe en anglais.
+  CorrectAnswer: mean(anglais)
+  AnswerTests: any_of_exprs('mean(anglais)', 'mean(anglais, na.rm=TRUE)')
+  Hint: Quelle fonction permet de calculer la moyenne ?
+
+- Class: cmd_question
+  Output: Calculez la moyenne générale de chaque élève (la moyenne des ses
+    notes dans les trois matières).
+  CorrectAnswer: (maths + anglais + sport) / 3
+  AnswerTests: calculates_same_value("(maths + anglais + sport) / 3")
+  Hint: Rappelez-vous que R peut faire des opérations termes à termes avec les 
+    vecteurs.
+
+  
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
     enseignant (cela ne fonctionnera que pour les étudiants de l'université 
