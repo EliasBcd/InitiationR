@@ -163,6 +163,33 @@
   Hint: Rappelez-vous que R peut faire des opérations termes à termes avec les 
     vecteurs.
 
+
+- Class: cmd_question
+  Output: Tapez pmin(maths, anglais, sport)
+  CorrectAnswer: pmin(maths, anglais, sport)
+  AnswerTests: omnitest(correctExpr = "pmin(maths, anglais, sport)")
+  Hint: Tapez pmin(maths, anglais, sport)
+
+- Class: cmd_question
+  Output: Tapez pmax(maths, anglais, sport)
+  CorrectAnswer: pmax(maths, anglais, sport)
+  AnswerTests: omnitest(correctExpr = "pmax(maths, anglais, sport)")
+  Hint: Tapez pmax(maths, anglais, sport)
+  
+- Class: mult_question
+  Output: Que calculent ces fonctions ?
+    Vous pouvez vous aider de la page d’aide de la fonction si nécessaire.
+    Rappelez-vous que vous pouvez experimenter dans swirl sans soumettre la réponse
+    en entrant la commande play(), et ce, juste qu'à ce vous tapiez la commande
+    nxt().
+  AnswerChoices: "Le minimum et le maximum des notes.;
+    Le minimum et le maximum termes à termes des notes.;
+    Des notes aléatoires.;
+  CorrectAnswer: "Le minimum et le maximum termes à termes des notes."
+  AnswerTests: omnitest(correctVal=
+    "Le minimum et le maximum termes à termes des notes.")
+  Hint: Pensez à utiliser l'aide. 
+  
   
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
