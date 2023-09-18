@@ -249,7 +249,7 @@
     3 tailles par 3. 
     Essayez.
   CorrectAnswer: (taille1 + taille2 + taille3) / 3
-  AnswerTests: omnitest(correctVal = '(taille1 + taille2 + taille3) / 3')
+  AnswerTests: calculates_same_value('(taille1 + taille2 + taille3) / 3')
   Hint: "Tapez (taille1 + taille2 + taille3) / 3"
   
 - Class: text
