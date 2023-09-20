@@ -182,12 +182,9 @@
     Rappelez-vous que vous pouvez experimenter dans swirl sans soumettre la réponse
     en entrant la commande play(), et ce, juste qu'à ce vous tapiez la commande
     nxt().
-  AnswerChoices: "Le minimum et le maximum des notes.;
-    Le minimum et le maximum termes à termes des notes.;
-    Des notes aléatoires.;
+  AnswerChoices: "Le minimum et le maximum des notes.;Le minimum et le maximum termes à termes des notes.;Des notes aléatoires."
   CorrectAnswer: "Le minimum et le maximum termes à termes des notes."
-  AnswerTests: omnitest(correctVal=
-    "Le minimum et le maximum termes à termes des notes.")
+  AnswerTests: omnitest(correctVal="Le minimum et le maximum termes à termes des notes.")
   Hint: Pensez à utiliser l'aide. 
   
   
