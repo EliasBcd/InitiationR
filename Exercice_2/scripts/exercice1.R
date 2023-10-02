@@ -4,13 +4,15 @@
 # - assigner le jeu de données dans un nouvel objet nommé `df`
 # - afficher les dimensions.
 # - Assigner les noms des différentes variables du tableau à l'objet nom.
+# Après chaque ligne de commentaire (sauf celles-ci), vous devez écrire une ligne
+# de code.
 
 # Charger la librairie
 
 # Charger le jeu de données
 
-# Assigner à l'objet df
+# Assigner les données à l'objet df
 
-# Afficher les dimensions
+# Afficher les dimensions du tableau de données
 
-# Afficher la liste des variables
+# Assigner la liste des noms de variable à l'objet nom

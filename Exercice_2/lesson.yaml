@@ -18,7 +18,8 @@
     Afficher les dimensions et la liste des variables de `df`
     Tapez enfin submit() pour soumettre votre script.
   AnswerTests: test_exo1()
-  Hint: Repensez à toutes les commandes que nous avons vu, vous devez juste les écrire dans le script.
+  Hint: Repensez à toutes les commandes que nous avons vu, vous devez les écrire dans le script.
+    Pensez à bien assigner la variables correctement.
   Script: exercice1.R
 
 
@@ -26,15 +27,15 @@
   Output: Exercice 2
 
 - Class: cmd_question
-  Output: On souhaite étudier la répartition du temps passé devant la télévision par les enquêtés (variable `heures.tv`). 
+  Output: Grâce aux données précédentes, on souhaite étudier la répartition du 
+    temps passé devant la télévision par les enquêtés (variable `heures.tv`). 
     Pour cela, affichez les principaux indicateurs de cette variable, valeur minimale, maximale, moyenne et médiane. 
   CorrectAnswer: summary(df$heures.tv)
   AnswerTests: omnitest(correctExpr='summary(df$heures.tv)')
   Hint: Pensez à la fonction qui vous permet d'obtenir plusieurs caractéristiques numériques d'un seul coup.
 
 - Class: cmd_question
-  Output: Comment calculez l'écart-type ?
-
+  Output: Pouvez-vous donner l'ecart-type des heures passées devant la télévision ?
   CorrectAnswer: sd(df$heures.tv, na.rm = TRUE)
   AnswerTests: omnitest(correctExpr='sd(df$heures.tv, na.rm = TRUE)')
   Hint: Quel fonction permet d'obtenir l'écart-type ?
@@ -50,6 +51,14 @@
   CorrectAnswer: table(df$trav.imp)
   AnswerTests: omnitest(correctExpr='table(df$trav.imp)')
   Hint: Quelle fonction permet d'obtenir un tri à plat d'une variable qualitative ?
+  
+- Class: cmd_question
+  Output: Pouvez-vous dire si l'importance accordée au travail est similaire pour les hommes
+    et les femmes ?
+  CorrectAnswer: table(df$trav.imp)
+  AnswerTests: any_of_exprs('table(df$trav.imp, df$sexe)', 'table(df$sexe, df$trav.imp)')
+  Hint: Quelle fonction permet d'obtenir un tri à plat d'une variable qualitative ?
+   C'est la même pour un tableau croisé dynamique.
 
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
