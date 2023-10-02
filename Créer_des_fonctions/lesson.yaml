@@ -1,0 +1,145 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Créer des fonctions
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+
+- Class: text
+  Output: Nous avons déjà rencontré et utilisé un grand nombre de fonctions, certaines assez simples (`mean`, `max`...) et d'autres beaucoup plus complexes (`summary`, `mutate`...). R, comme tout langage de programmation, offre la possibilité de créer et d'utiliser ses propres fonctions.
+
+- Class: script
+  Output: Voici un exemple de fonction très simple, quoi que d'une utilité douteuse, puisqu'elle se contente d'ajouter 2 à un nombre.
+    Tapez submit() une fois que vous avez fini de l'observer.
+  AnswerTests: test_ajoute2()
+  Hint: Tapez submit() sans modifier la fonction. Vous avez juste besoin de l'observer pour l'instant.
+  Script: ajoute2.R
+
+- Class: cmd_question
+  Output: En exécutant ce code, on crée une nouvelle fonction nommée `ajoute2`, que l'on peut directement utiliser dans un script ou dans la console.
+    Essayez d'exécuter ajoute2(3) et observez le résultat.
+  CorrectAnswer: ajoute2(3)
+  AnswerTests: omnitest(correctExpr='ajoute2(3)')
+  Hint: Tapez ajoute2(3) dans la console.
+
+- Class: text
+  Output: Avec le code précédent, on a donc créé un nouvel objet `ajoute2` de type `function`.
+    Cette nouvelle fonction prend un seul argument `x`, calcule la valeur `x + 2` et retourne ce résultat.
+    On l'utilise en tapant son nom suivi de la valeur de son argument entre parenthèses, comme ce que vous venez de faire.
+
+- Class: cmd_question
+  Output: Utilisez maintenant la fonction ajoute2 sur la valeur 41.
+  CorrectAnswer: ajoute2(41)
+  AnswerTests: omnitest(correctExpr='ajoute2(41)')
+  Hint: Comment avez-vous fait pour utiliser ajoute2 sur la valeur 3 ?
+    Faites pareil avec comme valeur 41 maintenant.
+
+- Class: cmd_question
+  Output: Nous avons en initialisant la leçon crée l'objet y contenant la valeur 5.
+    Appliquez maintenant la fonction ajoute2 à l'objet y.
+  CorrectAnswer: ajoute2(y)
+  AnswerTests: omnitest(correctExpr='ajoute2(y)')
+  Hint: Comment avez-vous fait pour utiliser ajoute2 sur la valeur 3 ?
+    Faites pareil avec l'objet y.
+
+
+- Class: cmd_question
+  Output: À noter que comme `x + 2` fonctionne si `x` est un vecteur, on peut aussi appeler notre fonction en lui passant un vecteur en argument.
+    Créez un objet vec contenant le vecteur de tous les nombres consécutifs entre 1 et 8.
+  CorrectAnswer: vec <- 1:8
+  AnswerTests: any_of_exprs('vec <- 1:8', 'vec <- seq(1, 8)', 'vec <- seq(1, 8, 1)')
+  Hint: Nous avons vu dans une leçon précédente comment créer des vecteurs de nombres entiers consécutifs.
+
+- Class: cmd_question
+  Output: Utilisez maintenant la fonction ajoute2 sur le vecteur vec créé à la question précédente.
+  CorrectAnswer: ajoute2(vec)
+  AnswerTests: omnitest(correctExpr='ajoute2(vec)')
+  Hint: Tapez ajoute2(vec) dans la console et observez le résultat obtenu.
+
+- Class: cmd_question
+  Output: Une fonction peut évidemment prendre plusieurs arguments. 
+    Dans ce cas on liste les arguments dans les parenthèses en les séparant par des virgules.
+    Essayez de créer une fonction somme qui additionne deux arguments x et y.
+  CorrectAnswer: somme <- function(x, y) x+y
+  AnswerTests: test_somme()
+  Hint: Tapez dans la console somme <- function(x, y) { return(x+y) } pour créer la fonction somme.
+
+- Class: cmd_question
+  Output: Essayez maintenant d'utiliser la fonction somme sur 3 et 5. 
+  CorrectAnswer: somme(3, 5)
+  AnswerTests: omnitest(correctVal=8)
+  Hint: Tapez somme(3, 5) dans la console.
+
+- Class: script
+  Output: Une fonction peut aussi n'accepter aucun argument, dans ce cas on laisse les parenthèses vides.
+    Observez le script qui apparaît et tapez ensuite submit() pour passer à la suite.
+  AnswerTests: test_miaule()
+  Hint: Tapez simplement submit() après avoir observé le script pour passer à la fonction suivante.
+  Script: miaule.R
+
+- Class: cmd_question
+  Output: Essayez maintenant d'utiliser la fonction précédemment définie.
+    Attention, une fonction sans argument nécessite quand même des parenthèses pour être executée et prendre une valeur.
+  CorrectAnswer: miaule()
+  AnswerTests: omnitest(correctExpr='miaule()')
+  Hint: Tapez miaule() dans la console.
+
+- Class: text
+  Output: À noter que si on appelle une fonction avec un nombre d'arguments incorrect, cela génère une erreur.
+    Je ne peux pas vous le montrer ici, mais vous avez déjà rencontré ce cas de figure.
+    Un message commençant avec Error apparaît alors dans la console.
+
+- Class: script
+  Output: Prenons un exemple un peu plus élaboré.
+    La fonction `table()` retourne le tri à plat en effectifs d'une variable qualitative. 
+    On souhaite créer une fonction qui calcule plutôt le tri à plat en pourcentages. 
+    Voici une manière de le faire.
+  AnswerTests: test_prop_table()
+  Hint: Tapez submit() une fois que vous avez fini de lire le script.
+  Script: prop-table.R
+
+- Class: cmd_question
+  Output: Testez la fonction prop_table sur une variable du jeu de données questionr.
+    Par exemple la variable qualif.
+  CorrectAnswer: prop_tab(hdv2003$qualif)
+  AnswerTests: expr_uses_func('prop_tab')
+  Hint: Tapez prop_table(hdv2003$qualif) dans la console.
+
+- Class: script
+  Output: On pourrait améliorer la fonction.
+    On pourrait vouloir modifier le nombre de décimales affichées pour les pourcentages, par exemple en les limitant à 1. 
+    Pour cela on ajoute une instruction `round()`.
+    Tapez submit() une fois que vous avez bien lu le script.
+  AnswerTests: test_prob_tab_deci()
+  Hint: Tapez submit() pour soumettre votre script.
+  Script: prop-tab-deci.R
+
+- Class: script
+  Output: Ça fonctionne !
+    Cela dit, limiter à un chiffre après la virgule ne convient pas forcément dans tous les cas. 
+    L'idéal serait d'offrir la possibilité à la personne qui appelle la fonction de choisir elle-même la précision de l'affichage. 
+    Comment ?
+    Tout simplement en ajoutant un deuxième argument à notre fonction, que nous nommerons `decimales`, et en utilisant cet argument à la place du 1 dans l'appel à `round()`.
+  AnswerTests: test_prop_tab_deci_arg()
+  Hint: Tapez submit() une fois que vous avez pu lire les modifications sur la fonction.
+  Script: prop-tab-deci-arg.R
+
+- Class: cmd_question
+  Output: Désormais, notre fonction s'utilise en lui indiquant deux arguments.
+    Essayez de l'utiliser en ayant une seule décimale dans le tri à plat de la variable qualif.
+  CorrectAnswer: prop_tab(hdv2003$qualif, 1)
+  AnswerTests: omnitest(correctExpr='prop_tab(hdv2003$qualif, 1)')
+  Hint: Tapez prop_tab(hdv2003$qualif, 1) dans la console.
+  
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Creer_Fonctions.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
+
