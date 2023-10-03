@@ -86,8 +86,8 @@ test_prop_tab_deci <- function(){
   }
   
   try({
-    t1 <- all(prop_tab_deci(vec) == prop_table_correct(vec))
-    t2 <- all(prop_tab_deci(vec2) == prop_table_correct(vec2))
+    t1 <- all(prop_tab(vec) == prop_tab_correct(vec))
+    t2 <- all(prop_tab(vec2) == prop_tab_correct(vec2))
     ok <- all(t1, t2)   
   },
   silent = TRUE
@@ -109,9 +109,9 @@ test_prop_tab_deci_arg <- function(){
   }
   
   try({
-    t1 <- all(prop_tab_deci_arg(vec, 1) == prop_table_correct(vec, 1))
-    t2 <- all(prop_tab_deci_arg(vec2, 1) == prop_table_correct(vec2, 1))
-    t3 <- all(prop_tab_deci_arg(vec, 3) == prop_table_correct(vec, 3))
+    t1 <- all(prop_tab(vec, 1) == prop_tab_correct(vec, 1))
+    t2 <- all(prop_tab(vec2, 1) == prop_tab_correct(vec2, 1))
+    t3 <- all(prop_tab(vec, 3) == prop_tab_correct(vec, 3))
     ok <- all(t1, t2, t3)   
   },
   silent = TRUE
@@ -129,10 +129,10 @@ test_recode <- function(){
   recode_correct <- function(var) ifelse(var == "1","Oui", "Non")
   
   try({
-    t1 <- all(recode_oui_non(df1) == recode_correct(df1))
-    t2 <- all(recode_oui_non(df2) == recode_correct(df2))
-    t3 <- all(recode_oui_non(df3) == recode_correct(df3))
-    t4 <- all(recode_oui_non(df4) == recode_correct(df4))
+    t1 <- all(recode_oui_non(df$q1) == recode_correct(df$q1))
+    t2 <- all(recode_oui_non(df$q2) == recode_correct(df$q2))
+    t3 <- all(recode_oui_non(df$q3) == recode_correct(df$q3))
+    t4 <- all(recode_oui_non(df$q4) == recode_correct(df$q4))
     ok <- all(t1, t2, t3, t4)   
   },
   silent = TRUE
@@ -142,7 +142,7 @@ test_recode <- function(){
   exists('ok') && isTRUE(ok)
 }
 
-test_prop_tab_default <- function(){
+test_prop_tab_defaut <- function(){
   vec <- c("rouge", "vert", "vert", "bleu", "rouge")
   vec2 <- rep(1:4, 3)
   
@@ -154,9 +154,9 @@ test_prop_tab_default <- function(){
   }
   
   try({
-    t1 <- all(prop_tab_deci_arg(vec) == prop_table_correct(vec))
-    t2 <- all(prop_tab_deci_arg(vec2) == prop_table_correct(vec2))
-    t3 <- all(prop_tab_deci_arg(vec, 2) == prop_table_correct(vec, 2))
+    t1 <- all(prop_tab(vec) == prop_tab_correct(vec))
+    t2 <- all(prop_tab(vec2) == prop_tab_correct(vec2))
+    t3 <- all(prop_tab(vec, 2) == prop_tab_correct(vec, 2))
     ok <- all(t1, t2, t3)   
   },
   silent = TRUE
@@ -174,6 +174,44 @@ test_manif <- function() {
     ok <- all(t1, t2)
   }, silent = TRUE)
   exists('ok') && isTRUE(ok)
+}
+
+test_indicateurs2 <- function(){
+  vec2 <- rep(1:4, 3)
+  
+  indicateurs_correct <- function(v) {
+    moyenne <- mean(v)
+    ecart_type <- sd(v)
+    c(moyenne, ecart_type)
+  }
+  
+  try({
+    t1 <- all(indicateurs(vec2) == indicateurs_correct(vec2))
+    t2 <- all(indicateurs(hdv2003$age) == indicateurs_correct(hdv2003$age))
+    ok <- all(t1, t2)   
+  },
+  silent = TRUE
+  )
+}
+
+test_indicateurs3 <- function(){
+  vec2 <- rep(1:4, 3)
+  
+  indicateurs_correct <- function(v) {
+    moyenne <- mean(v)
+    ecart_type <- sd(v)
+    list(moyenne = moyenne, ecart_type = ecart_type)
+  }
+  
+  try({
+    t1 <- all(indicateurs(vec2) == indicateurs_correct(vec2))
+    t2 <- all(indicateurs(hdv2003$age) == indicateurs_correct(hdv2003$age))
+    t3 <- indicateurs(vec2)$moyenne == indicateurs_correct(vec2)$moyenne
+    t4 <- indicateurs(vec2)$ecart_type == indicateurs_correct(vec2)$ecart_type
+    ok <- all(t1, t2, t3, t4)   
+  },
+  silent = TRUE
+  )
 }
 
 ## Saving the progress -------

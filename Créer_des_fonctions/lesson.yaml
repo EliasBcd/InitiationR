@@ -100,7 +100,7 @@
   Script: prop-table.R
 
 - Class: cmd_question
-  Output: Testez la fonction prop_table sur une variable du jeu de données hdv2003 issu de la librairie questionr.
+  Output: Testez la fonction prop_tab sur une variable du jeu de données hdv2003 issu de la librairie questionr.
     Par exemple la variable qualif.
     Essayez pour voir.
   CorrectAnswer: prop_tab(hdv2003$qualif)
@@ -112,9 +112,16 @@
     On pourrait vouloir modifier le nombre de décimales affichées pour les pourcentages, par exemple en les limitant à 1. 
     Pour cela on ajoute une instruction `round()`.
     Tapez submit() une fois que vous avez bien lu le script.
-  AnswerTests: test_prob_tab_deci()
+  AnswerTests: test_prop_tab_deci()
   Hint: Tapez submit() pour soumettre votre script.
   Script: prop-tab-deci.R
+
+- Class: cmd_question
+  Output: Essayez maintenant de l'utiliser.
+    Observez le résultat obtenu.
+  CorrectAnswer: prop_tab(hdv2003$qualif)
+  AnswerTests: omnitest(correctExpr='prop_tab(hdv2003$qualif)')
+  Hint: Tapez prop_tab(hdv2003$qualif) dans la console.
 
 - Class: script
   Output: Ça fonctionne !
@@ -125,13 +132,13 @@
   AnswerTests: test_prop_tab_deci_arg()
   Hint: Tapez submit() une fois que vous avez pu lire les modifications sur la fonction.
   Script: prop-tab-deci-arg.R
-
+  
 - Class: cmd_question
   Output: Désormais, notre fonction s'utilise en lui indiquant deux arguments.
-    Essayez de l'utiliser en ayant une seule décimale dans le tri à plat de la variable qualif.
-  CorrectAnswer: prop_tab(hdv2003$qualif, 1)
-  AnswerTests: omnitest(correctExpr='prop_tab(hdv2003$qualif, 1)')
-  Hint: Tapez prop_tab(hdv2003$qualif, 1) dans la console.
+    Essayez de l'utiliser en ayant trois décimales dans le tri à plat de la variable qualif.
+  CorrectAnswer: prop_tab(hdv2003$qualif, 3)
+  AnswerTests: omnitest(correctExpr='prop_tab(hdv2003$qualif, 3)')
+  Hint: Tapez prop_tab(hdv2003$qualif, 3) dans la console.
 
 - Class: script
   Output: Parfois une fonction n'a pas pour objectif de renvoyer un résultat mais d'accomplir une action, comme générer un graphique, afficher un message, enregistrer un fichier...
@@ -139,7 +146,7 @@
     Les actions "visibles" dans notre session R accomplies par une fonction en-dehors du résultat renvoyé sont appelés des *effets de bord*.
     Un effet de bord très courant consiste à afficher des informations dans la console.
     Tapez submit() une fois que vous avez fini de lire et modifier le script.
-  AnswerTests: test_indicateur()
+  AnswerTests: test_indicateurs()
   Hint: Vous n'avez rien a changé, tapez submit() dans la console une fois que vous avez fini de modifier le script.
   Script: indicateurs.R
 
@@ -228,7 +235,7 @@
   Output: Quand on passe les arguments par nom, on peut les indiquer dans l'ordre que l'on souhaite.
     Vous pouvez par exemple essayez avec mean(x = hdv2003$age, na.rm = TRUE, trim = 0.1).
   CorrectAnswer: mean(x = hdv2003$age, na.rm = TRUE, trim = 0.1)
-  AnswerTests: omnitest(correctVal=mean(x = hdv2003$age, trim = 0.1, na.rm = TRUE));expr_uses_func(mean)
+  AnswerTests: omnitest(correctVal=mean(x = hdv2003$age, trim = 0.1, na.rm = TRUE));expr_uses_func("mean")
   Hint: Tapez mean(x = hdv2003$age, na.rm = TRUE, trim = 0.1) dans la console, par exemple.
   
 
@@ -236,7 +243,7 @@
   Output: Et on peut évidemment mélanger passage par position et passage par nom.
     Vous pouvez par exemple essayez avec mean(hdv2003$age, na.rm = TRUE, trim = 0.1).
   CorrectAnswer: mean(hdv2003$age, na.rm = TRUE, trim = 0.1)
-  AnswerTests: omnitest(correctVal=mean(x = hdv2003$age, trim = 0.1, na.rm = TRUE));expr_uses_func(mean)
+  AnswerTests: omnitest(correctVal=mean(x = hdv2003$age, trim = 0.1, na.rm = TRUE));expr_uses_func("mean")
   Hint: Tapez mean(hdv2003$age, na.rm = TRUE, trim = 0.1) dans la console, par exemple.
   
 - Class: text
@@ -263,7 +270,7 @@
     On peut indiquer une valeur par défaut à l'argument `decimales`.
     Regardez le script pour voir comment faire.
     Tapez ensuite submit() pour passer à la question suivante.
-  AnswerTests: test_prop_table_defaut()
+  AnswerTests: test_prop_tab_defaut()
   Hint: Tapez ensuite dans la console submit() pour passer à la question suivante.
   Script: prop-tab-default.R
 
@@ -332,7 +339,7 @@
     et nom.
     
 - Class: text
-  Output: On l'a vu, l'objectif d'une fonction est en général de renvoyer un résultat.4
+  Output: On l'a vu, l'objectif d'une fonction est en général de renvoyer un résultat.
     Lors de la définition d'une fonction, le résultat peut être retourné en utilisant la fonction `return()`.
     En réalité, l'utilisation de `return()` n'est pas obligatoire. 
     Une fonction retourne automatiquement le résultat de la dernière instruction qu'elle exécute.
