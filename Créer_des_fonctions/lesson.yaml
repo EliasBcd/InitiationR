@@ -131,7 +131,277 @@
   CorrectAnswer: prop_tab(hdv2003$qualif, 1)
   AnswerTests: omnitest(correctExpr='prop_tab(hdv2003$qualif, 1)')
   Hint: Tapez prop_tab(hdv2003$qualif, 1) dans la console.
+
+- Class: script
+  Output: Parfois une fonction n'a pas pour objectif de renvoyer un résultat mais d'accomplir une action, comme générer un graphique, afficher un message, enregistrer un fichier...
+    Dans ce cas la fonction peut ne pas inclure d'instruction `return()`. 
+    Les actions "visibles" dans notre session R accomplies par une fonction en-dehors du résultat renvoyé sont appelés des *effets de bord*.
+    Un effet de bord très courant consiste à afficher des informations dans la console.
+    Tapez submit() une fois que vous avez fini de lire et modifier le script.
+  AnswerTests: test_indicateur()
+  Hint: Vous n'avez rien a changé, tapez submit() dans la console une fois que vous avez fini de modifier le script.
+  Script: indicateurs.R
+
+- Class: cmd_question
+  Output: Voyez maintenant ce qu'affiche la fonction indicateurs en utilisant comme argument la variable age du tableau de donnée hdv20003.
+  CorrectAnswer: indicateurs(hdv2003$age)
+  AnswerTests: omnitest(correctExpr='indicateurs(hdv2003$age)')
+  Hint: Comment utilise-t-on un argument dans une fonction ?
+    Pour accéder à la variable age du tableau de donnée hdv2003, il faut taper hdv2003$age.
+
+- Class: text
+  Output: Quand on souhaite seulement afficher une chaîne de caractère, on peut utiliser `cat()` qui fournit une sortie plus lisible que `print`.
+
+- Class: text
+  Output: Enfin, on peut aussi utiliser `message()` qui, comme son nom l'indique, affiche un message dans la console, avec une mise en forme spécifique. 
+    En général on l'utilise plutôt pour afficher des informations relatives au déroulement de la fonction.
+
+- Class: text
+  Output: On peut se demander dans quels cas il est utile de créer une fonction.
+    Une règle courante considère que dès qu'on a répété le même code plus de deux fois, il est préférable d'en faire une fonction. 
+    Celles-ci ont en effet comme avantage d'éviter la duplication du code.
+    Imaginons que nous avons récupéré un jeu de données avec toute une série de variables ayant les modalités `"1"` et `"2"` qui correspondent aux réponses `"Oui"` et `"Non"` à des questions.
+
+- Class: cmd_question
+  Output: Ce jeu de donnée est chargé dans l'objet df.
+    Commencez par observer cette objet en l'affichant.
+  CorrectAnswer: df
+  AnswerTests: omnitest(correctExpr='df')
+  Hint: Tapez df dans la console pour observer l'objet.
+
+- Class: script
+  Output: On peut être tenté de dupliquer le code autant de fois qu'on doive recoder les réponses.
+    Il est cependant plus judicieux dans ce cas de créer une fonction qui recode les messages.
+    Tapez submit() une fois que vous avez fini d'écrire le script et de modifier la fonction comme demandé.
+  AnswerTests: test_recode()
+  Hint: Tapez submit() dans la console une fois que vous avez fini d'écrire le script.
+  Script: recode.R
+
+- Class: cmd_question
+  Output: En effet, il est alors très simple d'appliquer ce recodage à plusieurs variables.
+    Pour la première question, on écrit df$q1 <- recode_oui_non(df$q1).
+    Faites ainsi pour la deuxième question.
+  CorrectAnswer: df$q2 <- recode_oui_non(df$q2)
+  AnswerTests: omnitest(correctExpr='df$q2 <- recode_oui_non(df$q2)')
+  Hint: Il faut remplacer 1 par 2 pour traiter la deuxième question.
+
+- Class: text
+  Output: Autre avantage, si on réalise qu'on a commis une erreur et qu'en fait le code `"1"` correspondait à `"Non"` et le code `"2"` à `"Oui"`, on n'a pas besoin de modifier tous les endroits où on a copié/collé notre recodage.
+    On a juste à corriger la définition de la fonction.
+
+- Class: text
+  Output: Les avantages de procéder ainsi sont donc multiples.
+    Premièrement, créer une fonction évite la répétition du code et le rend moins long et plus lisible, surtout si on donne à notre fonction un nom explicite permettant de comprendre facilement ce qu'elle fait.
+    Deuxièmement, créer une fonction évite les erreurs de copier/coller du code.
+    Troisièmement, une fonction permet de mettre à jour plus facilement son code. 
+    Si on se rend compte d'une erreur ou si on souhaite améliorer son fonctionnement, on n'a qu'un seul endroit à modifier.
+    Enfin, créer des fonctions permet potentiellement de rendre son code réutilisable d'un script à l'autre ou même d'un projet à l'autre.
+    Voire, à terme, de les regrouper dans un *package* pour soi-même ou pour diffusion à d'autres utilisateurs et utilisatrices de R.
+
+
+
+- Class: text
+  Output: Les arguments (ou paramètres) d'une fonction sont ce qu'on lui donne "en entrée", et qui vont soit lui fournir des données, soit modifier son comportement. 
+    La liste des arguments acceptés par une fonction est indiquée entre les parenthèses de l'appel de `function()`.
+    Une fonction peut aussi ne pas accepter d'arguments, dans ce cas on la définit juste avec `function()`.
+
+
+- Class: cmd_question
+  Output: Lors de l'appel de la fonction, on peut lui passer les arguments *par position*.
+    Vous pouvez par exemple essayez avec mean(hdv2003$age, 0.1, TRUE).
+  CorrectAnswer: mean(hdv2003$age, 0.1, TRUE)
+  AnswerTests: omnitest(correctExpr='mean(hdv2003$age, 0.1, TRUE)')
+  Hint: Tapez mean(hdv2003$age, 0.1, TRUE) dans la console.
+
+- Class: text
+  Output: Dans ce cas, le premier argument vaut hdv2003$age, le deuxième 0.1 et le troisième TRUE.
+
+- Class: cmd_question
+  Output: On peut aussi passer les arguments *par nom*.
+    Vous pouvez par exemple essayez avec mean(x = hdv2003$age, trim = 0.1, na.rm = TRUE).
+  CorrectAnswer: mean(x = hdv2003$age, trim = 0.1, na.rm = TRUE)
+  AnswerTests: omnitest(correctExpr='mean(x = hdv2003$age, trim = 0.1, na.rm = TRUE)')
+  Hint: Tapez mean(x = hdv2003$age, trim = 0.1, na.rm = TRUE) dans la console.  
+
+- Class: cmd_question
+  Output: Quand on passe les arguments par nom, on peut les indiquer dans l'ordre que l'on souhaite.
+    Vous pouvez par exemple essayez avec mean(x = hdv2003$age, na.rm = TRUE, trim = 0.1).
+  CorrectAnswer: mean(x = hdv2003$age, na.rm = TRUE, trim = 0.1)
+  AnswerTests: omnitest(correctVal=mean(x = hdv2003$age, trim = 0.1, na.rm = TRUE));expr_uses_func(mean)
+  Hint: Tapez mean(x = hdv2003$age, na.rm = TRUE, trim = 0.1) dans la console, par exemple.
   
+
+- Class: cmd_question
+  Output: Et on peut évidemment mélanger passage par position et passage par nom.
+    Vous pouvez par exemple essayez avec mean(hdv2003$age, na.rm = TRUE, trim = 0.1).
+  CorrectAnswer: mean(hdv2003$age, na.rm = TRUE, trim = 0.1)
+  AnswerTests: omnitest(correctVal=mean(x = hdv2003$age, trim = 0.1, na.rm = TRUE));expr_uses_func(mean)
+  Hint: Tapez mean(hdv2003$age, na.rm = TRUE, trim = 0.1) dans la console, par exemple.
+  
+- Class: text
+  Output: Le plus souvent, les premiers arguments acceptés par une fonction sont les données sur lesquelles elle va travailler, tandis que les arguments suivants sont des paramètres qui vont modifier son comportement.
+    Par exemple, `mean` accepte comme premier argument `x`, un vecteur, puis un argument `trim` qui permet d'éliminer les valeurs extrêmes,
+    et enfin `na.rm` qui vont changer sa manière de calculer la moyenne des valeurs de `x`.
+    En général on appelle la fonction en passant les paramètres correspondant aux données par position, et les autres en les nommant. 
+    C'est ainsi qu'on ne fait ni `mean(x = tailles, na.rm = TRUE, trim = 0.1)` ni `mean(tailles, 0.1, TRUE)`, mais plutôt `mian(tailles, trim = 0.1, na.rm = TRUE)`.
+    En ce qui concerne le nom des arguments, en général ceux correspondant aux données transmises à une fonction peuvent avoir des noms relativement génériques (`x`, `y`, `v` pour un vecteur, `data` ou `df` pour un data.frame...).
+    Les autres doivent par contre avoir des noms à la fois courts et explicites. 
+    Par exemple plutôt `decimales` que `nd` ou `nombre_de_decimales`. 
+
+- Class: cmd_question
+  Output: Au moment de la définition de la fonction, on peut indiquer une valeur par défaut qui sera prise par l'argument si la personne qui utilise la fonction n'en fournit pas. 
+    C'est ainsi que pour calculer la moyenne, vous pouvez simplement taper mean(hdv2003$age).
+    R comprendra alors qu'il doit utiliser les valeurs par défaut de `trim`, qui est 0
+    et de `na.rm`, qui est FALSE.
+  CorrectAnswer: mean(hdv2003$age)
+  AnswerTests: omnitest(correctExpr='mean(x = hdv2003$age)')
+  Hint: Tapez mean(hdv2003$age) dans la console, par exemple.
+
+- Class: script
+  Output: Si on reprend la fonction `prop_tab` déjà définie plus haut.
+    On peut indiquer une valeur par défaut à l'argument `decimales`.
+    Regardez le script pour voir comment faire.
+    Tapez ensuite submit() pour passer à la question suivante.
+  AnswerTests: test_prop_table_defaut()
+  Hint: Tapez ensuite dans la console submit() pour passer à la question suivante.
+  Script: prop-tab-default.R
+
+- Class: cmd_question
+  Output: Si on appelle `prop_tab` en lui passant uniquement le vecteur `v`, on voit que `decimales` vaut bien 1.
+    Essayez avec le vecteur hdv2003$qualif.
+  CorrectAnswer: prop_tab(hdv2003$qualif)
+  AnswerTests: omnitest(correctExpr='prop_tab(hdv2003$qualif)')
+  Hint: Tapez prop_tab(hdv2003$qualif) pour obtenir le résultat souhaité.
+
+- Class: text
+  Output: Si un argument n'a pas de valeur par défaut, il est *obligatoire*. 
+    Si l'utilisateur essaye d'appeler la fonction sans définir cet argument, cela génère une erreur.
+    Si à l'inverse un argument a une valeur par défaut, il devient *facultatif*.
+    On peut appeler la fonction sans le définir.
+    C'est ce que vous avez fait avec la fonction mean ou bien prop_tab plus tôt.
+
+- Class: cmd_question
+  Output: Avant de continuer, nous devons faire un petit détour par les listes.
+    Une capacité importante des listes est le fait qu'on puisse nommer les éléments des listes.
+    Par exemple, on peut créer une liste contenant un vecteur poids et un vecteur tailles.
+    tailles doit être un vecteur contenant les tailles 154, 175 et 165 (dant cet ordre).
+    poids doit être un vecteur contenant les poids 55, 80 et 65 (dant cet ordre).
+    On veut mettre ces deux vecteurs dans une liste.
+    On tapera alors list(tailles = c(154, 175, 165), poids = c(55, 80, 65)).
+    On souhaite assigner cette list à ma_liste.
+    Je l'ai déjà fait pour vous, en mettant quelques poids et tailles en plus.
+    Observez le résultat.
+  CorrectAnswer: ma_liste
+  AnswerTests: omnitest(correctExpr='ma_liste')
+  Hint: "Tapez : ma_liste"
+
+- Class: cmd_question
+  Output: On peut accéder à un élément nommé d'une liste à l'aide de la syntaxe nom_de_liste$nom
+    ou bien à l'aide de nom_de_liste[["nom"]].
+    Cela fonctionne aussi  pour des colonnes d'un data.frame, même si nous ne l'avons pas vu pour l'instant.
+    Essayez d'accéder à la colonne tailles de ma_liste.
+  CorrectAnswer: ma_liste$tailles
+  AnswerTests: any_of_exprs('ma_liste$tailles', 'ma_liste[["tailles"]]')
+  Hint: Faites bien attention à la syntaxe et demandez-vous comment s'appelle
+    votre liste et quel est le nom de l'élément que vous souhaitez voir.
+  
+- Class: text
+  Output: Fin de la parenthèse sur les listes. 
+    Nous allons avoir besoin des listes pour le prochain exercices que nous utilisons.
+    Une fonction peut prendre un argument spécial nommé `...`.
+    Cet argument spécial "capture" tous les arguments présents et qui n'ont pas été définis avec la fonction.
+    L'argument ... est considéré comme une liste par R.
+
+- Class: script
+  Output: Sauvegardez bien votre script avant de taper submit().
+  AnswerTests: test_manif()
+  Hint: Votre fonction doit contenir trois parties.
+    Une capture des ... dans une liste.
+    Le découpage des arguments des ... et l'assignation à une variable.
+    Le passage des variables dans la fonction paste().
+  Script: manif.R
+
+- Class: cmd_question
+  Output: Utilisons maintenant votre fonction manif.
+    Pensez bien à nommer les arguments place, adjective et noun pour que votre
+    fonction accomplisse son travail.
+  CorrectAnswer: manif(adjective = "", place = "", noun = "")
+  AnswerTests: expr_uses_func('manif')
+  Hint: Utilisez la fonction manif et nommer bien vos arguments place, adjective
+    et nom.
+    
+- Class: text
+  Output: On l'a vu, l'objectif d'une fonction est en général de renvoyer un résultat.4
+    Lors de la définition d'une fonction, le résultat peut être retourné en utilisant la fonction `return()`.
+    En réalité, l'utilisation de `return()` n'est pas obligatoire. 
+    Une fonction retourne automatiquement le résultat de la dernière instruction qu'elle exécute.
+    C'est d'ailleurs ce qu'on a fait précédemment pour la fonction manif.
+
+- Class: script
+  Output: On peut ainsi réécrire la fonction ajoute2 du début de la leçon de façon beaucoup plus courte.
+  AnswerTests: test_ajoute2()
+  Hint: Observez bien comment le script est plus simple que le premier que nous avons écrit.
+  Script: ajoute2-simple.R
+
+- Class: text
+  Output: Dans la suite de ce document on utilisera, lorsque c'est possible, la syntaxe la plus "compacte" qui omet le `return()`.
+    Un point important à noter. 
+    Lorsque R rencontre une instruction `return()` dans une fonction, il interrompt immédiatement son exécution et "sort" de la fonction en renvoyant le résultat.
+
+- Class: script
+  Output: Ainsi, les lignes supplémentaires ajoutées après return() ne modifie pas le résultat.
+    Tapez submit() une fois que vous avez observer le script.
+  AnswerTests: test_ajoute2()
+  Hint: Tapez submit() quand vous avez observé la fonction.
+  Script: ajoute2-inutile.R
+
+- Class: cmd_question
+  Output: Regardez maintenant le résultat si vous utilisez la fonction ajoute2 sur l'argument 3.
+  CorrectAnswer: ajoute2(3)
+  AnswerTests: omnitest(correctExpr='ajoute2(3)')
+  Hint: Tapez ajoute2(3) dans la console.
+
+- Class: text
+  Output: L'instruction `x * 5` ne sera jamais exécutée car R "sort" de la fonction dès qu'il évalue le `return()` de la ligne précédente.
+    Conséquence de ce comportement, on ne peut pas utiliser plusieurs `return()` pour renvoyer plusieurs résultats depuis une seule fonction. 
+    Est-ce à dire qu'une fonction R ne pourrait renvoyer qu'une seule valeur ?
+    Non, car si elle ne peut retourner qu'un seul objet, celui-ci peut être complexe et comporter plusieurs valeurs.
+
+- Class: script
+  Output: Par exemple, on a vu précédemment une fonction rudimentaire nommée `indicateurs()` qui affiche la moyenne et l'écart-type d'un vecteur numérique.
+    Plutôt que de se contenter de les afficher dans la console, on pourrait vouloir retourner ces deux valeurs pour pouvoir les réutiliser par la suite. 
+    Pour cela, une première solution est de renvoyer un vecteur comportant ces deux valeurs.
+    Tapez submit() une fois que vous avez observé le script.
+  AnswerTests: test_indicateurs2()
+  Hint: Tapez submit() dans la console.
+  Script: indicateurs-vec.R
+
+- Class: script
+  Output: Dans ce cas de figure il est recommandé de retourner plutôt une liste nommée.
+    Observez le script puis tapez submit() dans la console.
+  AnswerTests: test_indicateurs3()
+  Hint: Tapez submit() dans la console.
+  Script: indicateurs-liste.R
+
+- Class: cmd_question
+  Output: On a du coup un affichage un peu plus lisible, et on peut accéder aux éléments du résultat via leur nom.
+    Tapez res <- indicateurs(hdv2003$age).
+  CorrectAnswer: res <- indicateurs(hdv2003$age)
+  AnswerTests: omnitest(correctExpr='res <- indicateurs(hdv2003$age)')
+  Hint: Tapez res <- indicateurs(hdv2003$age) dans la console.
+
+- Class: cmd_question
+  Output: On peut maintenant obtenir la moyenne en tapant res$moyenne.
+    Essayez pour voir !
+  CorrectAnswer: res$moyenne
+  AnswerTests: omnitest(correctExpr='res$moyenne')
+  Hint: Tapez res$moyenne dans la console.
+
+- Class: text
+  Output: Nous avons fini cette leçon.
+    Vous avez maintenant un des concepts les plus important de R et du monde de
+    la programmation, les fonctions.
+
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
     enseignant (cela ne fonctionnera que pour les étudiants de l'université 
@@ -142,4 +412,3 @@
   CorrectAnswer: "Oui"
   AnswerTests: submit_log()
   Hint: Cela soumettra votre avancée dans le cours.
-

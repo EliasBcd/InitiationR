@@ -97,7 +97,7 @@ test_prop_tab_deci <- function(){
   exists('ok') && isTRUE(ok)
 }
 
-test_prop_tab_deci_correct <- function(){
+test_prop_tab_deci_arg <- function(){
   vec <- c("rouge", "vert", "vert", "bleu", "rouge")
   vec2 <- rep(1:4, 3)
   
@@ -118,6 +118,61 @@ test_prop_tab_deci_correct <- function(){
   )
   
   # Returned as the result of the answer test.
+  exists('ok') && isTRUE(ok)
+}
+
+test_indicateurs <- function(){
+  TRUE
+}
+
+test_recode <- function(){
+  recode_correct <- function(var) ifelse(var == "1","Oui", "Non")
+  
+  try({
+    t1 <- (recode_oui_non(df1) == recode_correct(df1))
+    t2 <- (recode_oui_non(df2) == recode_correct(df2))
+    t3 <- (recode_oui_non(df3) == recode_correct(df3))
+    t4 <- (recode_oui_non(df4) == recode_correct(df4))
+    ok <- all(t1, t2, t3, t4)   
+  },
+  silent = TRUE
+  )
+  
+  # Returned as the result of the answer test.
+  exists('ok') && isTRUE(ok)
+}
+
+test_prop_tab_default <- function(){
+  vec <- c("rouge", "vert", "vert", "bleu", "rouge")
+  vec2 <- rep(1:4, 3)
+  
+  prop_tab_correct <- function(v, decimales  = 1) {
+    tri <- table(v)
+    effectif_total <- length(v)
+    tri <- round(tri / effectif_total * 100, decimales)
+    return(tri)
+  }
+  
+  try({
+    t1 <- (prop_tab_deci_arg(vec) == prop_table_correct(vec))
+    t2 <- (prop_tab_deci_arg(vec2) == prob_table_correct(vec2))
+    t3 <- (prop_tab_deci_arg(vec, 2) == prop_table_correct(vec, 2))
+    ok <- all(t1, t2, t3)   
+  },
+  silent = TRUE
+  )
+  
+  # Returned as the result of the answer test.
+  exists('ok') && isTRUE(ok)
+}
+
+test_manif <- function() {
+  try({
+    func <- get('manif', globalenv())
+    t1 <- identical(func(place = "Baltimore", adjective = "puant.e.s", noun = "statue de Roger Peng"), "Nouvelles de Baltimore aujourd'hui, des étudiant.e.s puant.e.s ont fait grève contre les nouveaux statue de Roger Peng installés dans l'université.")
+    t2 <- identical(func(place = "Washington", adjective = "en colère", noun = "kebabs"), "Nouvelles de Washington aujourd'hui, des étudiant.e.s en colère ont fait grève contre les nouveaux kebabs installés dans l'université.")
+    ok <- all(t1, t2)
+  }, silent = TRUE)
   exists('ok') && isTRUE(ok)
 }
 

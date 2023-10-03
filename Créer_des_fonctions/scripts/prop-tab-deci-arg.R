@@ -6,7 +6,7 @@
 # On commence par faire le tri à plat de ce vecteur avec `table`, 
 # puis on calcule la répartition en pourcentages en divisant ce tri à plat par l'effectif total et en multipliant par 100.
 
-# Essayez maintant d'ajouter l'argument decimales au bon endroit dans la fonction round, pour que chaque utilisateur puisse choisir sa précision
+# Essayez maintenant d'ajouter l'argument decimales au bon endroit dans la fonction round, pour que chaque utilisateur puisse choisir sa précision
 
 prop_tab <- function(v, decimales) {
   tri <- table(v)
