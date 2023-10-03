@@ -1,6 +1,6 @@
 # Voici une fonction très simple, et peu utile.
 # Elle ajoute 2 à la valeur saisie en entrée.
-
+#
 # Si on décompose la fonction, on a :
 # - Une fonction est créée en utilisant l'instruction `function`. Celle-ci est suivie d'une paire de parenthèses et d'une paire d'accolades.
 # - Dans les parenthèses, on indique les *arguments* de la fonction, ceux qui devront lui être passés quand nous l'appellerons.

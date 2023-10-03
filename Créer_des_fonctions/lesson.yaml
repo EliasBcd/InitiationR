@@ -36,7 +36,7 @@
     Faites pareil avec comme valeur 41 maintenant.
 
 - Class: cmd_question
-  Output: Nous avons en initialisant la leçon crée l'objet y contenant la valeur 5.
+  Output: Nous avons en initialisant la leçon créé l'objet y contenant la valeur 5.
     Appliquez maintenant la fonction ajoute2 à l'objet y.
   CorrectAnswer: ajoute2(y)
   AnswerTests: omnitest(correctExpr='ajoute2(y)')

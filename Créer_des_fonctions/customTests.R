@@ -63,8 +63,8 @@ test_prop_table <- function(){
   }
   
   try({
-    t1 <- (prop_table(vec) == prop_table_correct(vec))
-    t2 <- (prop_table(vec2) == prob_table_correct(vec2))
+    t1 <- (prop_tab(vec) == prop_tab_correct(vec))
+    t2 <- (prop_tab(vec2) == prob_tab_correct(vec2))
     ok <- all(t1, t2)   
   },
   silent = TRUE
