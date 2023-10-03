@@ -100,8 +100,9 @@
   Script: prop-table.R
 
 - Class: cmd_question
-  Output: Testez la fonction prop_table sur une variable du jeu de données questionr.
+  Output: Testez la fonction prop_table sur une variable du jeu de données hdv2003 issu de la librairie questionr.
     Par exemple la variable qualif.
+    Essayez pour voir.
   CorrectAnswer: prop_tab(hdv2003$qualif)
   AnswerTests: expr_uses_func('prop_tab')
   Hint: Tapez prop_table(hdv2003$qualif) dans la console.
