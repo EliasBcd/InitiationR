@@ -63,8 +63,8 @@ test_prop_table <- function(){
   }
   
   try({
-    t1 <- (prop_tab(vec) == prop_tab_correct(vec))
-    t2 <- (prop_tab(vec2) == prob_tab_correct(vec2))
+    t1 <- all(prop_tab(vec) == prop_tab_correct(vec))
+    t2 <- all(prop_tab(vec2) == prop_tab_correct(vec2))
     ok <- all(t1, t2)   
   },
   silent = TRUE
@@ -86,8 +86,8 @@ test_prop_tab_deci <- function(){
   }
   
   try({
-    t1 <- (prop_tab_deci(vec) == prop_table_correct(vec))
-    t2 <- (prop_tab_deci(vec2) == prob_table_correct(vec2))
+    t1 <- all(prop_tab_deci(vec) == prop_table_correct(vec))
+    t2 <- all(prop_tab_deci(vec2) == prop_table_correct(vec2))
     ok <- all(t1, t2)   
   },
   silent = TRUE
@@ -109,9 +109,9 @@ test_prop_tab_deci_arg <- function(){
   }
   
   try({
-    t1 <- (prop_tab_deci_arg(vec, 1) == prop_table_correct(vec, 1))
-    t2 <- (prop_tab_deci_arg(vec2, 1) == prob_table_correct(vec2, 1))
-    t3 <- (prop_tab_deci_arg(vec, 3) == prop_table_correct(vec, 3))
+    t1 <- all(prop_tab_deci_arg(vec, 1) == prop_table_correct(vec, 1))
+    t2 <- all(prop_tab_deci_arg(vec2, 1) == prop_table_correct(vec2, 1))
+    t3 <- all(prop_tab_deci_arg(vec, 3) == prop_table_correct(vec, 3))
     ok <- all(t1, t2, t3)   
   },
   silent = TRUE
@@ -129,10 +129,10 @@ test_recode <- function(){
   recode_correct <- function(var) ifelse(var == "1","Oui", "Non")
   
   try({
-    t1 <- (recode_oui_non(df1) == recode_correct(df1))
-    t2 <- (recode_oui_non(df2) == recode_correct(df2))
-    t3 <- (recode_oui_non(df3) == recode_correct(df3))
-    t4 <- (recode_oui_non(df4) == recode_correct(df4))
+    t1 <- all(recode_oui_non(df1) == recode_correct(df1))
+    t2 <- all(recode_oui_non(df2) == recode_correct(df2))
+    t3 <- all(recode_oui_non(df3) == recode_correct(df3))
+    t4 <- all(recode_oui_non(df4) == recode_correct(df4))
     ok <- all(t1, t2, t3, t4)   
   },
   silent = TRUE
@@ -154,9 +154,9 @@ test_prop_tab_default <- function(){
   }
   
   try({
-    t1 <- (prop_tab_deci_arg(vec) == prop_table_correct(vec))
-    t2 <- (prop_tab_deci_arg(vec2) == prob_table_correct(vec2))
-    t3 <- (prop_tab_deci_arg(vec, 2) == prop_table_correct(vec, 2))
+    t1 <- all(prop_tab_deci_arg(vec) == prop_table_correct(vec))
+    t2 <- all(prop_tab_deci_arg(vec2) == prop_table_correct(vec2))
+    t3 <- all(prop_tab_deci_arg(vec, 2) == prop_table_correct(vec, 2))
     ok <- all(t1, t2, t3)   
   },
   silent = TRUE
