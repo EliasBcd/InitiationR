@@ -405,6 +405,135 @@
   AnswerTests: omnitest(correctExpr='res$moyenne')
   Hint: Tapez res$moyenne dans la console.
 
+- Class: script
+  Output: Une fonction peut accéder à un objet extérieur, mais
+    si on fait appel dans une fonction à un objet qui n'existe pas et n'a pas été passé comme argument, on obtient une erreur.
+    Observez la fonction proposée et tapez submit()
+  AnswerTests: test_objet1()
+  Hint: Tapez submit() dans la console une fois que vous avez observé la fonction.
+  Script: objet1.R
+
+- Class: cmd_question
+  Output: Essayez maintenant d'utiliser la fonction f créer précédemment.
+  CorrectAnswer: f()
+  AnswerTests: omnitest(correctExpr='f()')
+  Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
+
+- Class: cmd_question
+  Output: Créons maintenant cet obj_inexistant et attribuons lui une valeur.
+    Choisissez n'importe quelle valeur à assigner à obj_inexistant.
+  CorrectAnswer: obj_inexistant <- "objet existant"
+  AnswerTests: expr_creates_var('obj_inexistant')
+  Hint: Assignez n'importe quelle valeur à l'objet obj_inexistant.
+
+- Class: cmd_question
+  Output: Essayez de nouveau d'utiliser la fonction f.
+  CorrectAnswer: f()
+  AnswerTests: omnitest(correctExpr='f()')
+  Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
+
+- Class: text
+  Output: Créer l'objet après la création de la fonction enlève l'erreur.
+    On peut aussi alternativement créer l'objet dans la fonction.
+    Dans cet exemple, au moment de l'exécution de f(), comme obj_inexistant n'existe pas au sein de la fonction 
+    (il n'a pas été passé comme argument ni défini dans le corps de la fonction), 
+    R va chercher dans l'environnement global, celui depuis lequel la fonction a été appelée. 
+    Comme il trouve un objet obj_inexistant, il utilise sa valeur au moment de l'appel de la fonction.
+
+- Class: script
+  Output: Les arguments et les objets créés dans la fonction sont prioritaires
+    Que se passe-t-il si un objet avec le même nom existe à la fois dans la fonction
+    et dans notre environnement global ? 
+    Dans ce cas R privilégie l'objet créé dans la fonction.
+    Observez la fonction f dans le script et ajoutez ce qu'il faut.
+    Tapez submit() ensuite.
+  AnswerTests: test_objet2()
+  Hint: Tapez submit() dans la console pour soumettre votre script.
+  Script: objet2.R
+
+- Class: cmd_question
+  Output: Essayez de nouveau d'utiliser la fonction f.
+  CorrectAnswer: f()
+  AnswerTests: omnitest(correctExpr='f()')
+  Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
+
+- Class: text
+  Output: Remarquez que la valeur prise par obj_inexistant est celle définie dans la fonction
+    quand on fait appel à celle-ci, et non sa valeur globale.
+    Cette règle s'applique également pour les arguments passés à la fonction.
+
+- Class: script
+  Output: Troisième règle importante. 
+    Un objet créé à l'intérieur d'une fonction n'est pas accessible à l'extérieur de celle-ci.
+    Observez le script et tapez submit() une fois cela fait.
+  AnswerTests: test_objet3()
+  Hint: Tapez submit() dans la console une fois le script observé.
+  Script: objet3.R
+
+- Class: cmd_question
+  Output: Essayez de nouveau d'utiliser la fonction f.
+  CorrectAnswer: f()
+  AnswerTests: omnitest(correctExpr='f()')
+  Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
+
+- Class: cmd_question
+  Output: Essayez maintenant d'observer la valeur nouvel_objet directement (sans utiliser la fonction).
+  CorrectAnswer: nouvel_objet
+  AnswerTests: omnitest(correctExpr='nouvel_objet')
+  Hint: Tapez nouvel_objet dans la console pour observer sa valeur.
+
+- Class: text
+  Output: Que s'est-il passé ? 
+    R vous a renvoyé une erreur. 
+    Ici, nouvel_objet existe tant qu'on est dans la fonction, mais il est détruit dès qu'on en sort et donc inaccessible dans notre environnement global.
+    Les objets créés dans notre session et qui existent dans notre environnement (tel que visible dans l'onglet Environment de RStudio) sont appelés des objets globaux.
+    Ils existent et sont accessibles pour les fonctions appelées depuis cet environnement.
+    Les objets créés lors de l'exécution d'une fonction sont à l'inverse des objets locaux.
+    Is n'existent qu'à l'intérieur de la fonction et pour la durée de son exécution. 
+    Si deux objets du même nom coexistent, l'objet local est prioritaire par rapport à l'objet global.
+
+- Class: text
+  Output: On ne peut pas modifier un objet global dans une fonction
+    Une conséquence importante de la troisième règle est qu'il n'est pas possible de 
+    modifier un objet de notre environnement global depuis une fonction.
+
+- Class: script
+  Output: Observez la fonction f donnée dans le script et tapez submit() une fois cela fait.
+  AnswerTests: test_objet4()
+  Hint: Tapez submit() dans la console une fois le script lu.
+  Script: objet4.R
+
+- Class: cmd_question
+  Output: Assignez maintenant à obj la valeur 3.
+  CorrectAnswer: obj <- 3
+  AnswerTests: omnitest(correctExpr='obj <- 3')
+  Hint: Rappelez-vous que <- sert à assigner une valeur à un objet.
+  
+- Class: cmd_question
+  Output: Essayez de nouveau d'utiliser la fonction f.
+  CorrectAnswer: f()
+  AnswerTests: omnitest(correctExpr='f()')
+  Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
+
+- Class: cmd_question
+  Output: Observez maintenant la valeur de obj.
+  CorrectAnswer: obj
+  AnswerTests: omnitest(correctExpr='obj')
+  Hint: Comment observe-t-on la valeur d'un objet ?
+
+- Class: text
+  Output: Pour comprendre le résultat obtenu, on peut essayer de décomposer pas à pas.
+    Au moment du obj <- 3, R crée un objet global nommé obj avec la valeur 3.
+    Quand on exécute f() et qu'on rencontre l'instruction obj <- 10, R crée un nouvel objet nommé obj, local celui-ci, avec la valeur 10.
+    À ce moment-là on a donc deux objets distincts portant le même nom, l'un global avec la valeur 3, l'autre local avec la valeur 10.
+    Comme l'objet local est prioritaire, c'est lui qui est utilisé lors de l'affichage du message.
+    Lorsqu'on sort de f(), l'objet local contenant la valeur 10 est détruit.
+    Il ne reste plus que l'objet global avec la valeur 3. C'est donc lui qui est affiché lors du dernier appel à obj.
+
+- Class: text
+  Output: Si on souhaite modifier un objet global, on doit le passer comme argument en entrée de notre fonction, et le renvoyer comme résultat en sortie.
+    Il faut ensuite assigner le résultat en sortie à l'objet global d'origine.
+    
 - Class: text
   Output: Nous avons fini cette leçon.
     Vous avez maintenant un des concepts les plus important de R et du monde de
@@ -419,4 +548,4 @@
   AnswerChoices: Oui;Non
   CorrectAnswer: "Oui"
   AnswerTests: submit_log()
-  Hint: Cela soumettra votre avancée dans le cours.
+  Hint: Cela soumettra votre avancée dans le cours.    
