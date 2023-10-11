@@ -1,0 +1,190 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Exercice 3
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+
+- Class: text
+  Output: Exercice 3.1
+
+- Class: script
+  Output: Ecrivez dans le script une fonction perimetre qui prend en entrée un argument r
+    et retourne le perimetre d'un cercle de rayon r.
+    Tapez ensuite submit() dans la console pour soumettre votre script.
+  AnswerTests: test_perimetre()
+  Hint: Tapez submit() dans la console pour soumettre votre script.
+  Script: perimetre.R
+
+- Class: cmd_question
+  Output: Testez maintenant votre fonction en vérifiant que la fonction perimetre
+    retourne bien le résultat 18.84956 quand vous utiliser comme argument 3.
+  CorrectAnswer: perimetre(3)
+  AnswerTests: omnitest(correctExpr = 'perimetre(3)')
+  Hint: Que devez vous taper pour utiliser 3 comme argument dans la fonction perimetre ?
+    N'oubliez pas les parenthèses pour utiliser la fonction.
+  
+
+- Class: script
+  Output: Écrire dans le script une fonction etendue qui prend en entrée un vecteur
+    numérique et retourne la différence entre la valeur maximale et la valeur minimale de ce vecteur.
+    Tapez submit() dans la console pour soumettre votre script.
+  AnswerTests: test_etendue()
+  Hint: Tapez submit() dans la console pour soumettre votre script.
+  Script: etendue.R
+
+- Class: script
+  Output: Écrire une fonction nommée alea qui accepte un argument n, génère un vecteur de
+    n valeurs aléatoires entre 0 et 1 avec la fonction runif(n) et retourne ce
+    vecteur comme résultat.
+    Tapez submit() dans la console une fois que vous avez fini de modifier le script.
+  AnswerTests: test_alea()
+  Hint: Tapez submit() dans la console une fois que vous avez fini de modifier le script.
+  Script: alea.R
+
+- Class: script
+  Output: Modifiez la fonction pour qu'elle accepte deux arguments supplémentaires min et
+    max et qu’elle retourne un vecteur de n valeurs aléatoires comprises entre min 
+    et max avec la fonction runif(n, min, max).
+    Tapez submit() dans la console une fois que vous avez fini de modifier le script.
+  AnswerTests: test_alea2()
+  Hint: Tapez submit() dans la console une fois que vous avez fini de modifier le script.
+  Script: alea2.R
+
+- Class: script
+  Output: Modifier à nouveau la fonction pour qu’elle retourne un vecteur de n nombres 
+    entiers aléatoires compris entre min et max en appliquant la fonction trunc() au
+    vecteur généré par runif().
+    Tapez submit() dans la console une fois que vous avez fini de modifier le script.
+  AnswerTests: test_alea3()
+  Hint: Tapez submit() dans la console une fois que vous avez fini de modifier le script.
+  Script: alea3.R
+
+- Class: text
+  Output: Exercice 3.4
+
+- Class: script
+  Output: Écrire une fonction nommée meteo qui prend un argument nommé ville et utilise
+    le corps donné.
+    Tapez submit() dans la console une fois que vous avez fini de modifier le script.
+
+  AnswerTests: test_meteo()
+  Hint: Tapez submit() dans la console une fois que vous avez fini de modifier le script.
+  Script: meteo.R
+
+- Class: cmd_question
+  Output: Testez la fonction, par exemple avec la ville de Saint-Denis.
+  CorrectAnswer: meteo("Saint-Denis")
+  AnswerTests: expr_uses_func("meteo")
+  Hint: Comment utiliser un argument dans une fonction ?
+
+- Class: text
+  Output: Exercice 3.5
+
+- Class: mult_question
+  Output: "En lisant le codes suivant, essayez de prévoir quelle va être la valeur affichée par la dernière ligne. 
+  \n
+  
+    f <- function() { \n 
+    
+       x <- 3\n  
+      
+      x\n  
+      
+    }\n  
+    
+    f()"
+  AnswerChoices: 3;x;Une erreur
+  CorrectAnswer: 3
+  AnswerTests: omnitest(correctVal='3')
+  Hint: L'important ici est la portée des variables. Sont-elles globales ou locales ?
+
+- Class: mult_question
+  Output: "En lisant le codes suivant, essayez de prévoir quelle va être la valeur affichée par la dernière ligne. 
+    \n
+    
+    f <- function() {\n
+    
+        x\n
+        
+    }\n
+    
+    x <- 5\n
+    
+    f()"
+  AnswerChoices: 3;x;Une erreur; 5
+  CorrectAnswer: 5
+  AnswerTests: omnitest(correctVal='5')
+  Hint: L'important ici est la portée des variables. Sont-elles globales ou locales ?
+
+- Class: mult_question
+  Output: "En lisant le codes suivant, essayez de prévoir quelle va être la valeur affichée par la dernière ligne. 
+    \n
+    
+    f <- function(x) {\n
+    
+      x\n
+      
+    }\n
+    
+    x <- 5\n
+    
+    f(30)"
+  AnswerChoices: 30;x;Une erreur; 5
+  CorrectAnswer: 30
+  AnswerTests: omnitest(correctVal='30')
+  Hint: L'important ici est la portée des variables. Sont-elles globales ou locales ?
+
+- Class: mult_question
+  Output: "En lisant le codes suivant, essayez de prévoir quelle va être la valeur affichée par la dernière ligne. 
+    \n
+    
+    f <- function(x = 100) {\n
+    
+      x\n
+      
+    }\n
+    
+    x <- 5\n
+    
+    f()"
+  AnswerChoices: 100;x;Une erreur; 5
+  CorrectAnswer: 100
+  AnswerTests: omnitest(correctVal='100')
+  Hint: L'important ici est la portée des variables. Sont-elles globales ou locales ?
+
+- Class: mult_question
+  Output: "En lisant le codes suivant, essayez de prévoir quelle va être la valeur affichée par la dernière ligne. \n
+  
+    f <- function() {\n
+    
+      x <- 5\n
+      
+    }\n
+    
+    x <- 1000\n
+    
+    f()\n
+    
+    x"
+  AnswerChoices: 1000;x;Une erreur; 5
+  CorrectAnswer: 1000
+  AnswerTests: omnitest(correctVal='1000')
+  Hint: L'important ici est la portée des variables. Sont-elles globales ou locales ?
+  
+
+- Class: text
+  Output: Vous avez maintenant fini l'exercice 3 sur les fonctions.
+  
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Exercice_3.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
+
