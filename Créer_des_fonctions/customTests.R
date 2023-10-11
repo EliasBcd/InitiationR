@@ -216,21 +216,21 @@ test_indicateurs3 <- function(){
   exists('ok') && isTRUE(ok)
 }
 
-test_objet1() <- function(){
+test_objet1 <- function(){
   return(TRUE)
 }
 
-test_objet2() <- function(){
+test_objet2 <- function(){
   try({
     res <- f()
-    ok <- exists(res)
+    ok <- exists('res')
   },
   silent = TRUE
   )
   exists('ok') && isTRUE(ok)
 }
 
-test_objet2() <- function(){
+test_objet2 <- function(){
   try({
     ok <- (f() == 26)
   },
@@ -239,7 +239,7 @@ test_objet2() <- function(){
   exists('ok') && isTRUE(ok)
 }
 
-test_objet4() <- function(){
+test_objet4 <- function(){
   return(TRUE)
 }
 
