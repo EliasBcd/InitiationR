@@ -8,7 +8,7 @@
 
 
 - Class: text
-  Output: Exercice 1
+  Output: Exercice 2.1
 
 - Class: script
   Output: Créer un nouveau script qui effectue les actions suivantes.
@@ -24,7 +24,7 @@
 
 
 - Class: text
-  Output: Exercice 2
+  Output: Exercice 2.2
 
 - Class: cmd_question
   Output: Grâce aux données précédentes, on souhaite étudier la répartition du 
@@ -43,7 +43,7 @@
     Quel argument faut-il utiliser pour les enlever du calcul ?
 
 - Class: text
-  Output: Exercice 3
+  Output: Exercice 2.3
 
 - Class: cmd_question
   Output: On s'intéresse maintenant à l'importance accordée par les enquêtés à leur travail (variable `trav.imp`).
