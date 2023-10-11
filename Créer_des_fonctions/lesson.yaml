@@ -95,6 +95,7 @@
     La fonction `table()` retourne le tri à plat en effectifs d'une variable qualitative. 
     On souhaite créer une fonction qui calcule plutôt le tri à plat en pourcentages. 
     Voici une manière de le faire.
+    Tapez submit() une fois que vous avez fini de lire le script.
   AnswerTests: test_prop_table()
   Hint: Tapez submit() une fois que vous avez fini de lire le script.
   Script: prop-table.R
@@ -347,8 +348,10 @@
 
 - Class: script
   Output: On peut ainsi réécrire la fonction ajoute2 du début de la leçon de façon beaucoup plus courte.
+    Tapez ensuite submit() dans la console.
   AnswerTests: test_ajoute2()
   Hint: Observez bien comment le script est plus simple que le premier que nous avons écrit.
+    Tapez submit() dans la console.
   Script: ajoute2-simple.R
 
 - Class: text
@@ -413,21 +416,18 @@
   Hint: Tapez submit() dans la console une fois que vous avez observé la fonction.
   Script: objet1.R
 
-- Class: cmd_question
-  Output: Essayez maintenant d'utiliser la fonction f créer précédemment.
-  CorrectAnswer: f()
-  AnswerTests: omnitest(correctExpr='f()')
-  Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
+- Class: message
+  Output: Si vous essayez d'utiliser la fonction f, R vous renverra une erreur.
 
 - Class: cmd_question
   Output: Créons maintenant cet obj_inexistant et attribuons lui une valeur.
     Choisissez n'importe quelle valeur à assigner à obj_inexistant.
   CorrectAnswer: obj_inexistant <- "objet existant"
-  AnswerTests: expr_creates_var('obj_inexistant')
+  AnswerTests: exists('obj_inexistant')
   Hint: Assignez n'importe quelle valeur à l'objet obj_inexistant.
 
 - Class: cmd_question
-  Output: Essayez de nouveau d'utiliser la fonction f.
+  Output: Essayez d'utiliser la fonction f.
   CorrectAnswer: f()
   AnswerTests: omnitest(correctExpr='f()')
   Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
@@ -476,15 +476,10 @@
   AnswerTests: omnitest(correctExpr='f()')
   Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
 
-- Class: cmd_question
-  Output: Essayez maintenant d'observer la valeur nouvel_objet directement (sans utiliser la fonction).
-  CorrectAnswer: nouvel_objet
-  AnswerTests: omnitest(correctExpr='nouvel_objet')
-  Hint: Tapez nouvel_objet dans la console pour observer sa valeur.
 
 - Class: text
-  Output: Que s'est-il passé ? 
-    R vous a renvoyé une erreur. 
+  Output: Vous ne pouvez pas observez nouvel_objet.
+    R vous renverrait une erreur.
     Ici, nouvel_objet existe tant qu'on est dans la fonction, mais il est détruit dès qu'on en sort et donc inaccessible dans notre environnement global.
     Les objets créés dans notre session et qui existent dans notre environnement (tel que visible dans l'onglet Environment de RStudio) sont appelés des objets globaux.
     Ils existent et sont accessibles pour les fonctions appelées depuis cet environnement.

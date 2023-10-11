@@ -205,8 +205,8 @@ test_indicateurs3 <- function(){
   }
   
   try({
-    t1 <- all(indicateurs(vec2) == indicateurs_correct(vec2))
-    t2 <- all(indicateurs(hdv2003$age) == indicateurs_correct(hdv2003$age))
+    t1 <- indicateurs(hdv2003$age)$moyenne == indicateurs_correct(hdv2003$age)$moyenne
+    t2 <- indicateurs(hdv2003$age)$ecart_type == indicateurs_correct(hdv2003$age)$ecart_type
     t3 <- indicateurs(vec2)$moyenne == indicateurs_correct(vec2)$moyenne
     t4 <- indicateurs(vec2)$ecart_type == indicateurs_correct(vec2)$ecart_type
     ok <- all(t1, t2, t3, t4)   
@@ -230,7 +230,7 @@ test_objet2 <- function(){
   exists('ok') && isTRUE(ok)
 }
 
-test_objet2 <- function(){
+test_objet3 <- function(){
   try({
     ok <- (f() == 26)
   },
