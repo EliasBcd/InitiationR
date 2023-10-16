@@ -195,53 +195,6 @@ test_indicateurs2 <- function(){
   exists('ok') && isTRUE(ok)
 }
 
-test_indicateurs3 <- function(){
-  vec2 <- rep(1:4, 3)
-  
-  indicateurs_correct <- function(v) {
-    moyenne <- mean(v)
-    ecart_type <- sd(v)
-    list(moyenne = moyenne, ecart_type = ecart_type)
-  }
-  
-  try({
-    t1 <- indicateurs(hdv2003$age)$moyenne == indicateurs_correct(hdv2003$age)$moyenne
-    t2 <- indicateurs(hdv2003$age)$ecart_type == indicateurs_correct(hdv2003$age)$ecart_type
-    t3 <- indicateurs(vec2)$moyenne == indicateurs_correct(vec2)$moyenne
-    t4 <- indicateurs(vec2)$ecart_type == indicateurs_correct(vec2)$ecart_type
-    ok <- all(t1, t2, t3, t4)   
-  },
-  silent = TRUE
-  )
-  exists('ok') && isTRUE(ok)
-}
-
-test_objet1 <- function(){
-  return(TRUE)
-}
-
-test_objet2 <- function(){
-  try({
-    res <- f()
-    ok <- exists('res')
-  },
-  silent = TRUE
-  )
-  exists('ok') && isTRUE(ok)
-}
-
-test_objet3 <- function(){
-  try({
-    ok <- (f() == 26)
-  },
-  silent = TRUE
-  )
-  exists('ok') && isTRUE(ok)
-}
-
-test_objet4 <- function(){
-  return(TRUE)
-}
 
 ## Saving the progress -------
 # Get the swirl state
@@ -265,7 +218,7 @@ getVal <- function(){
 submit_log <- function(){
   # Changer de lien et de nom pour chaque leçon
   pre_fill_link <- "https://moodle.univ-paris8.fr/mod/assign/view.php?id=271762&action=editsubmission"
-  saved <- "Creer_Fonctions.txt"
+  saved <- "Creer_Fonctions_1.txt"
   temp <- tempfile()
   
   

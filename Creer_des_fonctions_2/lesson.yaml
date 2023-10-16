@@ -1,0 +1,268 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Créer des fonctions - partie 2
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+
+- Class: text
+  Output: Ceci est la suite de la leçon sur les fonctions. 
+    Vous devez d'abord faire créer des fonctions - partie 1.
+
+
+- Class: cmd_question
+  Output: Avant de continuer, nous devons faire un petit détour par les listes.
+    Une capacité importante des listes est le fait qu'on puisse nommer les éléments des listes.
+    Par exemple, on peut créer une liste contenant un vecteur poids et un vecteur tailles.
+    tailles doit être un vecteur contenant les tailles 154, 175 et 165 (dant cet ordre).
+    poids doit être un vecteur contenant les poids 55, 80 et 65 (dant cet ordre).
+    On veut mettre ces deux vecteurs dans une liste.
+    On tapera alors list(tailles = c(154, 175, 165), poids = c(55, 80, 65)).
+    On souhaite assigner cette list à ma_liste.
+    Je l'ai déjà fait pour vous, en mettant quelques poids et tailles en plus.
+    Observez le résultat.
+  CorrectAnswer: ma_liste
+  AnswerTests: omnitest(correctExpr='ma_liste')
+  Hint: "Tapez : ma_liste"
+
+- Class: cmd_question
+  Output: On peut accéder à un élément nommé d'une liste à l'aide de la syntaxe nom_de_liste$nom
+    ou bien à l'aide de nom_de_liste[["nom"]].
+    Cela fonctionne aussi  pour des colonnes d'un data.frame, même si nous ne l'avons pas vu pour l'instant.
+    Essayez d'accéder à la colonne tailles de ma_liste.
+  CorrectAnswer: ma_liste$tailles
+  AnswerTests: any_of_exprs('ma_liste$tailles', 'ma_liste[["tailles"]]')
+  Hint: Faites bien attention à la syntaxe et demandez-vous comment s'appelle
+    votre liste et quel est le nom de l'élément que vous souhaitez voir.
+  
+- Class: text
+  Output: Fin de la parenthèse sur les listes. 
+    Nous allons avoir besoin des listes pour le prochain exercices que nous utilisons.
+    Une fonction peut prendre un argument spécial nommé `...`.
+    Cet argument spécial "capture" tous les arguments présents et qui n'ont pas été définis avec la fonction.
+    L'argument ... est considéré comme une liste par R.
+
+- Class: script
+  Output: Sauvegardez bien votre script avant de taper submit().
+  AnswerTests: test_manif()
+  Hint: Votre fonction doit contenir trois parties.
+    Une capture des ... dans une liste.
+    Le découpage des arguments des ... et l'assignation à une variable.
+    Le passage des variables dans la fonction paste().
+  Script: manif.R
+
+- Class: cmd_question
+  Output: Utilisons maintenant votre fonction manif.
+    Pensez bien à nommer les arguments place, adjective et noun pour que votre
+    fonction accomplisse son travail.
+  CorrectAnswer: manif(adjective = "", place = "", noun = "")
+  AnswerTests: expr_uses_func('manif')
+  Hint: Utilisez la fonction manif et nommer bien vos arguments place, adjective
+    et nom.
+    
+- Class: text
+  Output: On l'a vu, l'objectif d'une fonction est en général de renvoyer un résultat.
+    Lors de la définition d'une fonction, le résultat peut être retourné en utilisant la fonction `return()`.
+    En réalité, l'utilisation de `return()` n'est pas obligatoire. 
+    Une fonction retourne automatiquement le résultat de la dernière instruction qu'elle exécute.
+    C'est d'ailleurs ce qu'on a fait précédemment pour la fonction manif.
+
+- Class: script
+  Output: On peut ainsi réécrire la fonction ajoute2 du début de la leçon de façon beaucoup plus courte.
+    Tapez ensuite submit() dans la console.
+  AnswerTests: test_ajoute2()
+  Hint: Observez bien comment le script est plus simple que le premier que nous avons écrit.
+    Tapez submit() dans la console.
+  Script: ajoute2-simple.R
+
+- Class: text
+  Output: Dans la suite de ce document on utilisera, lorsque c'est possible, la syntaxe la plus "compacte" qui omet le `return()`.
+    Un point important à noter. 
+    Lorsque R rencontre une instruction `return()` dans une fonction, il interrompt immédiatement son exécution et "sort" de la fonction en renvoyant le résultat.
+
+- Class: script
+  Output: Ainsi, les lignes supplémentaires ajoutées après return() ne modifie pas le résultat.
+    Tapez submit() une fois que vous avez observer le script.
+  AnswerTests: test_ajoute2()
+  Hint: Tapez submit() quand vous avez observé la fonction.
+  Script: ajoute2-inutile.R
+
+- Class: cmd_question
+  Output: Regardez maintenant le résultat si vous utilisez la fonction ajoute2 sur l'argument 3.
+  CorrectAnswer: ajoute2(3)
+  AnswerTests: omnitest(correctExpr='ajoute2(3)')
+  Hint: Tapez ajoute2(3) dans la console.
+
+- Class: text
+  Output: L'instruction `x * 5` ne sera jamais exécutée car R "sort" de la fonction dès qu'il évalue le `return()` de la ligne précédente.
+    Conséquence de ce comportement, on ne peut pas utiliser plusieurs `return()` pour renvoyer plusieurs résultats depuis une seule fonction. 
+    Est-ce à dire qu'une fonction R ne pourrait renvoyer qu'une seule valeur ?
+    Non, car si elle ne peut retourner qu'un seul objet, celui-ci peut être complexe et comporter plusieurs valeurs.
+
+- Class: script
+  Output: Par exemple, on a vu précédemment une fonction rudimentaire nommée `indicateurs()` qui affiche la moyenne et l'écart-type d'un vecteur numérique.
+    Plutôt que de se contenter de les afficher dans la console, on pourrait vouloir retourner ces deux valeurs pour pouvoir les réutiliser par la suite. 
+    Pour cela, une première solution est de renvoyer un vecteur comportant ces deux valeurs.
+    Tapez submit() une fois que vous avez observé le script.
+  AnswerTests: test_indicateurs2()
+  Hint: Tapez submit() dans la console.
+  Script: indicateurs-vec.R
+
+- Class: script
+  Output: Dans ce cas de figure il est recommandé de retourner plutôt une liste nommée.
+    Observez le script puis tapez submit() dans la console.
+  AnswerTests: test_indicateurs3()
+  Hint: Tapez submit() dans la console.
+  Script: indicateurs-liste.R
+
+- Class: cmd_question
+  Output: On a du coup un affichage un peu plus lisible, et on peut accéder aux éléments du résultat via leur nom.
+    Tapez res <- indicateurs(hdv2003$age).
+  CorrectAnswer: res <- indicateurs(hdv2003$age)
+  AnswerTests: omnitest(correctExpr='res <- indicateurs(hdv2003$age)')
+  Hint: Tapez res <- indicateurs(hdv2003$age) dans la console.
+
+- Class: cmd_question
+  Output: On peut maintenant obtenir la moyenne en tapant res$moyenne.
+    Essayez pour voir !
+  CorrectAnswer: res$moyenne
+  AnswerTests: omnitest(correctExpr='res$moyenne')
+  Hint: Tapez res$moyenne dans la console.
+
+- Class: script
+  Output: Une fonction peut accéder à un objet extérieur, mais
+    si on fait appel dans une fonction à un objet qui n'existe pas et n'a pas été passé comme argument, on obtient une erreur.
+    Observez la fonction proposée et tapez submit()
+  AnswerTests: test_objet1()
+  Hint: Tapez submit() dans la console une fois que vous avez observé la fonction.
+  Script: objet1.R
+
+- Class: text
+  Output: Si vous essayez d'utiliser la fonction f, R vous renverra une erreur.
+
+- Class: cmd_question
+  Output: Créons maintenant cet obj_inexistant et attribuons lui une valeur.
+    Choisissez n'importe quelle valeur à assigner à obj_inexistant.
+  CorrectAnswer: obj_inexistant <- "objet existant"
+  AnswerTests: exists('obj_inexistant')
+  Hint: Assignez n'importe quelle valeur à l'objet obj_inexistant.
+
+- Class: cmd_question
+  Output: Essayez d'utiliser la fonction f.
+  CorrectAnswer: f()
+  AnswerTests: omnitest(correctExpr='f()')
+  Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
+
+- Class: text
+  Output: Créer l'objet après la création de la fonction enlève l'erreur.
+    On peut aussi alternativement créer l'objet dans la fonction.
+    Dans cet exemple, au moment de l'exécution de f(), comme obj_inexistant n'existe pas au sein de la fonction 
+    (il n'a pas été passé comme argument ni défini dans le corps de la fonction), 
+    R va chercher dans l'environnement global, celui depuis lequel la fonction a été appelée. 
+    Comme il trouve un objet obj_inexistant, il utilise sa valeur au moment de l'appel de la fonction.
+
+- Class: script
+  Output: Les arguments et les objets créés dans la fonction sont prioritaires
+    Que se passe-t-il si un objet avec le même nom existe à la fois dans la fonction
+    et dans notre environnement global ? 
+    Dans ce cas R privilégie l'objet créé dans la fonction.
+    Observez la fonction f dans le script et ajoutez ce qu'il faut.
+    Tapez submit() ensuite.
+  AnswerTests: test_objet2()
+  Hint: Tapez submit() dans la console pour soumettre votre script.
+  Script: objet2.R
+
+- Class: cmd_question
+  Output: Essayez de nouveau d'utiliser la fonction f.
+  CorrectAnswer: f()
+  AnswerTests: omnitest(correctExpr='f()')
+  Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
+
+- Class: text
+  Output: Remarquez que la valeur prise par obj_inexistant est celle définie dans la fonction
+    quand on fait appel à celle-ci, et non sa valeur globale.
+    Cette règle s'applique également pour les arguments passés à la fonction.
+
+- Class: script
+  Output: Troisième règle importante. 
+    Un objet créé à l'intérieur d'une fonction n'est pas accessible à l'extérieur de celle-ci.
+    Observez le script et tapez submit() une fois cela fait.
+  AnswerTests: test_objet3()
+  Hint: Tapez submit() dans la console une fois le script observé.
+  Script: objet3.R
+
+- Class: cmd_question
+  Output: Essayez de nouveau d'utiliser la fonction f.
+  CorrectAnswer: f()
+  AnswerTests: omnitest(correctExpr='f()')
+  Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
+
+
+- Class: text
+  Output: Vous ne pouvez pas observez nouvel_objet.
+    R vous renverrait une erreur.
+    Ici, nouvel_objet existe tant qu'on est dans la fonction, mais il est détruit dès qu'on en sort et donc inaccessible dans notre environnement global.
+    Les objets créés dans notre session et qui existent dans notre environnement (tel que visible dans l'onglet Environment de RStudio) sont appelés des objets globaux.
+    Ils existent et sont accessibles pour les fonctions appelées depuis cet environnement.
+    Les objets créés lors de l'exécution d'une fonction sont à l'inverse des objets locaux.
+    Is n'existent qu'à l'intérieur de la fonction et pour la durée de son exécution. 
+    Si deux objets du même nom coexistent, l'objet local est prioritaire par rapport à l'objet global.
+
+- Class: text
+  Output: On ne peut pas modifier un objet global dans une fonction
+    Une conséquence importante de la troisième règle est qu'il n'est pas possible de 
+    modifier un objet de notre environnement global depuis une fonction.
+
+- Class: script
+  Output: Observez la fonction f donnée dans le script et tapez submit() une fois cela fait.
+  AnswerTests: test_objet4()
+  Hint: Tapez submit() dans la console une fois le script lu.
+  Script: objet4.R
+
+- Class: cmd_question
+  Output: Assignez maintenant à obj la valeur 3.
+  CorrectAnswer: obj <- 3
+  AnswerTests: omnitest(correctExpr='obj <- 3')
+  Hint: Rappelez-vous que <- sert à assigner une valeur à un objet.
+  
+- Class: cmd_question
+  Output: Essayez de nouveau d'utiliser la fonction f.
+  CorrectAnswer: f()
+  AnswerTests: omnitest(correctExpr='f()')
+  Hint: N'oubliez pas les parenthèses pour faire appel à une fonction sans argument.
+
+- Class: cmd_question
+  Output: Observez maintenant la valeur de obj.
+  CorrectAnswer: obj
+  AnswerTests: omnitest(correctExpr='obj')
+  Hint: Comment observe-t-on la valeur d'un objet ?
+
+- Class: text
+  Output: Pour comprendre le résultat obtenu, on peut essayer de décomposer pas à pas.
+    Au moment du obj <- 3, R crée un objet global nommé obj avec la valeur 3.
+    Quand on exécute f() et qu'on rencontre l'instruction obj <- 10, R crée un nouvel objet nommé obj, local celui-ci, avec la valeur 10.
+    À ce moment-là on a donc deux objets distincts portant le même nom, l'un global avec la valeur 3, l'autre local avec la valeur 10.
+    Comme l'objet local est prioritaire, c'est lui qui est utilisé lors de l'affichage du message.
+    Lorsqu'on sort de f(), l'objet local contenant la valeur 10 est détruit.
+    Il ne reste plus que l'objet global avec la valeur 3. C'est donc lui qui est affiché lors du dernier appel à obj.
+
+- Class: text
+  Output: Si on souhaite modifier un objet global, on doit le passer comme argument en entrée de notre fonction, et le renvoyer comme résultat en sortie.
+    Il faut ensuite assigner le résultat en sortie à l'objet global d'origine.
+    
+- Class: text
+  Output: Nous avons fini cette leçon.
+    Vous avez maintenant un des concepts les plus important de R et du monde de
+    la programmation, les fonctions.
+
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Creer_Fonctions_2.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.    
