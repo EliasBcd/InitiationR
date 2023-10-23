@@ -30,7 +30,7 @@
     En général, c'est une expression logique que R teste (3 < 4 par exemple).
     Comme la condition est vraie, R nous renvoie 1.
     Si la condition est FALSE, R nous renverra la valeur donnée après le else.
-    Essayez maintenant la même expression en remplaçant TRUE par FALSE.
+    Essayez maintenant la même commande en remplaçant TRUE par FALSE.
   CorrectAnswer: if(FALSE) 1 else 2
   AnswerTests: omnitest(correctExpr='if(FALSE) 1 else 2', correctVal=2)
   Hint: "Tapez : if(FALSE) 1 else 2" 
@@ -124,17 +124,11 @@
     
 
 - Class: script
-  Output: Imaginons maintenant que nous avons une fonction, variation() qui donne
-    l'évolution du prix d'une action au fil du temps.
-    Le prix d'origine de l'action est de 50€. 
-    Nous souhaitons la vendre dès que son prix dépasse 60€ pour empocher les gains
-    ou descend sous les 40€ pour limiter les pertes. 
-    Ecrivez une fonction qui le permet.
-    Elle devra nous renvoyer le jour où l'action a été vendue.
-  AnswerTests: test_nombrejours()
+  Output: Regardez le script pour voir comment while diffère de break.
+    Ne le modifiez pas.
+    Tapez submit() une fois que vous l'avez bien lu.
+  AnswerTests: test_while()
   Hint: Faites attention aux conditions infinies.
-    Rappelez-vous qu'il est possible de tester deux conditions simultanément à 
-    l'aide de &&.
   Script: while.R  
   
 - Class: text

@@ -20,6 +20,7 @@
 # Conseil :
 #   - #1 : L'opérateur qui donne le reste dans la division euclidienne d'un nombre est %%.
 
+# Tapez submit() dans la console une fois que vous avez terminé de modifier le script.
  
 pair <- function(x){
   res <- c()

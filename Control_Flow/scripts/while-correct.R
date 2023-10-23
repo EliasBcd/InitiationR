@@ -1,24 +1,17 @@
-# Nous vous donnons la fonction variation() qui donne
-# l'augmentation ou la diminution du prix d'une action au fil du temps.
-# Le prix d'origine de l'action est de 50€. 
-# Nous souhaitons la vendre dès que son prix dépasse 60€ pour empocher les gains
-# ou descend sous les 40€ pour limiter les pertes. 
-# Ecrivez une fonction qui retourne le nombre de jours où l'on garde l'action.
+# Nous allons maintenant réécrire la fonction précédente à l'aide de while() 
+# plutôt que break()
+# 
+# On suppose que tout les éléments d'un vecteur numérique sont ordonnés du plus petit au plus grand.
+# On veut sélectionner seulement les éléments inférieurs ou égaux à 20 en utilisant while
+# Avec while(), nous allons parcourir tous les éléments du vecteur x.
+# Nous commencerons donc par initialiser un index i à 1 (le premier élément)
 
-# Conseil #1 : N'oubliez pas que pour passer une fonction en argument on peut juste
-# donner son nom sans parenthèses, mais que pour l'utiliser il faut mettre des 
-# parenthèses à la fin.
-
-nombre_jours <- function(variation){
-  jour <- 1
-  prix <- 50
-  
-  while ((prix <= 60) && (prix >=40)){
-    jour <- jour + 1
-    prix <- prix + variation()
+while_function <- function(x){
+  res <- c()
+  i <- 1 # Initiation de l'indexation
+  while(x[i] <= 20){
+    res <- c(res, x[i]) # Ce code sert à ajouter un élément à un vecteur déjà existant.
+    i <- i + 1 # Incrémentation de l'indexation
   }
-  jour
+  res
 }
-
-
-

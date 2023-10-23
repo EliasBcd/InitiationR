@@ -17,6 +17,8 @@
 # On suppose que tout les éléments d'un vecteur numérique sont ordonnés du plus petit au plus grand.
 # On veut sélectionner seulement les éléments inférieurs ou égaux à 20 en utilisant break.
 
+# Tapez submit() dans la console une fois que vous avez terminé de modifier le script.
+
  
 break_function <- function(x){
   res <- c()

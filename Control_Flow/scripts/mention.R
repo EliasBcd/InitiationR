@@ -31,6 +31,7 @@
 # Entre 12 (inclus) et 14 (exclus) donne  Assez bien.
 # Et les autres notes ne donnent pas le droit à une mention.
 
+# Tapez submit() dans la console une fois que vous avez fini de modifier le script.
 
 mention <- function(x) {
   if (# Code à remplir) {

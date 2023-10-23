@@ -56,7 +56,7 @@
     l'opérateur est plus petit que le nombre à droite.
     Tapez une expression pour tester si 6 et plus petit que 7.
   CorrectAnswer: 6 < 7
-  AnswerTests: omnitest(correctExpr='6 < 7')
+  AnswerTests: any_of_exprs('6 < 7', '7 > 6')
   Hint: Utilisez l'opérateur 'plus petit que' et tapez 6 < 7.
 
 - Class: cmd_question
@@ -64,7 +64,7 @@
     l'expression à gauche est plus petite ou égale à l'expression à droite.
     Essayez de voir si 10 est plus petit ou égal à 10.
   CorrectAnswer: 10 <= 10
-  AnswerTests: omnitest(correctExpr='10 <= 10')
+  AnswerTests: any_of_exprs('10 <= 10', '10 >= 10')
   Hint: Utilisez l'opérateur `<=` et tapez 10 <= 10.
 
 - Class: text
@@ -159,8 +159,7 @@
   Output: Vous pouvez utilisez l'opérateur `&` pour évaluer ET suivant un vecteur.
     La version `&&` a besoin d'avoir une seule valeur logique à gauche et à
     droite pour fonctionner.
-    Essayons les deux.
-    Commencez par TRUE & c(TRUE, FALSE, FALSE).
+    Essayez TRUE & c(TRUE, FALSE, FALSE) pour voir.
   CorrectAnswer: "TRUE & c(TRUE, FALSE, FALSE)"
   AnswerTests: omnitest(correctExpr='TRUE & c(TRUE, FALSE, FALSE)')
   Hint: Utilisons `&` avec un vecteur, tapez TRUE & c(TRUE, FALSE, FALSE)
@@ -170,26 +169,11 @@
     vecteurs) afin d'avoir la même longueur que le vecteur de droite.
     C'est comme si on avait écrit  c(TRUE, TRUE, TRUE) & c(TRUE, FALSE, FALSE).
     Une expression comme cela  fonctionnera différemment avec l'opérateur `&&`, R
-    bloquant le recyclage du vecteur de gauche (et renvoit une alerte depuis la
-    version 4.2.0).
-
-- Class: cmd_question
-  Output: Utilisons la même opération en remplaçant `&` par `&&`.
-  CorrectAnswer: "TRUE && c(TRUE, FALSE, FALSE)"
-  AnswerTests: omnitest(correctExpr='TRUE && c(TRUE, FALSE, FALSE)')
-  Hint: Tapez TRUE && c(TRUE, FALSE, FALSE).
-
-- Class: text
-  Output: R nous renvoit un Warning et le résultat !
-    Un message commençant par Warning est une façon de communiquer pour R.
-    R vous communique que l'opération que vous êtes en train de faire est
-    possible (il vous donne un résultat), mais qu'elle lui semble suspecte.
-    En fait, ici R utilise uniquement le premier élément du vecteur de droite.
-    Ce comportement est amené à disparaître dans les futures versions de R, je
-    ne vous encourage donc pas à l'utiliser.
+    bloquant le recyclage du vecteur de gauche, et émet une erreur depuis la version 4.3.0.
     Le principal intérêt de l'opérateur `&&` est de vous garantir que le résultat
     a une longueur de 1.
     Cela nous servira dans la suite du cours.
+
 
 - Class: text
   Output: L'opérateur OU fonctionne d'une manière similaire.
@@ -218,7 +202,7 @@
   Output: Les opérations arithmétiques ont un ordre de priorité.
     Il en est de même pour les expressions logiques.
     Tous les opérateurs ET sont évalués avant les opérateurs OU.
-    Essayez cet exemple un peu ambigu 5 > 8 || 6 != 8 && 4 > 3.9.
+    Essayez cet exemple un peu ambigu 5 > 8 || 6 != 8 && 4 > 3.9
   CorrectAnswer: "5 > 8 || 6 != 8 && 4 > 3.9"
   AnswerTests: omnitest(correctExpr='5 > 8 || 6 != 8 && 4 > 3.9')
   Hint: Regardez l'ordre des opérations OU et ET en tapant
@@ -245,55 +229,55 @@
   Hint: Si vous ne trouvez pas la réponse, essayez chaque expression pour en lire
     le résultat.
 
-- Class: mult_question
-  Output: Quelle expression a pour résultat FALSE ?
-  CorrectAnswer: "FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5"
-  AnswerChoices: "FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5;
-    FALSE || TRUE && 6 != 4 || 9 > 4; !(8 > 4) ||  5 == 5.0 && 7.8 >= 7.79;
-    6 >= -9 && !(6 > 7) && !(!TRUE)"
-  AnswerTests: omnitest(correctVal='FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5')
-  Hint: Si vous ne trouvez pas la réponse, essayez chaque expression pour en lire
-    le résultat.
-    
-# - Class: text
-#   Output: Vous êtes maintenant familiarisés avec les opérateurs primaires
-#     dans R.
-#     Voyons maintenant quelques commandes utiles supplémentaires.
-# 
-# - Class : cmd_question
-#   Output: La commande isTRUE() a un argument.
-#     Si le résultat de cet argument est TRUE, le résultat de la commande est TRUE.
-#     Sinon, le resultat sera FALSE.
-#     Essayez la commande en tapant isTRUE(6 > 4).
-#   CorrectAnswer: "isTRUE(6 > 4)"
-#   AnswerTests: omnitest(correctExpr='isTRUE(6 > 4)')
-#   Hint: Essayez isTRUE() en tapant isTRUE(6 > 4)
-#   
 # - Class: mult_question
-#   Output: Quelle expression a pour résultat TRUE ?
-#   CorrectAnswer: "!isTRUE(4 < 3)"
-#   AnswerChoices: "isTRUE(!TRUE); isTRUE(3); !isTRUE(4 < 3); !isTRUE(8 != 5)"
-#   AnswerTests: omnitest(correctVal='!isTRUE(4 < 3)')
-#   Hint: isTRUE() a pour résultat TRUE uniquement si l'expression passée comme
-#     argument a pour résultat TRUE.
+#   Output: Quelle expression a pour résultat FALSE ?
+#   CorrectAnswer: "FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5"
+#   AnswerChoices: "FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5;
+#     FALSE || TRUE && 6 != 4 || 9 > 4; !(8 > 4) ||  5 == 5.0 && 7.8 >= 7.79;
+#     6 >= -9 && !(6 > 7) && !(!TRUE)"
+#   AnswerTests: omnitest(correctVal='FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5')
+#   Hint: Si vous ne trouvez pas la réponse, essayez chaque expression pour en lire
+#     le résultat.
 #     
-# - Class : cmd_question
-#   Output: La fonction identical() a pour résultat TRUE si les deux objets R
-#     passés en argument sont identiques.
-#     Essayez la fonction identical en tapant identical('twins', 'twins')
-#   CorrectAnswer: "identical('twins', 'twins')"
-#   AnswerTests: omnitest(correctExpr="identical('twins', 'twins')")
-#   Hint: Ignorez pour l'instant ce que peuvent représenter 'twins'.
-#     Tapez identical('twins', 'twins')
-# 
-# - Class: mult_question
-#   Output: Quelle expression a pour résultat TRUE ?
-#   CorrectAnswer: "identical(5 > 4, 3 < 3.1)"
-#   AnswerChoices: "identical(5 > 4, 3 < 3.1); identical(4, 3.1); identical('hello', 'Hello'); !identical(7, 7)"
-#   AnswerTests: omnitest(correctVal='identical(5 > 4, 3 < 3.1)')
-#   Hint: Le résultat d'identical() est TRUE uniquement si les deux arguments sont
-#     identiques.
-# 
+- Class: text
+  Output: Vous êtes maintenant familiarisés avec les opérateurs primaires
+    dans R.
+    Voyons maintenant quelques commandes utiles supplémentaires.
+
+- Class : cmd_question
+  Output: La fonction isTRUE() a un argument.
+    Si le résultat de cet argument est TRUE, le résultat de la commande est TRUE.
+    Sinon, le resultat sera FALSE.
+    Essayez la commande en tapant isTRUE(6 > 4).
+  CorrectAnswer: "isTRUE(6 > 4)"
+  AnswerTests: omnitest(correctExpr='isTRUE(6 > 4)')
+  Hint: Essayez isTRUE() en tapant isTRUE(6 > 4)
+
+- Class: mult_question
+  Output: Quelle expression a pour résultat TRUE ?
+  CorrectAnswer: "!isTRUE(4 < 3)"
+  AnswerChoices: "isTRUE(!TRUE); isTRUE(3); !isTRUE(4 < 3); !isTRUE(8 != 5)"
+  AnswerTests: omnitest(correctVal='!isTRUE(4 < 3)')
+  Hint: isTRUE() a pour résultat TRUE uniquement si l'expression passée comme
+    argument a pour résultat TRUE.
+
+- Class : cmd_question
+  Output: La fonction identical() a pour résultat TRUE si les deux objets R
+    passés en argument sont identiques.
+    Essayez la fonction identical en tapant identical('twins', 'twins')
+  CorrectAnswer: "identical('twins', 'twins')"
+  AnswerTests: omnitest(correctExpr="identical('twins', 'twins')")
+  Hint: Ignorez pour l'instant ce que peuvent représenter 'twins'.
+    Tapez identical('twins', 'twins')
+
+- Class: mult_question
+  Output: Quelle expression a pour résultat TRUE ?
+  CorrectAnswer: "identical(5 > 4, 3 < 3.1)"
+  AnswerChoices: "identical(5 > 4, 3 < 3.1); identical(4, 3.1); identical('hello', 'Hello'); !identical(7, 7)"
+  AnswerTests: omnitest(correctVal='identical(5 > 4, 3 < 3.1)')
+  Hint: Le résultat d'identical() est TRUE uniquement si les deux arguments sont
+    identiques.
+
 # - Class : cmd_question
 #   Output: Une autre commande utile est xor() (OU exclusif).
 #     Elle prend deux arguments et retourne TRUE si et un seul des deux arguments
@@ -326,7 +310,7 @@
 #   CorrectAnswer: TRUE & c(0, 45, -2)
 #   AnswerTests: omnitest(correctVal='TRUE & c(0, 45, -2)')
 #   Hint: Tapez TRUE & c(0, 45, -2) et regardez bien le résultat.
-# 
+
 # - Class: text
 #   Output: "Surprenant n'est-ce pas ?
 #     On pourrait s'attendre à ce que R nous renvoit une erreur.
