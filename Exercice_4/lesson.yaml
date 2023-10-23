@@ -1,0 +1,103 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Exercice 4
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+
+- Class: text
+  Output: Exercice 4.1
+
+- Class: script
+  Output: Écrire une fonction gel qui prend un argument nommé temperature et effectue les actions suivantes.
+    Si temperature est négative, renvoie le message “ça gèle”.
+    Sinon, renvoie “ça gèle pas”.
+    Tapez submit() une fois que vous avez fini de taper le script.
+  AnswerTests: test_gel()
+  Hint: Rappelez-vous comment écrire des fonctions.
+  Script: gel.R
+
+- Class: script
+  Output: Écrire une fonction meteo qui prend un argument nommé temperature et effectue les actions suivantes.
+    Si temperature est inférieure à 0, affiche le message “ça caille” avec la fonction message().
+    Si temperature est comprise entre 0 et 15, affiche le message “fais pas chaud”.
+    Si temperature est comprise entre 15 et 30, affiche le message “on est pas mal”.
+    Si temperature est supérieure à 30, affiche le message “tous à Miribel”.
+    Tapez submit() une fois que vous avez fini de taper le script.
+  AnswerTests: test_meteo()
+  Hint: Rappelez-vous comment écrire des fonctions.
+  Script: meteo.R
+
+- Class: script
+  Output: Écrire une fonction avertissement qui prend deux arguments pluie et parapluie et qui effectue les opérations suivantes.
+    Si pluie vaut TRUE et parapluie vaut FALSE, affiche “mouillé” avec la fonction message()
+    Si pluie vaut TRUE et parapluie vaut TRUE, affiche “bien vu”
+    Si pluie vaut FALSE, affiche “RAS”
+    Tapez submit() une fois que vous avez fini de taper le script.
+  AnswerTests: test_avertissement()
+  Hint: Rappelez-vous comment écrire des fonctions.
+    N'oubliez pas que vous pouvez tester deux conditions logiques simultanément à l'aide de l'opérateur &&
+  Script: avertissement.R
+
+- Class: text
+  Output: Exercice 4.2
+
+- Class: script
+  Output: Créez une fonction moyenne_arrondie, qui prend en argument un vecteur x et un argument facultatif decimales. 
+    La fonction doit effectuer les opérations suivantes.
+    Calculer la moyenne du vecteur
+    Si decimales est défini, arrondir la moyenne au nombre de décimales correspondant avec la fonction round()
+    Retourner le résultat
+    Tapez submit() une fois que vous avez fini d'écrire la fonction dans le script.
+  AnswerTests: test_moyenne()
+  Hint: Un argument peut ne pas prendre de valeur, dans ce cas là, la valeur par défaut qui doit lui être assignée est NULL.
+    La fonction qui arrondi un nombre est round().
+  Script: moyenne.R
+
+- Class: script
+  Output: Créez une fonction etendue qui retourne la différence entre la plus grande et la plus petite valeur d'un vecteur.
+    Faites en sorte qu'elle retourne NA si le vecteur passé en argument n'est pas numérique et indiquez le dans la console à l'aide d'un warning.
+  AnswerTests: test_etendue()
+  Hint: La fonction qui permet de tester si un vecteur est numérique est is.numeric().
+  Script: etendue.R
+  
+- Class: script
+  Output: Créez une fonction proportion qui prend en argument un vecteur et retourne les valeurs de ce vecteur divisée par leur somme.
+    Faites en sorte qu'elle renvoie un message d'erreur à l'aide de la fonction stop() si la somme des valeurs est nulle.
+  AnswerTests: test_proportion()
+  Hint: Tapez submit() une fois que vous avez fini de modifier votre script et que vous l'avez enregistré.
+  Script: proportion.R
+
+- Class: text
+  Output: Exercice 4.3
+
+- Class: script
+  Output: À l'aide d'une boucle for, écrire une fonction somme_positifs qui prend en argument un vecteur et retourne la somme de tous les nombres positifs qu'il contient.
+  AnswerTests: test_somme()
+  Hint: Tapez submit() une fois que vous avez modifer le script.
+  Script: somme.R
+
+- Class: script
+  Output: En utilisant une boucle for, créer une fonction somme_premiers_positifs qui prend en argument un vecteur et retourne la somme de tous les nombres positifs qu'il contient en partant du début du vecteur et en s'arrêtant au premier élément négatif.
+  AnswerTests: test_somme_premiers()
+  Hint: Tapez submit() une fois que vous avez modifer le script.
+  Script: somme-premiers.R
+
+- Class: script
+  Output: Soit la fonction pile_ou_face du script.
+    Modifiez cette fonction en utilisant une boucle for pour qu'elle accepte un argument n et retourne un vecteur comprenant le résultat de n tirages.
+  AnswerTests: test_pile_ou_face()
+  Hint: Tapez submit() une fois que vous avez modifer le script.
+  Script: pile-ou-face.R
+
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Exercice_4.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
