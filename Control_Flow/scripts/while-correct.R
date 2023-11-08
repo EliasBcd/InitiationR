@@ -9,7 +9,7 @@
 while_function <- function(x){
   res <- c()
   i <- 1 # Initiation de l'indexation
-  while(x[i] <= 20){
+  while(i <= length(x) && x[i] <= 20){ # La première condition s'assure qu'une valeur correspondant à l'index i existe.
     res <- c(res, x[i]) # Ce code sert à ajouter un élément à un vecteur déjà existant.
     i <- i + 1 # Incrémentation de l'indexation
   }
