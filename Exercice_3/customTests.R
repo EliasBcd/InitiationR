@@ -137,9 +137,9 @@ test_alea3 <- function(){
   set.seed(0)
   v1_bis <- trunc(alea(10, 0, 10))
   set.seed(45)
-  v2 <- trunc(runif(5, 10, 20))
+  v2 <- trunc(runif(5, 10, 20 + 1))
   set.seed(45)
-  v2_bis <- trunc(alea(5, 10, 20 +1))
+  v2_bis <- trunc(alea(5, 10, 20))
   
   try({
     t1 <- identical(alea(0, 0, 10), numeric(0))
