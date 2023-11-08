@@ -11,8 +11,8 @@
 
 - Class: script
   Output: Écrire une fonction gel qui prend un argument nommé temperature et effectue les actions suivantes.
-    Si temperature est négative, renvoie le message “ça gèle”.
-    Sinon, renvoie “ça gèle pas”.
+    Si temperature est négative, renvoie dans la console "ça gèle".
+    Sinon, renvoie "ça gèle pas".
     Tapez submit() une fois que vous avez fini de taper le script.
   AnswerTests: test_gel()
   Hint: Rappelez-vous comment écrire des fonctions.
@@ -20,10 +20,10 @@
 
 - Class: script
   Output: Écrire une fonction meteo qui prend un argument nommé temperature et effectue les actions suivantes.
-    Si temperature est inférieure à 0, affiche le message “ça caille” avec la fonction message().
-    Si temperature est comprise entre 0 et 15, affiche le message “fais pas chaud”.
-    Si temperature est comprise entre 15 et 30, affiche le message “on est pas mal”.
-    Si temperature est supérieure à 30, affiche le message “tous à Miribel”.
+    Si temperature est inférieure à 0, renvoie le message "ça caille" avec la fonction return().
+    Si temperature est comprise entre 0 et 15, renvoie le message "fais pas chaud".
+    Si temperature est comprise entre 15 et 30, renvoie le message "on est pas mal".
+    Si temperature est supérieure à 30, renvoie le message "tous à Miribel".
     Tapez submit() une fois que vous avez fini de taper le script.
   AnswerTests: test_meteo()
   Hint: Rappelez-vous comment écrire des fonctions.
@@ -31,9 +31,9 @@
 
 - Class: script
   Output: Écrire une fonction avertissement qui prend deux arguments pluie et parapluie et qui effectue les opérations suivantes.
-    Si pluie vaut TRUE et parapluie vaut FALSE, affiche “mouillé” avec la fonction message()
-    Si pluie vaut TRUE et parapluie vaut TRUE, affiche “bien vu”
-    Si pluie vaut FALSE, affiche “RAS”
+    Si pluie vaut TRUE et parapluie vaut FALSE, renvoie "mouillé" avec la fonction return().
+    Si pluie vaut TRUE et parapluie vaut TRUE, renvoi "bien vu".
+    Si pluie vaut FALSE, renvoie "RAS".
     Tapez submit() une fois que vous avez fini de taper le script.
   AnswerTests: test_avertissement()
   Hint: Rappelez-vous comment écrire des fonctions.
@@ -46,10 +46,10 @@
 - Class: script
   Output: Créez une fonction moyenne_arrondie, qui prend en argument un vecteur x et un argument facultatif decimales. 
     La fonction doit effectuer les opérations suivantes.
-    Calculer la moyenne du vecteur
-    Si decimales est défini, arrondir la moyenne au nombre de décimales correspondant avec la fonction round()
-    Retourner le résultat
-    Tapez submit() une fois que vous avez fini d'écrire la fonction dans le script.
+    D'abord, calculer la moyenne du vecteur.
+    Ensuite, si decimales est défini, arrondir la moyenne au nombre de décimales correspondant avec la fonction round().
+    Enfin, retourner le résultat.
+    Tapez submit() une fois que vous avez fini d'écrire la fonction dans le script et que vous avez sauvegardé celui-ci.
   AnswerTests: test_moyenne()
   Hint: Un argument peut ne pas prendre de valeur, dans ce cas là, la valeur par défaut qui doit lui être assignée est NULL.
     La fonction qui arrondi un nombre est round().
