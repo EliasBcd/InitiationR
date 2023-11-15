@@ -121,7 +121,7 @@
     Essayez de modifier les commandes précédentes pour obtenir ce graphique."
   CorrectAnswer: ggplot(rp) + geom_point(aes(dipl_sup, cadres))
   AnswerTests: any_of_exprs('ggplot(rp) + geom_point(aes(dipl_sup, cadres))',
-  'ggplot(rp) + geom_point(aes(x=dipl_sup, y=cadres))')
+    'ggplot(rp) + geom_point(aes(x=dipl_sup, y=cadres))')
   Hint: Il faut maintenant ajouter geom_point(aes(dipl_sup, cadres)) à ggplot().
 
 - Class: cmd_question
