@@ -19,13 +19,13 @@
 
 pile_ou_face <- function(n) {
   tirages <- character()
-  for (i in seq_len(n)) {
-    alea <- runif(1)
+ ## jouter une boucle for ou while ici
+      alea <- runif(1)
     if (alea < 0.5) {
       tirages <- c(tirages, "pile")
     } else {
       tirages <- c(tirages, "face")
     }
-  }
+  # N'oubliez pas d'incrémenter la boucle while !
   tirages
 }
