@@ -9,7 +9,7 @@
 - Class: text
   Output: Exercice 5.1
   
-- Class: test
+- Class: text
   Output: Pour les exercices qui suivent, on a chargé les extensions nécessaires et les données du jeu de données rp2018. 
    On a créé un objet rp69 comprenant uniquement les communes du Rhône et de la Loire.
    Vous devez travailler sur cet objet rp69.
