@@ -19,7 +19,8 @@
     Cela ouvrira un menu avec des informations (soit dans votre navigateur par
     défaut, soit dans Rstudio, suivant votre installation).
     Évidemment, vous trouverez aussi des réponses à vos
-    questions en faisant une recherche sur internet.
+    questions en faisant une recherche sur internet ou en demandant à des chatbot.
+    Attention néanmoins, les réponses de ceux-ci ne sont pas toujours fiables.
 
 - Class: cmd_question
   Output: L'utilisation la plus basique de R est comme une calculatrice 
@@ -94,8 +95,8 @@
     le `<` et le `-` qui forment la flèche.
 
 - Class: cmd_question
-  Output: Remarquez que R n'a rien affiché, contrairement à la leçon précédente,
-    ou R affichait systématiquement le résultat du calcul. 
+  Output: Remarquez que R n'a rien affiché, contrairement aux commandes précédentes,
+    où R affichait systématiquement le résultat de la commande. 
     Pour visualiser le contenu d'un objet, il suffit de le taper, suivi 
     d'entrée.
     Essayez maintenant de visualiser x.
@@ -112,7 +113,7 @@
   Output: Une remarque importante.
     Il est possible d'utiliser = comme opérateur d'assignation (x = 2 fonctionne
     exactement comme x <- 2) mais c'est généralement considéré comme une 
-    mauvaise pratique de code, pour une raison qui vous apparaîtra plus tard.
+    mauvaise pratique, pour une raison qui vous apparaîtra plus tard.
     Enfin, Rstudio offre un raccourci pour taper <-. 
     C'est généralement  alt gauche + -, mais cela dépend des systèmes d'exploitation.
     Je vous encourage à l'utiliser dès maintenant.
@@ -176,7 +177,7 @@
   Hint: Tapez x <- 8
   
 - Class: mult_question
-  Output: Quelle est la valeur de x ?
+  Output: Quelle est la valeur de x (sélectionner la bonne réponse en utilisant le numéro correspondant, 1 ou 2) ?
   AnswerChoices: 8; 2
   CorrectAnswer: 8
   AnswerTests: omnitest(correctVal='8')
@@ -224,7 +225,7 @@
 
 
 - Class: cmd_question
-  Output: Imaginons qu'on a demandé la taille en centimètres de 3 personnes et
+  Output: Imaginons qu'on ait demandé la taille en centimètres de 3 personnes et
     qu'on souhaite calculer leur taille moyenne.
     On pourrait créer autant d'objets que de tailles et calculer la moyenne.
     Commençons par assigner 156 à taille1.
@@ -250,7 +251,7 @@
     Essayez.
   CorrectAnswer: (taille1 + taille2 + taille3) / 3
   AnswerTests: calculates_same_value('(taille1 + taille2 + taille3) / 3')
-  Hint: "Tapez (taille1 + taille2 + taille3) / 3"
+  Hint: "N'oubliez pas les parenthèses ! Tapez (taille1 + taille2 + taille3) / 3"
   
 - Class: text
   Output: Ce n'est guère pratique !
@@ -265,7 +266,7 @@
     c(), qui signifie 'concatenate' ou 'combine' (assembler en anglais).
     Pour créer un vecteur contenant les tailles précédentes, tapez 
     c(156, 164, 197).
-    Essayez et stockez le résultat dans l'objet tailles.
+    Essayez et stockez le résultat (=assigner) dans l'objet tailles.
   CorrectAnswer: tailles <- c(156, 164, 197)
   AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197)')
   Hint: Tapez tailles <- c(156, 164, 197) et appuyez sur entrée.
@@ -328,7 +329,7 @@
   Hint: Quelle opération permet de mettre au carré un nombre ?  
   
 - Class: cmd_question
-  Output: Imaginons maintenant qu’on a aussi demandé aux trois mêmes personnes 
+  Output: Imaginons maintenant qu’on ait aussi demandé aux trois mêmes personnes 
     leur poids en kilos. On peut créer un deuxième vecteur poids.
     Tapez poids <- c(45, 59, 110).
   CorrectAnswer: poids <- c(45, 59, 110)
@@ -366,8 +367,8 @@
 - Class: cmd_question
   Output: Un vecteur peut contenir des nombres, mais il peut aussi contenir du
     texte. 
-    Imaginons qu’on a demandé aux trois mêmes personnes leur niveau de diplôme.
-    In peut regrouper l’information dans un vecteur de chaînes de caractères.
+    Imaginons qu’on ait demandé aux trois mêmes personnes leur niveau de diplôme.
+    On peut regrouper l’information dans un vecteur de chaînes de caractères.
     Une chaîne de caractère contient du texte libre, délimité par des guillemets
     simples ou doubles.
     Tapez diplome <- c("CAP", "Bac", "Bac+2").

@@ -136,7 +136,7 @@
 
     
 - Class: cmd_question
-  Output: Positionner le paramètre na.rm à TRUE indique à la fonction mean de ne
+  Output: Donner la valeur TRUE au paramètre na.rm indique à la fonction mean de ne
     pas tenir compte des valeurs manquantes dans le calcul.
     Si on ne dit rien à la fonction mean, cet argument a une valeur par défaut,
     en l’occurrence FALSE (faux), qui fait qu’il ne supprime pas les valeurs 

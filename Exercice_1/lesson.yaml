@@ -152,7 +152,7 @@
     élèves et on a stocké ces données dans trois vecteurs maths, anglais et sport.
     Calculez la moyenne des élèves de la classe en anglais.
   CorrectAnswer: mean(anglais)
-  AnswerTests: any_of_exprs('mean(anglais)', 'mean(anglais, na.rm=TRUE)')
+  AnswerTests: any_of_exprs('mean(anglais)', 'mean(anglais, na.rm=TRUE)', 'anglais / 6')
   Hint: Quelle fonction permet de calculer la moyenne ?
 
 - Class: cmd_question
