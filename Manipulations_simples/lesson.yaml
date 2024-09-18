@@ -144,16 +144,17 @@
 - Class: cmd_question
   Output: On peut faire des opérations sur les objets exactement comme on le 
     ferait sur des valeurs, et assigner le résultat.
-    Essayez d'additionner x et y et de stocker le résultat dans l'objet resultat.
-  CorrectAnswer: resultat <- x + y
-  AnswerTests: any_of_exprs('resultat <- x + y', 'resultat <- y + x')
-  Hint: Tapez resultat <- x + y et appuyez sur entrée. 
+    Essayez d'additionner x et y et de stocker le résultat dans un objet, que
+    vous nommerez somme.
+  CorrectAnswer: somme <- x + y
+  AnswerTests: any_of_exprs('somme <- x + y', 'somme <- y + x')
+  Hint: Tapez somme <- x + y et appuyez sur entrée. 
 
 - Class: cmd_question
-  Output: Quelle est la valeur de resultat ? Tapez resultat pour le savoir !
-  CorrectAnswer: 'resultat'
-  AnswerTests: omnitest(correctExpr='resultat')
-  Hint: Tapez resultat et appuyez sur Entrée.
+  Output: Quelle est la valeur du résultat ? Tapez somme pour le savoir !
+  CorrectAnswer: 'somme'
+  AnswerTests: omnitest(correctExpr='somme')
+  Hint: Tapez somme et appuyez sur Entrée.
 
 - Class: text
   Output: R a fait l'addition sur les objets comme il l'aurait fait sur les
