@@ -178,11 +178,12 @@
   Output: Vous avez maintenant fini l'exercice 3 sur les fonctions.
   
 - Class: mult_question
-  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
-    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
-    Paris 8) ?
-    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
-    fichier 'Exercice_3.txt' qui a été créé plus tard.
+  Output: "Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant tout de suite ?
+    Répondre Oui ou Non crééra quoiqu'il arrive un fichier, 'Exercice_3.txt',
+    que vous pouvez soumettre à votre enseignant maintenant (en répondant Oui),
+    ou plus tard (en répondant Non).
+    Répondre Oui ouvrira la page Moodle où vous pouvez déposer votre progression."
   AnswerChoices: Oui;Non
   CorrectAnswer: "Oui"
   AnswerTests: submit_log()

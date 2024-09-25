@@ -38,7 +38,7 @@
   
 - Class: text
   Output: Fin de la parenthèse sur les listes. 
-    Nous allons avoir besoin des listes pour le prochain exercices que nous utilisons.
+    Nous allons avoir besoin des listes pour le prochain exercice.
     Une fonction peut prendre un argument spécial nommé `...`.
     Cet argument spécial "capture" tous les arguments présents et qui n'ont pas été définis avec la fonction.
     L'argument ... est considéré comme une liste par R.
@@ -82,7 +82,8 @@
     Lorsque R rencontre une instruction `return()` dans une fonction, il interrompt immédiatement son exécution et "sort" de la fonction en renvoyant le résultat.
 
 - Class: script
-  Output: Ainsi, les lignes supplémentaires ajoutées après return() ne modifie pas le résultat.
+  Output: Ainsi, les lignes supplémentaires ajoutées après return() ne sont pas
+    executée et ne modifie pas le résultat.
     Tapez submit() une fois que vous avez observer le script.
   AnswerTests: test_ajoute2()
   Hint: Tapez submit() quand vous avez observé la fonction.
@@ -163,7 +164,7 @@
     Comme il trouve un objet obj_inexistant, il utilise sa valeur au moment de l'appel de la fonction.
 
 - Class: script
-  Output: Les arguments et les objets créés dans la fonction sont prioritaires
+  Output: Les arguments et les objets créés dans la fonction sont prioritaires.
     Que se passe-t-il si un objet avec le même nom existe à la fois dans la fonction
     et dans notre environnement global ? 
     Dans ce cas R privilégie l'objet créé dans la fonction.
@@ -257,11 +258,12 @@
     la programmation, les fonctions.
 
 - Class: mult_question
-  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
-    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
-    Paris 8) ?
-    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
-    fichier 'Creer_Fonctions_2.txt' qui a été créé plus tard.
+  Output: "Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant tout de suite ?
+    Répondre Oui ou Non crééra quoiqu'il arrive un fichier, 'Creer_Fonctions_2.txt',
+    que vous pouvez soumettre à votre enseignant maintenant (en répondant Oui),
+    ou plus tard (en répondant Non).
+    Répondre Oui ouvrira la page Moodle où vous pouvez déposer votre progression."
   AnswerChoices: Oui;Non
   CorrectAnswer: "Oui"
   AnswerTests: submit_log()

@@ -28,34 +28,34 @@
 
 
 - Class: cmd_question
-  Output: Pour pouvoir utiliser ces données, il faut d'abord charger l'extension `questionr` (après l'avoir installée, bien entendu).
-    Tapez la commande library(questionr) pour ce faire.
+  Output: "Pour pouvoir utiliser ces données, il faut d'abord charger l'extension `questionr` (après l'avoir installée, bien entendu).
+    Tapez la commande library(questionr) pour ce faire."
   CorrectAnswer: library(questionr)
   AnswerTests: omnitest(correctExpr='library(questionr)')
   Hint: Tapez la commande library(questionr) dans la console.
 
 
 - Class: cmd_question
-  Output: Nous devons ensuite indiquer à R que nous souhaitons accéder au jeu de données à l'aide de la fonction data.
-    Tapez la commande data(hdv2003).
+  Output: "Nous devons ensuite indiquer à R que nous souhaitons accéder au jeu de données à l'aide de la fonction data.
+    Tapez la commande data(hdv2003)."
   CorrectAnswer: data(hdv2003)
   AnswerTests: omnitest(correctExpr='data(hdv2003)')
   Hint: Tapez la commande data(hdv2003) dans la console.
 
 - Class: text
-  Output: Cette commande ne renvoie aucun résultat particulier (sauf en cas d'erreur), 
+  Output: "Cette commande ne renvoie aucun résultat particulier (sauf en cas d'erreur), 
     mais vous devriez voir apparaître dans l'onglet *Environment* de RStudio un 
     nouvel objet nommé `hdv2003`.
     Cet objet est d'un type nouveau, il s'agit d'un tableau de données, en anglais,
     un data.frame.
     Un data.frame (ou tableau de données, ou table) est un type d'objet R qui
     contient des données au format tabulaire, avec les observations en ligne et 
-    les variables en colonnes, comme dans une feuille de tableur de type LibreOffice ou Excel.
+    les variables en colonnes, comme dans une feuille de tableur de type LibreOffice ou Excel."
 
 - Class: cmd_question
   Output: Un *data frame* peut être manipulé comme les autres objets vus précédemment. 
     On peut par exemple l'assigner à l'objet d.
-    Montrez moi comment vous faites pour assigner la base de donnée hdv2003 à l'objet d.
+    Montrez-moi comment vous faites pour assigner la base de donnée hdv2003 à l'objet d.
   CorrectAnswer: d <- hdv2003
   AnswerTests: omnitest(correctExpr='d <- hdv2003')
   Hint: Rappelez vous que l'opérateur d'assignation dans R est la flèche vers la gauche <-.
@@ -98,18 +98,25 @@
   Hint: Comment utilise-t-on une fonction ? N'oubliez pas les parenthèses.
 
 - Class: text
-  Output: À noter que sous RStudio, on peut afficher à tout moment la structure d'un objet en cliquant sur l'icône de triangle sur fond bleu à gauche du nom de l'objet dans l'onglet *Environment*.
+  Output: "À noter que sous RStudio, on peut afficher à tout moment la structure 
+    d'un objet en cliquant sur l'icône de triangle sur fond bleu à gauche du 
+    nom de l'objet dans l'onglet *Environment*."
 
 
 
 - Class: text
-  Output: R va afficher l'ensemble des valeurs de la variable `sexe` dans la console, ce qui est peu utile. 
-    Cela nous permet de constater que `d$sexe` est un vecteur de chaînes de caractères tels qu'on en a déjà rencontré précédemment.
-    La commande `table$colonne` renvoie donc la colonne nommée `colonne` du tableau `table`, c'est-à-dire un vecteur, en général de nombres ou de chaînes de caractères.
+  Output: "R affichera l'ensemble des valeurs de la variable `sexe` dans la
+    console, ce qui est peu utile. 
+    Cela nous permet de constater que `d$sexe` est un vecteur de chaînes de 
+    caractères tels qu'on en a déjà rencontré précédemment.
+    La commande `table$colonne` renvoie donc la colonne nommée `colonne` du 
+    tableau `table`, c'est-à-dire un vecteur, en général de nombres ou de 
+    chaînes de caractères."
 
 - Class: cmd_question
-  Output: Si on souhaite afficher seulement les premières ou dernières valeurs d'une variable, on peut utiliser les fonctions `head` et `tail`.
-    Essayez d'afficher lez premières valeurs de la variable age à l'aide de la fonction head.
+  Output: "Si on souhaite afficher seulement les premières ou dernières valeurs 
+    d'une variable, on peut utiliser les fonctions `head` et `tail`.
+    Essayez d'afficher lez premières valeurs de la variable age à l'aide de la fonction head."
   CorrectAnswer: head(d$age)
   AnswerTests: omnitest(correctExpr='head(d$age)')
   Hint: Comment obtient-ton les valeurs de la variables age ? Comment utilise-t-on une fonction ?
@@ -136,22 +143,33 @@
   Hint: Tapez d$minutes.tv <- d$heures.tv * 60 dans la console.
 
 - Class: cmd_question
-  Output: On peut alors constater, soit visuellement soit dans la console, qu'une nouvelle variable (une nouvelle colonne) a bien été ajoutée au tableau.
-    Tapez la commande pour visualiser la colonne minutes.tv dans le tableau d.
+  Output: "On peut alors constater, soit visuellement soit dans la console, 
+    qu'une nouvelle variable (une nouvelle colonne) a bien été ajoutée au tableau.
+    Tapez la commande pour visualiser la colonne minutes.tv dans le tableau d."
   CorrectAnswer: d$minutes.tv
   AnswerTests: omnitest(correctExpr='d$minutes.tv')
   Hint: Rappelez-vous comment on peut afficher une variable dans la console.
 
 - Class: text
-  Output: "On a donc désormais accès à un tableau de données `d`, dont les lignes sont des observations (des individus enquêtés), et les colonnes des variables (des caractéristiques de chacun de ces individus), et on sait accéder à ces variables grâce à l'opérateur `$`.
-    Si on souhaite analyser ces variables, les méthodes et fonctions utilisées seront différentes selon qu'il s'agit d'une variable *quantitative* (variable numérique pouvant prendre un grand nombre de valeurs : l'âge, le revenu, un pourcentage...) ou d'une variable *qualitative* (variable pouvant prendre un nombre limité de valeurs appelées modalités : le sexe, la profession, le dernier diplôme obtenu, etc.)."
+  Output: "On a donc désormais accès à un tableau de données `d`, dont les 
+    lignes sont des observations (des individus enquêtés), et les colonnes des 
+    variables (des caractéristiques de chacun de ces individus), 
+    et on sait accéder à ces variables grâce à l'opérateur `$`.
+    Si on souhaite analyser ces variables, les méthodes et fonctions utilisées 
+    seront différentes selon qu'il s'agit d'une variable *quantitative* 
+    (variable numérique pouvant prendre un grand nombre de valeurs : l'âge, 
+    le revenu, un pourcentage...) ou d'une variable *qualitative* (variable 
+    pouvant prendre un nombre limité de valeurs appelées modalités : le sexe, 
+    la profession, le dernier diplôme obtenu, etc.)."
 
 
 - Class: cmd_question
-  Output: Caractériser une variable quantitative, c'est essayer de décrire la manière dont ses valeurs se répartissent, ou se distribuent.
-    Pour cela on peut commencer par regarder les valeurs extrêmes, avec les fonctions `min`, `max` ou `range`.
+  Output: "Caractériser une variable quantitative, c'est essayer de décrire la 
+    manière dont ses valeurs se répartissent, ou se distribuent.
+    Pour cela on peut commencer par regarder les valeurs extrêmes, avec les 
+    fonctions `min`, `max` ou `range`.
     Quelle est la valeur minimale de l'âge dans le tableau ?
-    Tapez la commande nécessaire pour l'obtenir.
+    Tapez la commande nécessaire pour l'obtenir."
   CorrectAnswer: min(d$age)
   AnswerTests: omnitest(correctExpr='min(d$age)')
   Hint: La fonction pour obtenir le minimum d'une variable est min().
@@ -291,11 +309,12 @@
   Hint: Tapez summary(d$qualif) dans la console.
   
 - Class: mult_question
-  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
-    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
-    Paris 8) ?
-    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
-    fichier 'Analyses_donnees.txt' qui a été créé plus tard.
+  Output: "Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant tout de suite ?
+    Répondre oui ou non crééra quoiqu'il arrive un fichier, 'Analyses_donnees.txt',
+    que vous pouvez soumettre à votre enseignant maintenant (en répondant Oui),
+    ou plus tard (en répondant non).
+    Répondre oui ouvrira la page Moodle où vous pouvez déposer votre progression."
   AnswerChoices: Oui;Non
   CorrectAnswer: "Oui"
   AnswerTests: submit_log()

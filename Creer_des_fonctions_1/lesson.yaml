@@ -11,7 +11,7 @@
 
 - Class: script
   Output: Voici un exemple de fonction très simple, quoi que d'une utilité douteuse, puisqu'elle se contente d'ajouter 2 à un nombre.
-    Tapez submit() une fois que vous avez fini de l'observer.
+    Tapez submit() dans la console une fois que vous avez fini de l'observer.
   AnswerTests: test_ajoute2()
   Hint: Tapez submit() sans modifier la fonction. Vous avez juste besoin de l'observer pour l'instant.
   Script: ajoute2.R
@@ -80,7 +80,7 @@
 
 - Class: cmd_question
   Output: Essayez maintenant d'utiliser la fonction précédemment définie.
-    Attention, une fonction sans argument nécessite quand même des parenthèses pour être executée et prendre une valeur.
+    Attention, une fonction sans argument nécessite quand même des parenthèses pour être executée et renvoyermi une valeur.
   CorrectAnswer: miaule()
   AnswerTests: omnitest(correctExpr='miaule()')
   Hint: Tapez miaule() dans la console.
@@ -109,7 +109,7 @@
   Hint: Tapez prop_table(hdv2003$qualif) dans la console.
 
 - Class: script
-  Output: On pourrait améliorer la fonction.
+  Output: On peut améliorer la fonction.
     On pourrait vouloir modifier le nombre de décimales affichées pour les pourcentages, par exemple en les limitant à 1. 
     Pour cela on ajoute une instruction `round()`.
     Tapez submit() une fois que vous avez bien lu le script.
@@ -126,8 +126,8 @@
 
 - Class: script
   Output: Ça fonctionne !
-    Cela dit, limiter à un chiffre après la virgule ne convient pas forcément dans tous les cas. 
-    L'idéal serait d'offrir la possibilité à la personne qui appelle la fonction de choisir elle-même la précision de l'affichage. 
+    Cela dit, limiter à un chiffre après la virgule ne convient pas `forcément dans à tous les cas. 
+    L'idéal serait d'offrir la possibilité à la personne qui utilise la fonction de choisir elle-même la précision de l'affichage. 
     Comment ?
     Tout simplement en ajoutant un deuxième argument à notre fonction, que nous nommerons `decimales`, et en utilisant cet argument à la place du 1 dans l'appel à `round()`.
   AnswerTests: test_prop_tab_deci_arg()
@@ -252,7 +252,7 @@
     Par exemple, `mean` accepte comme premier argument `x`, un vecteur, puis un argument `trim` qui permet d'éliminer les valeurs extrêmes,
     et enfin `na.rm` qui vont changer sa manière de calculer la moyenne des valeurs de `x`.
     En général on appelle la fonction en passant les paramètres correspondant aux données par position, et les autres en les nommant. 
-    C'est ainsi qu'on ne fait ni `mean(x = tailles, na.rm = TRUE, trim = 0.1)` ni `mean(tailles, 0.1, TRUE)`, mais plutôt `mian(tailles, trim = 0.1, na.rm = TRUE)`.
+    C'est ainsi qu'on ne fait ni `mean(x = tailles, na.rm = TRUE, trim = 0.1)` ni `mean(tailles, 0.1, TRUE)`, mais plutôt `mean(tailles, trim = 0.1, na.rm = TRUE)`.
     En ce qui concerne le nom des arguments, en général ceux correspondant aux données transmises à une fonction peuvent avoir des noms relativement génériques (`x`, `y`, `v` pour un vecteur, `data` ou `df` pour un data.frame...).
     Les autres doivent par contre avoir des noms à la fois courts et explicites. 
     Par exemple plutôt `decimales` que `nd` ou `nombre_de_decimales`. 
@@ -295,11 +295,12 @@
     Vous pouvez maintenant faire la deuxième partie de la leçon sur la création des fonctions.
     
 - Class: mult_question
-  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
-    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
-    Paris 8) ?
-    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
-    fichier 'Creer_Fonctions_1.txt' qui a été créé plus tard.
+  Output: "Souhaitez-vous soumettre votre progression sur Moodle à votre 
+    enseignant tout de suite ?
+    Répondre oui ou non crééra quoiqu'il arrive un fichier, 'Creer_Fonctions_1.txt',
+    que vous pouvez soumettre à votre enseignant maintenant (en répondant Oui),
+    ou plus tard (en répondant non).
+    Répondre oui ouvrira la page Moodle où vous pouvez déposer votre progression."
   AnswerChoices: Oui;Non
   CorrectAnswer: "Oui"
   AnswerTests: submit_log()
