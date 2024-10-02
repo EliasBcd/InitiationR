@@ -106,7 +106,7 @@
     Essayez pour voir.
   CorrectAnswer: prop_tab(hdv2003$qualif)
   AnswerTests: expr_uses_func('prop_tab')
-  Hint: Tapez prop_table(hdv2003$qualif) dans la console.
+  Hint: Tapez prop_tab(hdv2003$qualif) dans la console.
 
 - Class: script
   Output: On peut améliorer la fonction.
