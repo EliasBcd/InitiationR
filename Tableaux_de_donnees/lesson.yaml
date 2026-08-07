@@ -1,0 +1,217 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Tableaux de données
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+
+- Class: text
+  Output: Nous avons vu comment créer des vecteurs contenant différentes valeurs,
+    et différent types de valeurs.
+    Il est parfois utile de les regrouper en un seul tableau de données.
+    C'est à cela que nous servirons les tibbles, la forme de tableau utilisée
+    par le tidyverse.
+
+- Class: cmd_question
+  Output: Nous avons vu que nous pouvons créer un vecteur à l'aide de la
+    commande c().
+    Reprenez le vecteur contenant les tailles de la leçon précédente.
+    Pour mémoire, nous souhaitons créer le vecteur contenant les tailles 156, 164, 197, 147 et 173 (dans cet ordre).
+    Stockez le résultat dans l'objet tailles.
+  CorrectAnswer: tailles <- c(156, 164, 197, 147, 173)
+  AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197, 147, 173)')
+  Hint: Tapez tailles <- c(156, 164, 197, 147, 173) et appuyez sur entrée.
+
+- Class: cmd_question
+  Output: Recréons maintenant le vecteur poids de la leçon sur les vecteurs.
+    Pour mémoire, nous souhaitons créer le vecteur contenant les poids 45, 59, 110, 44 et 88 (dans cet ordre).
+    Stockez le résultat dans l'objet poids.
+  CorrectAnswer: poids <- c(45, 59, 110, 44, 88)
+  AnswerTests: omnitest(correctExpr =  'poids <- c(45, 59, 110, 44, 88)')
+  Hint: Tapez poids <- c(45, 59, 110, 44, 88)  et appuyez sur entrée.
+
+- Class: text
+  Output: Nous avons maintenant nos deux vecteurs de données, mais ils ne sont pas vraiment liés entre eux.
+    Nous savons que la première taille correspond au premier poids, la seconde au second, etc.
+    Nous pouvons même créer un vecteur de noms associés.
+
+- Class: cmd_question
+  Output: Attribuons des noms à ces poids et tailles maintenant.
+    Disons que ce sont les caractéristiques de Jeanne, Mohammed, Bassirou, Leila et Zoé.
+    On peut créer un vecteur noms contenant ces noms (sans oublier les accents).
+    Faites-le maintenant.
+  CorrectAnswer: noms <- c("Jeanne", "Mohammed", "Bassirou", "Leila", "Zoé")
+  AnswerTests: omnitest(correctExpr =  'noms <- c("Jeanne", "Mohammed", "Bassirou", "Leila", "Zoé")')
+  Hint: N'oubliez pas les guillemets autour des chaînes de caractères !
+
+- Class: text
+  Output: Nous n'avons toujours pas lié nos données.
+    Il n'est pas simple de trouver le poids et la taille de Bassirou par exemple.
+    Pour simplifier cela, le tidyverse possède un type, le tibble, qui regroupe les données sous forme de tableaux.
+
+- Class: cmd_question
+  Output: "La commande pour regrouper des vecteurs dans un tibble est tibble().
+    Chaque argument devient une colonne du tableau, avec le nom de l'objet
+    comme nom de colonne.
+    On souhaite ici regrouper tailles et poids, ainsi que noms, qui sera une
+    colonne ordinaire du tableau comme les deux autres.
+    Tapez tibble(noms, tailles, poids) et stockez le résultat dans l'objet
+    d."
+  CorrectAnswer: d <- tibble(noms, tailles, poids)
+  AnswerTests: omnitest(correctExpr =  'd <- tibble(noms, tailles, poids)')
+  Hint: N'oubliez pas d'attribuer le tibble à l'objet d.
+
+- Class: cmd_question
+  Output: Tapons maintenant d pour observer comment R a stocké nos données.
+  CorrectAnswer: d
+  AnswerTests: omnitest(correctExpr =  'd')
+  Hint: Tapez simplement d puis Entrée.
+
+- Class: text
+  Output: "R a stocké tout dans un seul tableau, avec une colonne par vecteur
+    utilisé.
+    Contrairement au data.frame vu dans d'autres langages ou dans d'anciennes
+    versions de R, un tibble ne gère pas de noms de lignes : noms est ici
+    une colonne comme les autres, et non une étiquette à part."
+
+- Class: cmd_question
+  Output: Si on veut accéder à une colonne de ce tableau, il y a plusieurs méthodes.
+    La première consiste à utiliser le nom du tableau, suivi du signe $ suivi du nom de la colonne.
+    Essayez de voir les tailles.
+  CorrectAnswer: d$tailles
+  AnswerTests: omnitest(correctExpr =  'd$tailles')
+  Hint: Tapez simplement d$tailles puis Entrée.
+
+- Class: cmd_question
+  Output: La deuxième permet de consulter n'importe quelle colonne à l'aide d'un indice, un peu comme on consulterait un élément d'un vecteur.
+    Si on souhaite voir la colonne numéro 2 du tableau, on tapera d[2].
+    Essayez pour voir !
+  CorrectAnswer: d[2]
+  AnswerTests: omnitest(correctExpr =  'd[2]')
+  Hint: Tapez simplement d[2] puis Entrée.
+
+- Class: cmd_question
+  Output: Enfin, une dernière méthode utile est d'utiliser le nom des colonnes entre des crochets, plutôt que d'utiliser le signe $.
+    La méthode d'accès est similaire à la précédente, sauf qu'au lieu d'utiliser l'indice de la colonne, il faut utiliser son nom.
+    Essayez pour voir si vous avez compris.
+  CorrectAnswer: d["poids"]
+  AnswerTests: any_of_exprs('d["poids"]', 'd["tailles"]')
+  Hint: Tapez simplement d["tailles"] puis Entrée.
+
+- Class: text
+  Output: Vous verrez qu'à l'usage, il est souvent plus facile d'utiliser le nom de la colonne pour la consulter.
+    La raison est simple, vous ne saurez pas toujours dans quel ordre R a ordonné les colonnes
+    et vous allez parfois ajouter ou supprimer des colonnes à vos tableaux.
+    Il est beaucoup plus simple de se rappeler du nom d'une colonne plutôt que de son numéro, surtout si celui-ci peut changer.
+    La méthode avec le $ ne permet de consulter qu'une seule colonne à la fois.
+    La troisième méthode permet au contraire de consulter plusieurs colonnes simultanément, en mettant tous les noms des colonnes dans un vecteur.
+
+- Class: cmd_question
+  Output: Tout comme les colonnes, il y a plusieurs méthodes pour consulter une ou plusieurs lignes.
+    La plus simple est d'utiliser un numéro de ligne.
+    La syntaxe est un peu différente des colonnes.
+    En effet, en pratique R considère les tableaux comme des matrices (objets que nous n'avons pas étudiés),
+    c'est à dire que chaque cellule du tableau est indexée par un numéro de ligne et un numéro de colonne.
+    La ligne est donnée par le premier indice, alors que la colonne est donnée par le deuxième indice.
+    Si on veut consulter la deuxième ligne par exemple, on doit entrer d[2, ].
+    Essayez pour voir !
+  CorrectAnswer: d[2, ]
+  AnswerTests: omnitest(correctExpr =  'd[2, ]')
+  Hint: Tapez simplement d[2, ] puis Entrée.
+
+- Class: cmd_question
+  Output: La virgule suivie de rien indique à R que nous souhaitons consulter toutes les colonnes associées à la deuxième ligne.
+    Si maintenant nous souhaitons seulement consulter la première colonne de la deuxième ligne, essayez de deviner comment faire.
+  CorrectAnswer: d[2, 1]
+  AnswerTests: omnitest(correctExpr =  'd[2, 1]')
+  Hint: Essayez de taper d[2, 1] puis Entrée.
+
+- Class: text
+  Output: "Puisque noms est une colonne ordinaire dans notre tibble, et non un
+    nom de ligne, on ne peut plus l'utiliser directement pour indexer une
+    ligne comme on le ferait avec un data.frame classique.
+    Pour retrouver la ligne de Bassirou, il faut passer par filter(), que
+    vous reverrez en détail dans la prochaine leçon."
+
+- Class: cmd_question
+  Output: "Essayez d |> filter(noms == \"Bassirou\") pour retrouver la ligne
+    de Bassirou."
+  CorrectAnswer: d |> filter(noms == "Bassirou")
+  AnswerTests: expr_uses_func('filter')
+  Hint: Tapez d |> filter(noms == "Bassirou") (ou filter(d, noms == "Bassirou"))
+    dans la console.
+
+- Class: cmd_question
+  Output: Il est bien sûr possible d'ajouter des colonnes à un tableau après sa création.
+    Si par exemple nous voulons ajouter la colonne imc à ce tableau,
+    il faut utiliser la syntaxe d$imc <- d$poids / (d$tailles / 100)^2.
+    Les règles de calculs sur les lignes ou les colonnes d'un tableau sont identiques à celle des vecteurs.
+  CorrectAnswer: d$imc <- d$poids / (d$tailles / 100)^2
+  AnswerTests: omnitest(correctExpr =  'd$imc <- d$poids / (d$tailles / 100)^2')
+  Hint: Tapez simplement d$imc <- d$poids / (d$tailles / 100)^2 et appuyez sur Entrée.
+
+- Class: cmd_question
+  Output: Observez maintenant d.
+  CorrectAnswer: d
+  AnswerTests: omnitest(correctExpr =  'd')
+  Hint: Rappelez-vous comment afficher un objet.
+
+- Class: text
+  Output: Remarquez que R a créé une nouvelle colonne, imc, qui est le résultat du calcul que nous lui avons demandé.
+
+- Class: cmd_question
+  Output: "glimpse() donne un aperçu rapide et lisible d'un tableau : le type
+    et les premières valeurs de chaque colonne.
+    Utilisez glimpse() sur d."
+  CorrectAnswer: glimpse(d)
+  AnswerTests: omnitest(correctExpr =  'glimpse(d)')
+  Hint: Tapez simplement glimpse(d).
+
+- Class: text
+  Output: "Notre tableau jouet à cinq lignes nous a permis de voir les bases.
+    Passons maintenant à un vrai jeu de données : hdv2003, l'enquête Histoire
+    de vie 2003 de l'INSEE, que nous utiliserons jusqu'à la fin du cours."
+
+- Class: cmd_question
+  Output: "Chargez ce jeu de données avec data(hdv2003)."
+  CorrectAnswer: data(hdv2003)
+  AnswerTests: omnitest(correctExpr='data(hdv2003)')
+  Hint: Tapez data(hdv2003) dans la console.
+
+- Class: text
+  Output: "hdv2003 est un data.frame classique, avec 2000 lignes.
+    L'afficher directement noierait la console.
+    Il faut d'abord le convertir en tibble avec as_tibble()."
+
+- Class: cmd_question
+  Output: "Convertissez hdv2003 en tibble avec as_tibble(hdv2003), et stockez
+    le résultat dans un nouvel objet, enquete."
+  CorrectAnswer: enquete <- as_tibble(hdv2003)
+  AnswerTests: omnitest(correctExpr =  'enquete <- as_tibble(hdv2003)')
+  Hint: Tapez enquete <- as_tibble(hdv2003) et appuyez sur Entrée.
+
+- Class: cmd_question
+  Output: Utilisez glimpse() sur ce nouveau tableau pour voir ses colonnes.
+  CorrectAnswer: glimpse(enquete)
+  AnswerTests: omnitest(correctExpr =  'glimpse(enquete)')
+  Hint: Tapez glimpse(enquete).
+
+- Class: text
+  Output: Ce sera tout sur cette leçon.
+    Vous savez maintenant construire un tableau à partir de vecteurs, y
+    accéder par colonne et par ligne, et charger un vrai jeu de données sous
+    forme de tibble.
+    La prochaine leçon vous apprendra à manipuler ce genre de tableau avec les
+    verbes du tidyverse.
+
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Tableaux_de_donnees.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.

@@ -1,0 +1,226 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Décrire les données
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+
+- Class: text
+  Output: "La leçon précédente nous a appris à découper un tableau : select,
+    filter, arrange, mutate.
+    Nous allons maintenant apprendre à le résumer : calculer des moyennes, des
+    effectifs, et comparer des groupes entre eux."
+
+- Class: text
+  Output: "Le tidyverse et le jeu de données hdv2003 ont de nouveau été
+    chargés pour vous.
+    Reconstituons notre tableau de travail comme la dernière fois."
+
+- Class: cmd_question
+  Output: "Chargez les données avec data(hdv2003)."
+  CorrectAnswer: data(hdv2003)
+  AnswerTests: omnitest(correctExpr='data(hdv2003)')
+  Hint: Tapez data(hdv2003) dans la console.
+
+- Class: cmd_question
+  Output: "Convertissez-les en tibble et stockez le résultat dans d, avec
+    d <- as_tibble(hdv2003)."
+  CorrectAnswer: d <- as_tibble(hdv2003)
+  AnswerTests: omnitest(correctExpr='d <- as_tibble(hdv2003)')
+  Hint: Tapez d <- as_tibble(hdv2003) dans la console.
+
+- Class: text
+  Output: "Commençons par les variables quantitatives, comme age ou
+    heures.tv.
+    summarise() calcule un ou plusieurs indicateurs sur l'ensemble du tableau
+    et renvoie un tableau d'une seule ligne."
+
+- Class: cmd_question
+  Output: "Calculez la moyenne de l'âge avec
+    d |> summarise(moyenne = mean(age))."
+  CorrectAnswer: d |> summarise(moyenne = mean(age))
+  AnswerTests: expr_uses_func('summarise')
+  Hint: Tapez d |> summarise(moyenne = mean(age)) (ou
+    summarise(d, moyenne = mean(age))) dans la console.
+
+- Class: cmd_question
+  Output: "On peut calculer plusieurs indicateurs à la fois, en les séparant
+    par une virgule à l'intérieur de summarise().
+    Calculez en une seule commande la moyenne, la médiane et l'écart-type de
+    l'âge, avec
+    d |> summarise(moyenne = mean(age), mediane = median(age), ecart_type = sd(age))."
+  CorrectAnswer: d |> summarise(moyenne = mean(age), mediane = median(age), ecart_type = sd(age))
+  AnswerTests: expr_uses_func('summarise')
+  Hint: Tapez d |> summarise(moyenne = mean(age), mediane = median(age),
+    ecart_type = sd(age)) dans la console.
+
+- Class: text
+  Output: "On peut aussi calculer des quartiles à l'intérieur d'un summarise(),
+    avec quantile().
+    Le premier quartile de l'âge, par exemple, s'obtient avec
+    quantile(age, 0.25)."
+
+- Class: cmd_question
+  Output: "Calculez le premier quartile de l'âge avec
+    d |> summarise(q1 = quantile(age, 0.25))."
+  CorrectAnswer: d |> summarise(q1 = quantile(age, 0.25))
+  AnswerTests: expr_uses_func('summarise')
+  Hint: Tapez d |> summarise(q1 = quantile(age, 0.25)) dans la console.
+
+- Class: cmd_question
+  Output: "Essayons maintenant sur une autre variable.
+    Calculez la moyenne des heures de télévision, avec
+    d |> summarise(moyenne = mean(heures.tv))."
+  CorrectAnswer: d |> summarise(moyenne = mean(heures.tv))
+  AnswerTests: expr_uses_func('summarise')
+  Hint: Tapez d |> summarise(moyenne = mean(heures.tv)) dans la console.
+
+- Class: mult_question
+  Output: "Le résultat est NA, alors que la commande précédente sur age avait
+    bien fonctionné.
+    Pourquoi ?"
+  AnswerChoices: La variable heures.tv contient des valeurs manquantes;R ne sait pas calculer de moyenne sur des heures;Il manque des guillemets autour de heures.tv
+  CorrectAnswer: La variable heures.tv contient des valeurs manquantes
+  AnswerTests: omnitest(correctVal='La variable heures.tv contient des valeurs manquantes')
+  Hint: Rappelez-vous ce qui se passe quand on additionne ou multiplie un NA
+    à autre chose.
+
+- Class: text
+  Output: "En effet : dès qu'une des valeurs utilisées dans un calcul est NA,
+    le résultat entier devient NA.
+    C'est le comportement par défaut, sur toutes les fonctions de calcul de
+    R."
+
+- Class: cmd_question
+  Output: "Pour écarter les valeurs manquantes du calcul, on ajoute l'argument
+    na.rm = TRUE (pour 'NA remove').
+    Recalculez la moyenne des heures de télévision avec
+    mean(heures.tv, na.rm = TRUE), à l'intérieur d'un summarise()."
+  CorrectAnswer: d |> summarise(moyenne = mean(heures.tv, na.rm = TRUE))
+  AnswerTests: expr_uses_func('summarise')
+  Hint: Tapez d |> summarise(moyenne = mean(heures.tv, na.rm = TRUE)) dans la
+    console.
+
+- Class: text
+  Output: "Attention : na.rm = TRUE ne fait pas disparaître le problème, il le
+    contourne.
+    La moyenne obtenue porte désormais sur les seuls répondants, pas sur
+    l'ensemble des 2000 enquêtés.
+    Il faut donc toujours compter combien d'observations on écarte."
+
+- Class: cmd_question
+  Output: "is.na() indique, pour chaque valeur d'un vecteur, si elle est
+    manquante ou non.
+    sum() permet ensuite de les compter (R traite TRUE comme 1 et FALSE comme
+    0).
+    Comptez le nombre de valeurs manquantes de heures.tv avec
+    sum(is.na(d$heures.tv))."
+  CorrectAnswer: sum(is.na(d$heures.tv))
+  AnswerTests: omnitest(correctExpr='sum(is.na(d$heures.tv))')
+  Hint: Tapez sum(is.na(d$heures.tv)) dans la console.
+
+- Class: text
+  Output: "Passons maintenant aux variables qualitatives, comme sexe ou
+    qualif.
+    L'outil de base est le tri à plat, qui compte le nombre d'observations
+    pour chaque modalité.
+    Dans le tidyverse, il s'obtient avec count()."
+
+- Class: cmd_question
+  Output: "Faites le tri à plat de la variable sexe, avec d |> count(sexe)."
+  CorrectAnswer: d |> count(sexe)
+  AnswerTests: expr_uses_func('count')
+  Hint: Tapez d |> count(sexe) (ou count(d, sexe)) dans la console.
+
+- Class: cmd_question
+  Output: "On peut trier le résultat par effectif décroissant avec l'argument
+    sort = TRUE.
+    Essayez d |> count(qualif, sort = TRUE), et observez la ligne NA."
+  CorrectAnswer: d |> count(qualif, sort = TRUE)
+  AnswerTests: expr_uses_func('count')
+  Hint: Tapez d |> count(qualif, sort = TRUE) dans la console.
+
+- Class: text
+  Output: "Remarquez que count() affiche les valeurs manquantes comme une
+    modalité à part entière, sous la forme NA, au lieu de les faire
+    disparaître silencieusement."
+
+- Class: cmd_question
+  Output: "Les effectifs bruts se comparent mal d'une modalité à l'autre. On
+    les convertit en pourcentages en enchaînant un mutate() après le count().
+    Essayez :
+    d |> count(qualif) |> mutate(pourcentage = 100 * n / sum(n))."
+  CorrectAnswer: d |> count(qualif) |> mutate(pourcentage = 100 * n / sum(n))
+  AnswerTests: expr_uses_func('count'); expr_uses_func('mutate')
+  Hint: Tapez d |> count(qualif) |> mutate(pourcentage = 100 * n / sum(n))
+    dans la console.
+
+- Class: text
+  Output: "Nous savons maintenant décrire une variable seule.
+    Voyons comment comparer des groupes : par exemple, l'âge moyen est-il le
+    même chez les hommes et chez les femmes ?
+    group_by() découpe le tableau en groupes ; summarise() calcule alors un
+    résultat par groupe plutôt que sur l'ensemble."
+
+- Class: cmd_question
+  Output: "Calculez l'effectif et l'âge moyen par sexe, avec
+    d |> group_by(sexe) |> summarise(effectif = n(), age_moyen = mean(age))."
+  CorrectAnswer: d |> group_by(sexe) |> summarise(effectif = n(), age_moyen = mean(age))
+  AnswerTests: expr_uses_func('group_by'); expr_uses_func('summarise')
+  Hint: Tapez d |> group_by(sexe) |> summarise(effectif = n(), age_moyen = mean(age))
+    dans la console. n() donne l'effectif du groupe.
+
+- Class: cmd_question
+  Output: "Refaites le même calcul, mais groupé cette fois par qualif, et
+    triez le résultat par âge moyen décroissant avec arrange(desc(...)).
+    Enchaînez group_by(), summarise() puis arrange()."
+  CorrectAnswer: d |> group_by(qualif) |> summarise(effectif = n(), age_moyen = mean(age)) |> arrange(desc(age_moyen))
+  AnswerTests: expr_uses_func('group_by'); expr_uses_func('summarise'); expr_uses_func('arrange')
+  Hint: Tapez d |> group_by(qualif) |> summarise(effectif = n(), age_moyen = mean(age))
+    |> arrange(desc(age_moyen)) dans la console.
+
+- Class: cmd_question
+  Output: "On peut grouper sur plusieurs variables à la fois, en les séparant
+    par une virgule dans group_by().
+    Croisez sexe et qualif : calculez l'effectif et l'âge moyen pour chaque
+    combinaison, avec
+    d |> group_by(sexe, qualif) |> summarise(effectif = n(), age_moyen = mean(age), .groups = \"drop\") |> arrange(effectif).
+    L'argument .groups = \"drop\" évite un avertissement et un tableau qui
+    resterait groupé pour les calculs suivants."
+  CorrectAnswer: d |> group_by(sexe, qualif) |> summarise(effectif = n(), age_moyen = mean(age), .groups = "drop") |> arrange(effectif)
+  AnswerTests: expr_uses_func('group_by'); expr_uses_func('summarise'); expr_uses_func('arrange')
+  Hint: Tapez d |> group_by(sexe, qualif) |> summarise(effectif = n(), age_moyen = mean(age), .groups = "drop")
+    |> arrange(effectif) dans la console.
+
+- Class: mult_question
+  Output: "Vous venez d'afficher les effectifs de chaque croisement sexe x
+    qualif, triés du plus petit au plus grand.
+    Le plus petit groupe (les femmes techniciennes) ne compte qu'une vingtaine
+    de personnes, très loin des 2000 enquêtés du départ.
+    Peut-on comparer l'âge moyen de ce groupe à celui d'un groupe de plusieurs
+    centaines de personnes avec la même confiance ?"
+  AnswerChoices: Non, un groupe trop petit rend la comparaison fragile;Oui, la moyenne est toujours fiable quel que soit l'effectif;Cela ne change rien, R calcule la moyenne exacte dans tous les cas
+  CorrectAnswer: Non, un groupe trop petit rend la comparaison fragile
+  AnswerTests: omnitest(correctVal='Non, un groupe trop petit rend la comparaison fragile')
+  Hint: Un indicateur calculé sur peu d'observations peut varier énormément si
+    une seule personne change. Ce n'est pas un problème de calcul, mais de
+    quantité d'information disponible.
+
+- Class: text
+  Output: "C'est le second piège, avec les valeurs manquantes, à garder en
+    tête pour toute la suite du cours : un chiffre n'est jamais faux
+    silencieusement, mais il peut être trompeur silencieusement.
+    Prenez toujours l'habitude d'afficher l'effectif d'un groupe (avec n())
+    à côté de tout indicateur calculé sur ce groupe."
+
+- Class: mult_question
+  Output: "Souhaitez-vous soumettre votre progression sur Moodle à votre
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Decrire_les_donnees.txt' qui a été créé plus tard."
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.

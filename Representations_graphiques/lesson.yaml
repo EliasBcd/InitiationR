@@ -7,61 +7,29 @@
   Version: 2.4.5
 
 - Class: text
-  Output: Une des plus grandes forces de R par rapport à d'autres langages de 
-    programmation est la facilité avec laquelle il est possible de créer des 
+  Output: Une des plus grandes forces de R par rapport à d'autres langages de
+    programmation est la facilité avec laquelle il est possible de créer des
     graphiques de bonne qualité.
     Nous allons voir dans cette leçon les bases des représentations graphiques
     dans R.
-    Nous allons pour ce faire utiliser la librairie ggplot2. 
+    Nous allons pour ce faire utiliser la librairie ggplot2.
     R contient une librairie graphique intégrée, mais celle-ci est relativement
     moins pratique et moins puissante que ggplot2.
 
-- Class: cmd_question
-  Output: Chargez la base de données déjà existante rp2018 dans R à l'aide de la commande
-    data(rp2018).
-  CorrectAnswer: data(rp2018)
-  AnswerTests: any_of_exprs('data(rp2018)', "data('rp2018')")
-  Hint: Tapez data(rp2018) pour charger les données dans R.
-  
 - Class: text
-  Output: ggplot a une limitation sur les types de données qu'il prend en entrée.
-    Elles doivent être sous forme de tableaux. 
-    Les seuls tableaux que vous avez vu jusqu'à présent sont des dataframes.
-    Le but de cette leçon est de vous introduire différents types de représentations
-    graphiques et leurs arguments.
-    Les sorties n'auront peut-être pas l'air très intéressantes, mais 
-    tout serait plus intéressant avec des données plus larges.
-    
-- Class: cmd_question
-  Output: Affichez l'aide pour le rp2018, à l'aide de help ou ?.
-  CorrectAnswer: ?rp2018
-  AnswerTests: any_of_exprs('?rp2018', 'help(rp2018)')
-  Hint: Tapez ?rp2018 ou help(rp2018) pour voir des détails sur le dataframe rp2018.
-  
-- Class: text
-  Output: Vous pouvez voir que le dataframe a 62 variables et 5417 lignes.
-    Nous allons seulement nous intéresser à un sous-ensemble de ces variables, 
-    regroupé dans la base de donnée rp qui est déjà pré-entrée pour vous.
-    
-- Class: cmd_question
-  Output: Utiliser head() sur rp pour voir les premières lignes des données.
-  CorrectAnswer: head(rp)
-  AnswerTests: omnitest(correctExpr='head(rp)')
-  Hint: Tapez head(rp) pour voir les premières lignes des données.
-  
-- Class: text
-  Output: C'est toujours une bonne idée d'avoir une petite idée des données avant
-    de travailler dessus. 
-    Quelques commandes R sont utiles pour cela, notamment dim(), names(), head(),
-    tail() et summary().
+  Output: "Le tidyverse et le jeu de données hdv2003 ont déjà été chargés pour
+    vous, sous forme de tibble, dans l'objet d, comme dans les leçons
+    précédentes.
+    ggplot() a une limitation sur les types de données qu'il prend en entrée :
+    elles doivent être sous forme de tableau.
+    Le but de cette leçon est de vous introduire différents types de
+    représentations graphiques et leurs arguments."
 
 - Class: cmd_question
-  Output: Utilisez une des commandes précédentes (mais pas head()) pour voir ce 
-    qu'elle donne.
-  CorrectAnswer: summary(rp)
-  AnswerTests: any_of_exprs('summary(rp)', 'dim(rp)', 'names(rp)', 'tail(rp)')
-  Hint: Tapez summary(rp) pour voir un résumé de chacune des variables.
-  
+  Output: Affichez d pour vous rappeler des variables disponibles.
+  CorrectAnswer: d
+  AnswerTests: omnitest(correctExpr='d')
+  Hint: Tapez simplement d puis Entrée.
 
 - Class: cmd_question
   Output: On va maintenant utiliser ggplot() pour afficher les données.
@@ -70,14 +38,14 @@
   CorrectAnswer: ?ggplot
   AnswerTests: any_of_exprs('?ggplot', 'help(ggplot)')
   Hint: Tapez ?ggplot pour afficher l'aide sur ggplot.
-  
+
 - Class: cmd_question
-  Output: "Pour dire à ggplot que vous allez utiliser la base de donnée rp, tapez :
-    ggplot(rp)"
-  CorrectAnswer: ggplot(rp)
-  AnswerTests: omnitest(correctExpr='ggplot(rp)')
-  Hint: Tapez ggplot(rp).
-  
+  Output: "Pour dire à ggplot que vous allez utiliser le tableau d, tapez :
+    ggplot(d)"
+  CorrectAnswer: ggplot(d)
+  AnswerTests: omnitest(correctExpr='ggplot(d)')
+  Hint: Tapez ggplot(d).
+
 - Class: text
   Output: Rien ne se passe !
     Il manque en effet à R deux éléments.
@@ -85,149 +53,185 @@
     On utilise une géométrie pour cela (famille de commandes geom_xxx).
     Deuxièmement, quelle(s) variable(s) issues des données nous souhaitons représenter ?
     Ces variables sont données par l'argument aes() dans geom_xxx().
-    
-- Class: cmd_question
-  Output: Le mot-clé essentiel pour spécifier comment est geom_ (geométrie).
-    Si on veut par exemple représenter les données sous formes d'histogramme, 
-    on doit utiliser geom_histogram().
-    La syntaxe de ggplot() est telle que nous devons ajouter au graphique l'esthétique.
-    Il faut taper ggplot(rp) + geom_histogram(aes(cadres)) pour afficher le graphique.
-    Essayez.
-  CorrectAnswer: ggplot(rp) + geom_histogram(aes(cadres))
-  AnswerTests: omnitest(correctExpr='ggplot(rp) + geom_histogram(aes(cadres))')
-  Hint: Tapez ggplot(rp) + geom_histogram(aes(cadres)) pour afficher le graphique.  
-  
-- Class: text
-  Output: Remarquez que R a automatiquement donné des noms aux axes.
-    Il utilise comme nom le nom des colonnes du tableau quand il y en a une. 
-    Il trouve ensuite le terme le plus adapté.
-    Il a aussi automatiquement créé des échelles avec des beaux nombres ronds sur les axes.
-    
-- Class: cmd_question
-  Output: Essayez maintenant de représenter le même graphique non pas avec la variable
-    cadre mais avec la variable ouvr. 
-  CorrectAnswer: ggplot(rp) + geom_histogram(aes(ouvr))
-  AnswerTests: omnitest(correctExpr='ggplot(rp) + geom_histogram(aes(ouvr))')
-  Hint: Remplacez dans la question précédente cadres par ouvr.
 
 - Class: cmd_question
-  Output: "Représentons maintenant un nuage de points.
-    La géométrie ne sera plus un histogram, mais un point : geom_histogram devient geom_point.
-    Des points dans un graphique sont caractérisés par leur abscisse et leur ordonnée. 
-    Il faut donc donner deux variables à aes() pour pouvoir représenter un nuage
-    de point.
-    Disons qu'en variable x on veut utiliser la proportion de diplomés du supérieur (dipl_sup)
-    et qu'en variable y on veut utiliser la proportion de cadres.
-    Essayez de modifier les commandes précédentes pour obtenir ce graphique."
-  CorrectAnswer: ggplot(rp) + geom_point(aes(dipl_sup, cadres))
-  AnswerTests: any_of_exprs('ggplot(rp) + geom_point(aes(dipl_sup, cadres))',
-    'ggplot(rp) + geom_point(aes(x=dipl_sup, y=cadres))')
-  Hint: Il faut maintenant ajouter geom_point(aes(dipl_sup, cadres)) à ggplot().
+  Output: Le mot-clé essentiel pour spécifier comment est geom_ (géométrie).
+    Si on veut par exemple représenter les données sous forme d'histogramme,
+    on doit utiliser geom_histogram().
+    La syntaxe de ggplot() est telle que nous devons ajouter au graphique l'esthétique.
+    Il faut taper ggplot(d) + geom_histogram(aes(x = age)) pour afficher le graphique.
+    Essayez.
+  CorrectAnswer: ggplot(d) + geom_histogram(aes(x = age))
+  AnswerTests: omnitest(correctExpr='ggplot(d) + geom_histogram(aes(x = age))')
+  Hint: Tapez ggplot(d) + geom_histogram(aes(x = age)) pour afficher le graphique.
+
+- Class: text
+  Output: Remarquez que R a automatiquement donné des noms aux axes.
+    Il utilise comme nom le nom des colonnes du tableau quand il y en a une.
+    Il a aussi automatiquement créé des échelles avec des beaux nombres ronds sur les axes.
+
+- Class: cmd_question
+  Output: Essayez maintenant de représenter le même graphique non pas avec la variable
+    age mais avec la variable heures.tv.
+  CorrectAnswer: ggplot(d) + geom_histogram(aes(x = heures.tv))
+  AnswerTests: omnitest(correctExpr='ggplot(d) + geom_histogram(aes(x = heures.tv))')
+  Hint: Remplacez dans la question précédente age par heures.tv.
+
+- Class: text
+  Output: "R affiche un avertissement signalant les valeurs manquantes
+    écartées. Un avertissement n'est pas une erreur : le graphique est
+    produit, mais il vous indique combien d'observations ne sont pas
+    représentées."
+
+- Class: cmd_question
+  Output: "Représentons maintenant un nuage de points, pour croiser deux
+    variables quantitatives.
+    La géométrie ne sera plus un histogramme, mais des points : geom_histogram
+    devient geom_point.
+    Il y a 2000 observations et beaucoup se superposent exactement.
+    On utilise donc plutôt geom_jitter, qui ajoute un léger décalage
+    aléatoire, combiné à l'argument alpha qui règle la transparence.
+    Représentez l'âge en x et les heures de télévision en y, avec
+    ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15)."
+  CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15)
+  AnswerTests: omnitest(correctExpr='ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15)')
+  Hint: Il faut ajouter geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) à ggplot(d).
 
 - Class: cmd_question
   Output: Nous allons voir comment changer différents aspects du graphique.
-    Si par exemple nous voulons changer la légende de l'axe des abscisse par 
-    diplomés du supérieur, il faut
-    ajouter xlab('diplomés du supérieur') à nos commandes précédentes.
-    Essayez pour voir.
-  CorrectAnswer: ggplot(rp) + geom_point(aes(dipl_sup, cadres)) + xlab('diplomés du supérieur')
-  AnswerTests: omnitest(correctExpr="ggplot(rp) + geom_point(aes(dipl_sup, cadres)) + xlab('diplomés du supérieur')")
-  Hint: Tapez ggplot(rp) + geom_point(aes(dipl_sup, cadres)) + xlab('diplomés du supérieur') 
+    Si par exemple nous voulons changer les légendes des axes, il faut
+    ajouter labs(x = "...", y = "...") à nos commandes précédentes.
+    Essayez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + labs(x = "Âge", y = "Heures de télévision").
+  CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + labs(x = "Âge", y = "Heures de télévision")
+  AnswerTests: omnitest(correctExpr="ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + labs(x = 'Âge', y = 'Heures de télévision')")
+  Hint: Tapez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + labs(x = "Âge", y = "Heures de télévision")
     pour afficher le graphique.
-    
-- Class: text
-  Output: On peut faire quelque chose de similaire à l'axe des ordonnées à l'aide de ylab.
-    
+
 - Class: cmd_question
-  Output: On peut modifier certains attributs graphiques d'une geom en utilisant des 
+  Output: On peut modifier certains attributs graphiques d'une geom en utilisant des
     arguments supplémentaires.
     On peut utiliser color pour modifier la couleur, size pour modifier la taille
     et alpha pour modifier la transparence.
-    Essayez de taper ggplot(rp) +  geom_point(aes(x = dipl_sup, y = cadres), color = "red", size = 2, alpha = 0.3)
+    Essayez de taper ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), color = "red", size = 2, alpha = 0.3)
     et observez le résultat.
-  CorrectAnswer: ggplot(rp) +  geom_point(aes(x = dipl_sup, y = cadres), color = "red", size = 2, alpha = 0.3)
-  AnswerTests: omnitest(correctExpr="ggplot(rp) +  geom_point(aes(x = dipl_sup, y = cadres), color = 'red', size = 2, alpha = 0.3)")
-  Hint: Tapez ggplot(rp) +  geom_point(aes(x = dipl_sup, y = cadres), color = "red", size = 2, alpha = 0.3)
+  CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), color = "red", size = 2, alpha = 0.3)
+  AnswerTests: omnitest(correctExpr="ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), color = 'red', size = 2, alpha = 0.3)")
+  Hint: Tapez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), color = "red", size = 2, alpha = 0.3)
     pour afficher le graphique.
-    
 
 - Class: text
-  Output: Un mappage, dans ggplot2, est une mise en relation entre un attribut 
+  Output: Un mappage, dans ggplot2, est une mise en relation entre un attribut
     graphique du geom (position, couleur, taille...) et une variable du tableau de données.
-    Ces mappages sont passés aux différents geom via la fonction aes() (abbréviation d’aesthetic).
-    On a déjà vu les mappages x et y pour un nuage de points. 
-    Ceux-ci signifient que la position d’un point donné horizontalement (x) et 
-    verticalement (y) dépend de la valeur des variables passées comme arguments x et y dans aes()
+    Ces mappages sont passés aux différents geom via la fonction aes() (abbréviation d'aesthetic).
+    On a déjà vu les mappages x et y pour un nuage de points.
+    Ceux-ci signifient que la position d'un point donné horizontalement (x) et
+    verticalement (y) dépend de la valeur des variables passées comme arguments x et y dans aes().
 
 - Class: cmd_question
   Output: Il y en a d'autres, color par exemple permet de faire varier la couleur des
     points automatiquement suivant une troisième variable.
-    Essayez de taper ggplot(rp) +  geom_point(aes(x=dipl_sup, y=cadres, color=departement))
+    Essayez de taper ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3)
     et observez le résultat.
-  CorrectAnswer: ggplot(rp) +  geom_point(aes(x=dipl_sup, y=cadres, color=departement))
-  AnswerTests: omnitest(correctExpr="ggplot(rp) +  geom_point(aes(x=dipl_sup, y=cadres, color=departement))")
-  Hint: Tapez ggplot(rp) +  geom_point(aes(x=dipl_sup, y=cadres, color=departement)) pour afficher le graphique.
-  
+  CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3)
+  AnswerTests: omnitest(correctExpr="ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3)")
+  Hint: Tapez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) pour afficher le graphique.
+
 - Class: text
   Output: Qu'observe-t-on ?
-    R a coloré les points suivant les départements et a automatiquement créé
+    R a coloré les points suivant le sexe et a automatiquement créé
     la légende correspondante.
-    On peut ainsi observer que les Hauts-de-Seine ont une proportion de diplômés
-    du supérieur et de cadres plus importante que les autres départements, alors
-    que le Rhône semble réparti de manière assez homogène sur toute la distribution
-    et que la Lozère en a assez peu.
 
-- Class: cmd_question
-  Output: size permet de faire varier la taille des points.
-    Si on veut ajouter une dépendance de la taille des points à la population totale,
-    on ajoutera size = pop_tot dans aes().
-    Essayez.
-  CorrectAnswer: ggplot(rp) +  geom_point(aes(x=dipl_sup, y=cadres, color=departement, size=pop_tot))
-  AnswerTests: omnitest(correctExpr="ggplot(rp) +  geom_point(aes(x=dipl_sup, y=cadres, color=departement, size=pop_tot))")
-  Hint: Tapez ggplot(rp) +  geom_point(aes(x=dipl_sup, y=cadres, color=departement, size=pop_tot)) 
-    pour afficher le graphique demandé.
-  
 - Class: text
   Output: La plupart des arguments utilisés dans aes() peuvent être utilisés en dehors
     de aes() et réciproquement.
-    Quand ils sont utilisés dans aes(), il y aura un lien entre l'attribut graphique et 
+    Quand ils sont utilisés dans aes(), il y aura un lien entre l'attribut graphique et
     la variable.
-    Quand ils sont utilisé en dehors de aes(), il n'y aura pas de lien entre la variable
+    Quand ils sont utilisés en dehors de aes(), il n'y aura pas de lien entre la variable
     et l'attribut graphique.
-    
+
+- Class: mult_question
+  Output: "Si on place color = \"red\" à l'intérieur de aes(), plutôt qu'en
+    dehors, que se passe-t-il ?"
+  AnswerChoices: R comprend qu'il faut colorer selon une variable qui vaudrait "red" pour tous les individus, et crée une légende absurde;Tous les points deviennent rouges, comme si color était en dehors de aes();R renvoie un message d'erreur
+  CorrectAnswer: R comprend qu'il faut colorer selon une variable qui vaudrait "red" pour tous les individus, et crée une légende absurde
+  AnswerTests: omnitest(correctVal='R comprend qu\'il faut colorer selon une variable qui vaudrait "red" pour tous les individus, et crée une légende absurde')
+  Hint: aes() relie toujours un attribut graphique à une variable. Une chaîne
+    de caractères placée dans aes() est traitée comme une variable constante,
+    pas comme une couleur fixe. Il n'y a aucun message d'erreur.
+
 - Class: text
-  Output: Il est aussi possible de représenter plusieurs geom simultanément
-    sur le même graphique, il suffit de les lier par +.
-    Cela peut être utile par exemple pour faire passer une droite de régression
-    dans un nuage de points.
-    Vous verrez cela en économétrie plus tard.
-  
+  Output: C'est une erreur fréquente et silencieuse. La règle à retenir est
+    simple. Si l'attribut dépend d'une variable, il va dans aes(). Si
+    l'attribut est le même pour toutes les observations, il va en dehors de
+    aes().
+
+- Class: text
+  Output: Passons maintenant aux variables qualitatives, comme qualif.
+    L'équivalent graphique du tri à plat (count()) vu dans la leçon précédente
+    est le diagramme en barres, geom_bar().
+
+- Class: cmd_question
+  Output: "Quand les modalités sont longues, comme pour qualif, on les affiche
+    en y plutôt qu'en x, pour que le texte reste lisible.
+    Essayez ggplot(d) + geom_bar(aes(y = qualif))."
+  CorrectAnswer: ggplot(d) + geom_bar(aes(y = qualif))
+  AnswerTests: omnitest(correctExpr='ggplot(d) + geom_bar(aes(y = qualif))')
+  Hint: Tapez ggplot(d) + geom_bar(aes(y = qualif)) pour afficher le graphique.
+
+- Class: text
+  Output: geom_bar() compte lui-même les effectifs de chaque modalité, y compris
+    les valeurs manquantes, qui apparaissent comme une barre à part entière.
+
+- Class: cmd_question
+  Output: "Pour comparer une variable quantitative selon les modalités d'une
+    variable qualitative, on utilise la boîte à moustaches, geom_boxplot().
+    Essayez ggplot(d) + geom_boxplot(aes(x = sexe, y = heures.tv))."
+  CorrectAnswer: ggplot(d) + geom_boxplot(aes(x = sexe, y = heures.tv))
+  AnswerTests: omnitest(correctExpr='ggplot(d) + geom_boxplot(aes(x = sexe, y = heures.tv))')
+  Hint: Tapez ggplot(d) + geom_boxplot(aes(x = sexe, y = heures.tv)) pour afficher le graphique.
+
+- Class: text
+  Output: La boîte représente les premier et troisième quartiles, le trait
+    au milieu la médiane, et les points isolés les valeurs atypiques. C'est
+    exactement ce que la fonction quantile() calculait dans la leçon
+    précédente, mais sous forme visuelle.
+
+- Class: cmd_question
+  Output: "facet_wrap() répète un même graphique pour chaque modalité d'une
+    variable, ce qui permet de comparer des groupes visuellement.
+    Reprenez le nuage de points âge / heures de télévision et découpez-le par
+    sexe, avec
+    ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + facet_wrap(~ sexe)."
+  CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + facet_wrap(~ sexe)
+  AnswerTests: omnitest(correctExpr='ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + facet_wrap(~ sexe)')
+  Hint: Tapez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + facet_wrap(~ sexe)
+    pour afficher le graphique.
+
 - Class: text
   Output: un dernier point que nous allons voir sont les scale.
     Les plus couramment utilisés sont scale_x_continuous ou scale_x_discrete,
-    qui modifie l'axe des abscisses, et leur équivalent avec y pour modifier 
+    qui modifient l'axe des abscisses, et leur équivalent avec y pour modifier
     l'axe des ordonnées.
     Les versions continuous s'utilisent quand la variable représentée est continue.
     Les versions discrete quand la variable est discrète (logique).
     On peut utiliser par exemple comme argument limits=c(min, max) pour modifier
     le minimum et le maximum de l'axe.
-    
-- Class: cmd_question   
-  Output: Les diplômés du supérieur sont une proportion continue.
-    On peut vouloir la représenter entre 0 et 100.
-    Nous utiliserons donc scale_x_continuous(limits=c(0, 100)) en plus des commandes
+
+- Class: cmd_question
+  Output: L'âge est une variable continue.
+    On peut vouloir la représenter entre 18 et 100 ans.
+    Nous utiliserons donc scale_x_continuous(limits=c(18, 100)) en plus des commandes
     déjà utilisées précédemment pour modifier le graphique en conséquence.
     Essayez.
-    N'oubliez pas de garder les couleurs pour le département et la variation 
-    suivant la population de la commune.
-  CorrectAnswer: ggplot(rp) +  geom_point(aes(x=dipl_sup, y=cadres, color=departement, size=pop_tot)) + scale_x_continuous(limits=c(0, 100))
-  AnswerTests: omnitest(correctExpr="ggplot(rp) +  geom_point(aes(x=dipl_sup, y=cadres, color=departement, size=pop_tot)) + scale_x_continuous(limits=c(0, 100))")
-  Hint: Tapez ggplot(rp) +  geom_point(aes(x=dipl_sup, y=cadres, color=departement, size=pop_tot)) + scale_x_continuous(limits=c(0, 100)) 
+    N'oubliez pas de garder la couleur pour le sexe.
+  CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))
+  AnswerTests: omnitest(correctExpr="ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))")
+  Hint: Tapez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))
     pour afficher le graphique demandé.
 
 - Class: mult_question
-  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
-    enseignant (cela ne fonctionnera que pour les étudiants de l'université 
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université
     Paris 8) ?
     Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
     fichier 'Representations_graphiques.txt' qui a été créé plus tard.

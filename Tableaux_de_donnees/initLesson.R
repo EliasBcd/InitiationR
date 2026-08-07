@@ -6,6 +6,3 @@
 swirl_options(swirl_logging = TRUE)
 library(questionr)
 library(tidyverse)
-
-data(hdv2003)
-d <- as_tibble(hdv2003)

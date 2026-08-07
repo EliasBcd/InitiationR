@@ -4,3 +4,5 @@
       # throughout the lesson.
 
 swirl_options(swirl_logging = TRUE)
+library(questionr)
+library(tidyverse)

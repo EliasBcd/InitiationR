@@ -1,0 +1,250 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Manipuler les données
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+
+- Class: text
+  Output: "De vraies données ne se présentent jamais comme un simple vecteur.
+    Elles arrivent sous forme de tableau : des lignes (les individus) et des
+    colonnes (les variables).
+    Nous allons utiliser dans cette leçon le tidyverse, un ensemble
+    d'extensions conçues pour manipuler des tableaux, ainsi qu'un vrai jeu de
+    données d'enquête : `hdv2003`."
+
+- Class: text
+  Output: "Le tidyverse et le jeu de données `hdv2003` (extension `questionr`)
+    ont déjà été chargés pour vous au démarrage de cette leçon.
+    Il vous reste à charger les données elles-mêmes."
+
+- Class: cmd_question
+  Output: "Pour accéder au jeu de données, tapez data(hdv2003)."
+  CorrectAnswer: data(hdv2003)
+  AnswerTests: omnitest(correctExpr='data(hdv2003)')
+  Hint: Tapez data(hdv2003) dans la console.
+
+- Class: text
+  Output: "hdv2003 est un data.frame classique.
+    Nous allons le convertir en tibble, la forme de tableau utilisée par le
+    tidyverse, qui s'affiche de manière plus lisible."
+
+- Class: cmd_question
+  Output: "Convertissez hdv2003 en tibble à l'aide de as_tibble(), et stockez
+    le résultat dans l'objet d."
+  CorrectAnswer: d <- as_tibble(hdv2003)
+  AnswerTests: omnitest(correctExpr='d <- as_tibble(hdv2003)')
+  Hint: Tapez d <- as_tibble(hdv2003) dans la console.
+
+- Class: cmd_question
+  Output: "Affichez maintenant d."
+  CorrectAnswer: d
+  AnswerTests: omnitest(correctExpr='d')
+  Hint: Tapez simplement d puis Entrée.
+
+- Class: text
+  Output: "Un tibble s'affiche proprement : seulement les dix premières lignes,
+    et le type de chaque colonne entre chevrons (<int>, <fct>...), plutôt que
+    de déverser les 2000 lignes du tableau dans la console."
+
+- Class: cmd_question
+  Output: "glimpse() donne un aperçu complet : le type et les premières valeurs
+    de chaque variable.
+    C'est la commande à taper en premier devant un tableau inconnu.
+    Essayez glimpse(d)."
+  CorrectAnswer: glimpse(d)
+  AnswerTests: omnitest(correctExpr='glimpse(d)')
+  Hint: Tapez glimpse(d) dans la console.
+
+- Class: cmd_question
+  Output: "Comme tout objet, on peut appliquer des fonctions à un tibble.
+    nrow() donne le nombre de lignes.
+    Essayez-la sur d."
+  CorrectAnswer: nrow(d)
+  AnswerTests: omnitest(correctExpr='nrow(d)')
+  Hint: Tapez nrow(d) dans la console.
+
+- Class: cmd_question
+  Output: "ncol() donne le nombre de colonnes. Essayez-la sur d."
+  CorrectAnswer: ncol(d)
+  AnswerTests: omnitest(correctExpr='ncol(d)')
+  Hint: Tapez ncol(d) dans la console.
+
+- Class: cmd_question
+  Output: "names() donne le nom des colonnes, c'est-à-dire la liste des
+    variables. Essayez-la sur d."
+  CorrectAnswer: names(d)
+  AnswerTests: omnitest(correctExpr='names(d)')
+  Hint: Tapez names(d) dans la console.
+
+- Class: text
+  Output: "Dans les colonnes que vous venez de voir avec glimpse(), les
+    colonnes <int> et <dbl> sont des variables quantitatives (numériques,
+    pouvant prendre un grand nombre de valeurs), comme l'âge.
+    Les colonnes <fct> sont des facteurs : c'est ainsi que R stocke les
+    variables qualitatives, celles qui ne prennent qu'un nombre limité de
+    valeurs, appelées modalités."
+
+- Class: mult_question
+  Output: "D'après ce que glimpse(d) vous a montré, combien y a-t-il de
+    variables quantitatives (<int> ou <dbl>) dans d ?"
+  AnswerChoices: 5;9;20;2000
+  CorrectAnswer: 5
+  AnswerTests: omnitest(correctVal='5')
+  Hint: Recomptez les colonnes marquées <int> ou <dbl> dans le résultat de
+    glimpse(d).
+
+- Class: cmd_question
+  Output: "levels() donne la liste des modalités d'un facteur.
+    Regardez les modalités de la variable qualif à l'aide de levels(d$qualif)."
+  CorrectAnswer: levels(d$qualif)
+  AnswerTests: omnitest(correctExpr='levels(d$qualif)')
+  Hint: Tapez levels(d$qualif) dans la console. Rappelez-vous que $ donne
+    accès à une colonne.
+
+- Class: text
+  Output: "Nous savons maintenant regarder un tableau.
+    Passons aux quatre opérations qui couvrent l'essentiel du travail de
+    préparation de données : choisir des colonnes, choisir des lignes, trier,
+    et créer une variable.
+    Tous les verbes que nous allons voir prennent un tableau en entrée et
+    renvoient un tableau en sortie, ce qui permet de les enchaîner avec le
+    tuyau `|>`.
+    N'oubliez pas : `d |> f()` est équivalent à `f(d)`, mais s'enchaîne bien
+    mieux quand on ajoute d'autres étapes."
+
+- Class: cmd_question
+  Output: "select() choisit des colonnes.
+    Sélectionnez les colonnes age, sexe et heures.tv de d à l'aide de
+    d |> select(age, sexe, heures.tv)."
+  CorrectAnswer: d |> select(age, sexe, heures.tv)
+  AnswerTests: expr_uses_func('select')
+  Hint: Tapez d |> select(age, sexe, heures.tv) (ou select(d, age, sexe,
+    heures.tv)) dans la console.
+
+- Class: cmd_question
+  Output: "On peut aussi écarter des colonnes plutôt que d'en choisir, en
+    faisant précéder leur nom d'un signe moins.
+    Affichez d en écartant la colonne id, avec d |> select(-id)."
+  CorrectAnswer: d |> select(-id)
+  AnswerTests: expr_uses_func('select')
+  Hint: Tapez d |> select(-id) (ou select(d, -id)) dans la console.
+
+- Class: text
+  Output: "Passons à filter(), qui choisit des lignes selon une condition.
+    On y retrouve les opérateurs de comparaison déjà rencontrés, comme < ou
+    ==."
+
+- Class: cmd_question
+  Output: "Affichez seulement les individus de moins de 25 ans, avec
+    d |> filter(age < 25)."
+  CorrectAnswer: d |> filter(age < 25)
+  AnswerTests: expr_uses_func('filter')
+  Hint: Tapez d |> filter(age < 25) (ou filter(d, age < 25)) dans la console.
+
+- Class: cmd_question
+  Output: "On peut combiner plusieurs conditions en les séparant par une
+    virgule, qui signifie « et ».
+    Affichez les femmes de moins de 25 ans, avec
+    d |> filter(age < 25, sexe == \"Femme\").
+    Attention, le test d'égalité s'écrit avec deux signes égal, ==, et non un
+    seul."
+  CorrectAnswer: d |> filter(age < 25, sexe == "Femme")
+  AnswerTests: expr_uses_func('filter')
+  Hint: Tapez d |> filter(age < 25, sexe == "Femme") dans la console. N'oubliez
+    pas le double égal.
+
+- Class: text
+  Output: "arrange() trie les lignes selon une variable, par ordre croissant
+    par défaut."
+
+- Class: cmd_question
+  Output: "Triez d par âge croissant, avec d |> arrange(age)."
+  CorrectAnswer: d |> arrange(age)
+  AnswerTests: expr_uses_func('arrange')
+  Hint: Tapez d |> arrange(age) (ou arrange(d, age)) dans la console.
+
+- Class: cmd_question
+  Output: "Pour trier dans l'autre sens, on enveloppe la variable dans desc().
+    Triez d par âge décroissant, avec d |> arrange(desc(age))."
+  CorrectAnswer: d |> arrange(desc(age))
+  AnswerTests: expr_uses_func('arrange')
+  Hint: Tapez d |> arrange(desc(age)) dans la console.
+
+- Class: cmd_question
+  Output: "C'est ici que le tuyau prend tout son sens : on peut enchaîner
+    plusieurs verbes à la suite.
+    Affichez les femmes de moins de 25 ans (filter), triées par heures de
+    télévision décroissantes (arrange), en ne gardant que les colonnes age,
+    heures.tv et qualif (select).
+    Enchaînez les trois verbes dans cet ordre avec le tuyau."
+  CorrectAnswer: d |> filter(age < 25, sexe == "Femme") |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif)
+  AnswerTests: expr_uses_func('filter'); expr_uses_func('arrange'); expr_uses_func('select')
+  Hint: Enchaînez d |> filter(age < 25, sexe == "Femme") |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif).
+
+- Class: text
+  Output: "Dernier verbe : mutate(), qui crée une nouvelle variable (une
+    nouvelle colonne) à partir des variables existantes.
+    La variable heures.tv contient le nombre d'heures de télévision par jour.
+    Nous allons créer une variable minutes.tv qui la convertit en minutes."
+
+- Class: cmd_question
+  Output: "Essayez d |> mutate(minutes.tv = heures.tv * 60)."
+  CorrectAnswer: d |> mutate(minutes.tv = heures.tv * 60)
+  AnswerTests: expr_uses_func('mutate')
+  Hint: Tapez d |> mutate(minutes.tv = heures.tv * 60) dans la console.
+
+- Class: mult_question
+  Output: "Vous venez de voir s'afficher un tableau contenant la colonne
+    minutes.tv.
+    La variable minutes.tv existe-t-elle maintenant dans l'objet d ?"
+  AnswerChoices: Oui;Non
+  CorrectAnswer: Non
+  AnswerTests: omnitest(correctVal='Non')
+  Hint: Que fait exactement une commande sans flèche d'assignation <- ? Le
+    résultat a-t-il été stocké quelque part ?
+
+- Class: text
+  Output: "Non : les verbes du tidyverse ne modifient jamais le tableau
+    d'origine, ils en renvoient une version transformée.
+    d |> mutate(...) a bien affiché le résultat, mais ne l'a stocké nulle
+    part.
+    d, lui, n'a pas changé.
+    C'est l'erreur la plus fréquente au début : on voit le bon résultat
+    s'afficher, et on croit à tort que la variable a été créée dans d.
+    R ne dit rien : il n'y a pas de message d'erreur pour ce genre de piège.
+    Pour conserver le résultat, il faut l'assigner, comme pour n'importe quel
+    calcul."
+
+- Class: cmd_question
+  Output: "Refaites l'opération, mais en stockant cette fois le résultat dans
+    d, avec d <- d |> mutate(minutes.tv = heures.tv * 60)."
+  CorrectAnswer: d <- d |> mutate(minutes.tv = heures.tv * 60)
+  AnswerTests: expr_uses_func('mutate')
+  Hint: Tapez d <- d |> mutate(minutes.tv = heures.tv * 60) dans la console.
+    N'oubliez pas la flèche d'assignation.
+
+- Class: cmd_question
+  Output: "Vérifiez que la variable minutes.tv existe bien cette fois dans d,
+    en affichant d$minutes.tv."
+  CorrectAnswer: d$minutes.tv
+  AnswerTests: omnitest(correctExpr='d$minutes.tv')
+  Hint: Tapez d$minutes.tv dans la console.
+
+- Class: text
+  Output: "Cette fois la variable est bien là : vous avez pensé à l'assigner.
+    Retenez ce réflexe, il vous servira pour toute la suite du cours : un
+    verbe du tidyverse affiche un résultat, mais ne le conserve que si on
+    l'assigne avec <-."
+
+- Class: mult_question
+  Output: "Souhaitez-vous soumettre votre progression sur Moodle à votre
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Manipuler_les_donnees.txt' qui a été créé plus tard."
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
