@@ -52,55 +52,21 @@
 
 
   
-- Class: cmd_question
-  Output: Imaginons qu'on a demandé la taille en centimètres de 5 personnes et
-    qu'on souhaite calculer leur taille moyenne.
-    On pourrait créer autant d'objets que de tailles et calculer la moyenne.
-    Commençons par assigner 156 à taille1.
-  CorrectAnswer: taille1 <- 156
-  AnswerTests: omnitest(correctExpr = 'taille1 <- 156')
-  Hint: Tapez taille1 <- 156
-  
-- Class: cmd_question
-  Output: Puis 164 à taille2.
-  CorrectAnswer: taille2 <- 164
-  AnswerTests: omnitest(correctExpr = 'taille2 <- 164')
-  Hint: Tapez taille2 <- 164
-  
-- Class: cmd_question
-  Output: Puis 197 à taille3.
-  CorrectAnswer: taille3 <- 197
-  AnswerTests: omnitest(correctExp = 'taille3 <- 197')
-  Hint: Tapez taille3 <- 197
-
-- Class: cmd_question
-  Output: Nous pouvons alors calculer la moyenne en divisant la somme de ces 
-    3 tailles par 3. 
-    Essayez.
-  CorrectAnswer: (taille1 + taille2 + taille3) / 3
-  AnswerTests: omnitest(correctExpr = '(taille1 + taille2 + taille3) / 3')
-  Hint: "Tapez (taille1 + taille2 + taille3) / 3"
-  
 - Class: text
-  Output: Ce n'est guère pratique !
-    R a un type dédié qui facilite grandement ces calculs, les vecteurs.
-    C'est une collection de valeurs (des nombres). 
+  Output: Dans la leçon précédente, nous avons créé un vecteur tailles à l'aide
+    de la commande c(), qui signifie 'concatenate' ou 'combine' (assembler en
+    anglais).
+    Il a été rechargé pour vous au démarrage de cette leçon.
+    C'est une collection de valeurs (des nombres).
     Tout objet dans R qui contient une donnée est appelé une structure de donnée.
     Les vecteurs numériques sont les structures de données les plus simple.
     En fait, même un nombre seul est considéré comme un vecteur de longueur 1.
 
 - Class: cmd_question
-  Output: La façon la plus simple de créer un vecteur est d'utiliser la commande
-    c(), qui signifie 'concatenate' ou 'combine' (assembler en anglais).
-    Pour créer un vecteur contenant les tailles précédentes, tapez 
-    c(156, 164, 197).
-    Essayez et stockez le résultat dans l'objet tailles.
-  CorrectAnswer: tailles <- c(156, 164, 197)
-  AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197)')
-  Hint: Tapez tailles <- c(156, 164, 197) et appuyez sur entrée.
-    Cela assigne le vecteur (156, 164, 197) au nouvel objet tailles. 
-    Les espaces après la virgule ne sont pas nécessaire mais rendent le code plus
-    lisible.
+  Output: Affichez le contenu de tailles pour vérifier qu'il est bien là.
+  CorrectAnswer: tailles
+  AnswerTests: omnitest(correctExpr='tailles')
+  Hint: Tapez tailles et appuyez sur Entrée.
 
 - Class: cmd_question
   Output: Si vous avez une question sur une commande particulière de R, vous 

@@ -19,8 +19,10 @@
     Cela ouvrira un menu avec des informations (soit dans votre navigateur par
     défaut, soit dans Rstudio, suivant votre installation).
     Évidemment, vous trouverez aussi des réponses à vos
-    questions en faisant une recherche sur internet ou en demandant à des chatbot.
-    Attention néanmoins, les réponses de ceux-ci ne sont pas toujours fiables.
+    questions en faisant une recherche sur internet ou en demandant à des assistants IA.
+    Attention néanmoins, les réponses de ceux-ci ne sont pas toujours fiables. 
+    Pour votre apprentissage, je vous demande de ne pas les utiliser pendant ce cours,
+    sauf si c'est explicitement indiqué.
 
 - Class: cmd_question
   Output: L'utilisation la plus basique de R est comme une calculatrice 
@@ -213,11 +215,11 @@
     sont.
     Les caractères spéciaux ne marchent généralement pas dans les noms d'objets,
     en dehors de _ et -.
-    deux_poids est un nom d'objet admissible, mais pas deux%poids, par exemple."    
+    deux_poids est un nom d'objet admissible, mais pas deux%poids, par exemple.    
     
 - Class: cmd_question
   Output: "On le verra, les objets peuvent contenir tout un tas d’informations.
-    Jusqu’ici on n’a stocké que des nombres, mais ils peuvent aussi contenir des
+    Jusqu’ici on a stocké que des nombres, mais ils peuvent aussi contenir des
     chaînes de caractères (du texte), qu’on délimite avec des guillemets 
     simples ou doubles (' ou \"). Tapez : chien <- \"Chihuahua\"" 
   CorrectAnswer: chien <- "Chihuahua"
@@ -225,39 +227,13 @@
   Hint: "Tapez : chien <- \"Chihuahua\"" 
 
 
-- Class: cmd_question
-  Output: Imaginons qu'on ait demandé la taille en centimètres de 3 personnes et
-    qu'on souhaite calculer leur taille moyenne.
-    On pourrait créer autant d'objets que de tailles et calculer la moyenne.
-    Commençons par assigner 156 à taille1.
-  CorrectAnswer: taille1 <- 156
-  AnswerTests: omnitest(correctExpr = 'taille1 <- 156')
-  Hint: Tapez taille1 <- 156
-  
-- Class: cmd_question
-  Output: Puis 164 à taille2.
-  CorrectAnswer: taille2 <- 164
-  AnswerTests: omnitest(correctExpr = 'taille2 <- 164')
-  Hint: Tapez taille2 <- 164
-  
-- Class: cmd_question
-  Output: Puis 197 à taille3.
-  CorrectAnswer: taille3 <- 197
-  AnswerTests: omnitest(correctExp = 'taille3 <- 197')
-  Hint: Tapez taille3 <- 197
-
-- Class: cmd_question
-  Output: Nous pouvons alors calculer la moyenne en divisant la somme de ces 
-    3 tailles par 3. 
-    Essayez.
-  CorrectAnswer: (taille1 + taille2 + taille3) / 3
-  AnswerTests: calculates_same_value('(taille1 + taille2 + taille3) / 3')
-  Hint: "N'oubliez pas les parenthèses ! Tapez (taille1 + taille2 + taille3) / 3"
-  
 - Class: text
-  Output: Ce n'est guère pratique !
+  Output: Imaginons qu'on ait demandé la taille en centimètres de 5 personnes et
+    qu'on souhaite calculer leur taille moyenne.
+    On pourrait créer un objet par personne (taille1, taille2, etc.) et calculer
+    la moyenne à la main, mais ce n'est guère pratique.
     R a un type dédié qui facilite grandement ces calculs, les vecteurs.
-    C'est une collection de valeurs (des nombres). 
+    C'est une collection de valeurs (des nombres).
     Tout objet dans R qui contient une donnée est appelé une structure de donnée.
     Les vecteurs numériques sont les structures de données les plus simple.
     En fait, même un nombre seul est considéré comme un vecteur de longueur 1.
@@ -265,15 +241,15 @@
 - Class: cmd_question
   Output: La façon la plus simple de créer un vecteur est d'utiliser la commande
     c(), qui signifie 'concatenate' ou 'combine' (assembler en anglais).
-    Pour créer un vecteur contenant les tailles précédentes, tapez 
-    c(156, 164, 197).
+    Pour créer un vecteur contenant les tailles 156, 164, 197, 147 et 173 (dans
+    cet ordre), tapez c(156, 164, 197, 147, 173).
     Essayez et stockez le résultat (=assigner) dans l'objet tailles.
-  CorrectAnswer: tailles <- c(156, 164, 197)
-  AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197)')
-  Hint: Tapez tailles <- c(156, 164, 197) et appuyez sur entrée.
-    Cela assigne le vecteur (156, 164, 197) au nouvel objet tailles. 
+  CorrectAnswer: tailles <- c(156, 164, 197, 147, 173)
+  AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197, 147, 173)')
+  Hint: Tapez tailles <- c(156, 164, 197, 147, 173) et appuyez sur entrée.
+    Cela assigne le vecteur (156, 164, 197, 147, 173) au nouvel objet tailles.
     Les espaces après la virgule ne sont pas nécessaire mais rendent le code plus
-    lisible.    
+    lisible.
     
 - Class: cmd_question
   Output: Tapez tailles pour voir son contenu.
@@ -297,10 +273,10 @@
   
 - Class: mult_question
   Output: Avant de voir l'objet tailles_m, que pensez-vous qu'il contient ?
-  CorrectAnswer: un vecteur de longueur 3
-  AnswerChoices: un vecteur de longueur 3 ; un nombre (= un vecteur de longueur 1) ;
+  CorrectAnswer: un vecteur de longueur 5
+  AnswerChoices: un vecteur de longueur 5 ; un nombre (= un vecteur de longueur 1) ;
     un vecteur de longueur 0 (= un vecteur vide)
-  AnswerTests: omnitest(correctVal='un vecteur de longueur 3')
+  AnswerTests: omnitest(correctVal='un vecteur de longueur 5')
   Hint: R procèce aux opérations sur les vecteurs éléments par éléments.
 
 - Class: cmd_question
@@ -330,12 +306,12 @@
   Hint: Quelle opération permet de mettre au carré un nombre ?  
   
 - Class: cmd_question
-  Output: Imaginons maintenant qu’on ait aussi demandé aux trois mêmes personnes 
+  Output: Imaginons maintenant qu’on ait aussi demandé aux cinq mêmes personnes
     leur poids en kilos. On peut créer un deuxième vecteur poids.
-    Tapez poids <- c(45, 59, 110).
-  CorrectAnswer: poids <- c(45, 59, 110)
-  AnswerTests: omnitest(correctExpr='poids <- c(45, 59, 110)')
-  Hint: Tapez poids <- c(45, 59, 110)
+    Tapez poids <- c(45, 59, 110, 44, 88).
+  CorrectAnswer: poids <- c(45, 59, 110, 44, 88)
+  AnswerTests: omnitest(correctExpr='poids <- c(45, 59, 110, 44, 88)')
+  Hint: Tapez poids <- c(45, 59, 110, 44, 88)
 
 - Class: cmd_question
   Output: On peut alors effectuer des calculs utilisant nos deux vecteurs 

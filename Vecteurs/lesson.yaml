@@ -8,28 +8,33 @@
 
 - Class: text
   Output: Nous verrons dans cette leçon les vecteurs plus en détails.
+    Le vecteur tailles a été rechargé pour vous au démarrage de cette leçon.
 
-
+- Class: cmd_question
+  Output: Vérifions que tailles est bien là. Affichez son contenu.
+  CorrectAnswer: tailles
+  AnswerTests: omnitest(correctExpr='tailles')
+  Hint: Tapez tailles et appuyez sur Entrée.
 
 - Class: cmd_question
   Output: On peut combiner les vecteurs pour faire un nouveau vecteur.
     Créez un vecteur qui combine tailles, 185 et tailles encore, dans cet ordre.
-    N'assignez pas le vecteur à un nouvel objet, afin qu'on puisse voir le 
+    N'assignez pas le vecteur à un nouvel objet, afin qu'on puisse voir le
     résultat immédiatement.
   CorrectAnswer: c(tailles, 185, tailles)
   AnswerTests: omnitest(correctExpr='c(tailles, 185, tailles)')
   Hint: Tapez c(tailles, 185, tailles).
     Ne créez pas de nouvelle variable.
     On veut simplement voir le résultat.
-  
 
-   
+
+
 - Class: cmd_question
   Output: On cherche maintenant à calculer les IMC correspondant aux tailles.
     Commençons par créer un nouveau vecteur poids, contenant les valeurs
-    55, 65 et 78 (dans cet ordre)
-  CorrectAnswer: poids <- c(55, 65, 78)
-  AnswerTests: omnitest(correctExpr='poids <- c(55, 65, 78)')
+    45, 59, 110, 44 et 88 (dans cet ordre)
+  CorrectAnswer: poids <- c(45, 59, 110, 44, 88)
+  AnswerTests: omnitest(correctExpr='poids <- c(45, 59, 110, 44, 88)')
   Hint: Rappelez-vous comment on a créé des vecteurs plus tôt.
   
 
@@ -48,9 +53,11 @@
 
 - Class: text
   Output: Quand on a calculé `tailles / 100` plus tôt, tailles est un vecteur
-    de longueur 3, et techniquement  100 est un vecteur de longueur 1.
-    Pour effectuer le calcul, R 'recycle' 100 pour en faire un vecteur de 100.
-    En clair, l'opération réellement effectuée est `tailles / c(100, 100, 100)`.
+    de longueur 5, et techniquement 100 est un vecteur de longueur 1.
+    Pour effectuer le calcul, R 'recycle' 100 pour en faire un vecteur de 5
+    valeurs.
+    En clair, l'opération réellement effectuée est
+    `tailles / c(100, 100, 100, 100, 100)`.
 
 - Class: cmd_question
   Output: Voici un exemple de 'recyclage', plus parlant.
@@ -114,12 +121,12 @@
     vecteur.
 
 - Class: cmd_question
-  Output: Une dernière façon d'indexer des sous-ensembles est d'utiliser un 
+  Output: Une dernière façon d'indexer des sous-ensembles est d'utiliser un
     vecteur de valeurs logiques.
-    Essayez `tailles[c(TRUE, TRUE, FALSE)]`.
-  CorrectAnswer: tailles[c(TRUE, TRUE, FALSE)]
-  AnswerTests: omnitest(correctExpr = 'tailles[c(TRUE, TRUE, FALSE)]' )
-  Hint: Tapez `tailles[c(TRUE, TRUE, FALSE)]`.  
+    Essayez `tailles[c(TRUE, TRUE, FALSE, TRUE, FALSE)]`.
+  CorrectAnswer: tailles[c(TRUE, TRUE, FALSE, TRUE, FALSE)]
+  AnswerTests: omnitest(correctExpr = 'tailles[c(TRUE, TRUE, FALSE, TRUE, FALSE)]' )
+  Hint: Tapez `tailles[c(TRUE, TRUE, FALSE, TRUE, FALSE)]`.
   
 - Class: cmd_question
   Output: Cela peut paraître inutile au premier abord, mais est en fait très utile
@@ -133,15 +140,23 @@
 - Class: text
   Output: Avant de finir la leçon, je vais vous apprendre quelques techniques
     pour gagner un peu de temps.
-    Tout à l'heure, vous avez calculé tailles / 100. 
-    Imaginons que vous vous soyez trompé et que vous avez divisé par 1000 plutôt que
-    100.
+
+- Class: cmd_question
+  Output: Pour illustrer la technique, calculons d'abord les tailles en mètres.
+    Divisez tailles par 100 et stockez le résultat dans tailles_m.
+  CorrectAnswer: tailles_m <- tailles / 100
+  AnswerTests: omnitest(correctExpr='tailles_m <- tailles / 100')
+  Hint: Tapez tailles_m <- tailles / 100.
+
+- Class: text
+  Output: Imaginons que vous vous soyez trompé et que vous ayez divisé par 1000
+    plutôt que 100.
     Vous pouvez retaper toute l'expression, ou bien...
 
 - Class: cmd_question
-  Output: Dans beaucoup d'environnement de programmation, la flèche vers le haut 
+  Output: Dans beaucoup d'environnement de programmation, la flèche vers le haut
     vous permet de visualiser les commandes précédentes.
-    Appuyez sur la flèche haut de votre clavier jusqu'à atteindre la commande 
+    Appuyez sur la flèche haut de votre clavier jusqu'à atteindre la commande
     tailles_m <- tailles / 100.
     Changez 100 en 1000 et appuyez sur entrée.
     Si la flèche vers le haut ne marche pas chez vous, tapez juste l'expression

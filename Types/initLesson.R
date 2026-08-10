@@ -4,3 +4,5 @@
       # throughout the lesson.
 
 swirl_options(swirl_logging = TRUE)
+
+tailles <- c(156, 164, 197, 147, 173)

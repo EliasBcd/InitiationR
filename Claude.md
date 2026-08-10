@@ -34,16 +34,34 @@ Par ailleurs, deux leçons entrent en contradiction avec le cours :
 
 | Séance | Leçons swirl | État |
 |---|---|---|
-| 1 | `Manipulations_simples`, `Types`, `Vecteurs`, `Fonctions` | inchangées |
-| 2 | `Tableaux_de_donnees`, `Manipuler_les_donnees` | à convertir / à créer |
-| 3 | `Valeurs_manquantes`, `Decrire_les_donnees` | inchangée / à créer |
-| 4 | `Representations_graphiques` | à convertir |
+| 1 | `Manipulations_simples`, `Types`, `Vecteurs`, `Fonctions`, `Logique` | `Logique` déplacée dans le parcours obligatoire (§2.1) |
+| 2 | `Tableaux_de_donnees`, `Manipuler_les_donnees` | converties / créées |
+| 3 | `Valeurs_manquantes`, `Decrire_les_donnees` | inchangée / créée |
+| 4 | `Representations_graphiques` | convertie |
 | 5 | — | projet, pas de swirl |
 
 Hors parcours obligatoire, maintenues et proposées en autonomie :
-`Logique`, `Control_Flow`, `Creer_des_fonctions_1`, `Creer_des_fonctions_2`,
+`Control_Flow`, `Creer_des_fonctions_1`, `Creer_des_fonctions_2`,
 `Scripts_et_fonctions`, `Fichiers_et_espace_de_travail`, `Tirages_aleatoires`,
 `Vecteurs_numériques`, `Exercice_1` à `Exercice_5`.
+
+### 2.1 `Logique` reclassée dans le parcours obligatoire (séance 1)
+
+Le cours magistral 2026-2027 (`01PremiersPas.qmd`) introduit les opérateurs de
+comparaison (`==`, `!=`, `<`, `>`, `<=`, `>=`) et logiques (`!`, `&`, `|`) dès
+la séance 1, avec l'avertissement `==` vs `=` et un teaser explicite vers
+`filter(age < 25)` de la séance 2. `Manipuler_les_donnees` (§3.1) utilise `==`
+et `filter()` sans réexpliquer ces opérateurs.
+
+La leçon swirl `Logique` couvrait déjà tout ce contenu, mais était classée
+« hors parcours, en autonomie ». Elle a été déplacée dans le `MANIFEST`, après
+`Fonctions` et avant `Exercice_1`, pour devenir un prérequis explicite des
+séances 2 et 3. Son contenu n'a pas été modifié.
+
+Reste à traiter séparément (hors périmètre de ce document) : la séance 1 ne
+couvre pas la lecture des messages d'erreur, alors que le `CLAUDE.md` du dépôt
+`rl3` la désigne comme un fil conducteur à préserver. Une leçon swirl dédiée
+est prévue.
 
 ---
 
