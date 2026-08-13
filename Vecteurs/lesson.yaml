@@ -14,7 +14,7 @@
   Output: Vérifions que tailles est bien là. Affichez son contenu.
   CorrectAnswer: tailles
   AnswerTests: omnitest(correctExpr='tailles')
-  Hint: Tapez tailles et appuyez sur Entrée.
+  Hint: Le nom de l'objet seul suffit pour afficher son contenu.
 
 - Class: cmd_question
   Output: On peut combiner les vecteurs pour faire un nouveau vecteur.
@@ -23,9 +23,9 @@
     résultat immédiatement.
   CorrectAnswer: c(tailles, 185, tailles)
   AnswerTests: omnitest(correctExpr='c(tailles, 185, tailles)')
-  Hint: Tapez c(tailles, 185, tailles).
-    Ne créez pas de nouvelle variable.
-    On veut simplement voir le résultat.
+  Hint: c() accepte aussi bien des vecteurs que des valeurs isolées, dans
+    n'importe quel ordre. Ne créez pas de nouvel objet, on veut juste voir
+    le résultat.
 
 
 
@@ -35,37 +35,57 @@
     45, 59, 110, 44 et 88 (dans cet ordre)
   CorrectAnswer: poids <- c(45, 59, 110, 44, 88)
   AnswerTests: omnitest(correctExpr='poids <- c(45, 59, 110, 44, 88)')
-  Hint: Rappelez-vous comment on a créé des vecteurs plus tôt.
+  Hint: Même construction que pour tailles, avec les valeurs de la consigne.
   
 
+- Class: cmd_question
+  Output: Rappelez-vous qu'un vecteur ne peut contenir qu'un seul type de
+    valeurs à la fois.
+    Si on mélange des types, R convertit silencieusement tout dans le même
+    type, sans vous prévenir.
+    Essayez de créer le vecteur chiens contenant "Chihuahua", 5, "Doberman"
+    et 15 (dans cet ordre).
+  CorrectAnswer: chiens <- c("Chihuahua", 5, "Doberman", 15)
+  AnswerTests: omnitest(correctExpr='chiens <- c("Chihuahua", 5, "Doberman", 15)')
+  Hint: Même construction qu'un vecteur de chaînes de caractères ; il n'y a
+    pas de piège particulier dans la syntaxe, observez plutôt le résultat.
 
-
-  
-
+- Class: cmd_question
+  Output: Affichez maintenant chiens.
+  CorrectAnswer: chiens
+  AnswerTests: omnitest(correctExpr='chiens')
+  Hint: Le nom de l'objet seul suffit pour l'afficher.
 
 - Class: text
-  Output: Quand R a deux vecteurs de même longeur, R effectue les opérations 
-    spécifiée élément par élément. 
-    Dans le cas ou un des vecteurs est plus court que les autres, R 'recycle' le
+  Output: "Remarquez les guillemets : 5 et 15 sont devenus des chaînes de
+    caractères, comme \"Chihuahua\" et \"Doberman\". Vous ne pourrez plus
+    faire de calcul avec ces valeurs. Cette conversion silencieuse est une
+    source d'erreur classique, en particulier lors de l'import de données."
+
+- Class: text
+  Output: Quand R a deux vecteurs de même longeur, R effectue les opérations
+    spécifiée élément par élément.
+    Dans le cas où un des vecteurs est plus court que les autres, R 'recycle' le
     vecteur le plus court jusqu'à ce qu'il atteigne la longueur du vecteur le
     plus long.
 
 
 - Class: text
-  Output: Quand on a calculé `tailles / 100` plus tôt, tailles est un vecteur
+  Output: Quand on a calculé `tailles / 100` dans la leçon Manipulations simples, tailles est un vecteur
     de longueur 5, et techniquement 100 est un vecteur de longueur 1.
     Pour effectuer le calcul, R 'recycle' 100 pour en faire un vecteur de 5
     valeurs.
     En clair, l'opération réellement effectuée est
     `tailles / c(100, 100, 100, 100, 100)`.
 
+
 - Class: cmd_question
   Output: Voici un exemple de 'recyclage', plus parlant.
-    Essayez d'ajouter `c(1, 2, 3, 4)` et `c(0, 10)`.
+    Essayez d'ajouter c(1, 2, 3, 4) et c(0, 10).
   CorrectAnswer: c(1, 2, 3, 4) + c(0, 10)
   AnswerTests: any_of_exprs('c(1, 2, 3, 4) + c(0, 10)', 'c(0, 10) + c(1, 2, 3, 4)')
-  Hint: Tapez c(1, 2, 3, 4) + c(0, 10) dans la console.
-    N'essayez pas de sauvegarder le résultat dans un objet.
+  Hint: Additionnez simplement les deux vecteurs avec +, sans les stocker dans
+    un objet.
     
 - Class: text
   Output: Si la longueur du vecteur le plus long n'est pas un multiple de la 
@@ -76,9 +96,8 @@
   Output: Essayez c(1, 2, 3, 4) + c(0, 10, 100) par exemple.
   CorrectAnswer: c(1, 2, 3, 4) + c(0, 10, 100)
   AnswerTests: any_of_exprs('c(1, 2, 3, 4) + c(0, 10, 100)', 'c(0, 10, 100) + c(1, 2, 3, 4)')
-  Hint: Tapez c(1, 2, 3, 4) + c(0, 10, 100) pour voir comment R additionne deux
-   vecteurs si la longeur du plus long n'est pas un multiple de la longueur du 
-   plus court. Pas d'assignation ici.
+  Hint: Même principe que l'addition précédente, avec deux vecteurs de
+    longueurs 4 et 3 cette fois.
    
 - Class: text
   Output: Remarquez le Warning envoye par R.
@@ -89,22 +108,23 @@
     Nous les verrons en temps voulu.
   
 - Class: cmd_question
-  Output: Pour extraire un sous-vecteur de R, il faut utiliser des crochets `[]`.
+  Output: Pour extraire un sous-vecteur de R, il faut utiliser des crochets [].
     Si vous souhaitez accéder au deuxième élément du vecteur tailles, il faut taper 
     `tailles[2]`.
   CorrectAnswer: tailles[2]
   AnswerTests: omnitest(correctExpr = 'tailles[2]' )
-  Hint: Tapez `tailles[2]`.
+  Hint: Le nom du vecteur suivi de crochets contenant la position voulue.
   
 - Class: cmd_question
   Output: Il est aussi possible d'exclure un sous-ensemble du vecteur en mettant
     un moins devant le ou les indices que nous souhaitons exclure.
-    Par exemple, pour exclure le deuxième élément de `tailles`, il faut taper
-    `tailles[-2]`.
+    Par exemple, pour exclure le deuxième élément de tailles, il faut taper
+    tailles[-2].
     Essayez.
   CorrectAnswer: tailles[-2]
   AnswerTests: omnitest(correctExpr = 'tailles[-2]' )
-  Hint: Tapez `tailles[-2]`.
+  Hint: Même syntaxe que pour accéder à un élément, avec un signe moins devant
+    l'indice à exclure.
     
 - Class: cmd_question
   Output: Il est aussi possible d'obtenir un sous-ensemble du vecteur en utilisant
@@ -114,7 +134,8 @@
     Essayez.
   CorrectAnswer: poids[c(1, 3)]
   AnswerTests: omnitest(correctExpr = 'poids[c(1, 3)]' )
-  Hint: Tapez `poids[c(1, 3)]`.
+  Hint: Remplacez l'indice unique par un vecteur d'indices, construit avec
+    c().
   
 - Class: text
   Output: Le fonctionnement est le même pour l'exclusion de sous-ensembles d'un
@@ -123,19 +144,21 @@
 - Class: cmd_question
   Output: Une dernière façon d'indexer des sous-ensembles est d'utiliser un
     vecteur de valeurs logiques.
-    Essayez `tailles[c(TRUE, TRUE, FALSE, TRUE, FALSE)]`.
+    Essayez tailles[c(TRUE, TRUE, FALSE, TRUE, FALSE)].
   CorrectAnswer: tailles[c(TRUE, TRUE, FALSE, TRUE, FALSE)]
-  AnswerTests: omnitest(correctExpr = 'tailles[c(TRUE, TRUE, FALSE, TRUE, FALSE)]' )
-  Hint: Tapez `tailles[c(TRUE, TRUE, FALSE, TRUE, FALSE)]`.
+  AnswerTests: any_of_exprs('tailles[c(TRUE, TRUE, FALSE, TRUE, FALSE)]','tailles[c(T, T, F, T, F)]' )
+  Hint: Remplacez le vecteur d'indices par un vecteur de TRUE/FALSE de même
+    longueur que tailles, un par position.
   
 - Class: cmd_question
   Output: Cela peut paraître inutile au premier abord, mais est en fait très utile
     pour extraire d'un vecteur des valeurs respectant une condition logique.
     Si on souhaite obtenir les seulement les poids inférieurs à 70kg par exemple,
-    on tapera la commande `poids[poids < 70]`.
+    on tapera la commande poids[poids < 70].
   CorrectAnswer: poids[poids < 70]
   AnswerTests: omnitest(correctExpr = 'poids[poids < 70]' )
-  Hint: Tapez `poids[poids < 70]`.    
+  Hint: Placez directement une condition logique sur poids entre les crochets,
+    à la place du vecteur de TRUE/FALSE construit à la main.
   
 - Class: text
   Output: Avant de finir la leçon, je vais vous apprendre quelques techniques
@@ -146,7 +169,8 @@
     Divisez tailles par 100 et stockez le résultat dans tailles_m.
   CorrectAnswer: tailles_m <- tailles / 100
   AnswerTests: omnitest(correctExpr='tailles_m <- tailles / 100')
-  Hint: Tapez tailles_m <- tailles / 100.
+  Hint: Divisez tailles par 100 et assignez le résultat à un nouvel objet
+    tailles_m, comme dans la leçon précédente.
 
 - Class: text
   Output: Imaginons que vous vous soyez trompé et que vous ayez divisé par 1000

@@ -92,9 +92,8 @@
     Pour assigner 2 à x, il suffit de taper x <- 2.
   CorrectAnswer: x <- 2
   AnswerTests: omnitest(correctExpr='x <- 2')
-  Hint: Tapez x <- 2. Il est important d'avoir un espace à gauche
-    et à droite de l'opérateur d'assignation, mais NE mettez PAS d'espace entre
-    le `<` et le `-` qui forment la flèche.
+  Hint: La flèche d'assignation vient d'être présentée dans la consigne ;
+    laissez un espace de chaque côté, mais aucun entre le `<` et le `-`.
 
 - Class: cmd_question
   Output: Remarquez que R n'a rien affiché, contrairement aux commandes précédentes,
@@ -104,7 +103,8 @@
     Essayez maintenant de visualiser x.
   CorrectAnswer: x
   AnswerTests: omnitest(correctExpr='x')
-  Hint: Taper simplement x dans la console, suivi d'entrée.
+  Hint: Il suffit de taper le nom d'un objet, sans rien d'autre, pour afficher
+    son contenu.
   
 - Class: text
   Output: En résumé, qu'à fait R ?
@@ -138,9 +138,8 @@
     Créons un objet y qui prend la valeur 5
   CorrectAnswer: y <- 5
   AnswerTests: omnitest(correctExpr='y <- 5')
-  Hint: Tapez y <- 5. Il est important d'avoir un espace à gauche
-    et à droite de l'opérateur d'assignation, mais NE mettez PAS d'espace entre
-    le `<` et le `-` qui forment la flèche.    
+  Hint: Même opérateur que pour créer x, mais avec un autre nom d'objet et une
+    autre valeur.
 
 
 - Class: cmd_question
@@ -156,7 +155,8 @@
   Output: Quelle est la valeur du résultat ? Tapez somme pour le savoir !
   CorrectAnswer: 'somme'
   AnswerTests: omnitest(correctExpr='somme')
-  Hint: Tapez somme et appuyez sur Entrée.
+  Hint: Comment a-t-on déjà affiché le contenu d'un objet, un peu plus haut
+    dans cette leçon ?
 
 - Class: text
   Output: R a fait l'addition sur les objets comme il l'aurait fait sur les
@@ -177,7 +177,7 @@
     Si maintenant vous tapez x <- 8.
   CorrectAnswer: x <- 8
   AnswerTests: omnitest(correctExpr='x <- 8')
-  Hint: Tapez x <- 8
+  Hint: La consigne donne déjà l'expression à taper telle quelle.
   
 - Class: mult_question
   Output: Quelle est la valeur de x (sélectionner la bonne réponse en utilisant le numéro correspondant, 1 ou 2) ?
@@ -196,13 +196,14 @@
     Essayez d'assigner y à x.
   CorrectAnswer: x <- y
   AnswerTests: omnitest(correctExpr='x <- y')
-  Hint: Tapez x <- y.
+  Hint: On assigne un objet à un autre exactement comme on assignerait une
+    valeur.
   
 - Class: cmd_question
   Output: Regardez maintenant la valeur de x.
   CorrectAnswer: x
   AnswerTests: omnitest(correctExpr='x')
-  Hint: Tapez x.
+  Hint: Le nom de l'objet suffit pour l'afficher.
 
 - Class: text
   Output: x a pris la valeur de y !
@@ -224,7 +225,8 @@
     simples ou doubles (' ou \"). Tapez : chien <- \"Chihuahua\"" 
   CorrectAnswer: chien <- "Chihuahua"
   AnswerTests: omnitest(correctExpr='chien <- "Chihuahua"')
-  Hint: "Tapez : chien <- \"Chihuahua\"" 
+  Hint: Utilisez le même opérateur d'assignation que pour x et y, et
+    n'oubliez pas les guillemets autour du texte.
 
 
 - Class: text
@@ -246,10 +248,8 @@
     Essayez et stockez le résultat (=assigner) dans l'objet tailles.
   CorrectAnswer: tailles <- c(156, 164, 197, 147, 173)
   AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197, 147, 173)')
-  Hint: Tapez tailles <- c(156, 164, 197, 147, 173) et appuyez sur entrée.
-    Cela assigne le vecteur (156, 164, 197, 147, 173) au nouvel objet tailles.
-    Les espaces après la virgule ne sont pas nécessaire mais rendent le code plus
-    lisible.
+  Hint: Les cinq valeurs sont données dans le même ordre dans la consigne ;
+    combinez-les avec c() puis assignez le résultat à tailles.
     
 - Class: cmd_question
   Output: Tapez tailles pour voir son contenu.
@@ -257,7 +257,7 @@
     l'affichage.
   CorrectAnswer: tailles
   AnswerTests: omnitest(correctExpr='tailles')
-  Hint: Tapez tailles et appuyez sur Entrée pour voir son contenu.
+  Hint: Comme pour x et y, le nom de l'objet seul suffit.
   
 - Class: cmd_question
   Output: L’avantage d’un vecteur est que lorsqu’on lui applique une opération,
@@ -267,7 +267,8 @@
     Essayez pour voir.
   CorrectAnswer: tailles_m <- tailles / 100
   AnswerTests: omnitest(correctExpr='tailles_m <- tailles / 100')
-  Hint: Tapez tailles_m <- tailles / 100.
+  Hint: Divisez tailles par 100 comme vous diviseriez n'importe quelle valeur,
+    et assignez le résultat à un nouvel objet nommé tailles_m.
   
 
   
@@ -283,7 +284,7 @@
   Output: Affichez maintenant le résultat.
   CorrectAnswer: tailles_m
   AnswerTests: omnitest(correctExpr='tailles_m')
-  Hint: Il faut taper le nom d'un objet pour afficher sa valeur.
+  Hint: Vous savez déjà comment afficher le contenu d'un objet.
  
 - Class: text
   Output: Comment vous l'avez probablement deviné, R a d'abord divisé `tailles` par 
@@ -311,7 +312,7 @@
     Tapez poids <- c(45, 59, 110, 44, 88).
   CorrectAnswer: poids <- c(45, 59, 110, 44, 88)
   AnswerTests: omnitest(correctExpr='poids <- c(45, 59, 110, 44, 88)')
-  Hint: Tapez poids <- c(45, 59, 110, 44, 88)
+  Hint: Même construction que pour tailles, avec les valeurs de la consigne.
 
 - Class: cmd_question
   Output: On peut alors effectuer des calculs utilisant nos deux vecteurs 
@@ -322,7 +323,8 @@
     N'oubliez pas que la taille doit être en mètre !
   CorrectAnswer: imc <- poids / (tailles_m)^2
   AnswerTests: any_of_exprs('imc <-  poids / (tailles/100)^2', 'imc <- poids / tailles_m^2')
-  Hint: Tapez imc <-  poids / tailles_m^2
+  Hint: La formule de l'imc est donnée dans la consigne ; vous avez déjà les
+    objets poids et tailles_m pour la construire.
     
 - Class: mult_question
   Output: Quelle affirmation est vraie ?
@@ -339,7 +341,7 @@
   Output: Regardons le contenu d'imc.
   CorrectAnswer: imc
   AnswerTests: omnitest(correctExpr='imc')
-  Hint: Tapez `imc` puis appuyez sur entrée pour voir le résultat.    
+  Hint: Toujours la même méthode pour afficher le contenu d'un objet.
   
 - Class: cmd_question
   Output: Un vecteur peut contenir des nombres, mais il peut aussi contenir du
@@ -351,13 +353,14 @@
     Tapez diplome <- c("CAP", "Bac", "Bac+2").
   CorrectAnswer: diplome <- c("CAP", "Bac", "Bac+2")
   AnswerTests: omnitest(correctExpr='diplome <- c("CAP", "Bac", "Bac+2")')
-  Hint: diplome <- c("CAP", "Bac", "Bac+2").
+  Hint: Même construction qu'un vecteur de nombres, mais avec des chaînes de
+    caractères entre guillemets.
     
 - Class: cmd_question
   Output: Regardons le contenu de diplome.
   CorrectAnswer: diplome
   AnswerTests: omnitest(correctExpr='diplome')
-  Hint: Tapez `diplome` puis appuyez sur entrée pour voir le résultat.   
+  Hint: Le réflexe est toujours le même pour afficher un objet.
 
 
 - Class: text
@@ -374,32 +377,26 @@
     d'écrire 1:10. Essayez pour voir."
   CorrectAnswer: 1:10
   AnswerTests: omnitest(correctExpr='1:10')
-  Hint: Tapez 1:10 puis appuyez sur entrée pour voir le résultat. 
+  Hint: La syntaxe exacte de l'opérateur `:` est donnée dans la consigne.
 
-
-- Class: cmd_question
-  Output: "Enfin, notons qu’on peut accéder à un élément particulier d’un
-    vecteur en faisant suivre le nom du vecteur de crochets contenant le numéro
-    de l’élément désiré.
-    Pour observer le 2 élément de diplome, par exemple, il faut écrire diplome[2].
-    Essayez pour voir."
-  CorrectAnswer: diplome[2]
-  AnswerTests: omnitest(correctExpr='diplome[2]')
-  Hint: Tapez diplome[2] puis appuyez sur entrée pour afficher le deuxième 
-    élément du vecteur diplome.
 
 - Class: text
-  Output: Cette opération, qui utilise l’opérateur [], permet donc la sélection 
+  Output: "Enfin, notons qu’on peut accéder à un élément particulier d’un
+    vecteur en faisant suivre le nom du vecteur de crochets contenant le numéro
+    de l’élément désiré : diplome[2], par exemple, donne le deuxième élément
+    de diplome.
+    Cette opération, qui utilise l’opérateur [], permet donc la sélection
     d’éléments d’un vecteur.
-    
+    Nous la pratiquerons en détail dans la prochaine leçon."
+
 - Class: mult_question
-  Output: Voyons voir si vous avez compris. 
+  Output: Voyons voir si vous avez compris le principe.
     Que faut-il taper dans la console pour afficher le troisième élément du
     vecteur tailles ?
   CorrectAnswer: tailles[3]
   AnswerChoices: tailles[3]; tailles[2]; tailles[fin]
   AnswerTests: omnitest(correctVal="tailles[3]")
-  Hint: R numérote les éléments à partir de 1. 
+  Hint: R numérote les éléments à partir de 1.
 
 - Class: cmd_question
   Output: Dernière remarque, si on affiche dans la console un vecteur avec
@@ -407,7 +404,7 @@
     Essayez d'afficher le vecteur 1:100.
   CorrectAnswer: 1:100
   AnswerTests: omnitest(correctExpr="1:100")
-  Hint: Tapez 1:100 dans la console.  
+  Hint: Le même opérateur que pour 1:10, avec une autre borne.
 
 - Class: text
   Output: On remarque que R ajoute systématiquement un nombre entre crochets au 

@@ -29,7 +29,8 @@
     Essayez pour voir.
   CorrectAnswer: length(tailles)
   AnswerTests: omnitest(correctExpr='length(tailles)')
-  Hint: Tapez length(tailles) et appuyez sur Entrée pour voir le résultat. 
+  Hint: Le nom de la fonction et l'objet à lui passer sont donnés dans la
+    consigne.
 
 - Class: text
   Output: Ici, length est le nom de la fonction, on l’appelle en lui passant un
@@ -43,14 +44,16 @@
     Essayez d'afficher la valeur minimale contenue vecteur tailles.
   CorrectAnswer: min(tailles)
   AnswerTests: omnitest(correctExpr='min(tailles)')
-  Hint: Tapez min(tailles) et appuyez sur Entrée pour voir le résultat.   
+  Hint: Le nom de la fonction est donné dans la consigne ; appliquez-la à
+    tailles comme vous l'avez fait pour length().
   
 - Class: cmd_question
   Output: La fonction mean calcule et retourne la moyenne d’un vecteur de nombres.
     Calculez la valeur moyenne des tailles dans le vecteur tailles.
   CorrectAnswer: mean(tailles)
   AnswerTests: omnitest(correctExpr='mean(tailles)')
-  Hint: Tapez mean(tailles) et appuyez sur Entrée pour voir le résultat.   
+  Hint: Même principe que min() ou length(), avec le nom de fonction donné
+    dans la consigne.
   
 - Class: cmd_question
   Output: La fonction sum calcule et retourne la somme de tous les éléments
@@ -58,7 +61,7 @@
     Calculez la somme des tailles.
   CorrectAnswer: sum(tailles)
   AnswerTests: omnitest(correctExpr='sum(tailles)')
-  Hint: Tapez sum(tailles) et appuyez sur Entrée pour voir le résultat.  
+  Hint: Le nom de la fonction est donné dans la consigne.
   
   
 - Class: cmd_question
@@ -70,7 +73,7 @@
     Essayez sur l'objet tailles.
   CorrectAnswer: range(tailles)
   AnswerTests: omnitest(correctExpr='range(tailles)')
-  Hint: Tapez range(tailles) et appuyez sur Entrée pour voir le résultat.   
+  Hint: Le nom de la fonction vient d'être donné dans la consigne.
   
 - Class: text
   Output: Ou encore, la fonction unique, qui supprime toutes les valeurs en
@@ -80,13 +83,13 @@
   Output: Affichez le vecteur diplome, je l'ai modifié pour l'occasion.
   CorrectAnswer: diplome
   AnswerTests: omnitest(correctExpr='diplome')
-  Hint: Tapez diplome et appuyez sur Entrée pour voir le résultat.
+  Hint: Le nom de l'objet seul suffit pour afficher son contenu.
   
 - Class: cmd_question
   Output: Essayez maintenant unique(diplome) et comparez les deux résultats.
   CorrectAnswer: unique(diplome)
   AnswerTests: omnitest(correctExpr='unique(diplome)')
-  Hint: Tapez unique(diplome).
+  Hint: Le nom de la fonction vient d'être introduit dans le texte précédent.
   
 - Class: text
   Output: Une fonction peut prendre plusieurs arguments, dans ce cas on les
@@ -97,56 +100,56 @@
     des virgules, et elle renvoie un vecteur numérique regroupant ces cinq valeurs.
     
 - Class: cmd_question
-  Output: Supposons maintenant que dans notre vecteur tailles nous avons une 
-    valeur manquante (une personne a refusé de répondre, ou notre mètre mesureur
-    était en panne). 
+  Output: "Supposons maintenant que nous ayons une valeur manquante dans nos
+    tailles (une personne a refusé de répondre, ou notre mètre mesureur était
+    en panne).
     On symbolise celle-ci dans R avec le code interne NA (abbréviation de
     Not Available, non disponible).
-    Tapez tailles <- c(156, 164, 197, NA, 173).
-  CorrectAnswer: unique(tailles <- c(156, 164, 197, NA, 173))
-  AnswerTests: omnitest(correctExpr='tailles <- c(156, 164, 197, NA, 173)')
-  Hint: Tapez tailles <- c(156, 164, 197, NA, 173).    
-  
-  
+    Créons un nouveau vecteur pour ne pas perdre tailles : tapez
+    tailles_incompletes <- c(156, 164, NA, 147, 173)."
+  CorrectAnswer: tailles_incompletes <- c(156, 164, NA, 147, 173)
+  AnswerTests: omnitest(correctExpr='tailles_incompletes <- c(156, 164, NA, 147, 173)')
+  Hint: Même construction qu'un vecteur numérique classique ; NA se tape sans
+    guillemets, comme TRUE ou FALSE.
+
+
 - Class: cmd_question
-  Output: Essayez maintenat de calculer la valeur moyenne des tailles.
-  CorrectAnswer: mean(tailles)
-  AnswerTests: omnitest(correctExpr='mean(tailles)')
-  Hint: Rappelez vous que la fonction qui calcule la moyenne est la fonction
-    mean.
+  Output: Essayez maintenant de calculer la valeur moyenne de tailles_incompletes.
+  CorrectAnswer: mean(tailles_incompletes)
+  AnswerTests: omnitest(correctExpr='mean(tailles_incompletes)')
+  Hint: La fonction est la même que pour calculer la moyenne de tailles un peu
+    plus haut.
 
 - Class: text
   Output: La réponse est NA !
-    En effet, R considère par défaut qu’il ne peut pas calculer la moyenne si 
+    En effet, R considère par défaut qu’il ne peut pas calculer la moyenne si
     une des valeurs n’est pas disponible.
-    Dans ce cas il considère que la moyenne est elle-même “non disponible” et 
+    Dans ce cas il considère que la moyenne est elle-même “non disponible” et
     renvoie donc NA comme résultat.
-    
+
 - Class: cmd_question
-  Output: On peut cependant indiquer à mean d’effectuer le calcul en ignorant 
-   les valeurs manquantes. 
-   Ceci se fait en ajoutant un argument supplémentaire, nommé na.rm 
+  Output: On peut cependant indiquer à mean d’effectuer le calcul en ignorant
+   les valeurs manquantes.
+   Ceci se fait en ajoutant un argument supplémentaire, nommé na.rm
    (abbréviation de NA remove, “enlever les NA”), et de lui attribuer la valeur
    TRUE (code interne de R signifiant vrai).
-   Il faut pour cela taper mean(tailles, na.rm = TRUE). 
+   Il faut pour cela taper mean(tailles_incompletes, na.rm = TRUE).
    Essayez.
-  CorrectAnswer: mean(tailles, na.rm = TRUE)
-  AnswerTests: omnitest(correctExpr='mean(tailles, na.rm = TRUE)')
-  Hint: Tepez mean(tailles, na.rm = TRUE) et observez le résultat.
+  CorrectAnswer: mean(tailles_incompletes, na.rm = TRUE)
+  AnswerTests: omnitest(correctExpr='mean(tailles_incompletes, na.rm = TRUE)')
+  Hint: Ajoutez l'argument na.rm = TRUE à l'appel de mean() que vous venez de
+    faire.
 
-    
-- Class: cmd_question
-  Output: Donner la valeur TRUE au paramètre na.rm indique à la fonction mean de ne
-    pas tenir compte des valeurs manquantes dans le calcul.
+
+- Class: text
+  Output: Donner la valeur TRUE au paramètre na.rm indique à la fonction mean de
+    ne pas tenir compte des valeurs manquantes dans le calcul.
     Si on ne dit rien à la fonction mean, cet argument a une valeur par défaut,
-    en l’occurrence FALSE (faux), qui fait qu’il ne supprime pas les valeurs 
+    en l’occurrence FALSE (faux), qui fait qu’il ne supprime pas les valeurs
     manquantes.
-    Les deux commandes mean(tailles) et mean(tailles, na.rm=FALSE) sont donc  
-    sont donc rigoureusement équivalentes.
-    Essayez pour voir la seconde.
-  CorrectAnswer: mean(tailles, na.rm = FALSE)
-  AnswerTests: omnitest(correctExpr='mean(tailles, na.rm = FALSE)')
-  Hint: Tepez mean(tailles, na.rm = FALSE) et observez le résultat.  
+    Les commandes mean(tailles_incompletes) et
+    mean(tailles_incompletes, na.rm = FALSE) sont donc rigoureusement
+    équivalentes.
   
 - Class: cmd_question
   Output: Il est fréquent de ne pas savoir (ou d’avoir oublié) quels sont les 
@@ -170,101 +173,6 @@
     en bas à droite, sous l’onglet Help.
     Un clic sur l’icône en forme de maison vous affichera la page d’accueil de 
     l’aide.
-    
-- Class: text
-  Output: R connaît bien évidemment aussi les fonctions mathématiques usuelles.
-    Nous allons voir maintenant comment calculer les fonctions
-    mathématiques usuelles logarithme, racine carrée, exponentielle et valeur
-    absolue.
-
-
-- Class: cmd_question
-  Output: Pour calculer la racine carré, on utilise la commande sqrt(), pour
-    square root, l'équivalent en anglais. Tapez sqrt(4).
-  CorrectAnswer:  sqrt(4)
-  AnswerTests: omnitest(correctExpr='sqrt(4)')
-  Hint: Tapez sqrt(4)
-
-- Class: cmd_question
-  Output: Essayons maintenant avec la fonction exponentielle. Tapez exp(0).
-  CorrectAnswer:  exp(0)
-  AnswerTests: omnitest(correctExpr='exp(0)')
-  Hint: Tapez exp(0)
-
-- Class: cmd_question
-  Output: Essayons maintenant avec la fonction logarithme naturel.
-    R est un logiciel de programmation en anglais, il utilise donc la
-    convention anglaise.
-    Pour obtenir ln(x), il faut taper log(x).
-    Cherchez la valeur de ln(2).
-  CorrectAnswer: log(2)
-  AnswerTests: omnitest(correctExpr='log(2)')
-  Hint: Tapez log(2)
-
-- Class: cmd_question
-  Output: Pour calculer le log français (logarithme décimal, en base 10), il
-    suffit de taper log10.
-    Cherchez à obtenir le logarithme décimal de 100.
-  CorrectAnswer: log10(100)
-  AnswerTests: omnitest(correctExpr='log10(100)')
-  Hint: Tapez log10(100)
-
-- Class: cmd_question
-  Output: Il y a en fait deux méthodes pour calculer le logarithme en base 10.
-    R permet de calculer le logarithme en n'importe quelle base, en utilisant
-    log(x, base).
-    base est donc ici le deuxième arguement, comme na.rm plus tôt.
-    Voyons voir si vous avez compris.
-    Essayez calculer le logarithme en base 8 de 1000
-  CorrectAnswer: log(1000, 8)
-  AnswerTests: omnitest(correctExpr='log(1000, 8)')
-  Hint: Tapez log(1000, 8)
-
-- Class: cmd_question
-  Output: R connaît aussi les fonctions trigonométriques.
-    Essayez de calculer le sinus de 0.
-  CorrectAnswer: sin(0)
-  AnswerTests: omnitest(correctExpr='sin(0)')
-  Hint: Tapez sin(0)
-
-- Class: cmd_question
-  Output: Ce qui nous amène naturellement à la constante pi.
-    R connaît certaines constantes.
-    Essayez de taper pi.
-  CorrectAnswer: pi
-  AnswerTests: omnitest(correctExpr='pi')
-  Hint: Tapez pi
-
-- Class: cmd_question
-  Output: On peut donc maintenant calculer le cosinus de pi/2.
-  CorrectAnswer: cos(pi/2)
-  AnswerTests: omnitest(correctExpr='cos(pi/2)')
-  Hint: Tapez cos(pi/2)
-
-- Class: cmd_question
-  Output: Notez que la constante e (exponentielle) n'existe pas en tant que
-    telle dans R.
-    Essayer de taper 10e2
-  CorrectAnswer: 10e2
-  AnswerTests: omnitest(correctExpr='10e2')
-  Hint: Tapez 10e2
-
-- Class: mult_question
-  Output: e remplace en fait 10^, mais nécessite d'avoir un nombre devant.
-    1e2 est une expression valide, mais e2 ne l'est pas.
-    Voyons voir si vous avez compris. Que vaut 1e2 ?
-  AnswerChoices: 1000; 100; exp(2); 0.01
-  CorrectAnswer:  100
-  AnswerTests: omnitest(correctVal="100")
-  Hint: Pensez à remplacer e par 10^.
-
-
-- Class: text
-  Output: Félicitations, vous avez maintenant vu les principales opérations 
-    mathématiques simples possibles avec R. 
-    Vous savez maintenant utiliser R comme une calculatrice collège, mais R 
-    est bien plus puissant que cela. 
-    La prochaine leçon nous permettra d'aller plus loin.    
     
 - Class: text
   Output: Jusqu’ici on a utilisé R de manière "interactive", en saisissant des 
@@ -316,7 +224,61 @@
   Hint: Lisez bien les instructions dans le script et complétez-le à l'aide des
     valeurs indiquées.
   Script: imc.R
-  
+
+- Class: text
+  Output: Le script que vous venez d'exécuter a créé l'objet imc. Exerçons-nous
+    un peu plus avec les fonctions, sur ce nouvel objet.
+
+- Class: cmd_question
+  Output: Combien de valeurs contient le vecteur imc ? Utilisez la fonction
+    qui donne le nombre d'éléments d'un vecteur, déjà vue au début de cette
+    leçon.
+  CorrectAnswer: length(imc)
+  AnswerTests: omnitest(correctExpr='length(imc)')
+  Hint: Même fonction que pour compter les éléments de tailles, appliquée à
+    imc.
+
+- Class: cmd_question
+  Output: Quelle est la plus petite valeur d'imc ?
+  CorrectAnswer: min(imc)
+  AnswerTests: omnitest(correctExpr='min(imc)')
+  Hint: La fonction qui donne le minimum d'un vecteur a déjà été utilisée sur
+    tailles.
+
+- Class: cmd_question
+  Output: Et la plus grande ?
+  CorrectAnswer: max(imc)
+  AnswerTests: omnitest(correctExpr='max(imc)')
+  Hint: Le symétrique de la fonction précédente.
+
+- Class: cmd_question
+  Output: Ouvrez maintenant l'aide de la fonction quantile avec ?quantile, et
+    repérez ce que fait l'argument probs.
+  CorrectAnswer: ?quantile
+  AnswerTests: any_of_exprs('?quantile', 'help(quantile)')
+  Hint: Même méthode que pour l'aide sur mean, avec un autre nom de fonction.
+
+- Class: text
+  Output: "L'argument probs indique la proportion de l'échantillon en dessous
+    de laquelle on veut trouver une valeur : 0.5 donne la médiane, 0.25 le
+    premier quartile. Nous reverrons ces notions en détail plus tard dans le
+    cours."
+
+- Class: cmd_question
+  Output: Calculez la médiane d'imc à l'aide de quantile(), avec l'argument
+    probs = 0.5.
+  CorrectAnswer: quantile(imc, probs = 0.5)
+  AnswerTests: omnitest(correctExpr='quantile(imc, probs = 0.5)')
+  Hint: Passez imc en premier argument à quantile(), et probs = 0.5 en second.
+
+- Class: cmd_question
+  Output: "Il existe une deuxième façon, plus directe, de calculer une médiane :
+    la fonction median(). Essayez-la sur imc, et comparez le résultat au
+    précédent."
+  CorrectAnswer: median(imc)
+  AnswerTests: omnitest(correctExpr='median(imc)')
+  Hint: Le nom de la fonction vient d'être donné dans la consigne.
+
 - Class: text
   Output: "Vous devez avoir remarqué dans le script les lignes qui commençaient
     par un signe dièse #.
@@ -340,7 +302,8 @@
     Essayez pour voir.
   CorrectAnswer: install.packages("questionr")
   AnswerTests: omnitest(correctExpr='install.packages("questionr")')
-  Hint: Tepez install.packages("questionr") pour installer le paquet questionr.
+  Hint: La commande exacte est donnée dans la consigne ; n'oubliez pas les
+    guillemets autour du nom du paquet.
   
 - Class: text
   Output: Installer une extension via l’une des deux méthodes précédentes va 
@@ -358,7 +321,8 @@
     Essayez.
   CorrectAnswer: library(questionr)
   AnswerTests: omnitest(correctExpr='library(questionr)')
-  Hint: Tepez library(questionr) pour charger le paquet questionr.  
+  Hint: Même principe que install.packages(), mais sans les guillemets autour
+    du nom du paquet.
   
 - Class: text
   Output: Remarquez que c'est exactement ce que je vous ai demandé de faire

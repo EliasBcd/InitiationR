@@ -330,3 +330,7 @@ Les points 2 et 3 comblent le manque réel ; le reste est de la mise en
 cohérence. Si le temps manque, les livrer seuls et laisser
 `Representations_graphiques` sur `rp2018` pour cette année, en signalant en
 séance 4 que la leçon swirl utilise un autre jeu de données.
+
+## 7. Notes de syntaxe
+
+Quand il y a besoin d'utiliser : dans un texte swirl, il est nécessaire de mettre des guillemets autour.

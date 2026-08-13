@@ -11,7 +11,7 @@
     numériques.
     Il en existe en fait d'autres.
     Pour en donner quelques-uns des plus importants, on a dans R les booléens, 
-    les caractères, les vecteurs, les listes et les data.frames.
+    les chaînes de caractères, les vecteurs et les tableaux.
     Il y en a pleins d'autres.
 
 - Class: cmd_question
@@ -20,14 +20,15 @@
     Ils nous servirons beaucoup plus tard, pour l'instant, tapez simplement T.
   CorrectAnswer: T
   AnswerTests: omnitest(correctExpr='T')
-  Hint: Tapez T (et non pas TRUE)
+  Hint: R accepte une abréviation à une seule lettre pour TRUE, mentionnée dans
+    la consigne.
   
 - Class: cmd_question
   Output: Les booléens sont généralement le résultat d'une comparaison.
     Essayez de taper 3>2
   CorrectAnswer: 3>2
   AnswerTests: omnitest(correctExpr='3>2')
-  Hint: Tapez 3>2
+  Hint: Relisez la consigne, l'expression à taper y est donnée telle quelle.
   
 - Class: text
   Output: On obtient TRUE !
@@ -41,17 +42,28 @@
 
 - Class: cmd_question
   Output: Un autre type de valeur important sont les caractères.
-    Les chaînes de caractères sont entre guillemets \" ou '.
-    Assigner le nom du cours à l'objet nom.
-  CorrectAnswer: nom <- 'Introduction à R'
-  AnswerTests: omnitest()
-  Hint: Taper nom <- "Introduction à R"
+    Les chaînes de caractères sont entre guillemets " ou '.
+    Assignez "Chihuahua" à l'objet chien.
+  CorrectAnswer: chien <- "Chihuahua"
+  AnswerTests: omnitest(correctExpr='chien <- "Chihuahua"')
+  Hint: Utilisez l'opérateur d'assignation vu dans la première leçon, et
+    n'oubliez pas les guillemets autour du texte.
+
+- Class: cmd_question
+  Output: On peut comparer des chaînes de caractères comme des nombres, avec
+    l'opérateur d'égalité ==.
+    Essayez de savoir si chien est égal à "Doberman".
+  CorrectAnswer: chien == "Doberman"
+  AnswerTests: any_of_exprs('chien == "Doberman"', '"Doberman" == chien')
+  Hint: "L'opérateur d'égalité vient d'être introduit dans la consigne : deux
+    signes égal entre les deux valeurs à comparer."
 
 - Class: text
-  Output: "Nous aurons une leçon dédiée au -- chaîne de -- caractères."
+  Output: "Attention : la comparaison s'écrit avec deux signes égal, ==. Un
+    seul signe égal, =, ne compare pas, il assigne. C'est l'erreur la plus
+    fréquente au début, et R ne vous préviendra pas toujours qu'il y a un
+    problème."
 
-
-  
 - Class: text
   Output: Dans la leçon précédente, nous avons créé un vecteur tailles à l'aide
     de la commande c(), qui signifie 'concatenate' ou 'combine' (assembler en
@@ -63,10 +75,10 @@
     En fait, même un nombre seul est considéré comme un vecteur de longueur 1.
 
 - Class: cmd_question
-  Output: Affichez le contenu de tailles pour vérifier qu'il est bien là.
+  Output: Affichez le contenu de tailles pour vérifier que R connaît son existence.
   CorrectAnswer: tailles
   AnswerTests: omnitest(correctExpr='tailles')
-  Hint: Tapez tailles et appuyez sur Entrée.
+  Hint: Il suffit de taper le nom d'un objet pour afficher son contenu.
 
 - Class: cmd_question
   Output: Si vous avez une question sur une commande particulière de R, vous 
@@ -82,59 +94,53 @@
     normalement)
 
 - Class: cmd_question
-  Output: Un type d'objet en apparence similaire aux vecteurs est la liste.
-    Une caractéristique que nous n'avons pas encore abordé des vecteurs est 
-    qu'ils contiennent des objets de même type.
-    Une liste, au contraire, peut contenir des valeurs de types différent.
-    Une liste est créée grâce à la commande list().
-    Essayez de construire une liste contenant les éléments "R", TRUE et 8 (dans
+  Output: Essayez de construire un vecteur contenant les éléments "R", TRUE et 8 (dans
     cet ordre).
-    Appelez-là l.
-  CorrectAnswer: l <- list("R", TRUE, 8)
-  AnswerTests: omnitest(correctExpr = 'l <- list("R", TRUE, 8)')
-  Hint: Tapez l <- list("R", TRUE, 8)
-  
-- Class: cmd_question
-  Output: Regardons maintenant ce que contient l.
-  CorrectAnswer: l
-  AnswerTests: omnitest(correctExpr = 'l')
-  Hint: Rappelez-vous qu'il suffit de taper un objet pour l'afficher.
-  
-- Class: text
-  Output: Analysons un petit peu ce que nous renvoit R.
-    La présence de double crochet `[[]]`  nous indique que nous sommes en présence
-    d'une liste.
-    Chaque élément de la liste conserve son type.
-  
-- Class: cmd_question
-  Output: Essayons la même chose avec un vecteur.
     Nommez-le v.
   CorrectAnswer: v <- c("R", TRUE, 8)
   AnswerTests: omnitest(correctExpr = 'v <- c("R", TRUE, 8)')
-  Hint: Tapez v <- c("R", TRUE, 8)  
+  Hint: Utilisez c() pour combiner les trois éléments dans l'ordre demandé, et
+    assignez le résultat à v.
+  
 
 - Class: cmd_question
   Output: Regardons maintenant ce que contient v.
   CorrectAnswer: v
   AnswerTests: omnitest(correctExpr = 'v')
   Hint: Rappelez-vous qu'il suffit de taper un objet pour l'afficher.
-  
+
+- Class: text
+  Output: "Regardez bien le résultat affiché : \"R\" \"TRUE\" \"8\".
+    Tout est maintenant entre guillemets, y compris TRUE et 8, qui n'en avaient
+    pas quand on les a saisis.
+    Rappelez-vous : un vecteur ne peut contenir qu'un seul type de valeurs à la
+    fois. Puisque \"R\" est une chaîne de caractères, R a converti TRUE et 8 en
+    chaînes de caractères pour pouvoir les mettre dans le même vecteur, sans
+    vous prévenir."
+
 - Class: cmd_question
-  Output: Il n'y a pas de double crochets, nous sommes bien face à un vecteur.
-    Le type des objets, en revanche, a changé. 
-    Pour vous en convaincre, utilisez la commande str(), qui nous renseigne sur
-    la structure d'un objet, sur l'objet v.
+  Output: Pour confirmer ce type de conversion, on peut utiliser la commande
+    str(), qui nous renseigne sur la structure d'un objet.
+    Essayez-la sur v.
   CorrectAnswer: str(v)
   AnswerTests:  omnitest(correctExpr = 'str(v)')
-  Hint: Tapez str(v).
-  
-- Class: cmd_question
-  Output: Faites la même chose sur l.
-  CorrectAnswer: str(l)
-  AnswerTests:  omnitest(correctExpr = 'str(l)')
-  Hint: Tapez str(l).
-  
-  
+  Hint: Le nom de la fonction vient d'être donné dans la consigne ; appliquez-la
+    à v comme vous l'avez déjà fait pour d'autres fonctions.
+
+- Class: text
+  Output: "str(v) confirme ce qu'on avait deviné : chr [1:3] indique un vecteur
+    de chaînes de caractères (character) de longueur 3.
+    C'est une conversion silencieuse, un peu comme les valeurs manquantes que
+    nous reverrons plus tard : R ne renvoie pas d'erreur, il fait un choix à
+    votre place. Le réflexe à prendre est de toujours vérifier le type d'un
+    vecteur avant de lui faire confiance, avec str() par exemple."
+
+- Class: text
+  Output: "Retenez bien les booléens TRUE et FALSE, ainsi que les opérateurs
+    de comparaison comme == et <. Vous les retrouverez dès la séance 2 pour
+    sélectionner des lignes dans un tableau de données, par exemple avec
+    d |> filter(age < 25)."
+
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 
     enseignant (cela ne fonctionnera que pour les étudiants de l'université 
