@@ -25,7 +25,6 @@
   Output: Si on veut connaître le nombre d’éléments du vecteur tailles que nous 
     avons vu à la leçon précédente, on peut utiliser la fonction length, en
     tapant length(tailles).
-    J'ai agrandi un peu le vecteur tailles pour rendre l'exercice plus intéressant.
     Essayez pour voir.
   CorrectAnswer: length(tailles)
   AnswerTests: omnitest(correctExpr='length(tailles)')
@@ -105,7 +104,7 @@
     en panne).
     On symbolise celle-ci dans R avec le code interne NA (abbréviation de
     Not Available, non disponible).
-    Créons un nouveau vecteur pour ne pas perdre tailles : tapez
+    Créons un nouveau vecteur tailles_incompletes qui contient ces nouvelles données : tapez
     tailles_incompletes <- c(156, 164, NA, 147, 173)."
   CorrectAnswer: tailles_incompletes <- c(156, 164, NA, 147, 173)
   AnswerTests: omnitest(correctExpr='tailles_incompletes <- c(156, 164, NA, 147, 173)')
@@ -218,7 +217,7 @@
     swirl va automatiquement ouvrir une fenêtre avec un script pour cet exercice.
     Essayez de bien comprendre ce scripts, je ne vous demande pas de le modifier 
     pour l'instant.
-    Une fois cela fait, vous devez tapez submit() dans l'invite de commande pour
+    Une fois cela fait, vous devez tapez submit() dans la console pour
     soumettre votre réponse.
   AnswerTests: test_imc()
   Hint: Lisez bien les instructions dans le script et complétez-le à l'aide des
@@ -284,10 +283,8 @@
     par un signe dièse #.
     Ces lignes indiquent un commentaire dans R et ne sont pas prises en compte
     dans l'évaluation du script.
-    Les commentaires sont une partie très importante d'un script (et des 
-    fonctions quand vous en créerez).
-    Ils permettent de documenter les actions du script (ou de la fonction) 
-    afin de dire ce qu'il fait.
+    Les commentaires sont une partie très importante d'un script.
+    Ils permettent de documenter les actions du script afin de dire ce qu'il fait.
     On peut ainsi retrouver son code des jours ou des mois plus tard et se 
     rappeler de ce qu'on a voulu faire."
     
