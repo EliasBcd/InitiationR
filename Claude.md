@@ -34,7 +34,7 @@ Par ailleurs, deux leçons entrent en contradiction avec le cours :
 
 | Séance | Leçons swirl | État |
 |---|---|---|
-| 1 | `Manipulations_simples`, `Types`, `Vecteurs`, `Fonctions`, `Logique` | `Logique` déplacée dans le parcours obligatoire (§2.1) |
+| 1 | `Manipulations_simples`, `Types`, `Vecteurs`, `Fonctions`, `Messages_erreurs`, `Logique` | `Logique` déplacée dans le parcours obligatoire (§2.1) |
 | 2 | `Tableaux_de_donnees`, `Manipuler_les_donnees` | converties / créées |
 | 3 | `Valeurs_manquantes`, `Decrire_les_donnees` | inchangée / créée |
 | 4 | `Representations_graphiques` | convertie |
@@ -58,10 +58,10 @@ La leçon swirl `Logique` couvrait déjà tout ce contenu, mais était classée
 `Fonctions` et avant `Exercice_1`, pour devenir un prérequis explicite des
 séances 2 et 3. Son contenu n'a pas été modifié.
 
-Reste à traiter séparément (hors périmètre de ce document) : la séance 1 ne
-couvre pas la lecture des messages d'erreur, alors que le `CLAUDE.md` du dépôt
-`rl3` la désigne comme un fil conducteur à préserver. Une leçon swirl dédiée
-est prévue.
+La leçon swirl dédiée à la lecture des messages d'erreur, évoquée plus haut
+comme fil conducteur à préserver (`CLAUDE.md` du dépôt `rl3`), a été créée :
+`Messages_erreurs`, placée dans le `MANIFEST` juste après `Fonctions` et avant
+`Logique` (voir le tableau ci-dessus et §3.6).
 
 ---
 
@@ -182,18 +182,19 @@ Manipulations_simples
 Types
 Vecteurs
 Fonctions
-Exercice_1
+Messages_erreurs
+Logique
 Tableaux_de_donnees
 Manipuler_les_donnees
 Valeurs_manquantes
 Decrire_les_donnees
-Exercice_2
 Representations_graphiques
-Logique
 Control_Flow
 Creer_des_fonctions_1
 Creer_des_fonctions_2
 Scripts_et_fonctions
+Exercice_1
+Exercice_2
 Exercice_3
 Exercice_4
 Fichiers_et_espace_de_travail
@@ -333,4 +334,20 @@ séance 4 que la leçon swirl utilise un autre jeu de données.
 
 ## 7. Notes de syntaxe
 
-Quand il y a besoin d'utiliser : dans un texte swirl, il est nécessaire de mettre des guillemets autour.
+### 7.1 Deux-points dans un champ de texte
+
+Un champ `Output` ou `Hint` non entouré de guillemets est interprété comme un
+scalaire YAML : un `:` suivi d'un espace y est lu comme un séparateur clé/valeur
+et casse le parsing (erreur `mapping values are not allowed here`).
+
+Dès qu'une phrase contient un `:` suivi d'un espace (énumération, citation d'un
+message R du type `Erreur : objet introuvable`), entourer tout le champ de
+guillemets simples `'...'`, et doubler les apostrophes internes (`'` devient
+`''`) :
+
+```yaml
+Output: 'Le message affiché est : "objet introuvable".'
+```
+
+Reformuler pour éviter le `:` (par une virgule ou un point-virgule) reste une
+alternative plus simple quand la citation exacte n'est pas nécessaire.
