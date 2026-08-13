@@ -1,0 +1,257 @@
+- Class: meta
+  Course: Initiation à R
+  Lesson: Messages d'erreur
+  Author: Elias Bouacida
+  Type: Standard
+  Organization: Université Paris 8
+  Version: 2.4.5
+
+- Class: text
+  Output: Un message d'erreur n'est pas une sanction, c'est un diagnostic. R
+    vous indique où il a buté. Cette leçon a pour but de vous apprendre à lire
+    cette indication, plutôt qu'à la subir.
+
+- Class: text
+  Output: Pour cette leçon uniquement, on va utiliser un artifice, la fonction
+    try. Elle demande à R d'essayer d'exécuter une commande et d'afficher le
+    problème rencontré sans interrompre la suite. Vous n'aurez pas besoin de
+    vous en servir en dehors de cet exercice.
+
+- Class: text
+  Output: Autre précision, sur les postes de l'université les messages
+    s'affichent en français. Sur un ordinateur configuré autrement (le vôtre,
+    peut-être), ils peuvent s'afficher en anglais.
+
+- Class: text
+  Output: Commençons par l'erreur la plus fréquente de toutes, celle que vous
+    avez sans doute déjà rencontrée par accident.
+
+- Class: cmd_question
+  Output: Nous avons vu à la leçon précédente le vecteur tailles. Essayons de
+    l'afficher en nous trompant volontairement sur son nom, avec tailels
+    au lieu de tailles. Entourez cette commande fautive de try(), comme
+    annoncé plus haut, soit try(tailels).
+  CorrectAnswer: try(tailels)
+  AnswerTests: omnitest(correctExpr = 'try(tailels)')
+  Hint: Reprenez le nom du vecteur en inversant les deux dernières lettres,
+    et n'oubliez pas de l'entourer de try(...) comme indiqué dans la consigne.
+
+- Class: text
+  Output: 'Le message obtenu commence par "Error :" et non "Erreur :". Ce
+    préfixe en anglais vient de try(), c''est cet artifice qui l''affiche
+    ainsi ; en usage normal, sans try(), R aurait écrit "Erreur :". Le reste
+    du message, lui, est bien en français, et c''est lui qui vous renseigne :
+    "objet ''tailels'' introuvable". C''est cette partie qu''il faut lire.'
+
+- Class: cmd_question
+  Output: Essayez maintenant try(Tailles), avec une majuscule au T cette fois.
+  CorrectAnswer: try(Tailles)
+  AnswerTests: omnitest(correctExpr = 'try(Tailles)')
+  Hint: Reprenez try(tailels) en remplaçant le contenu par Tailles, avec une
+    majuscule.
+
+- Class: text
+  Output: Vous obtenez exactement le même message que pour la faute de frappe.
+    R ne vous dit pas "vous avez mis une majuscule", il vous dit seulement
+    qu'il ne trouve rien de ce nom. La casse (majuscule ou minuscule) compte
+    pour R, mais ce n'est pas lui qui vous le signalera explicitement, à vous
+    de le repérer en comparant avec le nom que vous vouliez utiliser.
+
+- Class: cmd_question
+  Output: Corrigez à présent l'erreur en affichant réellement le vecteur
+    tailles, sans faute cette fois et sans try().
+  CorrectAnswer: tailles
+  AnswerTests: omnitest(correctExpr = 'tailles')
+  Hint: Le nom de l'objet, correctement orthographié, suffit à l'afficher.
+
+- Class: text
+  Output: Passons à un second cas, qui produit un message différent.
+
+- Class: cmd_question
+  Output: Essayez try(means(tailles)), avec un s en trop à means.
+  CorrectAnswer: try(means(tailles))
+  AnswerTests: omnitest(correctExpr = 'try(means(tailles))')
+  Hint: Ajoutez un s à mean dans mean(tailles), et entourez le tout de
+    try(...).
+
+- Class: text
+  Output: Le message est différent du précédent, "impossible de trouver la
+    fonction" et non "objet introuvable", car R distingue un nom d'objet d'un
+    nom de fonction. Cette erreur a deux causes possibles. La première est la
+    faute de frappe, comme ici. La seconde, plus fréquente en pratique une
+    fois qu'on écrit des scripts plus longs, est d'appeler une fonction dont
+    l'extension n'a pas été chargée avec library() en début de script. Le
+    message est identique dans les deux cas ; à vous de savoir laquelle
+    s'applique à votre situation.
+
+- Class: cmd_question
+  Output: Corrigez l'erreur en calculant la moyenne de tailles, avec le nom de
+    fonction correctement orthographié cette fois.
+  CorrectAnswer: mean(tailles)
+  AnswerTests: omnitest(correctExpr = 'mean(tailles)')
+  Hint: Retirez le s en trop du nom de fonction que vous venez d'utiliser.
+
+- Class: text
+  Output: Troisième cas, un rappel de la leçon sur les types.
+
+- Class: cmd_question
+  Output: 'Essayez try("12" + 3). Notez bien les guillemets autour de 12.'
+  CorrectAnswer: try("12" + 3)
+  AnswerTests: omnitest(correctExpr = 'try("12" + 3)')
+  Hint: Tapez le signe plus entre "12" (avec ses guillemets) et 3, le tout
+    entouré de try(...).
+
+- Class: text
+  Output: 'Le message final est explicite une fois qu''on le lit jusqu''au
+    bout : "argument non numérique pour un opérateur binaire". "12" entre
+    guillemets est une chaîne de caractères, pas un nombre, et + ne sait pas
+    l''additionner à 3.'
+
+- Class: cmd_question
+  Output: Corrigez l'erreur maintenant.
+  CorrectAnswer: 12 + 3
+  AnswerTests: omnitest(correctExpr = '12 + 3')
+  Hint: Il suffit de taper 12 sans guillemets ; ajoutez-y + 3.
+
+- Class: text
+  Output: Un dernier piège avec les guillemets, avant de passer à autre chose.
+
+- Class: cmd_question
+  Output: 'Créez le vecteur ages avec la commande suivante, guillemets compris :
+    ages <- c("25", "30", "45").'
+  CorrectAnswer: ages <- c("25", "30", "45")
+  AnswerTests: omnitest(correctExpr = 'ages <- c("25", "30", "45")')
+  Hint: Recopiez exactement la commande donnée dans la consigne, avec les
+    guillemets autour de chaque nombre.
+
+- Class: cmd_question
+  Output: Essayez mean(ages).
+  CorrectAnswer: mean(ages)
+  AnswerTests: omnitest(correctExpr = 'mean(ages)')
+  Hint: Appliquez la fonction de calcul de moyenne, déjà utilisée plus haut, au
+    vecteur ages.
+
+- Class: text
+  Output: 'Ici encore, le nom cité dans le message n''est ni un objet ni une
+    fonction mal orthographiés : ages existe bel et bien, et mean aussi. Le
+    message porte cette fois sur le contenu de ages lui-même, un vecteur de
+    chaînes de caractères là où mean attend des nombres, faute de guillemets
+    placés au bon endroit lors de sa création.'
+
+- Class: cmd_question
+  Output: Corrigez l'erreur en convertissant ages en nombres avant de calculer
+    sa moyenne. La fonction de conversion est as.numeric.
+  CorrectAnswer: mean(as.numeric(ages))
+  AnswerTests: omnitest(correctExpr = 'mean(as.numeric(ages))')
+  Hint: Enveloppez ages dans as.numeric(...) avant de le passer à mean().
+
+- Class: text
+  Output: 'Dernier cas de figure, qui ne se laisse pas reproduire avec try().
+    Imaginez que vous ayez tapé mean(tailles dans la console, en oubliant de
+    fermer la parenthèse, puis appuyé sur Entrée. Voici ce qui s''affiche :'
+
+- Class: text
+  Output: |2-
+      > mean(tailles
+      +
+
+- Class: text
+  Output: Ce signe + en début de ligne n'est pas une erreur, c'est R qui vous
+    dit qu'il attend la suite de votre commande, parce qu'une parenthèse (ou
+    un guillemet) reste ouverte. Tant que vous ne la fermez pas, rien d'autre
+    ne s'exécutera, ce qui déroute souvent les débutants qui ne comprennent
+    pas pourquoi la console semble bloquée. La touche Échap annule la
+    commande en cours et vous rend l'invite normale.
+
+- Class: text
+  Output: Voyons à présent une distinction importante entre deux types de
+    messages que R peut afficher.
+
+- Class: cmd_question
+  Output: 'Essayez as.numeric("bonjour"), sans try() puisque ceci ne produit
+    pas d''erreur qui bloque.'
+  CorrectAnswer: as.numeric("bonjour")
+  AnswerTests: omnitest(correctExpr = 'as.numeric("bonjour")')
+  Hint: Appliquez la fonction de conversion en nombre, déjà utilisée plus
+    haut, à la chaîne "bonjour".
+
+- Class: mult_question
+  Output: R affiche ici un message qui commence par "Message d'avis" (ou
+    "Warning message" en anglais), et non "Erreur". Un résultat a-t-il tout de
+    même été produit ?
+  AnswerChoices: Oui, NA;Non, rien n'a été produit
+  CorrectAnswer: Oui, NA
+  AnswerTests: omnitest()
+  Hint: Regardez ce qui s'affiche juste avant le message d'avis lui-même.
+
+- Class: text
+  Output: 'Une erreur interrompt R : rien n''est produit, il faut corriger
+    avant de continuer. Un avertissement, lui, n''interrompt rien : un
+    résultat existe (ici NA), mais R signale que quelque chose mérite votre
+    attention. Retenez cette phrase : une erreur vous prévient, un
+    avertissement vous prévient à moitié, un calcul faux ne vous prévient pas
+    du tout. C''est la vigilance la plus utile à développer, et on y
+    reviendra plus tard dans le cours.'
+
+- Class: text
+  Output: 'Récapitulons la méthode à suivre devant un message d''erreur, déjà
+    présentée en début de semestre : (1) lisez la dernière ligne du message,
+    c''est elle qui porte l''information ; (2) repérez le nom cité entre
+    guillemets ; (3) comparez-le à ce que vous avez tapé : faute de frappe,
+    singulier ou pluriel, majuscule ; (4) si ce nom est pourtant correctement
+    orthographié, l''objet n''existe peut-être simplement pas encore, faute
+    d''avoir exécuté la ligne qui le crée.'
+
+- Class: mult_question
+  Output: 'Vous exécutez une ligne de votre script qui utilise un objet
+    resultat, et R répond "objet ''resultat'' introuvable", alors que vous
+    êtes certain de l''avoir bien orthographié. Que devez-vous vérifier en
+    priorité, d''après la méthode qu''on vient de voir ?'
+  AnswerChoices: Si la ligne qui crée resultat a bien été exécutée avant celle-ci;Si RStudio est à jour;Si votre ordinateur est connecté à internet
+  CorrectAnswer: Si la ligne qui crée resultat a bien été exécutée avant celle-ci
+  AnswerTests: omnitest()
+  Hint: Relisez le dernier point de la méthode qui vient d'être énoncée.
+
+- Class: text
+  Output: Second réflexe, complémentaire de la lecture du message, l'aide
+    intégrée à R. Les commandes suivantes ne produisent pas d'erreur, donc pas
+    besoin de try().
+
+- Class: cmd_question
+  Output: Ouvrez l'aide de la fonction mean avec un point d'interrogation
+    placé juste devant, sans parenthèses ni guillemets.
+  CorrectAnswer: ?mean
+  AnswerTests: any_of_exprs('?mean', 'help(mean)', 'help("mean")')
+  Hint: Un seul caractère suffit devant le nom de la fonction ; il a déjà été
+    utilisé dans la leçon sur les fonctions.
+
+- Class: text
+  Output: Dans cette page d'aide, deux rubriques suffisent pour commencer.
+    Usage liste les arguments que la fonction accepte. Examples, tout en bas
+    de la page, donne des commandes prêtes à copier dans la console pour voir
+    la fonction à l'œuvre.
+
+- Class: cmd_question
+  Output: Ouvrez maintenant l'aide de la fonction round, et repérez dans la
+    rubrique Usage le nom de l'argument qui permet de fixer le nombre de
+    décimales.
+  CorrectAnswer: ?round
+  AnswerTests: any_of_exprs('?round', 'help(round)', 'help("round")')
+  Hint: Même syntaxe que pour l'aide sur mean, appliquée à round.
+
+- Class: text
+  Output: 'Vous devriez avoir trouvé l''argument digits. Une dernière commande
+    d''aide, utile quand on ne connaît pas le nom exact d''une fonction :
+    ??"terme recherché" (avec deux points d''interrogation) cherche dans toute
+    la documentation installée, pas seulement dans une fonction précise.'
+
+- Class: mult_question
+  Output: Souhaitez-vous soumettre votre progression sur Moodle à votre
+    enseignant (cela ne fonctionnera que pour les étudiants de l'université
+    Paris 8) ?
+    Si vous ne le faites pas maintenant, vous pourrez toujours lui envoyer le
+    fichier 'Messages_erreurs.txt' qui a été créé plus tard.
+  AnswerChoices: Oui;Non
+  CorrectAnswer: "Oui"
+  AnswerTests: submit_log()
+  Hint: Cela soumettra votre avancée dans le cours.
