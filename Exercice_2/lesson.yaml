@@ -14,8 +14,8 @@
   Output: Créer un nouveau script qui effectue les actions suivantes.
     Charger l'extension `questionr`
     Charger le jeu de données nommé `hdv2003`
-    Copier le jeu de données dans un nouvel objet nommé `df`
-    Afficher les dimensions et la liste des variables de `df`
+    Convertir le jeu de données en tibble dans un nouvel objet nommé `d`
+    Afficher un aperçu des variables de `d` avec glimpse()
     Tapez enfin submit() pour soumettre votre script.
   AnswerTests: test_exo1()
   Hint: Repensez à toutes les commandes que nous avons vu, vous devez les écrire dans le script.
@@ -27,18 +27,24 @@
   Output: Exercice 2.2
 
 - Class: cmd_question
-  Output: Grâce aux données précédentes, on souhaite étudier la répartition du 
-    temps passé devant la télévision par les enquêtés (variable `heures.tv`). 
-    Pour cela, affichez les principaux indicateurs de cette variable, valeur minimale, maximale, moyenne et médiane. 
-  CorrectAnswer: summary(df$heures.tv)
-  AnswerTests: omnitest(correctExpr='summary(df$heures.tv)')
-  Hint: Pensez à la fonction qui vous permet d'obtenir plusieurs caractéristiques numériques d'un seul coup.
+  Output: Grâce aux données précédentes, on souhaite étudier la répartition du
+    temps passé devant la télévision par les enquêtés (variable `heures.tv`).
+    Pour cela, calculez dans un seul summarise() les principaux indicateurs
+    de cette variable (minimum, maximum, moyenne et médiane), en écartant les
+    valeurs manquantes.
+  CorrectAnswer: d |> summarise(minimum = min(heures.tv, na.rm = TRUE), maximum = max(heures.tv, na.rm = TRUE), moyenne = mean(heures.tv, na.rm = TRUE), mediane = median(heures.tv, na.rm = TRUE))
+  AnswerTests: any_of_exprs(
+    'd |> summarise(minimum = min(heures.tv, na.rm = TRUE), maximum = max(heures.tv, na.rm = TRUE), moyenne = mean(heures.tv, na.rm = TRUE), mediane = median(heures.tv, na.rm = TRUE))',
+    'd |> summarise(moyenne = mean(heures.tv, na.rm = TRUE), mediane = median(heures.tv, na.rm = TRUE), minimum = min(heures.tv, na.rm = TRUE), maximum = max(heures.tv, na.rm = TRUE))'
+    )
+  Hint: Pensez à la leçon sur la description des données ; quatre appels de
+    fonction à l'intérieur d'un seul summarise(), séparés par des virgules.
 
 - Class: cmd_question
-  Output: Pouvez-vous donner l'ecart-type des heures passées devant la télévision ?
-  CorrectAnswer: sd(df$heures.tv, na.rm = TRUE)
-  AnswerTests: omnitest(correctExpr='sd(df$heures.tv, na.rm = TRUE)')
-  Hint: Quel fonction permet d'obtenir l'écart-type ?
+  Output: Pouvez-vous donner l'écart-type des heures passées devant la télévision, dans un summarise() ?
+  CorrectAnswer: d |> summarise(ecart_type = sd(heures.tv, na.rm = TRUE))
+  AnswerTests: omnitest(correctExpr='d |> summarise(ecart_type = sd(heures.tv, na.rm = TRUE))')
+  Hint: Quelle fonction permet d'obtenir l'écart-type ?
     Attention, il y a des valeurs manquantes !
     Quel argument faut-il utiliser pour les enlever du calcul ?
 
@@ -48,17 +54,17 @@
 - Class: cmd_question
   Output: On s'intéresse maintenant à l'importance accordée par les enquêtés à leur travail (variable `trav.imp`).
     Faites un tri à plat des effectifs des modalités de cette variable.
-  CorrectAnswer: table(df$trav.imp)
-  AnswerTests: omnitest(correctExpr='table(df$trav.imp)')
-  Hint: Quelle fonction permet d'obtenir un tri à plat d'une variable qualitative ?
-  
+  CorrectAnswer: d |> count(trav.imp)
+  AnswerTests: omnitest(correctExpr='d |> count(trav.imp)')
+  Hint: Quelle fonction du tidyverse permet d'obtenir un tri à plat d'une variable qualitative ?
+
 - Class: cmd_question
   Output: Pouvez-vous dire si l'importance accordée au travail est similaire pour les hommes
-    et les femmes ?
-  CorrectAnswer: table(df$trav.imp)
-  AnswerTests: any_of_exprs('table(df$trav.imp, df$sexe)', 'table(df$sexe, df$trav.imp)')
-  Hint: Quelle fonction permet d'obtenir un tri à plat d'une variable qualitative ?
-   C'est la même pour un tableau croisé dynamique.
+    et les femmes ? Croisez trav.imp et sexe avec cette même fonction.
+  CorrectAnswer: d |> count(trav.imp, sexe)
+  AnswerTests: any_of_exprs('d |> count(trav.imp, sexe)', 'd |> count(sexe, trav.imp)')
+  Hint: La même fonction que la question précédente accepte plusieurs
+    variables séparées par une virgule.
 
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre 

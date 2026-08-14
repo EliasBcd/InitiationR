@@ -1,9 +1,8 @@
-# Dans ce script, vous devez 
+# Dans ce script, vous devez
 # - charger la librairie `questionr`
 # - charger le jeu de données nommé `hdv2003`
-# - assigner le jeu de données dans un nouvel objet nommé `df`
-# - afficher les dimensions.
-# - Assigner les noms des différentes variables du tableau à l'objet nom.
+# - convertir les données en tibble dans un nouvel objet nommé `d`
+# - afficher un aperçu des variables du tableau avec glimpse().
 # Après chaque ligne de commentaire (sauf celles-ci), vous devez écrire une ligne
 # de code.
 
@@ -11,8 +10,6 @@
 
 # Charger le jeu de données
 
-# Assigner les données à l'objet df
+# Convertir les données en tibble et les assigner à l'objet d
 
-# Afficher les dimensions du tableau de données
-
-# Assigner la liste des noms de variable à l'objet nom
+# Afficher un aperçu des variables du tableau avec glimpse()

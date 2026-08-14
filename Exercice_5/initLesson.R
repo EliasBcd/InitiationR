@@ -7,6 +7,6 @@ swirl_options(swirl_logging = TRUE)
 
 library(tidyverse)
 library(questionr)
-data(rp2018)
+data(hdv2003)
 
-rp69 <- filter(rp2018, departement %in% c("Rhône", "Loire"))
+d <- as_tibble(hdv2003)

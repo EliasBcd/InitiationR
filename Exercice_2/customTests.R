@@ -13,14 +13,13 @@
 
 test_exo1 <- function(){
   try({
-    t1 <- (exists("df"))
-    t2 <- identical(df, hdv2003)
-    t3 <- identical(nom, names(df))
-    ok <- all(t1, t2, t3)   
+    t1 <- (exists("d"))
+    t2 <- identical(d, as_tibble(hdv2003))
+    ok <- all(t1, t2)
   },
   silent = TRUE
   )
-  
+
   # Returned as the result of the answer test.
   exists('ok') && isTRUE(ok)
 }

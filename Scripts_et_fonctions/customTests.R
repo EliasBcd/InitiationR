@@ -79,18 +79,6 @@ test_func5 <- function() {
   exists('ok') && isTRUE(ok)
 }
 
-test_func6 <- function() {
-  try({
-    func <- get('manif', globalenv())
-    t1 <- identical(func(place = "Baltimore", adjective = "puant.e.s", noun = "statue de Roger Peng"), "Nouvelles de Baltimore aujourd'hui, des étudiant.e.s puant.e.s ont fait grève contre les nouveaux statue de Roger Peng installés dans l'université.")
-    t2 <- identical(func(place = "Washington", adjective = "en colère", noun = "kebabs"), "Nouvelles de Washington aujourd'hui, des étudiant.e.s en colère ont fait grève contre les nouveaux kebabs installés dans l'université.")
-    ok <- all(t1, t2)
-  }, silent = TRUE)
-  exists('ok') && isTRUE(ok)
-}
-
-
-
 # test_func7 <- function() {
 #   try({
 #     func <- get('%p%', globalenv())
