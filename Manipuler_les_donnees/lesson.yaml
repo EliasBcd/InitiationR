@@ -20,10 +20,12 @@
     Il vous reste à charger les données elles-mêmes."
 
 - Class: cmd_question
-  Output: "Pour accéder au jeu de données, tapez data(hdv2003)."
+  Output: "Commencez par accéder au jeu de données lui-même, avec la fonction
+    déjà utilisée pour charger des données dans une leçon précédente."
   CorrectAnswer: data(hdv2003)
   AnswerTests: omnitest(correctExpr='data(hdv2003)')
-  Hint: Tapez data(hdv2003) dans la console.
+  Hint: La fonction s'appelle data, et prend le nom du jeu de données en
+    argument, sans guillemets.
 
 - Class: text
   Output: "hdv2003 est un data.frame classique.
@@ -35,48 +37,53 @@
     le résultat dans l'objet d."
   CorrectAnswer: d <- as_tibble(hdv2003)
   AnswerTests: omnitest(correctExpr='d <- as_tibble(hdv2003)')
-  Hint: Tapez d <- as_tibble(hdv2003) dans la console.
+  Hint: Le nom de la fonction vient d'être donné dans la consigne ; n'oubliez
+    pas d'assigner son résultat à d.
 
 - Class: cmd_question
   Output: "Affichez maintenant d."
   CorrectAnswer: d
   AnswerTests: omnitest(correctExpr='d')
-  Hint: Tapez simplement d puis Entrée.
+  Hint: Le nom de l'objet seul suffit à l'afficher.
 
 - Class: text
   Output: "Un tibble s'affiche proprement : seulement les dix premières lignes,
-    et le type de chaque colonne entre chevrons (<int>, <fct>...), plutôt que
-    de déverser les 2000 lignes du tableau dans la console."
+    et le type de chaque colonne entre chevrons (<int>, <fct>...)."
 
 - Class: cmd_question
-  Output: "glimpse() donne un aperçu complet : le type et les premières valeurs
-    de chaque variable.
-    C'est la commande à taper en premier devant un tableau inconnu.
-    Essayez glimpse(d)."
+  Output: "Une autre fonction donne un aperçu complet d'un tableau : le type
+    et les premières valeurs de chaque variable, plutôt que les lignes
+    elles-mêmes.
+    C'est la commande à taper en premier devant un tableau inconnu ; vous
+    l'avez déjà rencontrée à la leçon précédente. Essayez-la sur d."
   CorrectAnswer: glimpse(d)
   AnswerTests: omnitest(correctExpr='glimpse(d)')
-  Hint: Tapez glimpse(d) dans la console.
+  Hint: Même fonction que celle utilisée sur le tableau jouet à la leçon
+    précédente.
 
 - Class: cmd_question
   Output: "Comme tout objet, on peut appliquer des fonctions à un tibble.
-    nrow() donne le nombre de lignes.
-    Essayez-la sur d."
+    Trouvez celle qui donne le nombre de lignes d'un tableau, et
+    appliquez-la à d."
   CorrectAnswer: nrow(d)
   AnswerTests: omnitest(correctExpr='nrow(d)')
-  Hint: Tapez nrow(d) dans la console.
+  Hint: Le nom de la fonction contient row (ligne, en anglais) ; cherchez
+    ?nrow si besoin.
 
 - Class: cmd_question
-  Output: "ncol() donne le nombre de colonnes. Essayez-la sur d."
+  Output: "Trouvez maintenant la fonction symétrique, qui donne le nombre de
+    colonnes, et appliquez-la à d."
   CorrectAnswer: ncol(d)
   AnswerTests: omnitest(correctExpr='ncol(d)')
-  Hint: Tapez ncol(d) dans la console.
+  Hint: Remplacez row par col dans le nom de la fonction précédente.
 
 - Class: cmd_question
-  Output: "names() donne le nom des colonnes, c'est-à-dire la liste des
-    variables. Essayez-la sur d."
+  Output: "Une troisième fonction donne le nom des colonnes, c'est-à-dire la
+    liste des variables. Son nom est la traduction anglaise de « noms ».
+    Essayez-la sur d."
   CorrectAnswer: names(d)
   AnswerTests: omnitest(correctExpr='names(d)')
-  Hint: Tapez names(d) dans la console.
+  Hint: Le nom de la fonction est un mot anglais courant signifiant « noms ».
 
 - Class: text
   Output: "Dans les colonnes que vous venez de voir avec glimpse(), les
@@ -97,11 +104,11 @@
 
 - Class: cmd_question
   Output: "levels() donne la liste des modalités d'un facteur.
-    Regardez les modalités de la variable qualif à l'aide de levels(d$qualif)."
+    Utilisez-la pour regarder les modalités de la variable qualif."
   CorrectAnswer: levels(d$qualif)
   AnswerTests: omnitest(correctExpr='levels(d$qualif)')
-  Hint: Tapez levels(d$qualif) dans la console. Rappelez-vous que $ donne
-    accès à une colonne.
+  Hint: Passez levels() la colonne qualif de d ; rappelez-vous comment
+    accéder à une colonne par son nom, vu à la leçon précédente.
 
 - Class: text
   Output: "Nous savons maintenant regarder un tableau.
@@ -116,20 +123,21 @@
 
 - Class: cmd_question
   Output: "select() choisit des colonnes.
-    Sélectionnez les colonnes age, sexe et heures.tv de d à l'aide de
-    d |> select(age, sexe, heures.tv)."
+    On l'utilise avec le tuyau vu plus haut : d |> select(...), où les
+    arguments sont les noms des colonnes à garder, séparés par des virgules.
+    Sélectionnez ainsi les colonnes age, sexe et heures.tv de d."
   CorrectAnswer: d |> select(age, sexe, heures.tv)
-  AnswerTests: expr_uses_func('select')
-  Hint: Tapez d |> select(age, sexe, heures.tv) (ou select(d, age, sexe,
-    heures.tv)) dans la console.
+  AnswerTests: omnitest(correctExpr='d |> select(age, sexe, heures.tv)')
+  Hint: d |> select(...) avec les trois noms de colonnes demandés dans la
+    consigne, séparés par des virgules.
 
 - Class: cmd_question
   Output: "On peut aussi écarter des colonnes plutôt que d'en choisir, en
     faisant précéder leur nom d'un signe moins.
-    Affichez d en écartant la colonne id, avec d |> select(-id)."
+    Affichez d en écartant seulement la colonne id."
   CorrectAnswer: d |> select(-id)
-  AnswerTests: expr_uses_func('select')
-  Hint: Tapez d |> select(-id) (ou select(d, -id)) dans la console.
+  AnswerTests: omnitest(correctExpr='d |> select(-id)')
+  Hint: Même verbe que juste avant, avec -id comme unique argument.
 
 - Class: text
   Output: "Passons à filter(), qui choisit des lignes selon une condition.
@@ -137,40 +145,44 @@
     ==."
 
 - Class: cmd_question
-  Output: "Affichez seulement les individus de moins de 25 ans, avec
-    d |> filter(age < 25)."
+  Output: "filter() s'utilise comme select(), avec le tuyau, mais son
+    argument est une condition portant sur une colonne plutôt qu'un nom de
+    colonne.
+    Affichez seulement les individus de moins de 25 ans."
   CorrectAnswer: d |> filter(age < 25)
-  AnswerTests: expr_uses_func('filter')
-  Hint: Tapez d |> filter(age < 25) (ou filter(d, age < 25)) dans la console.
+  AnswerTests: omnitest(correctExpr='d |> filter(age < 25)')
+  Hint: d |> filter(...) avec la condition sur age donnée dans la consigne.
 
 - Class: cmd_question
   Output: "On peut combiner plusieurs conditions en les séparant par une
     virgule, qui signifie « et ».
-    Affichez les femmes de moins de 25 ans, avec
-    d |> filter(age < 25, sexe == \"Femme\").
+    Affichez les femmes de moins de 25 ans en combinant ainsi une condition
+    sur age et une condition sur sexe.
     Attention, le test d'égalité s'écrit avec deux signes égal, ==, et non un
     seul."
   CorrectAnswer: d |> filter(age < 25, sexe == "Femme")
-  AnswerTests: expr_uses_func('filter')
-  Hint: Tapez d |> filter(age < 25, sexe == "Femme") dans la console. N'oubliez
-    pas le double égal.
+  AnswerTests: any_of_exprs('d |> filter(age < 25, sexe == "Femme")', 'd |> filter(sexe == "Femme", age < 25)')
+  Hint: Reprenez le filter() précédent, et ajoutez une deuxième condition
+    séparée par une virgule.
 
 - Class: text
   Output: "arrange() trie les lignes selon une variable, par ordre croissant
     par défaut."
 
 - Class: cmd_question
-  Output: "Triez d par âge croissant, avec d |> arrange(age)."
+  Output: "Triez d par âge croissant, en utilisant arrange() avec le tuyau,
+    comme pour les verbes précédents."
   CorrectAnswer: d |> arrange(age)
-  AnswerTests: expr_uses_func('arrange')
-  Hint: Tapez d |> arrange(age) (ou arrange(d, age)) dans la console.
+  AnswerTests: omnitest(correctExpr='d |> arrange(age)')
+  Hint: d |> arrange(...) avec la colonne servant au tri comme argument.
 
 - Class: cmd_question
   Output: "Pour trier dans l'autre sens, on enveloppe la variable dans desc().
-    Triez d par âge décroissant, avec d |> arrange(desc(age))."
+    Triez d par âge décroissant."
   CorrectAnswer: d |> arrange(desc(age))
-  AnswerTests: expr_uses_func('arrange')
-  Hint: Tapez d |> arrange(desc(age)) dans la console.
+  AnswerTests: omnitest(correctExpr='d |> arrange(desc(age))')
+  Hint: Reprenez l'arrange() précédent, en enveloppant age dans desc(...)
+    comme annoncé dans la consigne.
 
 - Class: cmd_question
   Output: "C'est ici que le tuyau prend tout son sens : on peut enchaîner
@@ -180,8 +192,10 @@
     heures.tv et qualif (select).
     Enchaînez les trois verbes dans cet ordre avec le tuyau."
   CorrectAnswer: d |> filter(age < 25, sexe == "Femme") |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif)
-  AnswerTests: expr_uses_func('filter'); expr_uses_func('arrange'); expr_uses_func('select')
-  Hint: Enchaînez d |> filter(age < 25, sexe == "Femme") |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif).
+  AnswerTests: any_of_exprs('d |> filter(age < 25, sexe == "Femme") |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif)',
+    'd |> filter(sexe == "Femme", age < 25) |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif)')
+  Hint: Reprenez les trois exercices précédents sur filter, arrange et
+    select, et enchaînez-les avec le tuyau dans l'ordre demandé.
 
 - Class: text
   Output: "Dernier verbe : mutate(), qui crée une nouvelle variable (une
@@ -190,10 +204,13 @@
     Nous allons créer une variable minutes.tv qui la convertit en minutes."
 
 - Class: cmd_question
-  Output: "Essayez d |> mutate(minutes.tv = heures.tv * 60)."
+  Output: "mutate() s'utilise comme les verbes précédents, avec le tuyau ;
+    son argument est de la forme nom_de_la_nouvelle_colonne = calcul.
+    Essayez de créer ainsi minutes.tv, égale à heures.tv multipliée par 60."
   CorrectAnswer: d |> mutate(minutes.tv = heures.tv * 60)
-  AnswerTests: expr_uses_func('mutate')
-  Hint: Tapez d |> mutate(minutes.tv = heures.tv * 60) dans la console.
+  AnswerTests: omnitest(correctExpr='d |> mutate(minutes.tv = heures.tv * 60)')
+  Hint: d |> mutate(minutes.tv = ...) avec le calcul décrit dans la consigne
+    à droite du signe égal.
 
 - Class: mult_question
   Output: "Vous venez de voir s'afficher un tableau contenant la colonne
@@ -218,19 +235,20 @@
     calcul."
 
 - Class: cmd_question
-  Output: "Refaites l'opération, mais en stockant cette fois le résultat dans
-    d, avec d <- d |> mutate(minutes.tv = heures.tv * 60)."
+  Output: "Refaites l'opération précédente, mais en stockant cette fois le
+    résultat dans d."
   CorrectAnswer: d <- d |> mutate(minutes.tv = heures.tv * 60)
-  AnswerTests: expr_uses_func('mutate')
-  Hint: Tapez d <- d |> mutate(minutes.tv = heures.tv * 60) dans la console.
-    N'oubliez pas la flèche d'assignation.
+  AnswerTests: omnitest(correctExpr='d <- d |> mutate(minutes.tv = heures.tv * 60)')
+  Hint: Reprenez exactement la commande précédente, en la faisant précéder de
+    d <- pour l'assigner.
 
 - Class: cmd_question
   Output: "Vérifiez que la variable minutes.tv existe bien cette fois dans d,
-    en affichant d$minutes.tv."
+    en affichant cette colonne."
   CorrectAnswer: d$minutes.tv
   AnswerTests: omnitest(correctExpr='d$minutes.tv')
-  Hint: Tapez d$minutes.tv dans la console.
+  Hint: Utilisez le signe $ pour accéder à la colonne minutes.tv de d, comme
+    vu à la leçon précédente.
 
 - Class: text
   Output: "Cette fois la variable est bien là : vous avez pensé à l'assigner.

@@ -145,7 +145,7 @@
   Output: "Essayez d |> filter(noms == \"Bassirou\") pour retrouver la ligne
     de Bassirou."
   CorrectAnswer: d |> filter(noms == "Bassirou")
-  AnswerTests: expr_uses_func('filter')
+  AnswerTests: omnitest(correctExpr='d |> filter(noms == "Bassirou")')
   Hint: La commande à utiliser vient d'être annoncée dans le texte précédent ;
     appliquez-la à la colonne noms pour retrouver Bassirou.
 

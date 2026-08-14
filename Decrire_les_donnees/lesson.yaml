@@ -21,14 +21,15 @@
   Output: "Chargez les données avec data(hdv2003)."
   CorrectAnswer: data(hdv2003)
   AnswerTests: omnitest(correctExpr='data(hdv2003)')
-  Hint: Tapez data(hdv2003) dans la console.
+  Hint: La même fonction que dans la leçon précédente pour accéder à un jeu
+    de données.
 
 - Class: cmd_question
   Output: "Convertissez-les en tibble et stockez le résultat dans d, avec
     d <- as_tibble(hdv2003)."
   CorrectAnswer: d <- as_tibble(hdv2003)
   AnswerTests: omnitest(correctExpr='d <- as_tibble(hdv2003)')
-  Hint: Tapez d <- as_tibble(hdv2003) dans la console.
+  Hint: La même conversion que dans la leçon précédente, assignée à d.
 
 - Class: text
   Output: "Commençons par les variables quantitatives, comme age ou
@@ -40,57 +41,101 @@
   Output: "Calculez la moyenne de l'âge avec
     d |> summarise(moyenne = mean(age))."
   CorrectAnswer: d |> summarise(moyenne = mean(age))
-  AnswerTests: expr_uses_func('summarise')
-  Hint: Tapez d |> summarise(moyenne = mean(age)) (ou
-    summarise(d, moyenne = mean(age))) dans la console.
+  AnswerTests: omnitest(correctExpr='d |> summarise(moyenne = mean(age))')
+  Hint: d |> summarise(...) avec un seul indicateur nommé moyenne, calculé
+    avec mean(age).
 
 - Class: cmd_question
   Output: "On peut calculer plusieurs indicateurs à la fois, en les séparant
     par une virgule à l'intérieur de summarise().
-    Calculez en une seule commande la moyenne, la médiane et l'écart-type de
-    l'âge, avec
-    d |> summarise(moyenne = mean(age), mediane = median(age), ecart_type = sd(age))."
-  CorrectAnswer: d |> summarise(moyenne = mean(age), mediane = median(age), ecart_type = sd(age))
-  AnswerTests: expr_uses_func('summarise')
-  Hint: Tapez d |> summarise(moyenne = mean(age), mediane = median(age),
-    ecart_type = sd(age)) dans la console.
+    Calculez en une seule commande la moyenne, le minimum et le maximum de
+    l'âge, en nommant les trois résultats moyenne, minimum et maximum."
+  CorrectAnswer: d |> summarise(moyenne = mean(age), minimum = min(age), maximum = max(age))
+  AnswerTests: any_of_exprs('d |> summarise(moyenne = mean(age), minimum = min(age), maximum = max(age))',
+    'd |> summarise(moyenne = mean(age), maximum = max(age), minimum = min(age))',
+    'd |> summarise(minimum = min(age), moyenne = mean(age), maximum = max(age))',
+    'd |> summarise(minimum = min(age), maximum = max(age), moyenne = mean(age))',
+    'd |> summarise(maximum = max(age), moyenne = mean(age), minimum = min(age))',
+    'd |> summarise(maximum = max(age), minimum = min(age), moyenne = mean(age))')
+  Hint: Trois appels à l'intérieur d'un seul summarise(), séparés par des
+    virgules ; min() et max() ont déjà été vus dans une leçon précédente.
+
+- Class: text
+  Output: "Les indicateurs de dispersion mesurent si les valeurs sont
+    regroupées ou dispersées.
+    Le plus simple est l'étendue, l'écart entre le maximum et le minimum.
+    Les plus utilisés sont la variance (var()) et l'écart-type (sd(), pour
+    standard deviation)."
+
+- Class: cmd_question
+  Output: "Calculez, toujours dans un seul summarise(), l'étendue de l'âge
+    (la différence entre son maximum et son minimum), sa variance et son
+    écart-type, en nommant les résultats etendue, variance et ecart_type."
+  CorrectAnswer: d |> summarise(etendue = max(age) - min(age), variance = var(age), ecart_type = sd(age))
+  AnswerTests: any_of_exprs('d |> summarise(etendue = max(age) - min(age), variance = var(age), ecart_type = sd(age))',
+    'd |> summarise(etendue = max(age) - min(age), ecart_type = sd(age), variance = var(age))',
+    'd |> summarise(variance = var(age), etendue = max(age) - min(age), ecart_type = sd(age))',
+    'd |> summarise(variance = var(age), ecart_type = sd(age), etendue = max(age) - min(age))',
+    'd |> summarise(ecart_type = sd(age), etendue = max(age) - min(age), variance = var(age))',
+    'd |> summarise(ecart_type = sd(age), variance = var(age), etendue = max(age) - min(age))')
+  Hint: L'étendue se calcule avec max(age) - min(age) ; les deux autres
+    indicateurs viennent d'être nommés dans le texte précédent.
 
 - Class: text
   Output: "On peut aussi calculer des quartiles à l'intérieur d'un summarise(),
     avec quantile().
     Le premier quartile de l'âge, par exemple, s'obtient avec
-    quantile(age, 0.25)."
+    quantile(age, 0.25).
+    Le deuxième quartile (la médiane) correspond à la proportion 0.50, et le
+    troisième à 0.75."
 
 - Class: cmd_question
-  Output: "Calculez le premier quartile de l'âge avec
-    d |> summarise(q1 = quantile(age, 0.25))."
-  CorrectAnswer: d |> summarise(q1 = quantile(age, 0.25))
-  AnswerTests: expr_uses_func('summarise')
-  Hint: Tapez d |> summarise(q1 = quantile(age, 0.25)) dans la console.
+  Output: "Calculez en une seule commande les trois quartiles de l'âge, en
+    nommant les résultats q1, q2 et q3."
+  CorrectAnswer: d |> summarise(q1 = quantile(age, 0.25), q2 = quantile(age, 0.50), q3 = quantile(age, 0.75))
+  AnswerTests: any_of_exprs('d |> summarise(q1 = quantile(age, 0.25), q2 = quantile(age, 0.50), q3 = quantile(age, 0.75))',
+    'd |> summarise(q1 = quantile(age, 0.25), q3 = quantile(age, 0.75), q2 = quantile(age, 0.50))',
+    'd |> summarise(q2 = quantile(age, 0.50), q1 = quantile(age, 0.25), q3 = quantile(age, 0.75))',
+    'd |> summarise(q2 = quantile(age, 0.50), q3 = quantile(age, 0.75), q1 = quantile(age, 0.25))',
+    'd |> summarise(q3 = quantile(age, 0.75), q1 = quantile(age, 0.25), q2 = quantile(age, 0.50))',
+    'd |> summarise(q3 = quantile(age, 0.75), q2 = quantile(age, 0.50), q1 = quantile(age, 0.25))')
+  Hint: Trois appels à quantile() dans un seul summarise(), avec les
+    proportions 0.25, 0.50 et 0.75 données dans le texte précédent.
+
+- Class: text
+  Output: "Pour un aperçu rapide, summary() donne l'essentiel en une seule
+    commande. Contrairement à summarise(), elle attend un vecteur (d'où le
+    signe $) et son résultat n'est pas un tableau : on ne peut pas
+    l'enchaîner avec le tuyau. Elle est pratique pour explorer, mais pas pour
+    produire un résultat réutilisable."
+
+- Class: cmd_question
+  Output: "Essayez summary() sur la colonne age de d."
+  CorrectAnswer: summary(d$age)
+  AnswerTests: omnitest(correctExpr='summary(d$age)')
+  Hint: summary() prend directement une colonne en argument, accédée avec le
+    signe $ vu dans une leçon précédente.
 
 - Class: cmd_question
   Output: "Essayons maintenant sur une autre variable.
     Calculez la moyenne des heures de télévision, avec
     d |> summarise(moyenne = mean(heures.tv))."
   CorrectAnswer: d |> summarise(moyenne = mean(heures.tv))
-  AnswerTests: expr_uses_func('summarise')
-  Hint: Tapez d |> summarise(moyenne = mean(heures.tv)) dans la console.
+  AnswerTests: omnitest(correctExpr='d |> summarise(moyenne = mean(heures.tv))')
+  Hint: Reprenez le summarise() du tout début de la leçon, en changeant la
+    variable pour heures.tv.
 
 - Class: mult_question
   Output: "Le résultat est NA, alors que la commande précédente sur age avait
     bien fonctionné.
-    Pourquoi ?"
+    Vous avez vu à la leçon précédente pourquoi : dès qu'une des valeurs
+    utilisées dans un calcul est NA, le résultat entier devient NA.
+    Pourquoi obtient-on NA ici ?"
   AnswerChoices: La variable heures.tv contient des valeurs manquantes;R ne sait pas calculer de moyenne sur des heures;Il manque des guillemets autour de heures.tv
   CorrectAnswer: La variable heures.tv contient des valeurs manquantes
   AnswerTests: omnitest(correctVal='La variable heures.tv contient des valeurs manquantes')
   Hint: Rappelez-vous ce qui se passe quand on additionne ou multiplie un NA
-    à autre chose.
-
-- Class: text
-  Output: "En effet : dès qu'une des valeurs utilisées dans un calcul est NA,
-    le résultat entier devient NA.
-    C'est le comportement par défaut, sur toutes les fonctions de calcul de
-    R."
+    à autre chose, vu à la leçon précédente.
 
 - Class: cmd_question
   Output: "Pour écarter les valeurs manquantes du calcul, on ajoute l'argument
@@ -98,9 +143,9 @@
     Recalculez la moyenne des heures de télévision avec
     mean(heures.tv, na.rm = TRUE), à l'intérieur d'un summarise()."
   CorrectAnswer: d |> summarise(moyenne = mean(heures.tv, na.rm = TRUE))
-  AnswerTests: expr_uses_func('summarise')
-  Hint: Tapez d |> summarise(moyenne = mean(heures.tv, na.rm = TRUE)) dans la
-    console.
+  AnswerTests: omnitest(correctExpr='d |> summarise(moyenne = mean(heures.tv, na.rm = TRUE))')
+  Hint: Reprenez le summarise() précédent, en ajoutant na.rm = TRUE à
+    l'intérieur de mean().
 
 - Class: text
   Output: "Attention : na.rm = TRUE ne fait pas disparaître le problème, il le
@@ -118,7 +163,8 @@
     sum(is.na(d$heures.tv))."
   CorrectAnswer: sum(is.na(d$heures.tv))
   AnswerTests: omnitest(correctExpr='sum(is.na(d$heures.tv))')
-  Hint: Tapez sum(is.na(d$heures.tv)) dans la console.
+  Hint: Combinez les deux fonctions décrites dans la consigne, appliquées à
+    la colonne heures.tv de d.
 
 - Class: text
   Output: "Passons maintenant aux variables qualitatives, comme sexe ou
@@ -130,16 +176,18 @@
 - Class: cmd_question
   Output: "Faites le tri à plat de la variable sexe, avec d |> count(sexe)."
   CorrectAnswer: d |> count(sexe)
-  AnswerTests: expr_uses_func('count')
-  Hint: Tapez d |> count(sexe) (ou count(d, sexe)) dans la console.
+  AnswerTests: omnitest(correctExpr='d |> count(sexe)')
+  Hint: d |> count(...) avec la variable à trier à plat en argument, comme
+    annoncé dans le texte précédent.
 
 - Class: cmd_question
   Output: "On peut trier le résultat par effectif décroissant avec l'argument
     sort = TRUE.
     Essayez d |> count(qualif, sort = TRUE), et observez la ligne NA."
   CorrectAnswer: d |> count(qualif, sort = TRUE)
-  AnswerTests: expr_uses_func('count')
-  Hint: Tapez d |> count(qualif, sort = TRUE) dans la console.
+  AnswerTests: omnitest(correctExpr='d |> count(qualif, sort = TRUE)')
+  Hint: Reprenez le count() précédent sur qualif, en ajoutant l'argument
+    annoncé dans la consigne.
 
 - Class: text
   Output: "Remarquez que count() affiche les valeurs manquantes comme une
@@ -152,9 +200,9 @@
     Essayez :
     d |> count(qualif) |> mutate(pourcentage = 100 * n / sum(n))."
   CorrectAnswer: d |> count(qualif) |> mutate(pourcentage = 100 * n / sum(n))
-  AnswerTests: expr_uses_func('count'); expr_uses_func('mutate')
-  Hint: Tapez d |> count(qualif) |> mutate(pourcentage = 100 * n / sum(n))
-    dans la console.
+  AnswerTests: omnitest(correctExpr='d |> count(qualif) |> mutate(pourcentage = 100 * n / sum(n))')
+  Hint: Enchaînez count(qualif) et le mutate() décrit dans la consigne avec
+    le tuyau.
 
 - Class: text
   Output: "Nous savons maintenant décrire une variable seule.
@@ -167,18 +215,20 @@
   Output: "Calculez l'effectif et l'âge moyen par sexe, avec
     d |> group_by(sexe) |> summarise(effectif = n(), age_moyen = mean(age))."
   CorrectAnswer: d |> group_by(sexe) |> summarise(effectif = n(), age_moyen = mean(age))
-  AnswerTests: expr_uses_func('group_by'); expr_uses_func('summarise')
-  Hint: Tapez d |> group_by(sexe) |> summarise(effectif = n(), age_moyen = mean(age))
-    dans la console. n() donne l'effectif du groupe.
+  AnswerTests: any_of_exprs('d |> group_by(sexe) |> summarise(effectif = n(), age_moyen = mean(age))',
+    'd |> group_by(sexe) |> summarise(age_moyen = mean(age), effectif = n())')
+  Hint: Enchaînez group_by(sexe) et un summarise() avec deux indicateurs,
+    n() pour l'effectif et mean(age) pour l'âge moyen.
 
 - Class: cmd_question
   Output: "Refaites le même calcul, mais groupé cette fois par qualif, et
     triez le résultat par âge moyen décroissant avec arrange(desc(...)).
     Enchaînez group_by(), summarise() puis arrange()."
   CorrectAnswer: d |> group_by(qualif) |> summarise(effectif = n(), age_moyen = mean(age)) |> arrange(desc(age_moyen))
-  AnswerTests: expr_uses_func('group_by'); expr_uses_func('summarise'); expr_uses_func('arrange')
-  Hint: Tapez d |> group_by(qualif) |> summarise(effectif = n(), age_moyen = mean(age))
-    |> arrange(desc(age_moyen)) dans la console.
+  AnswerTests: any_of_exprs('d |> group_by(qualif) |> summarise(effectif = n(), age_moyen = mean(age)) |> arrange(desc(age_moyen))',
+    'd |> group_by(qualif) |> summarise(age_moyen = mean(age), effectif = n()) |> arrange(desc(age_moyen))')
+  Hint: Reprenez le group_by()+summarise() précédent en changeant sexe pour
+    qualif, et ajoutez arrange(desc(age_moyen)) à la fin.
 
 - Class: cmd_question
   Output: "On peut grouper sur plusieurs variables à la fois, en les séparant
@@ -189,9 +239,13 @@
     L'argument .groups = \"drop\" évite un avertissement et un tableau qui
     resterait groupé pour les calculs suivants."
   CorrectAnswer: d |> group_by(sexe, qualif) |> summarise(effectif = n(), age_moyen = mean(age), .groups = "drop") |> arrange(effectif)
-  AnswerTests: expr_uses_func('group_by'); expr_uses_func('summarise'); expr_uses_func('arrange')
-  Hint: Tapez d |> group_by(sexe, qualif) |> summarise(effectif = n(), age_moyen = mean(age), .groups = "drop")
-    |> arrange(effectif) dans la console.
+  AnswerTests: any_of_exprs('d |> group_by(sexe, qualif) |> summarise(effectif = n(), age_moyen = mean(age), .groups = "drop") |> arrange(effectif)',
+    'd |> group_by(sexe, qualif) |> summarise(age_moyen = mean(age), effectif = n(), .groups = "drop") |> arrange(effectif)',
+    'd |> group_by(qualif, sexe) |> summarise(effectif = n(), age_moyen = mean(age), .groups = "drop") |> arrange(effectif)',
+    'd |> group_by(qualif, sexe) |> summarise(age_moyen = mean(age), effectif = n(), .groups = "drop") |> arrange(effectif)')
+  Hint: Même structure que les deux group_by()+summarise() précédents, avec
+    les deux variables de groupement séparées par une virgule et l'argument
+    .groups annoncé dans la consigne.
 
 - Class: mult_question
   Output: "Vous venez d'afficher les effectifs de chaque croisement sexe x
@@ -213,6 +267,74 @@
     silencieusement, mais il peut être trompeur silencieusement.
     Prenez toujours l'habitude d'afficher l'effectif d'un groupe (avec n())
     à côté de tout indicateur calculé sur ce groupe."
+
+- Class: text
+  Output: "Faire une analyse bivariée, c'est étudier la relation entre deux
+    variables : sont-elles liées, ou indépendantes ?
+    Pour croiser deux variables qualitatives, on compte les effectifs de
+    chaque combinaison avec count(), en lui passant les deux variables."
+
+- Class: cmd_question
+  Output: "Croisez qualif et sexe avec count()."
+  CorrectAnswer: d |> count(qualif, sexe)
+  AnswerTests: any_of_exprs('d |> count(qualif, sexe)', 'd |> count(sexe, qualif)')
+  Hint: count() accepte plusieurs variables séparées par une virgule, comme
+    group_by() plus haut.
+
+- Class: text
+  Output: "Le résultat précédent est correct mais peu lisible, avec une ligne
+    par combinaison. pivot_wider() le remet en forme de tableau à double
+    entrée : names_from indique la variable dont les modalités deviennent des
+    colonnes, et values_from la colonne dont les valeurs viennent remplir ce
+    tableau."
+
+- Class: cmd_question
+  Output: "Reprenez le croisement précédent, et enchaînez-y
+    pivot_wider(names_from = sexe, values_from = n) pour obtenir un tableau à
+    double entrée."
+  CorrectAnswer: d |> count(qualif, sexe) |> pivot_wider(names_from = sexe, values_from = n)
+  AnswerTests: any_of_exprs('d |> count(qualif, sexe) |> pivot_wider(names_from = sexe, values_from = n)',
+    'd |> count(sexe, qualif) |> pivot_wider(names_from = sexe, values_from = n)')
+  Hint: Ajoutez pivot_wider(names_from = sexe, values_from = n) après le
+    count() précédent, avec le tuyau.
+
+- Class: text
+  Output: "Les effectifs bruts ne se comparent pas directement, car les
+    groupes n'ont pas la même taille.
+    On calcule donc des pourcentages à l'intérieur de chaque ligne, en
+    groupant par qualif avant le mutate(), pour répondre à la question :
+    parmi les cadres, quelle part de femmes ?
+    Pour obtenir la question symétrique (parmi les femmes, quelle part de
+    cadres ?), il faudrait grouper par sexe à la place : ce sont deux
+    tableaux différents, calculés sur les mêmes effectifs."
+
+- Class: cmd_question
+  Output: "Enchaînez count(qualif, sexe), puis group_by(qualif), puis
+    mutate(pourcentage = 100 * n / sum(n)), avant d'utiliser le pivot_wider."
+  CorrectAnswer: d |> count(qualif, sexe) |> group_by(qualif) |> mutate(pourcentage = 100 * n / sum(n))
+  AnswerTests: any_of_exprs('d |> count(qualif, sexe) |> group_by(qualif) |> mutate(pourcentage = 100 * n / sum(n))',
+    'd |> count(sexe, qualif) |> group_by(qualif) |> mutate(pourcentage = 100 * n / sum(n))')
+  Hint: Les trois étapes et leurs arguments viennent d'être décrits dans la
+    consigne ; enchaînez-les avec le tuyau, dans l'ordre indiqué.
+
+- Class: text
+  Output: "Pour deux variables quantitatives, on mesure la relation par la
+    corrélation, avec cor(). L'argument use = 'complete.obs' écarte les
+    observations dont l'une des deux valeurs manque."
+
+- Class: cmd_question
+  Output: "Calculez, dans un summarise(), la corrélation entre age et
+    heures.tv, en ajoutant l'argument use = \"complete.obs\" à cor()."
+  CorrectAnswer: d |> summarise(correlation = cor(age, heures.tv, use = "complete.obs"))
+  AnswerTests: omnitest(correctExpr='d |> summarise(correlation = cor(age, heures.tv, use = "complete.obs"))')
+  Hint: cor(age, heures.tv, use = "complete.obs") à l'intérieur d'un
+    summarise(), comme pour les indicateurs vus en début de leçon.
+
+- Class: text
+  Output: "Attention : une corrélation mesure une association linéaire, pas
+    une causalité. Une corrélation proche de zéro n'exclut pas non plus une
+    relation d'une autre forme ; nous le verrons de façon visuelle dans la
+    prochaine leçon, consacrée aux graphiques."
 
 - Class: mult_question
   Output: "Souhaitez-vous soumettre votre progression sur Moodle à votre

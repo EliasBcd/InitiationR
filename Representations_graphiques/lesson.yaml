@@ -29,7 +29,7 @@
   Output: Affichez d pour vous rappeler des variables disponibles.
   CorrectAnswer: d
   AnswerTests: omnitest(correctExpr='d')
-  Hint: Tapez simplement d puis Entrée.
+  Hint: Le nom de l'objet seul suffit à l'afficher.
 
 - Class: cmd_question
   Output: On va maintenant utiliser ggplot() pour afficher les données.
@@ -37,14 +37,15 @@
     Tapez ?ggplot pour afficher l'aide sur ggplot.
   CorrectAnswer: ?ggplot
   AnswerTests: any_of_exprs('?ggplot', 'help(ggplot)')
-  Hint: Tapez ?ggplot pour afficher l'aide sur ggplot.
+  Hint: Un point d'interrogation devant le nom de la fonction, comme pour
+    l'aide déjà consultée dans une leçon précédente.
 
 - Class: cmd_question
   Output: "Pour dire à ggplot que vous allez utiliser le tableau d, tapez :
     ggplot(d)"
   CorrectAnswer: ggplot(d)
   AnswerTests: omnitest(correctExpr='ggplot(d)')
-  Hint: Tapez ggplot(d).
+  Hint: La syntaxe vient d'être donnée dans la consigne.
 
 - Class: text
   Output: Rien ne se passe !
@@ -63,7 +64,8 @@
     Essayez.
   CorrectAnswer: ggplot(d) + geom_histogram(aes(x = age))
   AnswerTests: omnitest(correctExpr='ggplot(d) + geom_histogram(aes(x = age))')
-  Hint: Tapez ggplot(d) + geom_histogram(aes(x = age)) pour afficher le graphique.
+  Hint: La géométrie et la variable à représenter viennent d'être annoncées
+    dans la consigne.
 
 - Class: text
   Output: Remarquez que R a automatiquement donné des noms aux axes.
@@ -75,7 +77,8 @@
     age mais avec la variable heures.tv.
   CorrectAnswer: ggplot(d) + geom_histogram(aes(x = heures.tv))
   AnswerTests: omnitest(correctExpr='ggplot(d) + geom_histogram(aes(x = heures.tv))')
-  Hint: Remplacez dans la question précédente age par heures.tv.
+  Hint: Reprenez la commande précédente, en changeant seulement la variable
+    dans aes().
 
 - Class: text
   Output: "R affiche un avertissement signalant les valeurs manquantes
@@ -95,7 +98,8 @@
     ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15)."
   CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15)
   AnswerTests: omnitest(correctExpr='ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15)')
-  Hint: Il faut ajouter geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) à ggplot(d).
+  Hint: La géométrie, les variables et l'argument de transparence viennent
+    d'être décrits dans la consigne.
 
 - Class: cmd_question
   Output: Nous allons voir comment changer différents aspects du graphique.
@@ -103,9 +107,10 @@
     ajouter labs(x = "...", y = "...") à nos commandes précédentes.
     Essayez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + labs(x = "Âge", y = "Heures de télévision").
   CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + labs(x = "Âge", y = "Heures de télévision")
-  AnswerTests: omnitest(correctExpr="ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + labs(x = 'Âge', y = 'Heures de télévision')")
-  Hint: Tapez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + labs(x = "Âge", y = "Heures de télévision")
-    pour afficher le graphique.
+  AnswerTests: any_of_exprs('ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + labs(x = "Âge", y = "Heures de télévision")',
+    'ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + labs(y = "Heures de télévision", x = "Âge")')
+  Hint: Reprenez le graphique précédent et ajoutez-lui labs(x = ..., y = ...)
+    avec les libellés donnés dans la consigne.
 
 - Class: cmd_question
   Output: On peut modifier certains attributs graphiques d'une geom en utilisant des
@@ -115,7 +120,12 @@
     Essayez de taper ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), color = "red", size = 2, alpha = 0.3)
     et observez le résultat.
   CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), color = "red", size = 2, alpha = 0.3)
-  AnswerTests: omnitest(correctExpr="ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), color = 'red', size = 2, alpha = 0.3)")
+  AnswerTests: any_of_exprs('ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), color = "red", size = 2, alpha = 0.3)',
+    'ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), color = "red", alpha = 0.3, size = 2)',
+    'ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), size = 2, color = "red", alpha = 0.3)',
+    'ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), size = 2, alpha = 0.3, color = "red")',
+    'ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.3, color = "red", size = 2)',
+    'ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.3, size = 2, color = "red")')
   Hint: Tapez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), color = "red", size = 2, alpha = 0.3)
     pour afficher le graphique.
 
@@ -134,7 +144,8 @@
     et observez le résultat.
   CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3)
   AnswerTests: omnitest(correctExpr="ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3)")
-  Hint: Tapez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) pour afficher le graphique.
+  Hint: Reprenez le nuage de points précédent, en ajoutant color = sexe à
+    l'intérieur de aes().
 
 - Class: text
   Output: Qu'observe-t-on ?
@@ -176,7 +187,8 @@
     Essayez ggplot(d) + geom_bar(aes(y = qualif))."
   CorrectAnswer: ggplot(d) + geom_bar(aes(y = qualif))
   AnswerTests: omnitest(correctExpr='ggplot(d) + geom_bar(aes(y = qualif))')
-  Hint: Tapez ggplot(d) + geom_bar(aes(y = qualif)) pour afficher le graphique.
+  Hint: La géométrie et le mappage voulu viennent d'être décrits dans la
+    consigne.
 
 - Class: text
   Output: geom_bar() compte lui-même les effectifs de chaque modalité, y compris
@@ -188,7 +200,8 @@
     Essayez ggplot(d) + geom_boxplot(aes(x = sexe, y = heures.tv))."
   CorrectAnswer: ggplot(d) + geom_boxplot(aes(x = sexe, y = heures.tv))
   AnswerTests: omnitest(correctExpr='ggplot(d) + geom_boxplot(aes(x = sexe, y = heures.tv))')
-  Hint: Tapez ggplot(d) + geom_boxplot(aes(x = sexe, y = heures.tv)) pour afficher le graphique.
+  Hint: La géométrie et les variables à croiser viennent d'être annoncées
+    dans la consigne.
 
 - Class: text
   Output: La boîte représente les premier et troisième quartiles, le trait
@@ -204,8 +217,8 @@
     ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + facet_wrap(~ sexe)."
   CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + facet_wrap(~ sexe)
   AnswerTests: omnitest(correctExpr='ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + facet_wrap(~ sexe)')
-  Hint: Tapez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv), alpha = 0.15) + facet_wrap(~ sexe)
-    pour afficher le graphique.
+  Hint: Reprenez le nuage de points âge / heures de télévision déjà utilisé,
+    et ajoutez-lui facet_wrap(~ sexe).
 
 - Class: text
   Output: un dernier point que nous allons voir sont les scale.
@@ -225,7 +238,12 @@
     Essayez.
     N'oubliez pas de garder la couleur pour le sexe.
   CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))
-  AnswerTests: omnitest(correctExpr="ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))")
+  AnswerTests: any_of_exprs('ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))',
+    'ggplot(d) + geom_jitter(aes(x = age, color = sexe, y = heures.tv), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))',
+    'ggplot(d) + geom_jitter(aes(y = heures.tv, x = age, color = sexe), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))',
+    'ggplot(d) + geom_jitter(aes(y = heures.tv, color = sexe, x = age), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))',
+    'ggplot(d) + geom_jitter(aes(color = sexe, x = age, y = heures.tv), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))',
+    'ggplot(d) + geom_jitter(aes(color = sexe, y = heures.tv, x = age), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))')
   Hint: Tapez ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))
     pour afficher le graphique demandé.
 
