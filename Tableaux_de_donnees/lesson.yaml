@@ -21,7 +21,8 @@
     Stockez le résultat dans l'objet tailles.
   CorrectAnswer: tailles <- c(156, 164, 197, 147, 173)
   AnswerTests: omnitest(correctExpr =  'tailles <- c(156, 164, 197, 147, 173)')
-  Hint: Tapez tailles <- c(156, 164, 197, 147, 173) et appuyez sur entrée.
+  Hint: Les valeurs à utiliser sont rappelées dans la consigne ; reprenez la
+    syntaxe c() vue à la leçon précédente pour les regrouper dans tailles.
 
 - Class: cmd_question
   Output: Recréons maintenant le vecteur poids de la leçon sur les vecteurs.
@@ -29,7 +30,8 @@
     Stockez le résultat dans l'objet poids.
   CorrectAnswer: poids <- c(45, 59, 110, 44, 88)
   AnswerTests: omnitest(correctExpr =  'poids <- c(45, 59, 110, 44, 88)')
-  Hint: Tapez poids <- c(45, 59, 110, 44, 88)  et appuyez sur entrée.
+  Hint: Même construction que pour tailles, avec les valeurs de poids
+    rappelées dans la consigne.
 
 - Class: text
   Output: Nous avons maintenant nos deux vecteurs de données, mais ils ne sont pas vraiment liés entre eux.
@@ -66,7 +68,7 @@
   Output: Tapons maintenant d pour observer comment R a stocké nos données.
   CorrectAnswer: d
   AnswerTests: omnitest(correctExpr =  'd')
-  Hint: Tapez simplement d puis Entrée.
+  Hint: Le nom de l'objet seul, sans rien d'autre, suffit à l'afficher.
 
 - Class: text
   Output: "R a stocké tout dans un seul tableau, avec une colonne par vecteur
@@ -81,7 +83,8 @@
     Essayez de voir les tailles.
   CorrectAnswer: d$tailles
   AnswerTests: omnitest(correctExpr =  'd$tailles')
-  Hint: Tapez simplement d$tailles puis Entrée.
+  Hint: La méthode et la colonne à consulter viennent d'être décrites dans la
+    consigne.
 
 - Class: cmd_question
   Output: La deuxième permet de consulter n'importe quelle colonne à l'aide d'un indice, un peu comme on consulterait un élément d'un vecteur.
@@ -89,7 +92,8 @@
     Essayez pour voir !
   CorrectAnswer: d[2]
   AnswerTests: omnitest(correctExpr =  'd[2]')
-  Hint: Tapez simplement d[2] puis Entrée.
+  Hint: La syntaxe avec l'indice entre crochets vient d'être présentée dans la
+    consigne.
 
 - Class: cmd_question
   Output: Enfin, une dernière méthode utile est d'utiliser le nom des colonnes entre des crochets, plutôt que d'utiliser le signe $.
@@ -97,7 +101,8 @@
     Essayez pour voir si vous avez compris.
   CorrectAnswer: d["poids"]
   AnswerTests: any_of_exprs('d["poids"]', 'd["tailles"]')
-  Hint: Tapez simplement d["tailles"] puis Entrée.
+  Hint: Même principe que d[2], mais avec le nom de la colonne entre
+    guillemets à la place du numéro.
 
 - Class: text
   Output: Vous verrez qu'à l'usage, il est souvent plus facile d'utiliser le nom de la colonne pour la consulter.
@@ -111,26 +116,28 @@
   Output: Tout comme les colonnes, il y a plusieurs méthodes pour consulter une ou plusieurs lignes.
     La plus simple est d'utiliser un numéro de ligne.
     La syntaxe est un peu différente des colonnes.
-    En effet, en pratique R considère les tableaux comme des matrices (objets que nous n'avons pas étudiés),
+    En effet, en pratique R considère les tableaux comme des matrices (type que nous n'avons pas étudié),
     c'est à dire que chaque cellule du tableau est indexée par un numéro de ligne et un numéro de colonne.
     La ligne est donnée par le premier indice, alors que la colonne est donnée par le deuxième indice.
     Si on veut consulter la deuxième ligne par exemple, on doit entrer d[2, ].
     Essayez pour voir !
   CorrectAnswer: d[2, ]
   AnswerTests: omnitest(correctExpr =  'd[2, ]')
-  Hint: Tapez simplement d[2, ] puis Entrée.
+  Hint: La syntaxe pour consulter une ligne entière vient d'être décrite dans
+    la consigne.
 
 - Class: cmd_question
   Output: La virgule suivie de rien indique à R que nous souhaitons consulter toutes les colonnes associées à la deuxième ligne.
     Si maintenant nous souhaitons seulement consulter la première colonne de la deuxième ligne, essayez de deviner comment faire.
   CorrectAnswer: d[2, 1]
   AnswerTests: omnitest(correctExpr =  'd[2, 1]')
-  Hint: Essayez de taper d[2, 1] puis Entrée.
+  Hint: Reprenez d[2, ] en remplaçant ce qui suit la virgule par le numéro de
+    la colonne voulue.
 
 - Class: text
   Output: "Puisque noms est une colonne ordinaire dans notre tibble, et non un
-    nom de ligne, on ne peut plus l'utiliser directement pour indexer une
-    ligne comme on le ferait avec un data.frame classique.
+    nom de ligne, on ne peut pas l'utiliser directement pour indexer une
+    ligne.
     Pour retrouver la ligne de Bassirou, il faut passer par filter(), que
     vous reverrez en détail dans la prochaine leçon."
 
@@ -139,8 +146,8 @@
     de Bassirou."
   CorrectAnswer: d |> filter(noms == "Bassirou")
   AnswerTests: expr_uses_func('filter')
-  Hint: Tapez d |> filter(noms == "Bassirou") (ou filter(d, noms == "Bassirou"))
-    dans la console.
+  Hint: La commande à utiliser vient d'être annoncée dans le texte précédent ;
+    appliquez-la à la colonne noms pour retrouver Bassirou.
 
 - Class: cmd_question
   Output: Il est bien sûr possible d'ajouter des colonnes à un tableau après sa création.
@@ -149,7 +156,8 @@
     Les règles de calculs sur les lignes ou les colonnes d'un tableau sont identiques à celle des vecteurs.
   CorrectAnswer: d$imc <- d$poids / (d$tailles / 100)^2
   AnswerTests: omnitest(correctExpr =  'd$imc <- d$poids / (d$tailles / 100)^2')
-  Hint: Tapez simplement d$imc <- d$poids / (d$tailles / 100)^2 et appuyez sur Entrée.
+  Hint: La syntaxe exacte vient d'être donnée dans la consigne ; il suffit de
+    la recopier.
 
 - Class: cmd_question
   Output: Observez maintenant d.
@@ -166,44 +174,17 @@
     Utilisez glimpse() sur d."
   CorrectAnswer: glimpse(d)
   AnswerTests: omnitest(correctExpr =  'glimpse(d)')
-  Hint: Tapez simplement glimpse(d).
-
-- Class: text
-  Output: "Notre tableau jouet à cinq lignes nous a permis de voir les bases.
-    Passons maintenant à un vrai jeu de données : hdv2003, l'enquête Histoire
-    de vie 2003 de l'INSEE, que nous utiliserons jusqu'à la fin du cours."
-
-- Class: cmd_question
-  Output: "Chargez ce jeu de données avec data(hdv2003)."
-  CorrectAnswer: data(hdv2003)
-  AnswerTests: omnitest(correctExpr='data(hdv2003)')
-  Hint: Tapez data(hdv2003) dans la console.
-
-- Class: text
-  Output: "hdv2003 est un data.frame classique, avec 2000 lignes.
-    L'afficher directement noierait la console.
-    Il faut d'abord le convertir en tibble avec as_tibble()."
-
-- Class: cmd_question
-  Output: "Convertissez hdv2003 en tibble avec as_tibble(hdv2003), et stockez
-    le résultat dans un nouvel objet, enquete."
-  CorrectAnswer: enquete <- as_tibble(hdv2003)
-  AnswerTests: omnitest(correctExpr =  'enquete <- as_tibble(hdv2003)')
-  Hint: Tapez enquete <- as_tibble(hdv2003) et appuyez sur Entrée.
-
-- Class: cmd_question
-  Output: Utilisez glimpse() sur ce nouveau tableau pour voir ses colonnes.
-  CorrectAnswer: glimpse(enquete)
-  AnswerTests: omnitest(correctExpr =  'glimpse(enquete)')
-  Hint: Tapez glimpse(enquete).
+  Hint: Le nom de la fonction vient d'être introduit dans la consigne.
 
 - Class: text
   Output: Ce sera tout sur cette leçon.
-    Vous savez maintenant construire un tableau à partir de vecteurs, y
-    accéder par colonne et par ligne, et charger un vrai jeu de données sous
-    forme de tibble.
-    La prochaine leçon vous apprendra à manipuler ce genre de tableau avec les
-    verbes du tidyverse.
+    Vous savez maintenant construire un tableau à partir de vecteurs, et y
+    accéder par colonne et par ligne.
+    Notre tableau jouet à cinq lignes nous a permis de voir les bases.
+    La prochaine leçon vous fera travailler sur un vrai jeu de données,
+    hdv2003, l'enquête Histoire de vie 2003 de l'INSEE que nous utiliserons
+    jusqu'à la fin du cours, et vous apprendra à manipuler ce genre de tableau
+    avec les verbes du tidyverse.
 
 - Class: mult_question
   Output: Souhaitez-vous soumettre votre progression sur Moodle à votre
