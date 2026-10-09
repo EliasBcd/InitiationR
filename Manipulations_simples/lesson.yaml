@@ -321,10 +321,12 @@
     Créez une nouvelle variable imc qui prend les valeurs des poids en 
     kilogramme divisés  par la taille au carré.
     N'oubliez pas que la taille doit être en mètre !
-  CorrectAnswer: imc <- poids / (tailles_m)^2
-  AnswerTests: any_of_exprs('imc <-  poids / (tailles/100)^2', 'imc <- poids / tailles_m^2')
-  Hint: La formule de l'imc est donnée dans la consigne ; vous avez déjà les
-    objets poids et tailles_m pour la construire.
+  CorrectAnswer: imc <- poids / tailles_m^2
+  AnswerTests: any_of_exprs('imc <- poids / tailles_m^2', 'imc <- poids / (tailles_m)^2',
+    'imc <- poids / (tailles_m^2)', 'imc <- poids / (tailles_m * tailles_m)',
+    'imc <- poids / (tailles/100)^2', 'imc <- poids / ((tailles/100)^2)')
+  Hint: Divisez poids par le carré de tailles_m (la puissance s'écrit ^), et
+    assignez le résultat à imc.
     
 - Class: mult_question
   Output: Quelle affirmation est vraie ?

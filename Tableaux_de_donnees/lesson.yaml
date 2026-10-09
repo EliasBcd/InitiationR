@@ -100,7 +100,7 @@
     La méthode d'accès est similaire à la précédente, sauf qu'au lieu d'utiliser l'indice de la colonne, il faut utiliser son nom.
     Essayez pour voir si vous avez compris.
   CorrectAnswer: d["poids"]
-  AnswerTests: any_of_exprs('d["poids"]', 'd["tailles"]')
+  AnswerTests: any_of_exprs('d["poids"]', 'd["tailles"]', 'd["noms"]')
   Hint: Même principe que d[2], mais avec le nom de la colonne entre
     guillemets à la place du numéro.
 

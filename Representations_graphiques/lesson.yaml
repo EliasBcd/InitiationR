@@ -233,10 +233,9 @@
 - Class: cmd_question
   Output: L'âge est une variable continue.
     On peut vouloir la représenter entre 18 et 100 ans.
-    Nous utiliserons donc scale_x_continuous(limits=c(18, 100)) en plus des commandes
-    déjà utilisées précédemment pour modifier le graphique en conséquence.
-    Essayez.
-    N'oubliez pas de garder la couleur pour le sexe.
+    Nous utiliserons donc scale_x_continuous(limits=c(18, 100)).
+    Reprenez le nuage de points coloré selon le sexe, tracé un peu plus haut
+    avec alpha = 0.3, et ajoutez-lui scale_x_continuous(limits=c(18, 100)).
   CorrectAnswer: ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))
   AnswerTests: any_of_exprs('ggplot(d) + geom_jitter(aes(x = age, y = heures.tv, color = sexe), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))',
     'ggplot(d) + geom_jitter(aes(x = age, color = sexe, y = heures.tv), alpha = 0.3) + scale_x_continuous(limits=c(18, 100))',

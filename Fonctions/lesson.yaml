@@ -135,7 +135,7 @@
    Il faut pour cela taper mean(tailles_incompletes, na.rm = TRUE).
    Essayez.
   CorrectAnswer: mean(tailles_incompletes, na.rm = TRUE)
-  AnswerTests: omnitest(correctExpr='mean(tailles_incompletes, na.rm = TRUE)')
+  AnswerTests: any_of_exprs('mean(tailles_incompletes, na.rm = TRUE)', 'mean(tailles_incompletes, na.rm = T)')
   Hint: Ajoutez l'argument na.rm = TRUE à l'appel de mean() que vous venez de
     faire.
 
@@ -159,8 +159,8 @@
     sans mettre de parenthèse et sans utiliser de guillemets.
     Essayez d'obtenir l'aide sur mean.
   CorrectAnswer: ?mean
-  AnswerTests: any_of_exprs('?mean', 'help("mean")')
-  Hint: Tepez help("mean") pour obtenir l'aide sur la fonction mean. 
+  AnswerTests: any_of_exprs('?mean', 'help("mean")', 'help(mean)')
+  Hint: Tapez help("mean") pour obtenir l'aide sur la fonction mean.
   
 - Class: text
   Output: Ces deux commandes affichent une page (en anglais) décrivant la
@@ -220,8 +220,8 @@
     Une fois cela fait, vous devez tapez submit() dans la console pour
     soumettre votre réponse.
   AnswerTests: test_imc()
-  Hint: Lisez bien les instructions dans le script et complétez-le à l'aide des
-    valeurs indiquées.
+  Hint: Le script est déjà complet. Lisez-le, enregistrez-le, puis tapez
+    submit() dans la console.
   Script: imc.R
 
 - Class: text
@@ -254,7 +254,7 @@
   Output: Ouvrez maintenant l'aide de la fonction quantile avec ?quantile, et
     repérez ce que fait l'argument probs.
   CorrectAnswer: ?quantile
-  AnswerTests: any_of_exprs('?quantile', 'help(quantile)')
+  AnswerTests: any_of_exprs('?quantile', 'help(quantile)', 'help("quantile")')
   Hint: Même méthode que pour l'aide sur mean, avec un autre nom de fonction.
 
 - Class: text

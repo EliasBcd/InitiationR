@@ -18,13 +18,12 @@
     Dès qu'une valeur d'un calcul est NA, le résultat entier devient NA.
 
 - Class: cmd_question
-  Output: Pour vous en rappeler, créez le vecteur c(44, NA, 5, NA), assignez-le
-    à x, puis multipliez-le par 3 en une seule commande.
+  Output: Pour vous en rappeler, en une seule commande, multipliez le vecteur
+    c(44, NA, 5, NA) par 3 et assignez le résultat à x.
   CorrectAnswer: x <- c(44, NA, 5, NA) * 3
   AnswerTests: any_of_exprs('x <- c(44, NA, 5, NA) * 3', 'x <- 3 * c(44, NA, 5, NA)')
-  Hint: NA se tape sans guillemets, comme TRUE ou FALSE ; c'est la même
-    propagation que vous avez déjà observée avec mean() dans la leçon sur les
-    fonctions.
+  Hint: Sur une seule ligne, écrivez x <- suivi du vecteur multiplié par 3.
+    NA se tape sans guillemets, comme TRUE ou FALSE.
     
 - Class: cmd_question
   Output: Afficher maintenant le résultat.

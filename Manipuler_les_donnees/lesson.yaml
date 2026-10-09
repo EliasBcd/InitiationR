@@ -23,7 +23,7 @@
   Output: "Commencez par accéder au jeu de données lui-même, avec la fonction
     déjà utilisée pour charger des données dans une leçon précédente."
   CorrectAnswer: data(hdv2003)
-  AnswerTests: omnitest(correctExpr='data(hdv2003)')
+  AnswerTests: any_of_exprs('data(hdv2003)', 'data("hdv2003")')
   Hint: La fonction s'appelle data, et prend le nom du jeu de données en
     argument, sans guillemets.
 
@@ -161,9 +161,10 @@
     Attention, le test d'égalité s'écrit avec deux signes égal, ==, et non un
     seul."
   CorrectAnswer: d |> filter(age < 25, sexe == "Femme")
-  AnswerTests: any_of_exprs('d |> filter(age < 25, sexe == "Femme")', 'd |> filter(sexe == "Femme", age < 25)')
+  AnswerTests: any_of_exprs('d |> filter(age < 25, sexe == "Femme")', 'd |> filter(sexe == "Femme", age < 25)',
+    'd |> filter(age < 25 & sexe == "Femme")', 'd |> filter(sexe == "Femme" & age < 25)')
   Hint: Reprenez le filter() précédent, et ajoutez une deuxième condition
-    séparée par une virgule.
+    séparée par une virgule (ou par &, qui a le même sens).
 
 - Class: text
   Output: "arrange() trie les lignes selon une variable, par ordre croissant
@@ -193,7 +194,9 @@
     Enchaînez les trois verbes dans cet ordre avec le tuyau."
   CorrectAnswer: d |> filter(age < 25, sexe == "Femme") |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif)
   AnswerTests: any_of_exprs('d |> filter(age < 25, sexe == "Femme") |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif)',
-    'd |> filter(sexe == "Femme", age < 25) |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif)')
+    'd |> filter(sexe == "Femme", age < 25) |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif)',
+    'd |> filter(age < 25 & sexe == "Femme") |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif)',
+    'd |> filter(sexe == "Femme" & age < 25) |> arrange(desc(heures.tv)) |> select(age, heures.tv, qualif)')
   Hint: Reprenez les trois exercices précédents sur filter, arrange et
     select, et enchaînez-les avec le tuyau dans l'ordre demandé.
 

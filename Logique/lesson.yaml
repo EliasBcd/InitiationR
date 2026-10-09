@@ -92,7 +92,7 @@
 - Class: mult_question
   Output: Et maintenant, laquelle des expressions suivantes a pour résultat
     TRUE ?
-  CorrectAnswer: 9 >= 10
+  CorrectAnswer: -6 > -7
   AnswerChoices: 9 >= 10; 7 == 9; 57 < 8; -6 > -7
   AnswerTests: omnitest(correctVal='-6 > -7')
   Hint: Vous pouvez, si vous en avez besoin, essayez chaque expression dans R

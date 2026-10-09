@@ -98,7 +98,7 @@
     cet ordre).
     Nommez-le v.
   CorrectAnswer: v <- c("R", TRUE, 8)
-  AnswerTests: omnitest(correctExpr = 'v <- c("R", TRUE, 8)')
+  AnswerTests: any_of_exprs('v <- c("R", TRUE, 8)', 'v <- c("R", T, 8)')
   Hint: Utilisez c() pour combiner les trois éléments dans l'ordre demandé, et
     assignez le résultat à v.
   

@@ -20,7 +20,7 @@
 - Class: cmd_question
   Output: "Chargez les données avec data(hdv2003)."
   CorrectAnswer: data(hdv2003)
-  AnswerTests: omnitest(correctExpr='data(hdv2003)')
+  AnswerTests: any_of_exprs('data(hdv2003)', 'data("hdv2003")')
   Hint: La même fonction que dans la leçon précédente pour accéder à un jeu
     de données.
 
@@ -98,7 +98,10 @@
     'd |> summarise(q2 = quantile(age, 0.50), q1 = quantile(age, 0.25), q3 = quantile(age, 0.75))',
     'd |> summarise(q2 = quantile(age, 0.50), q3 = quantile(age, 0.75), q1 = quantile(age, 0.25))',
     'd |> summarise(q3 = quantile(age, 0.75), q1 = quantile(age, 0.25), q2 = quantile(age, 0.50))',
-    'd |> summarise(q3 = quantile(age, 0.75), q2 = quantile(age, 0.50), q1 = quantile(age, 0.25))')
+    'd |> summarise(q3 = quantile(age, 0.75), q2 = quantile(age, 0.50), q1 = quantile(age, 0.25))',
+    'd |> summarise(q1 = quantile(age, probs = 0.25), q2 = quantile(age, probs = 0.50), q3 = quantile(age, probs = 0.75))',
+    'd |> summarise(q1 = quantile(age, 0.25), q2 = median(age), q3 = quantile(age, 0.75))',
+    'd |> summarise(q1 = quantile(age, probs = 0.25), q2 = median(age), q3 = quantile(age, probs = 0.75))')
   Hint: Trois appels à quantile() dans un seul summarise(), avec les
     proportions 0.25, 0.50 et 0.75 données dans le texte précédent.
 
@@ -143,7 +146,7 @@
     Recalculez la moyenne des heures de télévision avec
     mean(heures.tv, na.rm = TRUE), à l'intérieur d'un summarise()."
   CorrectAnswer: d |> summarise(moyenne = mean(heures.tv, na.rm = TRUE))
-  AnswerTests: omnitest(correctExpr='d |> summarise(moyenne = mean(heures.tv, na.rm = TRUE))')
+  AnswerTests: any_of_exprs('d |> summarise(moyenne = mean(heures.tv, na.rm = TRUE))', 'd |> summarise(moyenne = mean(heures.tv, na.rm = T))')
   Hint: Reprenez le summarise() précédent, en ajoutant na.rm = TRUE à
     l'intérieur de mean().
 
@@ -324,11 +327,13 @@
 
 - Class: cmd_question
   Output: "Calculez, dans un summarise(), la corrélation entre age et
-    heures.tv, en ajoutant l'argument use = \"complete.obs\" à cor()."
+    heures.tv, en ajoutant l'argument use = \"complete.obs\" à cor(), et en
+    nommant le résultat correlation."
   CorrectAnswer: d |> summarise(correlation = cor(age, heures.tv, use = "complete.obs"))
-  AnswerTests: omnitest(correctExpr='d |> summarise(correlation = cor(age, heures.tv, use = "complete.obs"))')
-  Hint: cor(age, heures.tv, use = "complete.obs") à l'intérieur d'un
-    summarise(), comme pour les indicateurs vus en début de leçon.
+  AnswerTests: any_of_exprs('d |> summarise(correlation = cor(age, heures.tv, use = "complete.obs"))',
+    'd |> summarise(correlation = cor(heures.tv, age, use = "complete.obs"))')
+  Hint: summarise(correlation = ...), avec à droite du signe égal
+    cor(age, heures.tv, use = "complete.obs").
 
 - Class: text
   Output: "Attention : une corrélation mesure une association linéaire, pas
