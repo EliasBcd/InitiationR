@@ -17,6 +17,7 @@ Une fois `swirl` installé, pour utiliser ce cours, on peut utiliser la méthode
 
 ```r
 library(swirl)
+select_language('french', append_rprofile = TRUE) # Mettre swirl en français
 install_course_github("EliasBcd", "InitiationR")
 swirl()
 ```
